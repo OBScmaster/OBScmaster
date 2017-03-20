@@ -87,6 +87,7 @@ CREATE TABLE NURSE
 );
 
 
+
 CREATE TABLE PATIENT
 (
 	PT_NO number,
