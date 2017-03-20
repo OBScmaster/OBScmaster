@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 /* Drop Tables */
 
 DROP TABLE BEDTIME CASCADE CONSTRAINTS;
@@ -184,3 +185,6 @@ ALTER TABLE PATIENT
 	ADD FOREIGN KEY (ROOM_NO_FK)
 	REFERENCES ROOM (ROOM_ROOM_NO_PK)
 ;
+=======
+create table
+>>>>>>> branch 'master' of https://github.com/OBScmaster/OBScmaster.git
