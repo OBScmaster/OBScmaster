@@ -1,15 +1,15 @@
 package web.scmaster.com.vo;
 
-public class SenserLog {
+public class SensorLog {
 	
 	private int pt_no;
 	private String time;
 	private String text;
 	private String grade;
 	
-	public SenserLog() {}
+	public SensorLog() {}
 
-	public SenserLog(int pt_no, String time, String text, String grade) {
+	public SensorLog(int pt_no, String time, String text, String grade) {
 		super();
 		this.pt_no = pt_no;
 		this.time = time;

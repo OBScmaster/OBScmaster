@@ -4,7 +4,7 @@
   "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
 	
-<!-- 	<typeAliases>
+ 	<typeAliases>
 		<typeAlias type="web.scmaster.com.vo.Bedtime" alias="Bedtime" />
 		<typeAlias type="web.scmaster.com.vo.Daily" alias="Daily" />
 		<typeAlias type="web.scmaster.com.vo.DR_OP" alias="DR_OP" />
@@ -15,10 +15,10 @@
 		<typeAlias type="web.scmaster.com.vo.Room" alias="Room" />
 		<typeAlias type="web.scmaster.com.vo.SensorLog" alias="SensorLog" />
 		
-	</typeAliases> -->
+	</typeAliases> 
 	
 	<mappers>
-	<!-- 	<mapper resource="mapper/patientMapper.xml" />
-		<mapper resource="mapper/nurseMapper.xml" /> -->
+	 	<mapper resource="mapper/patientMapper.xml" />
+		<mapper resource="mapper/nurseMapper.xml" />
 	</mappers>
 </configuration>

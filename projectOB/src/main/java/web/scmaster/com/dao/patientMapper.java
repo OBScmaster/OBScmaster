@@ -1,7 +1,9 @@
 package web.scmaster.com.dao;
 
+import web.scmaster.com.vo.Room;
+
 public interface patientMapper {
 	
-	public int insertRoom();
+	public int insertRoom(Room room);
 
 }

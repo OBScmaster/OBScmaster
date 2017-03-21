@@ -7,9 +7,9 @@
 <mapper namespace="web.scmaster.com.dao.patientMapper">
 
 
-<!-- 	<insert id="insertRoom" parameterType="Room">
-		insert into Room (id, password, name) values (#{id}, #{password}, #{name}) 
-	</insert> -->
+<insert id="insertRoom" parameterType="Room">
+		insert into ROOM (ROOM_NO,MAXIMUM,PRESENT,DELETEFLAG) values (#{room_no}, #{maximum}, #{present},#{deleteflag}) 
+</insert>
 	
 	
 </mapper>
