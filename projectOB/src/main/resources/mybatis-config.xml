@@ -3,12 +3,22 @@
   PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
-	<!--
-	<typeAliases>
-		<typeAlias type="global.sesoc.web3.vo.Member" alias="Member" />
-	</typeAliases>
-	-->
+	
+<!-- 	<typeAliases>
+		<typeAlias type="web.scmaster.com.vo.Bedtime" alias="Bedtime" />
+		<typeAlias type="web.scmaster.com.vo.Daily" alias="Daily" />
+		<typeAlias type="web.scmaster.com.vo.DR_OP" alias="DR_OP" />
+		<typeAlias type="web.scmaster.com.vo.Exercise" alias="Exercise" />
+		<typeAlias type="web.scmaster.com.vo.Meal" alias="Meal" />
+		<typeAlias type="web.scmaster.com.vo.Nurse" alias="Nurse" />
+		<typeAlias type="web.scmaster.com.vo.Patient" alias="Patient" />
+		<typeAlias type="web.scmaster.com.vo.Room" alias="Room" />
+		<typeAlias type="web.scmaster.com.vo.SensorLog" alias="SensorLog" />
+		
+	</typeAliases> -->
+	
 	<mappers>
-		<mapper resource="mapper/memberMapper.xml" />
+	<!-- 	<mapper resource="mapper/patientMapper.xml" />
+		<mapper resource="mapper/nurseMapper.xml" /> -->
 	</mappers>
 </configuration>

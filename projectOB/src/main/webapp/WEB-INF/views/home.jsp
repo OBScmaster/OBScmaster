@@ -15,15 +15,13 @@
 		alert($("#id").val()+"  "+$("#password").val());
 	})
 	
+	$(".form").css("backgroundColor","blue");
+	
 })
 </script>
 <style type="text/css">
 
 
-.navbar-form{
-
-
-}
 
 </style>
 
