@@ -68,6 +68,13 @@ CREATE TABLE Meal
 	DELETEFLAG number NOT NULL
 );
 
+CREATE TABLE ADMIN(
+	ID varchar2(5) NOT NULL,
+	PASSWORD varchar2(5) NOT NULL
+);
+
+INSERT INTO ADMIN values('admin', 'admin');
+
 
 CREATE TABLE NURSE
 (
