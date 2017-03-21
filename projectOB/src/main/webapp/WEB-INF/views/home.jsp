@@ -15,26 +15,7 @@
 <script src = "./resources/js/function.js"></script>
 <script type="text/javascript">
 
-function check2(){
 
-
-	 if($(':radio[name="divider"]:checked').length<1){
-		 alert("선택해주세요");	
-		 return false;
-	 }else{
-	 
-		 $.ajax(function(){
-			 
-			 $(':radio[name="divider"]:checked').val();
-			 
-		 })
-		
-		 
-		 return true;
-}	
-
-	
-}
 
 </script>
 
@@ -55,9 +36,10 @@ function check2(){
             <div class="wrap">
                 <p class="form-title">
                     Sign In</p>
-                <form action="login" method="post" class="login">
-                <input type="text" placeholder="Username" />
-                <input type="password" placeholder="Password" />
+                <form action="Login" class="login" method="post">
+                
+                <input type="text" placeholder="Username" id="id" class="id" name="id"/>
+                <input type="password" placeholder="Password" id="password" class="password" name="password" />
                 <input type="submit" id="loginSubmit" value="Sign In" class="btn btn-success btn-sm" />
                 <div class="remember-forgot">
                     <div class="row">
@@ -65,11 +47,12 @@ function check2(){
                             <div class="checkbox">
                                 <label>
                                     <input type="radio" name="divider" value="manager"/>병원관계자
-                                    &nbsp;&nbsp;&nbsp;
+                                  
                                     <input type="radio" name="divider" value="protector"/>보호자
                                 </label>
                             </div>
                         </div>
+                     
                         <div class="col-md-6 forgot-pass-content">
                             <a href="javascription:void(0)" class="forgot-pass">Forgot Password</a>
                         </div>
