@@ -15,11 +15,36 @@
 <script src = "./resources/js/function.js"></script>
 <script type="text/javascript">
 
-
+function test(){
+	
+	 if($(':radio[name="divider"]:checked').val()=="manager"){
+			
+		 $('#loginForm').attr("action","managerLogin");
+		 
+	 }else{
+		 
+		 $('#loginForm').attr("action","patientLogin");
+	 }
+	
+}
 
 </script>
 
 </head>
+<c:if test="${PWnotMatch!=null}">
+<script type="text/javascript">
+alert("비번틀림");
+</script>
+</c:if>
+
+<c:if test="${whywhywhy!=null}">
+<script type="text/javascript">
+alert("모르겠네");
+</script>
+</c:if>
+
+
+
 <body background="./resources/image/nature.jpg">
 
 <div class="container">
@@ -36,14 +61,14 @@
             <div class="wrap">
                 <p class="form-title">
                     Sign In</p>
-                <form action="Login" class="login" method="post">
+                <form action="" id="loginForm" class="login" method="post" onsubmit="test()" >
                 
                 <input type="text" placeholder="Username" id="id" class="id" name="id"/>
                 <input type="password" placeholder="Password" id="password" class="password" name="password" />
                 <input type="submit" id="loginSubmit" value="Sign In" class="btn btn-success btn-sm" />
                 <div class="remember-forgot">
                     <div class="row">
-                        <div class="col-md-6">
+                        <div class="col-md-10">
                             <div class="checkbox">
                                 <label>
                                     <input type="radio" name="divider" value="manager"/>병원관계자

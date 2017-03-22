@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import web.scmaster.com.dao.patientDAO;
-import web.scmaster.com.vo.Nurse;
+
 import web.scmaster.com.vo.Patient;
 import web.scmaster.com.vo.Room;
 
@@ -21,27 +21,35 @@ public class patientController {
 	@Autowired
 	private patientDAO patientdao;
 	
-	@RequestMapping(value="Login", method=RequestMethod.POST)
-	public String login(String id, String password, String divider, Model model, HttpSession session){
 	
-		if(divider.equals("manager")){
-			
-			model.addAttribute("id",id);
-			
-		return "/managerPage";
+	@RequestMapping(value="patientLogin", method=RequestMethod.POST)
+	public String login(String id, String password, Model model, HttpSession session){
+			model.addAttribute("whywhywhy",null);
 		
-		}else{
-			
-			Patient p = patientdao.selectPatientById(id);
-			
+			Patient p= patientdao.selectPatient(id);
+					
 			if(p!=null){
-			model.addAttribute("id",id);
-			session.setAttribute("id", p.getName());
+				
+			if(p.getPpt_pw().equals(password)){
+				
+				model.addAttribute("id",id);
+				session.setAttribute("id", p.getName());
+				
+				return "/protectorPage";
+				
+			
+			
+			}else{			
+				model.addAttribute("PWnotMatch","패스워드가 맞지 않습니다");
+				return "home";	
+			
 			}
+			}
+			
+			model.addAttribute("whywhywhy","왜 그런지 모르겠네");
+		return "home";
 		
-		return "/protectorPage";
 		
-		}
 		}
 	
 	@ResponseBody

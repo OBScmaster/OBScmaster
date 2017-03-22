@@ -8,9 +8,11 @@ $(document).ready(function () {
 			 alert("선택해주세요");		
 			 return false;
 		 }
+		 
+		
+		 
 	    }); 
-	
-	
+	 
 	 
 	
 			 

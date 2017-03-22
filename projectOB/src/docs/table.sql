@@ -34,7 +34,22 @@ insert into room values('403',2,0,1);
 insert into room values('404',2,0,1);
 insert into room values('405',2,0,1);
 
-insert into patient values(1,2,'INS_NO','이름','생일','병명','폰번호','주소','사진','또사진','101','aaaaa','1','1','1','1',sysdate,sysdate,sysdate,10)
+NURSE_NO number,
+	CERT_NO varchar2(20) NOT NULL UNIQUE,
+	ID varchar2(13) NOT NULL UNIQUE,
+	PASSWORD varchar2(15) NOT NULL,
+	NAME varchar2(51) NOT NULL,
+	PHONE varchar2(13) NOT NULL,
+	ORIGINALPHOTO varchar2(200) NOT NULL,
+	SAVEDPHOTO varchar2(200),
+	INPUTDATE date DEFAULT SYSDATE NOT NULL,
+	UPDATEDATE date DEFAULT SYSDATE,
+	DELETEDATE date DEFAULT SYSDATE,
+	DELETEFLAG number NOT NULL,
+	PRIMARY KEY (NURSE_NO)
+
+insert into nurse values(2,'222-222','2','2','간호사이름','010-7777-7777','간호사사진','간호사또사진',sysdate,sysdate,sysdate,1);
+insert into patient values(1,2,'INS_NO','이름','생일','병명','폰번호','주소','사진','또사진','101','aaaaa','1','1','1','1',sysdate,sysdate,sysdate,1);
 
 
 /* Create Tables */

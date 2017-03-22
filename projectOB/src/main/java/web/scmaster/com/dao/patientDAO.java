@@ -21,11 +21,11 @@ public class patientDAO {
 		
 	}
 	
-	public Patient selectPatientById(String id){
+	public Patient selectPatient(String id){
 		
 		patientMapper mapper = sqlsession.getMapper(patientMapper.class);
 		
-		return mapper.selectPatientById(id);
+		return mapper.selectPatient(id);
 		
 	}
 

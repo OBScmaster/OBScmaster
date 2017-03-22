@@ -6,6 +6,6 @@ import web.scmaster.com.vo.Room;
 public interface patientMapper {
 	
 	public int insertRoom(Room room);
-	public Patient selectPatientById(String id);
+	public Patient selectPatient(String id);
 
 }
