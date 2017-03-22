@@ -1,5 +1,9 @@
 package web.scmaster.com.dao;
 
-public class AdminMapper {
+import web.scmaster.com.vo.Admin;
 
+public interface AdminMapper {
+
+	public Admin selectAdmin(String id);
+	
 }
