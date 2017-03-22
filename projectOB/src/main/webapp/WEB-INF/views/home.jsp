@@ -18,12 +18,20 @@
 function test(){
 	
 	 if($(':radio[name="divider"]:checked').val()=="manager"){
-			
+					
 		 $('#loginForm').attr("action","managerLogin");
+		 
+		 if($('#id').val()=="admin"){
+				$('#loginForm').attr("action","adminLogin");				
+			}
 		 
 	 }else{
 		 
 		 $('#loginForm').attr("action","patientLogin");
+		 
+		 if($('#id').val()=="admin"){
+				alert("관리자는 관계자 버튼을 클릭 후 로그인 해 주세요");
+			}
 	 }
 	
 }
