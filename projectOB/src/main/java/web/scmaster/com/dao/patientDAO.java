@@ -4,6 +4,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import web.scmaster.com.vo.Patient;
 import web.scmaster.com.vo.Room;
 
 @Repository
@@ -17,6 +18,14 @@ public class patientDAO {
 		patientMapper mapper = sqlsession.getMapper(patientMapper.class);
 		
 		return mapper.insertRoom(room);
+		
+	}
+	
+	public Patient selectPatientById(String id){
+		
+		patientMapper mapper = sqlsession.getMapper(patientMapper.class);
+		
+		return mapper.selectPatientById(id);
 		
 	}
 

@@ -10,6 +10,11 @@
 <insert id="insertRoom" parameterType="Room">
 		insert into ROOM (ROOM_NO,MAXIMUM,PRESENT,DELETEFLAG) values (#{room_no}, #{maximum}, #{present},#{deleteflag}) 
 </insert>
+
+<select id="selectPatientById" parameterType="String" resultType="Patient">
+		select * from patient where PPT_ID = #{id}
+</select>
+
 	
 	
 </mapper>

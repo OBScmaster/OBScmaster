@@ -6,11 +6,9 @@
   <!-- 회원정보 처리 SQL -->
 <mapper namespace="web.scmaster.com.dao.nurseMapper">
 
-	<!-- 회원 정보 저장 -->
-	<!--
-	<insert id="insert" parameterType="Member">
-		insert into web3_member (id, password, name) values (#{id}, #{password}, #{name}) 
-	</insert>
-	-->
+	
+<select id="selectNurseById" parameterType="String" resultType="Nurse">
+		select * from nurse where ID = #{id}
+</select>
 	
 </mapper>

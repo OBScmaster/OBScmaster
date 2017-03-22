@@ -11,6 +11,31 @@ DROP TABLE PATIENT CASCADE CONSTRAINTS;
 DROP TABLE NURSE CASCADE CONSTRAINTS;
 DROP TABLE ROOM CASCADE CONSTRAINTS;
 
+/*room data*/
+
+insert into room values('101',4,0,1);
+insert into room values('102',4,0,1);
+insert into room values('103',4,0,1);
+insert into room values('104',4,0,1);
+insert into room values('105',4,0,1);
+insert into room values('201',6,0,1);
+insert into room values('202',6,0,1);
+insert into room values('203',6,0,1);
+insert into room values('204',6,0,1);
+insert into room values('205',6,0,1);
+insert into room values('301',8,0,1);
+insert into room values('302',8,0,1);
+insert into room values('303',8,0,1);
+insert into room values('304',8,0,1);
+insert into room values('305',8,0,1);
+insert into room values('401',2,0,1);
+insert into room values('402',2,0,1);
+insert into room values('403',2,0,1);
+insert into room values('404',2,0,1);
+insert into room values('405',2,0,1);
+
+insert into patient values(1,2,'INS_NO','이름','생일','병명','폰번호','주소','사진','또사진','101','aaaaa','1','1','1','1',sysdate,sysdate,sysdate,10)
+
 
 /* Create Tables */
 

@@ -25,17 +25,19 @@ public class patientController {
 	public String login(String id, String password, String divider, Model model, HttpSession session){
 	
 		if(divider.equals("manager")){
-		
-	
-		model.addAttribute("id", id);
-		session.setAttribute("id", id);
+			
+			model.addAttribute("id",id);
 			
 		return "/managerPage";
 		
 		}else{
 			
-		model.addAttribute("id",id);
-		session.setAttribute("id", id);
+			Patient p = patientdao.selectPatientById(id);
+			
+			if(p!=null){
+			model.addAttribute("id",id);
+			session.setAttribute("id", p.getName());
+			}
 		
 		return "/protectorPage";
 		
