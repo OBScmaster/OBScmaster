@@ -22,7 +22,7 @@
     <link rel="stylesheet" href="./resources/css/preloader.css" type="text/css" media="screen, print"/>
 
     <!-- Icon Font-->
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="./resources/css/style.css">
     <link rel="stylesheet" href="./resources/css/owl.carousel.css">
     <link rel="stylesheet" href="./resources/css/owl.theme.default.css">
     <!-- Animate CSS-->
@@ -68,7 +68,7 @@
 	                    <span class="icon-bar"></span>
 	                    <span class="icon-bar"></span>
 	                  </button>
-	                  <a class="navbar-brand" href="#"><img src="images/logo.png" alt=""></a>
+	                  <a class="navbar-brand" href="#"><img src="./resources/image/logo.png" alt=""></a>
 	                </div>
 
 	                <!-- Collect the nav links, forms, and other content for toggling -->
@@ -368,7 +368,7 @@
                 <div class="col-md-12 text-center">
                     <div class="contact_title  wow fadeInUp animated">
                         <h1>get in touch</h1>
-                        <img src="images/shape.png" alt="">
+                        <img src="./resources/image/shape.png" alt="">
                         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna<br/> aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex.</p>
                     </div>
                 </div>

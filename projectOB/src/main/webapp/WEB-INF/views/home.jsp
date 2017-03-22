@@ -43,11 +43,11 @@
                 <input type="submit" id="loginSubmit" value="Sign In" class="btn btn-success btn-sm" />
                 <div class="remember-forgot">
                     <div class="row">
-                        <div class="col-md-6">
+                        <div class="col-md-10">
                             <div class="checkbox">
                                 <label>
                                     <input type="radio" name="divider" value="manager"/>병원관계자
-                                  
+                                  	&nbsp;&nbsp;&nbsp;
                                     <input type="radio" name="divider" value="protector"/>보호자
                                 </label>
                             </div>
