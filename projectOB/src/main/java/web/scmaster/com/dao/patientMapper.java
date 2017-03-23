@@ -7,5 +7,9 @@ public interface patientMapper {
 	
 	public int insertRoom(Room room);
 	public Patient selectPatient(String id);
+	public int insertPatient(Patient patient);
+	public int updatePatient(Patient patient);
+	public int deletePatient(int pt_no);
+	public int changeNurse(int nurse_no);
 
 }

@@ -7,8 +7,74 @@
 <mapper namespace="web.scmaster.com.dao.AdminMapper">
 
 	
+<!-- 관리자로그인 -->
 <select id="selectAdmin" parameterType="String" resultType="Admin">
 		select id, password from ADMIN where id = #{id}
 </select>
+
+<!-- 요양사검색 -->
+<select id="selectNurseById" parameterType="String" resultType="Nurse">
+		select NURSE_NO,CERT_NO,ID,PASSWORD,NAME,PHONE,ORIGINALPHOTO,SAVEDPHOTO,TO_CHAR(INPUTDATE,'YYYY-MM-DD') AS INPUTDATE,TO_CHAR(UPDATEDATE,'YYYY-MM-DD') AS UPDATEDATE,TO_CHAR(DELETEDATE,'YYYY-MM-DD') AS DELETEDATE,DELETEFLAG from nurse where ID = #{id}
+</select>
+
+
+<!-- 환자검색 -->
+<select id="selectPatient" parameterType="String" resultType="Patient">
+select PT_NO,NURSE_NO,INS_NO,NAME,BIRTHDATE,DESEASE,PHONE,ADDRESS,ORIGINALPHOTO,SAVEDPHOTO,ROOM_NO,PPT_ID,PPT_PW,PPT_NAME,PPT_PHONE,PPT_ADD,TO_CHAR(INPUTDATE,'YYYY,MM,DD') AS INPUTDATE,TO_CHAR(UPDATEDATE,'YYYY,MM,DD') AS UPDATEDATE,TO_CHAR(DELETEDATE,'YYYY,MM,DD') DELETEDATE,DELETEFLAG from PATIENT where PPT_ID = #{ppt_id}
+</select>
+
+<!-- 요양사등록 -->
+<insert id="insertNurse" parameterType="Nurse">
+
+ 	insert into Nurse (NURSE_NO,CERT_NO,ID,PASSWORD,NAME,PHONE
+ 	<if test="ORIGINALPHOTO!=null">
+ 	,ORIGINALPHOTO
+ 	</if>
+ 	<if test="SAVEDPHOTO!=null">
+ 	,SAVEDPHOTO
+ 	</if> 	
+ 	) 	
+ 	values(nurseno_seq.nextval,#{cert_no},#{id},#{password},#{name},#{phone}
+ 	
+ 	<if test="ORIGINALPHOTO!=null">
+ 	,#{originalphoto}
+ 	</if>
+ 	<if test="SAVEDPHOTO!=null">
+ 	,#{savedphoto}
+ 	</if>
+ 	 )
+</insert>
+
+<!-- 환자등록 -->
+<insert id="insertPatient" parameterType="Patient">
+insert into patient (PT_NO,NURSE_NO,INS_NO,NAME,BIRTHDATE
+	<if test="DESEASE!=null">,DESEASE</if>
+	<if test="PHONE!=null">,PHONE</if>
+	<if test="ADDRESS!=null">,ADDRESS</if>
+	<if test="ORIGINALPHOTO!=null">,ORIGINALPHOTO</if>
+ 	<if test="SAVEDPHOTO!=null">,SAVEDPHOTO	</if> 	
+	,ROOM_NO
+	<if test="PPT_ID!=null">,PPT_ID</if>
+	<if test="PPT_PW!=null">,PPT_PW</if>
+	<if test="PPT_NAME!=null">,PPT_NAME</if>
+	<if test="PPT_PHONE!=null">,PPT_PHONE</if>
+	<if test="PPT_ADD!=null">,PPT_ADD</if>
+	) 
+	values(
+	ptno_seq.nextval,#{nurse_no},#{ins_no},#{name},#{birthdate}
+	<if test="DESEASE!=null">,#{desease}</if>
+	<if test="PHONE!=null">,#{phone}</if>
+	<if test="ADDRESS!=null">,#{address}</if>
+	<if test="ORIGINALPHOTO!=null">,#{originalphoto}</if>
+ 	<if test="SAVEDPHOTO!=null">,#{savedphoto}	</if> 	
+	,#{room_no}
+	<if test="PPT_ID!=null">,#{ppt_id}</if>
+	<if test="PPT_PW!=null">,#{ppt_pw}</if>
+	<if test="PPT_NAME!=null">,#{ppt_name}</if>
+	<if test="PPT_PHONE!=null">,#{ppt_phone}</if>
+	<if test="PPT_ADD!=null">,#{ppt_add}</if>	
+	)
+</insert>
+
 	
 </mapper>

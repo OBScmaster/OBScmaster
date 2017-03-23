@@ -94,7 +94,7 @@
                 <div class="col-md-4 text-center" id = "사진보기">
                     <div class="single_service wow fadeInUp" data-wow-delay="1s">
                   
-                        <h2>ddd</h2>
+                      <img alt="" src="./resources/image/icons/play.png">
                         <p>Excepteur sint occaecat cupidatat non proident, sunt in culpa.</p>
                     </div>
                 </div>
@@ -102,14 +102,15 @@
                 <div class="col-md-4 text-center" id = "일과보기">
                     <div class="single_service wow fadeInUp" data-wow-delay="2s">
                       
-                        <h2>Development</h2>
+                       <img alt="" src="./resources/image/icons/Nurse.png">
                         <p>Excepteur sint occaecat cupidatat non proident, sunt in culpa.</p>
                     </div>
                 </div>
                 <div class="col-md-4 text-center" id = "기타">
                     <div class="single_service wow fadeInUp" data-wow-delay="3s">
                         
-                        <h2>Photography</h2>
+                         <img alt="" src="./resources/image/icons/matureman.png">
+                         <img alt="" src="./resources/image/icons/maturewoman.png">
                         <p>Excepteur sint occaecat cupidatat non proident, sunt in culpa.</p>
                     </div>
                 </div>
