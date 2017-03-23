@@ -28,5 +28,37 @@ public class patientDAO {
 		return mapper.selectPatient(id);
 		
 	}
+	
+	public int insertPatient(Patient patient){
+		
+		patientMapper mapper = sqlsession.getMapper(patientMapper.class);
+		
+		return mapper.insertPatient(patient);
+		
+	}
+	
+	public int updatePatient(Patient patient){
+		
+		patientMapper mapper = sqlsession.getMapper(patientMapper.class);
+		
+		return mapper.updatePatient(patient);
+		
+	}
+	
+	public int deletePatient(int pt_no){
+		
+		patientMapper mapper = sqlsession.getMapper(patientMapper.class);
+		
+		return mapper.deletePatient(pt_no);
+		
+	}
+	
+	public int changeNurse(int nurse_no){
+		
+	patientMapper mapper = sqlsession.getMapper(patientMapper.class);
+		
+		return mapper.changeNurse(nurse_no);
+		
+	}
 
 }

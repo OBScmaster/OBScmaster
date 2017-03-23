@@ -19,5 +19,21 @@ public class nurseDAO {
 		return mapper.selectNurseById(id);
 		
 	}
+	
+	public int updateNurse(Nurse nurse){
+		
+		nurseMapper mapper = sqlsession.getMapper(nurseMapper.class);
+		
+		return mapper.updateNurse(nurse);
+		
+	}
+	
+	public int deleteNurse(int nurse_no){
+		
+		nurseMapper mapper = sqlsession.getMapper(nurseMapper.class);
+		
+		return mapper.deleteNurse(nurse_no);
+	}
+	
 
 }
