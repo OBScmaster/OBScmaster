@@ -112,10 +112,14 @@ CREATE TABLE Meal
 	DELETEFLAG number NOT NULL
 );
 
+DROP TABLE ADMIN;
+
 CREATE TABLE ADMIN(
-	ID varchar2(5) NOT NULL,
+	ID varchar2(5) NOT NULL primary key,
 	PASSWORD varchar2(5) NOT NULL
 );
+
+
 
 INSERT INTO ADMIN values('admin', 'admin');
 
