@@ -33,7 +33,7 @@ public class nurseController {
 				model.addAttribute("id",id);
 				session.setAttribute("id", n.getName());
 				
-				return "/managerPage";
+				return "/manager/managerPage";
 				
 			
 			

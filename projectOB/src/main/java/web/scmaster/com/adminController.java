@@ -29,7 +29,7 @@ public class adminController {
 				model.addAttribute("id",id);
 				session.setAttribute("id", a.getId());
 				
-				return "/adminPage";
+				return "/admin/adminPage";
 				
 			
 			

@@ -35,7 +35,7 @@ public class patientController {
 				model.addAttribute("id",id);
 				session.setAttribute("id", p.getName());
 				
-				return "/protectorPage";
+				return "/protector/protectorPage";
 				
 			
 			
