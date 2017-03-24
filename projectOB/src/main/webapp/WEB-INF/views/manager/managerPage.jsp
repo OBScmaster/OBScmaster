@@ -79,7 +79,7 @@
 
 <h1>${id}님 환영합니다</h1>
 
-
+  
  <!-- Preloader -->
 <div id="preloader">
 <div id="status">&nbsp;</div>
@@ -114,7 +114,7 @@
                
             </div>            
         </div>
-    </section>
+    </section>    
     
 </body>
 
