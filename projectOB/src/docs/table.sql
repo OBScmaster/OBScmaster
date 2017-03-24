@@ -75,11 +75,7 @@ CREATE TABLE Meal
 DROP TABLE ADMIN;
 
 CREATE TABLE ADMIN(
-<<<<<<< HEAD
 	ID varchar2(5) NOT NULL primary key,
-=======
-	ID varchar2(5) NOT NULL UNIQUE,
->>>>>>> branch 'master' of https://github.com/OBScmaster/OBScmaster.git
 	PASSWORD varchar2(5) NOT NULL
 );
 
