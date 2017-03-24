@@ -5,7 +5,6 @@ import web.scmaster.com.vo.Room;
 
 public interface patientMapper {
 	
-	public int insertRoom(Room room);
 	public Patient selectPatient(String id);
 	public int insertPatient(Patient patient);
 	public int updatePatient(Patient patient);

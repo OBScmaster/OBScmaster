@@ -29,5 +29,7 @@ update NURSE
 <update id="deleteNurse" parameterType="int">
 update NURSE set DELETEFLAG='N' where NURSE_NO=#{nurse_no}
 </update>
+
+
 	
 </mapper>

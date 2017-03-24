@@ -76,6 +76,7 @@
 
 <h1>admin님 환영합니다</h1>
 
+<a href="dailyschedule?pt_id=1&today=17/03/24"> dddd </a>
 
  <!-- Preloader -->
 <div id="preloader">

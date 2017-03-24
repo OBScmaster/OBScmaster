@@ -6,6 +6,15 @@
   <!-- 회원정보 처리 SQL -->
 <mapper namespace="web.scmaster.com.dao.AdminMapper">
 
+
+<insert id="insertRoom" parameterType="Room">
+insert into ROOM (ROOM_NO,MAXIMUM,PRESENT,DELETEFLAG) values (#{room_no}, #{maximum}, #{present},#{deleteflag}) 
+</insert>
+
+<update id="deleteRoom" parameterType="String">
+update Room set DELETEFLAG='N' where ROOM_NO=#{room_no}
+</update>
+
 	
 <!-- 관리자로그인 -->
 <select id="selectAdmin" parameterType="String" resultType="Admin">

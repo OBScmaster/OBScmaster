@@ -5,9 +5,18 @@
     
 <mapper namespace="web.scmaster.com.dao.dailyMapper">
 
-<select id="searchDaily" resultType="Daily" parameterType="String">
+<select id="searchDaily" resultType="Daily2">
 
-select d.cleaning,d.wash,d.shower,d.report
+select d.pt_no,d.today,d.cleaning,d.wash,d.shower,d.report,d.inputdate
+,m.breakfast,m.lunch,m.dinner,m.snack
+,e.text
+,b.time
+,dr.text as drtext
+from daily d, meal m, exercise e, bedtime b, dr_op dr
+where m.pt_no=#{pt_no} and m.today=#{today}
+and  e.pt_no=#{pt_no} and e.today=#{today}
+and b.pt_no=#{pt_no} and b.today=#{today}
+and dr.pt_no=#{pt_no} and dr.today=#{today}
 
 </select>
 

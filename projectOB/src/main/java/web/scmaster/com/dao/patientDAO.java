@@ -12,14 +12,7 @@ public class patientDAO {
 	
 	@Autowired
 	SqlSession sqlsession;
-	
-	public int insertRoom(Room room){
-		
-		patientMapper mapper = sqlsession.getMapper(patientMapper.class);
-		
-		return mapper.insertRoom(room);
-		
-	}
+
 	
 	public Patient selectPatient(String id){
 		

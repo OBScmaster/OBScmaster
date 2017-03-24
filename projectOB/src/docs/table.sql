@@ -1,4 +1,36 @@
 
+/* 트리거 */
+
+/*개인 정보 삭제 트리거 */
+drop trigger TRG_PATIENT_DELETE;
+
+create or replace TRIGGER TRG_PATIENT_DELETE
+after UPDATE of DELETEFLAG ON PATIENT
+for each row    
+BEGIN   
+   if :new.DELETEFLAG='N' THEN
+     UPDATE DAILY set DELETEFLAG=:NEW.DELETEFLAG where DAILY.PT_NO = :old.PT_NO;
+     UPDATE meal set DELETEFLAG=:NEW.DELETEFLAG where meal.PT_NO = :old.PT_NO;
+     UPDATE exercise set DELETEFLAG=:NEW.DELETEFLAG where exercise.PT_NO = :old.PT_NO;
+     UPDATE dr_op set DELETEFLAG=:NEW.DELETEFLAG where dr_op.PT_NO = :old.PT_NO;
+     UPDATE bedtime set DELETEFLAG=:NEW.DELETEFLAG where bedtime.PT_NO = :old.PT_NO;
+     end if;
+ END;
+ 
+ 
+ /*방정보변경 트리거 */
+drop trigger TRG_PATIENT_RCH;
+create or replace TRIGGER TRG_PATIENT_RCH
+after UPDATE of ROOM_NO ON PATIENT
+for each row    
+BEGIN   
+   if updating THEN
+     UPDATE ROOM set PRESENT=(select present from room where room_no=:new.ROOM_NO)+1 where ROOM_NO = :new.ROOM_NO;
+    UPDATE ROOM set PRESENT=(select present from room where room_no=:old.ROOM_NO)-1 where ROOM_NO = :old.ROOM_NO;
+     end if;
+ END;
+ 
+
 /* Drop Tables */
 
 DROP TABLE ADMIN CASCADE CONSTRAINTS;
@@ -12,9 +44,18 @@ DROP TABLE PATIENT CASCADE CONSTRAINTS;
 DROP TABLE NURSE CASCADE CONSTRAINTS;
 DROP TABLE ROOM CASCADE CONSTRAINTS;
 
-
 /* sequence */
+ CREATE SEQUENCE PTNO_SEQ
 
+       START WITH 1   
+       INCREMENT BY 1 
+     
+       
+ CREATE SEQUENCE NURSENO_SEQ
+
+       START WITH 1   
+       INCREMENT BY 1 
+   
 
 /* Create Tables */
 
@@ -75,22 +116,16 @@ CREATE TABLE Meal
 DROP TABLE ADMIN;
 
 CREATE TABLE ADMIN(
-<<<<<<< HEAD
+
 	ID varchar2(5) NOT NULL primary key,
-=======
-	ID varchar2(5) NOT NULL UNIQUE,
->>>>>>> branch 'master' of https://github.com/OBScmaster/OBScmaster.git
 	PASSWORD varchar2(5) NOT NULL
 );
 
-<<<<<<< HEAD
 
 
 INSERT INTO ADMIN values('admin', 'admin');
 
 
-=======
->>>>>>> branch 'master' of https://github.com/OBScmaster/OBScmaster.git
 CREATE TABLE NURSE
 (
 	NURSE_NO number NOT NULL UNIQUE,

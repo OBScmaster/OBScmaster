@@ -1,5 +1,8 @@
 package web.scmaster.com;
 
+import java.util.HashMap;
+import java.util.List;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,8 +13,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import web.scmaster.com.dao.dailyDAO;
 import web.scmaster.com.dao.patientDAO;
-
+import web.scmaster.com.vo.Daily;
+import web.scmaster.com.vo.Daily2;
 import web.scmaster.com.vo.Patient;
 import web.scmaster.com.vo.Room;
 
@@ -20,6 +25,8 @@ public class patientController {
 	
 	@Autowired
 	private patientDAO patientdao;
+	@Autowired
+	private dailyDAO dailydao;
 	
 	
 	@RequestMapping(value="patientLogin", method=RequestMethod.POST)
@@ -36,8 +43,6 @@ public class patientController {
 				session.setAttribute("id", p.getName());
 				
 				return "/protector/protectorPage";
-				
-			
 			
 			}else{			
 				model.addAttribute("PWnotMatch","패스워드가 맞지 않습니다");
@@ -48,18 +53,19 @@ public class patientController {
 			
 			model.addAttribute("whywhywhy","왜 그런지 모르겠네");
 		return "home";
-		
-		
 		}
 	
-	@ResponseBody
-	@RequestMapping(value="roomregist", method=RequestMethod.POST)
-	public String regist(@RequestBody Room room){
-	
-		patientdao.insertRoom(room);		
+	@RequestMapping(value="dailyschedule", method=RequestMethod.GET)
+	public String dailyschedule(int pt_no,String today,Model model){
 		
-		return "등록완료";
-	}
+		Daily2 d = dailydao.searchDaily(pt_no,today);
+		
+		model.addAttribute("aaaa", d);
+		
+		return "test";
+		}
+	
+	
 	
 
 
