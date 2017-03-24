@@ -1,3 +1,11 @@
+.container{
+	margin-top: 150px;
+	margin-left: 100px;
+	float: left;
+	width: 50%;
+	height: 800px;
+}
+
 .responsive-calendar .controls {
   text-align: center;
 }
@@ -53,4 +61,35 @@
   top: 2px;
   right: 2px;
   z-index: 1;
+}
+
+#wrapper{
+	margin-right: 150px;
+	display: table;
+	float: right;
+	width: 30%;
+	height: 400px;
+	background: pink;
+	
+}
+
+#web-camera{
+	display: table-cell;
+	vertical-align: middle;
+	text-align: center;
+}
+
+#web-camera img{
+	height: 200px;
+	width: 200px;
+}
+
+#log{
+	margin-top: 0px;
+	margin-right: 150px;
+	float: right;
+	width: 30%;
+	height: 400px;
+	background: blue;
+	color: white;
 }

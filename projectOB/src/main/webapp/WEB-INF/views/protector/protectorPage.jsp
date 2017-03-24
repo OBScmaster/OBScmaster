@@ -71,7 +71,18 @@
         </div>
      	</div>
       <!-- Responsive calendar - END -->
-      
     </div>
+    
+    <div id = "wrapper">
+    	<div id = "web-camera">
+    		Web-Camera
+    		<img alt="" src="./resources/image/icons/play.png">
+   		</div>
+   	</div>
+   	
+   	<div id = "log">
+   		LOG
+   	</div>
+    
   </body>
 </html>
