@@ -116,7 +116,10 @@ CREATE TABLE Meal
 DROP TABLE ADMIN;
 
 CREATE TABLE ADMIN(
+<<<<<<< HEAD
 
+=======
+>>>>>>> branch 'master' of https://github.com/OBScmaster/OBScmaster.git
 	ID varchar2(5) NOT NULL primary key,
 	PASSWORD varchar2(5) NOT NULL
 );

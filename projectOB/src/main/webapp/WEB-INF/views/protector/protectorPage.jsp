@@ -3,7 +3,11 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ page session="false"%>
+<<<<<<< HEAD
 <html>
+=======
+<html>
+>>>>>>> branch 'master' of https://github.com/OBScmaster/OBScmaster.git
  <head>
     <meta charset="utf-8">
     <script src= "./resources/js/jquery-3.1.1.js"></script>
@@ -74,6 +78,7 @@
     </div>
     
     <div id = "wrapper">
+<<<<<<< HEAD
     	<div id = "web-<%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -346,4 +351,17 @@
    	</div>
     
   </body>
+=======
+    	<div id = "web-camera">
+    		Web-Camera
+    		<img alt="" src="./resources/image/icons/play.png">
+   		</div>
+   	</div>
+   	
+   	<div id = "log">
+   		LOG
+   	</div>
+    
+  </body>
+>>>>>>> branch 'master' of https://github.com/OBScmaster/OBScmaster.git
 </html>
