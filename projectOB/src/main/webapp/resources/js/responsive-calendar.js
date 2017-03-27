@@ -246,7 +246,6 @@
             delay = i * 0.01;
             this.applyTransition($(day), 'transform .5s ease ' + delay + 's');
             this.applyTransform($(day), 'rotateY(180deg)');
-            this.applyBackfaceVisibility($(day));
             timeout = (delay + 0.1) * 1000;
           }
         }

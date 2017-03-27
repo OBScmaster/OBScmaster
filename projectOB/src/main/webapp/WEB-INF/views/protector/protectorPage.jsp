@@ -45,6 +45,9 @@
             "2013-05-03":{"number": 1}, 
             "2013-06-12": {}}
         });
+        $(".day a").click(function(){
+            $(this).hide();
+        });
       });
     </script>
   </head>
@@ -66,8 +69,7 @@
 	          <div class="day header">Sat</div>
          	 <div class="day header">Sun</div>
       	  </div>
-      	  <div class="days" data-group="days">
-          
+      	  <div class="days" data-group="days">         
         </div>
      	</div>
       <!-- Responsive calendar - END -->
