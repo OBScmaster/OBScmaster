@@ -6,11 +6,6 @@
 <!-- 회원정보 처리 SQL -->
 <mapper namespace="web.scmaster.com.dao.patientMapper">
 
-
-<insert id="insertRoom" parameterType="Room">
-		insert into ROOM (ROOM_NO,MAXIMUM,PRESENT,DELETEFLAG) values (#{room_no}, #{maximum}, #{present},#{deleteflag}) 
-</insert>
-
 <!-- 환자검색 -->
 <select id="selectPatient" parameterType="String" resultType="Patient">
 select PT_NO,NURSE_NO,INS_NO,NAME,BIRTHDATE,DESEASE,PHONE,ADDRESS,ORIGINALPHOTO,SAVEDPHOTO,ROOM_NO,PPT_ID,PPT_PW,PPT_NAME,PPT_PHONE,PPT_ADD,TO_CHAR(INPUTDATE,'YYYY,MM,DD') AS INPUTDATE,TO_CHAR(UPDATEDATE,'YYYY,MM,DD') AS UPDATEDATE,TO_CHAR(DELETEDATE,'YYYY,MM,DD') DELETEDATE,DELETEFLAG from PATIENT where PPT_ID = #{ppt_id}
@@ -69,10 +64,13 @@ update patient
 
 </update>
 
+<!-- 회원정보삭제 -->
 <update id="deletePatient" parameterType="int">
 update PATIENT set DELETEFLAG='N' where PT_NO=#{pt_no}
 </update>
 
+
+<!-- 요양사 변경 -->
 <update id="changeNurse" parameterType="int">
 update PATIENT set NURSE_NO=#{nurse_no} where PT_NO=#{PT_NO}
 </update>
