@@ -45,9 +45,17 @@ public class nurseController {
 			}
 			
 			model.addAttribute("whywhywhy","왜 그런지 모르겠네");
-		return "home";	
-		
+		return "home";
+	}
 	
+	@RequestMapping(value="adminNurseInput", method=RequestMethod.GET)
+	public String adminNurseInput(){
+		return "/admin/adminNurseInput";
+	}
+	
+	@RequestMapping(value="adminPatientInput", method=RequestMethod.GET)
+	public String adminPatientInput(){
+		return "/admin/adminPatientInput";
 	}
 
 }

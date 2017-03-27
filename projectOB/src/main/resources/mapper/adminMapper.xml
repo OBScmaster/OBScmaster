@@ -36,19 +36,18 @@ select PT_NO,NURSE_NO,INS_NO,NAME,BIRTHDATE,DESEASE,PHONE,ADDRESS,ORIGINALPHOTO,
 <insert id="insertNurse" parameterType="Nurse">
 
  	insert into Nurse (NURSE_NO,CERT_NO,ID,PASSWORD,NAME,PHONE
- 	<if test="ORIGINALPHOTO!=null">
+ 	<if test="originalphoto!=null">
  	,ORIGINALPHOTO
  	</if>
- 	<if test="SAVEDPHOTO!=null">
+ 	<if test="savedphoto!=null">
  	,SAVEDPHOTO
  	</if> 	
  	) 	
- 	values(nurseno_seq.nextval,#{cert_no},#{id},#{password},#{name},#{phone}
- 	
- 	<if test="ORIGINALPHOTO!=null">
+ 	values(nurseno_seq.nextval,#{cert_no},#{id},#{password},#{name},#{phone} 	
+ 	<if test="originalphoto!=null">
  	,#{originalphoto}
  	</if>
- 	<if test="SAVEDPHOTO!=null">
+ 	<if test="savedphoto!=null">
  	,#{savedphoto}
  	</if>
  	 )
