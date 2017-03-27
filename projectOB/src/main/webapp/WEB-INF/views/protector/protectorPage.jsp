@@ -2,7 +2,7 @@
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ page session="false"%>
+<%@ page session="true"%>
 <html>
  <head>
     <meta charset="utf-8">
@@ -25,30 +25,36 @@
     <script src="./resources/js/bootstrap.min.js"></script>
     <script src="./resources/js/responsive-calendar.js"></script>
     <script type="text/javascript">
-      $(document).ready(function () {
-    	  var today = new Date();
-    	  var dd = today.getDate();
-    	  var mm = today.getMonth()+1; //January is 0!
-    	  var yyyy = today.getFullYear();
-    	  if(dd<10) {
-    	      dd='0'+dd
-    	  } 
-    	  if(mm<10) {
-    	      mm='0'+mm
-    	  } 
-    	  
-        $(".responsive-calendar").responsiveCalendar({
-          time: yyyy + '-' + mm,
-          events: {
-            "2017-03-30": {"number": 5, "url": "http://w3widgets.com/responsive-slider"},
-            "2017-04-26": {"number": 1, "url": "http://w3widgets.com"}, 
-            "2017-05-03":{"number": 1}, 
-            "2017-06-12": {}}
-        });
-      });
+    $( document ).ready( function() {    	
+    	$(".responsive-calendar").responsiveCalendar({
+    	    weekends: false,
+    	    onDayClick: function(events) {    	    	  
+    	    	  $('.active').removeClass('active');
+    	    	  var year = $(this).data('year')
+    	    	  var month = $(this).data('month')
+    	    	  var day = $(this).data('day');
+    	    	  var dayLink = $('[data-day=' + day + '][data-month=' + month + '][data-year=' + year + ']')
+    	    	  dayLink.parent().addClass('active');    	    	  
+    	    	  if(month<10){
+      	    		  month="0"+month
+      	    	  }    	    	  
+    	    	  if(day<10){
+    	    		  day="0"+day
+      	    	  }    	    	  
+    	    	  var daycheck = year+"/"+month+"/"+day;
+    	    	  var pt_no = $("#pt_no").val();
+    	    	 location.href="dailyschedule?today="+daycheck+"&pt_no="+pt_no;
+    	    	}
+    	});
+    	
+    	});
+    
     </script>
   </head>
   <body>
+  <h1>${id.name}보호자님 환영요</h1>
+  <input type="hidden" id="pt_no" value="${id.pt_no}">
+  
     <div class="container">
       <!-- Responsive calendar - START -->
     	<div class="responsive-calendar">

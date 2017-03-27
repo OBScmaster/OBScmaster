@@ -39,8 +39,8 @@ public class patientController {
 				
 			if(p.getPpt_pw().equals(password)){
 				
-				model.addAttribute("id",id);
-				session.setAttribute("id", p.getName());
+				
+				session.setAttribute("id", p);
 				
 				return "/protector/protectorPage";
 			
@@ -55,15 +55,19 @@ public class patientController {
 		return "home";
 		}
 	
+	
 	@RequestMapping(value="dailyschedule", method=RequestMethod.GET)
 	public String dailyschedule(int pt_no,String today,Model model){
 		
 		Daily2 d = dailydao.searchDaily(pt_no,today);
-		
+		System.out.println(d.getBreakfast());
+		System.out.println(d.getDinner());
+		System.out.println(d.getDrtext());
+		System.out.println(d.getToday());
 		model.addAttribute("aaaa", d);
 		
-		return "test";
-		}
+		return "/protector/patientDaily";
+	}
 	
 	
 	

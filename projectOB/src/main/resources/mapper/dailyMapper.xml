@@ -7,16 +7,60 @@
 
 <select id="searchDaily" resultType="Daily2">
 
-select d.pt_no,d.today,d.cleaning,d.wash,d.shower,d.report,d.inputdate
-,m.breakfast,m.lunch,m.dinner,m.snack
+select d.pt_no,d.today
+<if test="d.cleaning!=null">
+,d.cleaning
+</if>
+<if test="wash!=null">
+,d.wash
+</if>
+<if test="shower!=null">
+,d.shower
+</if>
+<if test="report!=null">
+,d.report
+</if>
+<if test="inputdate!=null">
+,d.inputdate
+</if>
+<if test="breakfast!=null">
+,m.breakfast
+</if>
+<if test="lunch!=null">
+,m.lunch
+</if>
+<if test="dinner!=null">
+,m.dinner
+</if>
+<if test="snack!=null">
+,m.snack
+</if>
+<if test="text!=null">
 ,e.text
-,b.time
+</if>
+<if test="timetobed!=null">
+,b.timetobed
+</if>
+<if test="text!=null">
 ,dr.text as drtext
-from daily d, meal m, exercise e, bedtime b, dr_op dr
-where m.pt_no=#{pt_no} and m.today=#{today}
-and  e.pt_no=#{pt_no} and e.today=#{today}
-and b.pt_no=#{pt_no} and b.today=#{today}
-and dr.pt_no=#{pt_no} and dr.today=#{today}
+</if>
+from daily d
+
+, meal m
+
+, exercise e
+
+, bedtime b
+
+, dr_op dr
+
+where m.pt_no=#{pt_no} and to_char(m.today,'yyyy/mm/dd')=#{today}
+
+and  e.pt_no=#{pt_no} and to_char(e.today,'yyyy/mm/dd')=#{today}
+
+and b.pt_no=#{pt_no} and to_char(b.today,'yyyy/mm/dd')=#{today}
+
+and dr.pt_no=#{pt_no} and to_char(dr.today,'yyyy/mm/dd')=#{today}
 
 </select>
 

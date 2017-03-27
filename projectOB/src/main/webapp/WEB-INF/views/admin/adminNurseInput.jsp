@@ -43,6 +43,8 @@
         reader.readAsDataURL(input.files[0]);
       }
   }
+  
+
 
  
   
@@ -168,8 +170,8 @@
 <div class="list-group text-left" style="height:500px; overflow:scroll">
 
 
-  <a href="#" class="list-group-item" id="">First item</a>
-
+  <a href="#" class="list-group-item" id="aaa">First item</a>
+  <a href="#" class="list-group-item" id="aaa">Second item</a>
  
 </div>
     
