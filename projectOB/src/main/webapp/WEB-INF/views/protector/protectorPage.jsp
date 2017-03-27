@@ -40,10 +40,10 @@
         $(".responsive-calendar").responsiveCalendar({
           time: yyyy + '-' + mm,
           events: {
-            "2013-04-30": {"number": 5, "url": "http://w3widgets.com/responsive-slider"},
-            "2013-04-26": {"number": 1, "url": "http://w3widgets.com"}, 
-            "2013-05-03":{"number": 1}, 
-            "2013-06-12": {}}
+            "2017-03-30": {"number": 5, "url": "http://w3widgets.com/responsive-slider"},
+            "2017-04-26": {"number": 1, "url": "http://w3widgets.com"}, 
+            "2017-05-03":{"number": 1}, 
+            "2017-06-12": {}}
         });
       });
     </script>
