@@ -45,9 +45,6 @@
             "2013-05-03":{"number": 1}, 
             "2013-06-12": {}}
         });
-        $(".day a").click(function(){
-            $(this).hide();
-        });
       });
     </script>
   </head>
