@@ -39,8 +39,7 @@ public class patientController {
 				
 			if(p.getPpt_pw().equals(password)){
 				
-				model.addAttribute("id",id);
-				session.setAttribute("id", p.getName());
+				session.setAttribute("id", p);
 				
 				return "/protector/protectorPage";
 			
