@@ -65,10 +65,9 @@ public class patientController {
 		return "test";
 		}
 	
-	
-	
-
-
-	
-
+	@RequestMapping(value = "patientCalendar", method = RequestMethod.GET)
+	public String patientCalendar(String days){
+		System.out.println(days);
+		return "/protector/patientCalendar";
+	}
 }
