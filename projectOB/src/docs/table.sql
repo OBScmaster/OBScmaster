@@ -36,7 +36,7 @@ BEGIN
 DROP TABLE ADMIN CASCADE CONSTRAINTS;
 DROP TABLE BEDTIME CASCADE CONSTRAINTS;
 DROP TABLE DR_OP CASCADE CONSTRAINTS;
-DROP TABLE Exercise CASCADE CONSTRAINT\S;
+DROP TABLE Exercise CASCADE CONSTRAINTS;
 DROP TABLE Meal CASCADE CONSTRAINTS;
 DROP TABLE Daily CASCADE CONSTRAINTS; 
 DROP TABLE SENSORLOG CASCADE CONSTRAINTS;
@@ -63,7 +63,7 @@ CREATE TABLE BEDTIME
 (
 	PT_NO number NOT NULL,
 	TODAY date DEFAULT SYSDATE NOT NULL,
-	TIME date,
+	TIMETOBED date,
 	DELETEFLAG varchar2(1) DEFAULT 'Y' NOT NULL
 );
 
@@ -116,10 +116,6 @@ CREATE TABLE Meal
 DROP TABLE ADMIN;
 
 CREATE TABLE ADMIN(
-<<<<<<< HEAD
-
-=======
->>>>>>> branch 'master' of https://github.com/OBScmaster/OBScmaster.git
 	ID varchar2(5) NOT NULL primary key,
 	PASSWORD varchar2(5) NOT NULL
 );
@@ -187,7 +183,7 @@ CREATE TABLE ROOM
 CREATE TABLE SENSORLOG
 (
 	PT_NO number NOT NULL,
-	TIME date NOT NULL,
+	TIMEONLOG date NOT NULL,
 	TEXT varchar2(100) NOT NULL,
 	GRADE number NOT NULL
 );
@@ -276,6 +272,9 @@ insert into patient (PT_NO,NURSE_NO,INS_NO,NAME,BIRTHDATE,DESEASE,PHONE,ADDRESS,
 insert into Nurse (NURSE_NO,CERT_NO,ID,PASSWORD,NAME,PHONE,ORIGINALPHOTO,SAVEDPHOTO,INPUTDATE,DELETEFLAG) 
 values(3,'33','dum','11','dummy','010-000-3333','ORIGINALPHOTO','SAVEDPHOTO',sysdate,1)
 
-
-
+insert into daily(PT_NO,cleaning,wash,shower,report) values(1,sysdate,sysdate,sysdate,sysdate); 
+insert into meal(PT_NO,today,breakfast,lunch,dinner,snack) values(1,(select today from daily),'아','점','저','간식'); 
+insert into dr_op(PT_NO,today,text) values(1,(select today from daily),'의사양반');
+insert into exercise(PT_NO,today,text) values(1,(select today from daily),'운동하자');
+insert into bedtime(PT_NO,today,time) values(1,(select today from daily),'11시11분');
 

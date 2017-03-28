@@ -39,6 +39,10 @@ public class patientController {
 				
 			if(p.getPpt_pw().equals(password)){
 				
+<<<<<<< HEAD
+=======
+				
+>>>>>>> branch 'master' of https://github.com/OBScmaster/OBScmaster.git
 				session.setAttribute("id", p);
 				
 				return "/protector/protectorPage";
@@ -54,15 +58,19 @@ public class patientController {
 		return "home";
 		}
 	
+	
 	@RequestMapping(value="dailyschedule", method=RequestMethod.GET)
 	public String dailyschedule(int pt_no,String today,Model model){
 		
 		Daily2 d = dailydao.searchDaily(pt_no,today);
-		
+		System.out.println(d.getBreakfast());
+		System.out.println(d.getDinner());
+		System.out.println(d.getDrtext());
+		System.out.println(d.getToday());
 		model.addAttribute("aaaa", d);
 		
-		return "test";
-		}
+		return "/protector/patientDaily";
+	}
 	
 	@RequestMapping(value = "patientCalendar", method = RequestMethod.GET)
 	public String patientCalendar(String days){

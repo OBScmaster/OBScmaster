@@ -61,9 +61,7 @@
 	$(function(){
 		
 		$(".col-md-4").click(function(){
-			
-			alert($(this).attr("id"));
-					
+			location.href=$(this).attr("id");
 		})
 		
 	})
@@ -75,8 +73,6 @@
 
 
 <h1>admin님 환영합니다</h1>
-
-<a href="dailyschedule?pt_id=1&today=17/03/24"> dddd </a>
 
  <!-- Preloader -->
 <div id="preloader">
@@ -100,14 +96,14 @@
                     </div>
                 </div>
                 
-                <div class="col-md-4 text-center" id = "일과보기">
+                <div class="col-md-4 text-center" id = "adminNurseInput">
                     <div class="single_service wow fadeInUp" data-wow-delay="2s">
                       
                        <img alt="" src="./resources/image/icons/Nurse.png">
                         <p>Excepteur sint occaecat cupidatat non proident, sunt in culpa.</p>
                     </div>
                 </div>
-                <div class="col-md-4 text-center" id = "기타">
+                <div class="col-md-4 text-center" id = "adminPatientInput">
                     <div class="single_service wow fadeInUp" data-wow-delay="3s">
                         
                          <img alt="" src="./resources/image/icons/matureman.png">
