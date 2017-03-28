@@ -59,4 +59,11 @@ public class patientController {
       
       return "/protector/patientDaily";
    }
+   
+   
+   
+
+
+   
+
 }
