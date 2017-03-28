@@ -5,53 +5,24 @@
     
 <mapper namespace="web.scmaster.com.dao.dailyMapper">
 
-<select id="searchDaily" resultType="Daily2">
-
-select d.pt_no,d.today
-
-,d.cleaning
-
-,d.wash
-
-,d.shower
-
-,d.report
-
-,d.inputdate
-
-,m.breakfast
-
-,m.lunch
-
-,m.dinner
-
-,m.snack
-
-,e.text
-
-,b.timetobed
-
-,dr.text as drtext
-
-from daily d
-
-, meal m
-
-, exercise e
-
-, bedtime b
-
-, dr_op dr
-
-where m.pt_no=#{pt_no} and to_char(m.today,'yyyy/mm/dd')=#{today}
-
-and  e.pt_no=#{pt_no} and to_char(e.today,'yyyy/mm/dd')=#{today}
-
-and b.pt_no=#{pt_no} and to_char(b.today,'yyyy/mm/dd')=#{today}
-
-and dr.pt_no=#{pt_no} and to_char(dr.today,'yyyy/mm/dd')=#{today}
-
+<select id = "searchMeal" parameterType="HashMap" resultType="Meal">
+	select
+		pt_no
+		, today
+		, breakfast
+		, breakfastTime
+		, lunch
+		, lunchTime
+		, dinner
+		, dinnerTime
+		, snack
+		, snackTime
+		, deleteflag
+	from
+		meal
+	where
+		pt_no = #{pt_no} 
+		and to_char(today,'yyyy/mm/dd') = #{today}
 </select>
-
 
 </mapper>

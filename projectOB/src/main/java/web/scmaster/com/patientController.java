@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import web.scmaster.com.dao.dailyDAO;
 import web.scmaster.com.dao.patientDAO;
 import web.scmaster.com.vo.Daily2;
+import web.scmaster.com.vo.Meal;
 import web.scmaster.com.vo.Patient;
 
 @Controller
@@ -50,12 +51,9 @@ public class patientController {
    @RequestMapping(value="dailyschedule", method=RequestMethod.GET)
    public String dailyschedule(int pt_no,String today,Model model){
       
-      Daily2 d = dailydao.searchDaily(pt_no,today);
-      System.out.println(d.getBreakfast());
-      System.out.println(d.getDinner());
-      System.out.println(d.getDrtext());
-      System.out.println(d.getToday());
-      model.addAttribute("aaaa", d);
+      Meal meal = dailydao.searchMeal(pt_no, today);
+      System.out.println(meal);
+      model.addAttribute("meal", meal);
       
       return "/protector/patientDaily";
    }

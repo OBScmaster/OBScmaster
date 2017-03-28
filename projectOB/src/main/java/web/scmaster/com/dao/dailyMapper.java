@@ -1,17 +1,14 @@
 package web.scmaster.com.dao;
 
-
 import java.util.HashMap;
-import java.util.List;
 
 import org.apache.ibatis.annotations.Param;
 
 import web.scmaster.com.vo.Daily2;
-
-
+import web.scmaster.com.vo.Meal;
 
 public interface dailyMapper {
 	
-	public Daily2 searchDaily(@Param("pt_no")int pt_no, @Param("today")String today);
-
+	public Meal searchMeal(HashMap<String, Object> map);
+	
 }
