@@ -60,9 +60,8 @@ public class patientController {
       model.addAttribute("meal", meal);
       
       List<HashMap<String, Object>> exerciseList = new ArrayList<>();
-      System.out.println(exerciseList);
       exerciseList = dailydao.ExerciseList(pt_no, today);
-      
+      model.addAttribute("exerciseList", exerciseList);
       return "/protector/patientDaily";
    }
 }

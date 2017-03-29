@@ -34,7 +34,7 @@ public class dailyDAO {
 		HashMap<String , Object> map = new HashMap<>();
 		map.put("pt_no", pt_no);
 		map.put("today", today);
-		
+		System.out.println(map);
 		dailyMapper mapper = sqlsession.getMapper(dailyMapper.class);
 		
 		return mapper.exerciseList(map);

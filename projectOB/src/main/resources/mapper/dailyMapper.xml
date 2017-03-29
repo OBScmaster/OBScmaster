@@ -25,14 +25,14 @@
 		and to_char(today,'yyyy/mm/dd') = #{today}
 </select>
 
-<select id="searchExercise" parameterType="HashMap" resultType="Exercise">
+<select id="exerciseList" parameterType="HashMap" resultType="HashMap">
 	select
 		pt_no
-		. today
+		, today
 		, to_char(exercisetime, 'HH24:MI') as exercisetime
 		, exercisetext
 	from
-		meal
+		exercise
 	where
 		pt_no = #{pt_no}
 		and to_char(today,'yyyy/mm/dd') = #{today}
