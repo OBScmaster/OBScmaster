@@ -32,13 +32,30 @@
 	<context:component-scan base-package="web.scmaster.com" />
 	
 	<mvc:interceptors>	
+
 	<mvc:interceptor>
-	<mvc:mapping path="adminPage"/>
-	<mvc:mapping path="/managerPage"/>	
-	<mvc:mapping path="protectorPage"/>
+	<mvc:mapping path="/adminPatientInput"/>
 	<beans:ref bean="loginIntercepter"/>
 	</mvc:interceptor>
+	
+	<mvc:interceptor>
+	<mvc:mapping path="/managerPatientInput"/>
+	<beans:ref bean="loginIntercepter"/>
+	</mvc:interceptor>
+	
+	<mvc:interceptor>
+	<mvc:mapping path="/adminLogin"/>
+	<beans:ref bean="loginIntercepter"/>
+	</mvc:interceptor>
+	
+	<mvc:interceptor>
+	<mvc:mapping path="/managerLogin"/>
+	<beans:ref bean="loginIntercepter"/>
+	</mvc:interceptor>
+	
 	</mvc:interceptors>
+	
+	
 	
 	
 	
