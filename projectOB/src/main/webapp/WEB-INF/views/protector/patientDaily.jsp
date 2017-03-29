@@ -39,27 +39,37 @@
             			<td>${meal.breakfastTime}</td>
             			<td>${meal.breakfast}</td>
         			</tr>
+        			<c:if test="${meal.lunchTime != null}">
         			<tr>
             			<td>점심</td>
             			<td>${meal.lunchTime}</td>
             			<td>${meal.lunch}</td>
         			</tr>
+        			</c:if>
+        			<c:if test="${meal.dinnerTime != null}">
         			<tr>
             			<td>저녁</td>
             			<td>${meal.dinnerTime}</td>
             			<td>${meal.dinner}</td>
         			</tr>
+        			</c:if>
     			</tbody>
 			</table>
+		</c:if>
+		
+		<c:if test="${meal.today == null}">
+		마다 토우로쿠사레나이
 		</c:if>
     </div>
 </div>
 
 <div class="panel panel-success">
     <div class="panel-heading">
-        <h3 class="panel-title">200 OK</h3>
+        <h3 class="panel-title">운동</h3>
     </div>
-    <div class="panel-body">The server successfully processed the request.</div>
+    <div class="panel-body">
+    
+    </div>
 </div>
 
 <div class="panel panel-info">

@@ -10,11 +10,11 @@
 		pt_no
 		, today
 		, breakfast
-		, breakfastTime
+		, to_char(breakfastTime, 'HH24:MI') as breakfastTime
 		, lunch
-		, lunchTime
+		, to_char(lunchTime, 'HH24:MI') as lunchtime
 		, dinner
-		, dinnerTime
+		, to_char(dinnerTime, 'HH24:MI') as dinnerTime
 		, snack
 		, snackTime
 		, deleteflag
