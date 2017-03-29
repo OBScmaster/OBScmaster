@@ -2,6 +2,7 @@ package web.scmaster.com;
 
 import java.util.List;
 
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -103,7 +104,7 @@ public class adminController {
 	}
 	
 	@RequestMapping(value="insertPatient", method=RequestMethod.POST)
-	public String insertNurse(Patient patient, MultipartFile upload){
+	public String insertPatient(Patient patient, MultipartFile upload){
 		
 		System.out.println(patient);
 		System.out.println("asdfasdfasdfasdf");
@@ -120,7 +121,8 @@ public class adminController {
 			patient.setSavedphoto(savedfile);
 		}
 		
-		admindao.insertPatient(patient);		
+		int result = admindao.insertPatient(patient);
+		System.out.println(result);
 		
 		return "redirect:adminLogin";
 	}
