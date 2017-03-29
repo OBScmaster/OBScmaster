@@ -10,6 +10,37 @@
 		select NURSE_NO,CERT_NO,ID,PASSWORD,NAME,PHONE,ORIGINALPHOTO,SAVEDPHOTO,TO_CHAR(INPUTDATE,'YYYY-MM-DD') AS INPUTDATE,TO_CHAR(UPDATEDATE,'YYYY-MM-DD') AS UPDATEDATE,TO_CHAR(DELETEDATE,'YYYY-MM-DD') AS DELETEDATE,DELETEFLAG from nurse where ID = #{id}
 </select>
 
+<!-- 환자등록 -->
+<insert id="insertPatient" parameterType="Patient">
+insert into Patient (PT_NO,NURSE_NO,INS_NO,NAME,BIRTHDATE
+	<if test="disease!=null">,DISEASE</if>
+	<if test="phone!=null">,PHONE</if>
+	<if test="address!=null">,ADDRESS</if>
+	<if test="originalphoto!=null">,ORIGINALPHOTO</if>
+ 	<if test="savedphoto!=null">,SAVEDPHOTO	</if> 	
+	,ROOM_NO
+	<if test="ppt_id!=null">,PPT_ID</if>
+	<if test="ppt_pw!=null">,PPT_PW</if>
+	<if test="ppt_name!=null">,PPT_NAME</if>
+	<if test="ppt_phone!=null">,PPT_PHONE</if>
+	<if test="ppt_add!=null">,PPT_ADD</if>
+	) 
+	values(
+	ptno_seq.nextval,#{nurse_no},#{ins_no},#{name},#{birthdate}
+	<if test="disease!=null">,#{disease}</if>
+	<if test="phone!=null">,#{phone}</if>
+	<if test="address!=null">,#{address}</if>
+	<if test="originalphoto!=null">,#{originalphoto}</if>
+ 	<if test="savedphoto!=null">,#{savedphoto}</if> 	
+	,#{room_no}
+	<if test="ppt_id!=null">,#{ppt_id}</if>
+	<if test="ppt_pw!=null">,#{ppt_pw}</if>
+	<if test="ppt_name!=null">,#{ppt_name}</if>
+	<if test="ppt_phone!=null">,#{ppt_phone}</if>
+	<if test="ppt_add!=null">,#{ppt_add}</if>	
+	)
+</insert>
+
 
 <update id="updateNurse" parameterType="Nurse">
 

@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import web.scmaster.com.vo.Nurse;
+import web.scmaster.com.vo.Patient;
 
 @Repository
 public class nurseDAO {
@@ -17,6 +18,14 @@ public class nurseDAO {
 		nurseMapper mapper = sqlsession.getMapper(nurseMapper.class);
 		
 		return mapper.selectNurseById(id);
+		
+	}
+	
+	public int insertPatient(Patient patient){
+		
+		nurseMapper mapper = sqlsession.getMapper(nurseMapper.class);
+		
+		return mapper.insertPatient(patient);
 		
 	}
 	
