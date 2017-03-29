@@ -33,35 +33,29 @@
     		 type:"post",
     		 url:"roomlist",
     		 success:function(data){
-    			
     			 
-    			 var roomselect =  "<div class='col-md-15'><div class='btn-group btn-group-justified'><a href='#' class='btn btn-info'>방번호</a>"
-    			    	+"<a href='#' class='btn btn-info'>수용인원</a>"
-    			    	  +"<a href='#' class='btn btn-info'>현재인원</a>"
-    			    	  +"</div><div class='list-group text-left' style='height:500px;' id='roomgroup'>";
+    			 var roomselect = "<div class='col-md-15'><div class='btn-group btn-group-justified'><a href='#' class='btn btn-info'>방번호</a>"
+ 			    	+"<a href='#' class='btn btn-info'>최대인원</a>"
+			    	  +"<a href='#' class='btn btn-info'>현재인원</a>"
+			    	  +"</div><div class='list-group text-left' style='height:540px;' id='roomgroup'>";
     			    	  
     			    	  $.each(data,function(index,item){
     			    	
-    			    		  roomselect+="<div class='list-group-item' id="+item.room_no+">"
-    			    		  +item.room_no+"호"
-    			    		  +item.maximum+"명"
-    			    		  +"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"+item.present+"명"+"</div>";
-    			    	
+    			    		  roomselect+="<div class='list-group-item' id="+item.room_no+"><table class='text-center'><tr><td width='160px;'>"
+    			    		  +item.room_no+"호</td><td width='160px;'>"
+    			    		  +item.maximum+"명</td><td width='160px;'>"
+    			    		  +item.present+"명</td></tr></table></div>";
     			    		  
     			    	  })
     			    	
     			    	roomselect+="</div></div>";
     			    	
-    			    	
-    			    	
     			    	$("#kk").html(roomselect);
     			    	
-    			    	 if(data.length>8){
+    			    	 if(data.length>11){
      			    		$("#roomgroup").css("overflow","scroll");
      			    	};
      			    	
-    			    	 
-    			    	
 							$(".list-group-item").click(function(){
     			    		
     			    		$(".list-group-item").css("color","black");
@@ -75,8 +69,6 @@
     		 error:function(error){console(error);}
     		})
     	
-    	
-    	
     })
     
       $("#nurse_noSelect").click(function(){
@@ -86,19 +78,18 @@
     		 type:"post",
     		 url:"nurselist",
     		 success:function(data){
-    			
     			 
     			 var nurseselect =  "<div class='col-md-15'><div class='btn-group btn-group-justified'><a href='#' class='btn btn-info'>사번</a>"
     			    	+"<a href='#' class='btn btn-info'>이름</a>"
     			    	  +"<a href='#' class='btn btn-info'>전화번호</a>"
-    			    	  +"</div><div class='list-group text-left' style='height:500px;' id='nursegroup'>";
+    			    	  +"</div><div class='list-group text-left' style='height:540px;' id='nursegroup'>";
     			    	  
     			    	  $.each(data,function(index,item){
     			    	
-    			    		  nurseselect+="<a href='#' class='list-group-item' id="+item.name+">"
-    			    		  +"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"+item.nurse_no
-    			    		  +"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"+item.name
-    			    		  +"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"+item.phone+"</a>"  
+    			    		  nurseselect+="<div class='list-group-item' id="+item.nurse_no+" nursename="+item.name+"><table class='text-center'><tr><td width='160px;'>"
+    			    		  +item.nurse_no+"</td><td width='160px;'>"
+    			    		  +item.name+"</td><td width='160px;'>"
+    			    		  +item.phone+"</td></tr></table></div>";
     			    	
     			    	  })
     			    	
@@ -106,7 +97,7 @@
     			    	
     			    	$("#kk").html(nurseselect);
     			    	
-    			   	 if(data.length>8){
+    			   	 if(data.length>11){
   			    		$("#nursegroup").css("overflow","scroll");
   			    	};
     			    	
@@ -114,20 +105,16 @@
     			    		
     			    		$(".list-group-item").css("color","black");
     			    		$(this).css("color","red");
-    			    		$("#nurse_name").val($(this).attr("id"));
-    			    		
+							$("#nurse_name").val($(this).attr("nursename"));
+							$("#nurse_no").val($(this).attr("id"));
     			    	});
     		
     						
     		},
     		 error:function(error){console(error);}
     		})
-    	
-    	
-    	
-    })
-      
-      
+    		})
+    		
   });
 
   function readURL(input) {
@@ -148,8 +135,6 @@
       }
   }
   
-  
-  
   function postal(){
 		
 	    new daum.Postcode({
@@ -169,7 +154,6 @@
 	    }).open();
 	    
 	}
-  
   
   </script>
 
@@ -290,12 +274,9 @@
       <input type="text" class="form-control" id="room_no" name="room_no" readonly="readonly">
      </div>
     
-     </td>  
-		
+     </td> 
      
-        
    </tr> 
-   
           <tr>
        
        <td  colspan="4" class="col-sm-5">
@@ -307,39 +288,32 @@
      </div>
     
      </td>  
-		
-     
-        
-   </tr> 
-    
+   </tr>     
    </table>
  </div>
  </td>
 
- 
  <td rowspan="2" >  
  
       <div class="col-sm-7">   
    	 <div class="panel text-left">
-     <input type="button" class="btn btn-info" readonly="readonly" id="room_noSelect" value="방선택">
-  	 <input type="button" class="btn btn-info" readonly="readonly" id="nurse_noSelect" value="요양사선택">
+     <input type="button" class="btn btn-primary" readonly="readonly" id="room_noSelect" value="방선택">
+  	 <input type="button" class="btn btn-primary" readonly="readonly" id="nurse_noSelect" value="요양사선택">
      </div>
-      </div>
+     </div>
       
  <div class="col-md-15" id="kk">
 <div class="btn-group btn-group-justified">
 
-  <a href="#" class="btn btn-info">이름</a>
-  <a href="#" class="btn btn-info">병명</a>
-  <a href="#" class="btn btn-info">나이</a>
+  <a href="#" class="btn btn-info">선택해주세요</a>
   
 </div>
 
-<div class="list-group text-left" style="height:500px; overflow:scroll">
+<div class="list-group text-left" style="height:540px;">
 
 
-  <a href="#" class="list-group-item" id="aaa">First item</a>
-  <a href="#" class="list-group-item" id="aaa">Second item</a>
+  <a href="#"> </a>
+  
  
 </div>    
 

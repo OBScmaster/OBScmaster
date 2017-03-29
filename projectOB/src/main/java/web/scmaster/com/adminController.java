@@ -126,5 +126,4 @@ public class adminController {
 		
 		return "redirect:adminLogin";
 	}
-
 }

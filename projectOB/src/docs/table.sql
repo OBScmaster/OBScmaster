@@ -4,32 +4,32 @@
 /*개인 정보 삭제 트리거 */
 drop trigger TRG_PATIENT_DELETE;
 
-create or replace TRIGGER TRG_PATIENT_DELETE
+create or replace TRIGGER TRG_PATIENT_DEL
 after UPDATE of DELETEFLAG ON PATIENT
 for each row    
 BEGIN   
    if :new.DELETEFLAG='N' THEN
-     UPDATE DAILY set DELETEFLAG=:NEW.DELETEFLAG where DAILY.PT_NO = :old.PT_NO;
-     UPDATE meal set DELETEFLAG=:NEW.DELETEFLAG where meal.PT_NO = :old.PT_NO;
-     UPDATE exercise set DELETEFLAG=:NEW.DELETEFLAG where exercise.PT_NO = :old.PT_NO;
-     UPDATE dr_op set DELETEFLAG=:NEW.DELETEFLAG where dr_op.PT_NO = :old.PT_NO;
-     UPDATE bedtime set DELETEFLAG=:NEW.DELETEFLAG where bedtime.PT_NO = :old.PT_NO;
+     UPDATE DAILY set DELETEFLAG=:new.DELETEFLAG where DAILY.PT_NO = :old.PT_NO;
+     UPDATE meal set DELETEFLAG=:new.DELETEFLAG where meal.PT_NO = :old.PT_NO;
+     UPDATE exercise set DELETEFLAG=:new.DELETEFLAG where exercise.PT_NO = :old.PT_NO;
+     UPDATE dr_op set DELETEFLAG=:new.DELETEFLAG where dr_op.PT_NO = :old.PT_NO;
+     UPDATE bedtime set DELETEFLAG=:new.DELETEFLAG where bedtime.PT_NO = :old.PT_NO;
      end if;
  END;
  
  
  /*방정보변경 트리거 */
 drop trigger TRG_PATIENT_RCH;
+
 create or replace TRIGGER TRG_PATIENT_RCH
-after UPDATE of ROOM_NO ON PATIENT
+after INSERT OR UPDATE OR DELETE of ROOM_NO ON PATIENT
 for each row    
 BEGIN   
-   if updating THEN
+   if inserting or updating or deleting THEN
      UPDATE ROOM set PRESENT=(select present from room where room_no=:new.ROOM_NO)+1 where ROOM_NO = :new.ROOM_NO;
     UPDATE ROOM set PRESENT=(select present from room where room_no=:old.ROOM_NO)-1 where ROOM_NO = :old.ROOM_NO;
      end if;
  END;
- 
 
 /* Drop Tables */
 
@@ -70,8 +70,8 @@ CREATE TABLE BEDTIME
 
 CREATE TABLE Daily
 (
-	PT_NO number NOT NULL UNIQUE,
-	TODAY date DEFAULT SYSDATE NOT NULL UNIQUE,
+	PT_NO number NOT NULL,
+	TODAY date DEFAULT SYSDATE NOT NULL,
 	CLEANING date,
 	WASH date,
 	SHOWER date,
@@ -98,6 +98,7 @@ CREATE TABLE Exercise
 	PT_NO number NOT NULL,
 	TODAY date DEFAULT SYSDATE NOT NULL,
 	TEXT varchar2(100),
+	
 	DELETEFLAG varchar2(1) DEFAULT 'Y' NOT NULL
 );
 
@@ -117,6 +118,8 @@ CREATE TABLE Meal
 	DELETEFLAG varchar2(1) DEFAULT 'Y' NOT NULL 
 );
 
+<<<<<<< HEAD
+=======
 insert into meal(PT_NO,today,breakfast,breakfastTime,lunch,lunchTime,dinner,dinnerTime,snack,snackTime) values(1,(select today from daily),'아',TO_DATE('2017-03-28 09:35', 'YYYY/MM/DD HH24:MI'),'점',TO_DATE('2017-03-28 13:35', 'YYYY/MM/DD HH24:MI'),'저',TO_DATE('2017-03-28 17:35', 'YYYY/MM/DD HH24:MI'),'간식',TO_DATE('2017-03-28 20:35', 'YYYY/MM/DD HH24:MI')); 
 
 INSERT INTO MEAL(PT_NO,LUNCH, LUNCHTIME) VALUES(1, '점심', SYSDATE);
@@ -127,23 +130,19 @@ SELECT TO_CHAR(LUNCHTIME, 'HH24:MI') FROM MEAL;
 
 SELECT * FROM MEAL WHERE TODAY = TO_CHAR('2017-03-28','YYYY-MM-DD');
 
+>>>>>>> branch 'master' of https://github.com/OBScmaster/OBScmaster.git
 TRUNCATE TABLE MEAL;
 
-DROP TABLE ADMIN;
+
 
 CREATE TABLE ADMIN(
 	ID varchar2(5) NOT NULL primary key,
 	PASSWORD varchar2(5) NOT NULL
 );
 
-
-
-INSERT INTO ADMIN values('admin', 'admin');
-
-
 CREATE TABLE NURSE
 (
-	NURSE_NO number NOT NULL UNIQUE,
+	NURSE_NO number NOT NULL,
 	CERT_NO varchar2(20) NOT NULL UNIQUE,
 	ID varchar2(13) NOT NULL UNIQUE,
 	PASSWORD varchar2(15) NOT NULL,
@@ -162,17 +161,17 @@ CREATE TABLE NURSE
 
 CREATE TABLE PATIENT
 (
-	PT_NO number NOT NULL UNIQUE,
+	PT_NO number NOT NULL,
 	NURSE_NO number NOT NULL UNIQUE,
 	INS_NO varchar2(20) NOT NULL UNIQUE,
 	NAME varchar2(51) NOT NULL,
 	BIRTHDATE varchar2(10) NOT NULL,
-	DESEASE varchar2(200),
+	DISEASE varchar2(200),
 	PHONE varchar2(13),
 	ADDRESS varchar2(100),
 	ORIGINALPHOTO varchar2(200),
 	SAVEDPHOTO varchar2(200),
-	ROOM_NO varchar2(5) NOT NULL UNIQUE,
+	ROOM_NO varchar2(5) NOT NULL,
 	PPT_ID varchar2(13) UNIQUE,
 	PPT_PW varchar2(15),
 	PPT_NAME varchar2(51),
@@ -257,26 +256,34 @@ ALTER TABLE PATIENT
 
 /*room data*/
 
-insert into room values('101',4,0,1);
-insert into room values('102',4,0,1);
-insert into room values('103',4,0,1);
-insert into room values('104',4,0,1);
-insert into room values('105',4,0,1);
-insert into room values('201',6,0,1);
-insert into room values('202',6,0,1);
-insert into room values('203',6,0,1);
-insert into room values('204',6,0,1);
-insert into room values('205',6,0,1);
-insert into room values('301',8,0,1);
-insert into room values('302',8,0,1);
-insert into room values('303',8,0,1);
-insert into room values('304',8,0,1);
-insert into room values('305',8,0,1);
-insert into room values('401',2,0,1);
-insert into room values('402',2,0,1);
-insert into room values('403',2,0,1);
-insert into room values('404',2,0,1);
-insert into room values('405',2,0,1);
+insert into room(room_no,maximum,present) values('101',4,0);
+insert into room(room_no,maximum,present) values('102',4,0);
+insert into room(room_no,maximum,present) values('103',4,0);
+insert into room(room_no,maximum,present) values('104',4,0);
+insert into room(room_no,maximum,present) values('105',4,0);
+insert into room(room_no,maximum,present) values('201',6,0);
+insert into room(room_no,maximum,present) values('202',6,0);
+insert into room(room_no,maximum,present) values('203',6,0);
+insert into room(room_no,maximum,present) values('204',6,0);
+insert into room(room_no,maximum,present) values('205',6,0);
+insert into room(room_no,maximum,present) values('301',8,0);
+insert into room(room_no,maximum,present) values('302',8,0);
+insert into room(room_no,maximum,present) values('303',8,0);
+insert into room(room_no,maximum,present) values('304',8,0);
+insert into room(room_no,maximum,present) values('305',8,0);
+insert into room(room_no,maximum,present) values('401',2,0);
+insert into room(room_no,maximum,present) values('402',2,0);
+insert into room(room_no,maximum,present) values('403',2,0);
+insert into room(room_no,maximum,present) values('404',2,0);
+insert into room(room_no,maximum,present) values('405',2,0);
+
+insert into meal(PT_NO,today,breakfast,breakfastTime,lunch,lunchTime,dinner,dinnerTime,snack,snackTime) values(1,(select today from daily),'아',TO_DATE('2017-03-28 09:35', 'YYYY/MM/DD HH24:MI'),'점',TO_DATE('2017-03-28 13:35', 'YYYY/MM/DD HH24:MI'),'저',TO_DATE('2017-03-28 17:35', 'YYYY/MM/DD HH24:MI'),'간식',TO_DATE('2017-03-28 20:35', 'YYYY/MM/DD HH24:MI')); 
+
+INSERT INTO MEAL(PT_NO,LUNCH, LUNCHTIME) VALUES(1, '점심', SYSDATE);
+
+SELECT * FROM MEAL;
+
+SELECT * FROM MEAL WHERE TODAY = TO_CHAR('2017-03-28','YYYY-MM-DD');
 
 INSERT INTO ADMIN values('admin', 'admin');
 
