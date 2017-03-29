@@ -1,5 +1,8 @@
 package web.scmaster.com.dao;
 
+import java.util.HashMap;
+import java.util.List;
+
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -29,6 +32,22 @@ public class AdminDAO {
 		AdminMapper mapper = sqlsession.getMapper(AdminMapper.class);
 		
 		return mapper.deleteRoom(room_no);
+		
+	}
+	
+	public List<Nurse> nurselist(){
+		
+		AdminMapper mapper = sqlsession.getMapper(AdminMapper.class);
+		
+		return mapper.nurselist();
+		
+	}
+	
+	public List<Room> roomlist(){
+		
+		AdminMapper mapper = sqlsession.getMapper(AdminMapper.class);
+		
+		return mapper.roomlist();
 		
 	}
 	

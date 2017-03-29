@@ -1,5 +1,7 @@
 package web.scmaster.com;
 
+import java.util.List;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +18,7 @@ import web.scmaster.com.dao.AdminDAO;
 import web.scmaster.com.util.FileService;
 import web.scmaster.com.vo.Admin;
 import web.scmaster.com.vo.Nurse;
+import web.scmaster.com.vo.Patient;
 import web.scmaster.com.vo.Room;
 
 @Controller
@@ -62,11 +65,25 @@ public class adminController {
 	}
 	
 	@ResponseBody
+	@RequestMapping(value="roomlist", method=RequestMethod.POST)
+	public List<Room> roomlist(){
+		List<Room> roomlist = admindao.roomlist();
+		return roomlist;
+	}
+	@ResponseBody
+	@RequestMapping(value="nurselist", method=RequestMethod.POST)
+	public List<Nurse> nurselist(){
+		List<Nurse> nurselist = admindao.nurselist();
+		return nurselist;
+	}
+	
+	
+	@ResponseBody
 	@RequestMapping(value="roomregist", method=RequestMethod.POST)
 	public String regist(@RequestBody Room room){
 	
 		admindao.insertRoom(room);		
-		
+	
 		return "등록완료";
 	}
 	
@@ -81,6 +98,29 @@ public class adminController {
 		}
 		
 		admindao.insertNurse(nurse);		
+		
+		return "redirect:adminLogin";
+	}
+	
+	@RequestMapping(value="insertPatient", method=RequestMethod.POST)
+	public String insertNurse(Patient patient, MultipartFile upload){
+		
+		System.out.println(patient);
+		System.out.println("asdfasdfasdfasdf");
+		System.out.println("asdfasdfasdfasdf");
+		System.out.println("asdfasdfasdfasdf");
+		System.out.println("asdfasdfasdfasdf");
+		System.out.println("asdfasdfasdfasdf");
+		System.out.println("asdfasdfasdfasdf");
+		
+		System.out.println(patient);
+		if (!upload.isEmpty()) {
+			String savedfile = FileService.saveFile(upload, nurseUploadPath);
+			patient.setOriginalphoto(upload.getOriginalFilename());
+			patient.setSavedphoto(savedfile);
+		}
+		
+		admindao.insertPatient(patient);		
 		
 		return "redirect:adminLogin";
 	}

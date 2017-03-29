@@ -1,5 +1,8 @@
 package web.scmaster.com.dao;
 
+
+import java.util.List;
+
 import web.scmaster.com.vo.Admin;
 import web.scmaster.com.vo.Nurse;
 import web.scmaster.com.vo.Patient;
@@ -8,6 +11,8 @@ import web.scmaster.com.vo.Room;
 public interface AdminMapper {
 	
 	public int insertRoom(Room room);
+	public List<Room> roomlist();
+	public List<Nurse> nurselist();
 	public int deleteRoom(String room_no);
 	public Admin selectAdmin(String id);
 	public Nurse selectNurseById(String id);
