@@ -7,7 +7,7 @@ public class Patient {
 	private String ins_no;
 	private String name;
 	private String birthdate;
-	private String desease;
+	private String disease;
 	private String phone;
 	private String address;
 	private String originalphoto;
@@ -25,7 +25,7 @@ public class Patient {
 	
 	public Patient() {}
 
-	public Patient(int pt_no, int nurse_no, String ins_no, String name, String birthdate, String desease, String phone,
+	public Patient(int pt_no, int nurse_no, String ins_no, String name, String birthdate, String disease, String phone,
 			String address, String originalphoto, String savedphoto, String room_no, String ppt_id, String ppt_pw,
 			String ppt_name, String ppt_phone, String ppt_add, String inputdate, String updatedate, String deletedate,
 			String deleteflag) {
@@ -35,7 +35,7 @@ public class Patient {
 		this.ins_no = ins_no;
 		this.name = name;
 		this.birthdate = birthdate;
-		this.desease = desease;
+		this.disease = disease;
 		this.phone = phone;
 		this.address = address;
 		this.originalphoto = originalphoto;
@@ -92,12 +92,12 @@ public class Patient {
 		this.birthdate = birthdate;
 	}
 
-	public String getDesease() {
-		return desease;
+	public String getDisease() {
+		return disease;
 	}
 
-	public void setDesease(String desease) {
-		this.desease = desease;
+	public void setDesease(String disease) {
+		this.disease = disease;
 	}
 
 	public String getPhone() {
@@ -215,7 +215,7 @@ public class Patient {
 	@Override
 	public String toString() {
 		return "Patient [pt_no=" + pt_no + ", nurse_no=" + nurse_no + ", ins_no=" + ins_no + ", name=" + name
-				+ ", birthdate=" + birthdate + ", desease=" + desease + ", phone=" + phone + ", address=" + address
+				+ ", birthdate=" + birthdate + ", disease=" + disease + ", phone=" + phone + ", address=" + address
 				+ ", originalphoto=" + originalphoto + ", savedphoto=" + savedphoto + ", room_no=" + room_no
 				+ ", ppt_id=" + ppt_id + ", ppt_pw=" + ppt_pw + ", ppt_name=" + ppt_name + ", ppt_phone=" + ppt_phone
 				+ ", ppt_add=" + ppt_add + ", inputdate=" + inputdate + ", updatedate=" + updatedate + ", deletedate="
