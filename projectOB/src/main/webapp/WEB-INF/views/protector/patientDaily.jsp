@@ -3,14 +3,77 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Example of Bootstrap 3 Table with Emphasis Classes</title>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+<style type="text/css">
+    .bs-example{
+    	margin: 20px;
+    }
+</style>
 </head>
 <body>
-
-${aaaa.breakfast}
-${aaaa.lunch}
-${aaaa.today}
-
+<div class="panel panel-primary">
+    <div class="panel-heading">
+        <h3 class="panel-title">식사</h3>
+    </div>
+    <div class="panel-body">
+    	<table class="table table-hover">
+    <thead>
+        <tr>
+            <th>식사</th>
+            <th>시간</th>
+            <th>식단</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>${meal.breakfast}</td>
+            <td>${meal.breakfastTime}</td>
+            <td>아 뭐야 이건</td>
+        </tr>
+        <tr>
+            <td>${meal.lunch}</td>
+            <td>${meal.lunchTime}</td>
+            <td>몰라요 난</td>
+        </tr>
+        <tr>
+            <td>${meal.dinner}</td>
+            <td>${meal.dinnerTime}</td>
+            <td>저녁식사</td>
+        </tr>
+    </tbody>
+</table>
+    </div>
+</div>
+<div class="panel panel-success">
+    <div class="panel-heading">
+        <h3 class="panel-title">200 OK</h3>
+    </div>
+    <div class="panel-body">The server successfully processed the request.</div>
+</div>
+<div class="panel panel-info">
+    <div class="panel-heading">
+        <h3 class="panel-title">100 Continue</h3>
+    </div>
+    <div class="panel-body">The client should continue with its request.</div>
+</div>
+<div class="panel panel-warning">
+    <div class="panel-heading">
+        <h3 class="panel-title">400 Bad Request</h3>
+    </div>
+    <div class="panel-body">The request cannot be fulfilled due to bad syntax.</div>
+</div>
+<div class="panel panel-danger">
+    <div class="panel-heading">
+        <h3 class="panel-title">503 Service Unavailable</h3>
+    </div>
+    <div class="panel-body">The server is temporarily unable to handle the request.</div>
+</div>
 </body>
-</html>
+</html>    

@@ -43,12 +43,11 @@
       	    	  }    	    	  
     	    	  var daycheck = year+"/"+month+"/"+day;
     	    	  var pt_no = $("#pt_no").val();
-    	    	 location.href="dailyschedule?today="+daycheck+"&pt_no="+pt_no;
+    	    	 
+    	    	  location.href="dailyschedule?today="+daycheck+"&pt_no="+pt_no;
     	    	}
+    		});
     	});
-    	
-    	});
-    
     </script>
   </head>
   <body>
