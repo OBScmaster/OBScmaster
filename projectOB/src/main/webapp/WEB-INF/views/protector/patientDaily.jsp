@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<%@ taglib uri = "http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <html>
 <head>
 <meta charset="utf-8">
@@ -23,57 +24,74 @@
         <h3 class="panel-title">식사</h3>
     </div>
     <div class="panel-body">
-    	<table class="table table-hover">
-    <thead>
-        <tr>
-            <th>식사</th>
-            <th>시간</th>
-            <th>식단</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <td>${meal.breakfast}</td>
-            <td>${meal.breakfastTime}</td>
-            <td>아 뭐야 이건</td>
-        </tr>
-        <tr>
-            <td>${meal.lunch}</td>
-            <td>${meal.lunchTime}</td>
-            <td>몰라요 난</td>
-        </tr>
-        <tr>
-            <td>${meal.dinner}</td>
-            <td>${meal.dinnerTime}</td>
-            <td>저녁식사</td>
-        </tr>
-    </tbody>
-</table>
+    	<c:if test="${meal.today != null}">
+    		<table class="table table-hover">
+    			<thead>
+       				<tr>
+            			<th>식사</th>
+            			<th>시간</th>
+            			<th>식단</th>
+        			</tr>
+    			</thead>
+    			<tbody>
+       				<tr>
+            			<td>아침</td>
+            			<td>${meal.breakfastTime}</td>
+            			<td>${meal.breakfast}</td>
+        			</tr>
+        			<c:if test="${meal.lunchTime != null}">
+        			<tr>
+            			<td>점심</td>
+            			<td>${meal.lunchTime}</td>
+            			<td>${meal.lunch}</td>
+        			</tr>
+        			</c:if>
+        			<c:if test="${meal.dinnerTime != null}">
+        			<tr>
+            			<td>저녁</td>
+            			<td>${meal.dinnerTime}</td>
+            			<td>${meal.dinner}</td>
+        			</tr>
+        			</c:if>
+    			</tbody>
+			</table>
+		</c:if>
+		
+		<c:if test="${meal.today == null}">
+		마다 토우로쿠사레나이
+		</c:if>
     </div>
 </div>
+
 <div class="panel panel-success">
     <div class="panel-heading">
-        <h3 class="panel-title">200 OK</h3>
+        <h3 class="panel-title">운동</h3>
     </div>
-    <div class="panel-body">The server successfully processed the request.</div>
+    <div class="panel-body">
+    
+    </div>
 </div>
+
 <div class="panel panel-info">
     <div class="panel-heading">
         <h3 class="panel-title">100 Continue</h3>
     </div>
     <div class="panel-body">The client should continue with its request.</div>
 </div>
+
 <div class="panel panel-warning">
     <div class="panel-heading">
         <h3 class="panel-title">400 Bad Request</h3>
     </div>
     <div class="panel-body">The request cannot be fulfilled due to bad syntax.</div>
 </div>
+
 <div class="panel panel-danger">
     <div class="panel-heading">
         <h3 class="panel-title">503 Service Unavailable</h3>
     </div>
     <div class="panel-body">The server is temporarily unable to handle the request.</div>
 </div>
+
 </body>
 </html>    

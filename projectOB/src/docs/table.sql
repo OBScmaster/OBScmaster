@@ -118,6 +118,19 @@ CREATE TABLE Meal
 	DELETEFLAG varchar2(1) DEFAULT 'Y' NOT NULL 
 );
 
+<<<<<<< HEAD
+=======
+insert into meal(PT_NO,today,breakfast,breakfastTime,lunch,lunchTime,dinner,dinnerTime,snack,snackTime) values(1,(select today from daily),'아',TO_DATE('2017-03-28 09:35', 'YYYY/MM/DD HH24:MI'),'점',TO_DATE('2017-03-28 13:35', 'YYYY/MM/DD HH24:MI'),'저',TO_DATE('2017-03-28 17:35', 'YYYY/MM/DD HH24:MI'),'간식',TO_DATE('2017-03-28 20:35', 'YYYY/MM/DD HH24:MI')); 
+
+INSERT INTO MEAL(PT_NO,LUNCH, LUNCHTIME) VALUES(1, '점심', SYSDATE);
+
+SELECT * FROM MEAL;
+
+SELECT TO_CHAR(LUNCHTIME, 'HH24:MI') FROM MEAL;
+
+SELECT * FROM MEAL WHERE TODAY = TO_CHAR('2017-03-28','YYYY-MM-DD');
+
+>>>>>>> branch 'master' of https://github.com/OBScmaster/OBScmaster.git
 TRUNCATE TABLE MEAL;
 
 

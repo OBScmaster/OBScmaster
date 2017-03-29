@@ -8,7 +8,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import web.scmaster.com.dao.dailyDAO;
 import web.scmaster.com.dao.patientDAO;
-import web.scmaster.com.vo.Daily2;
 import web.scmaster.com.vo.Meal;
 import web.scmaster.com.vo.Patient;
 
@@ -57,11 +56,4 @@ public class patientController {
       
       return "/protector/patientDaily";
    }
-   
-   
-   
-
-
-   
-
 }
