@@ -68,7 +68,38 @@
         <h3 class="panel-title">운동</h3>
     </div>
     <div class="panel-body">
-    
+    	<c:if test="${exercise.today != null}">
+    		<table class="table table-hover">
+    			<thead>
+       				<tr>
+            			<th>운동</th>
+            			<th>시간</th>
+        			</tr>
+    			</thead>
+    			<tbody>
+       				<tr>
+            			<td>아침</td>
+            			<td>${meal.breakfastTime}</td>
+        			</tr>
+        			<c:if test="${meal.lunchTime != null}">
+        			<tr>
+            			<td>점심</td>
+            			<td>${meal.lunchTime}</td>
+        			</tr>
+        			</c:if>
+        			<c:if test="${meal.dinnerTime != null}">
+        			<tr>
+            			<td>저녁</td>
+            			<td>${meal.dinnerTime}</td>
+        			</tr>
+        			</c:if>
+    			</tbody>
+			</table>
+		</c:if>
+		
+		<c:if test="${meal.today == null}">
+		마다 토우로쿠사레나이
+		</c:if>
     </div>
 </div>
 

@@ -1,5 +1,9 @@
 package web.scmaster.com;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,7 +13,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import web.scmaster.com.dao.dailyDAO;
 import web.scmaster.com.dao.patientDAO;
-import web.scmaster.com.vo.Exercise;
 import web.scmaster.com.vo.Meal;
 import web.scmaster.com.vo.Patient;
 
@@ -56,9 +59,9 @@ public class patientController {
       System.out.println(meal);
       model.addAttribute("meal", meal);
       
-      Exercise exercise = dailydao.searchExercise(pt_no, today);
-      System.out.println(exercise);
-      model.addAttribute("exercise", exercise);
+      List<HashMap<String, Object>> exerciseList = new ArrayList<>();
+      System.out.println(exerciseList);
+      exerciseList = dailydao.ExerciseList(pt_no, today);
       
       return "/protector/patientDaily";
    }
