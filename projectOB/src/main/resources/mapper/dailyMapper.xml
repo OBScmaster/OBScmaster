@@ -25,4 +25,17 @@
 		and to_char(today,'yyyy/mm/dd') = #{today}
 </select>
 
+<select id="searchExercise" parameterType="HashMap" resultType="Exercise">
+	select
+		pt_no
+		. today
+		, to_char(exercisetime, 'HH24:MI') as exercisetime
+		, exercisetext
+	from
+		meal
+	where
+		pt_no = #{pt_no}
+		and to_char(today,'yyyy/mm/dd') = #{today}
+</select>
+
 </mapper>
