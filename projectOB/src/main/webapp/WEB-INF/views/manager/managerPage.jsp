@@ -64,7 +64,7 @@
 		
 		$(".col-md-6").click(function(){
 			
-			alert($(this).attr("id"));
+			location.href=$(this).attr("id");
 					
 		})
 		
@@ -94,7 +94,7 @@
     <section class="services" id="SERVICE">
         <div class="container">
             <div class="row">
-                <div class="col-md-6 text-center" id = "사진보기">
+                <div class="col-md-6 text-center" id = "managerNurseInput">
                     <div class="single_service wow fadeInUp" data-wow-delay="1s">
                   
                          <img alt="" src="./resources/image/icons/play.png">
@@ -102,7 +102,7 @@
                     </div>
                 </div>
                 
-                <div class="col-md-6 text-center" id = "일과보기">
+                <div class="col-md-6 text-center" id = "managerPatientInput">
                     <div class="single_service wow fadeInUp" data-wow-delay="2s">
                       
                         <img alt="" src="./resources/image/icons/matureman.png">

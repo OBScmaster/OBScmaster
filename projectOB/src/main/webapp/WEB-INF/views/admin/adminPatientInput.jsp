@@ -259,7 +259,7 @@
   <br>
      <label class="control-label col-sm-3">병명</label>
      <div class="col-sm-9">
-      <input type="text" class="form-control" id="desease" name="desease" placeholder="방번호를 입력해주세요">
+      <input type="text" class="form-control" id="desease" name="desease" placeholder="병명을 입력해주세요">
      </div>
     
      </td>     

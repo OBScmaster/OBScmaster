@@ -25,10 +25,25 @@ import web.scmaster.com.vo.Room;
 @Controller
 public class adminController {
 	
+	final String patientUploadPath = "/patientfile";
 	final String nurseUploadPath = "/nursefile";
 	
 	@Autowired
 	private AdminDAO admindao;
+	
+	@RequestMapping(value = "adminPatientInput", method = RequestMethod.GET)
+	public String adminPatientInput() {
+	
+		return "/admin/adminPatientInput";	
+	
+	}
+	
+	@RequestMapping(value = "adminNurseInput", method = RequestMethod.GET)
+	public String adminNurseInput() {
+	
+		return "/admin/adminNurseInput";	
+	
+	}
 	
 	@RequestMapping(value = "adminLogin", method = RequestMethod.GET)
 	public String adminLogin() {
@@ -106,17 +121,9 @@ public class adminController {
 	@RequestMapping(value="insertPatient", method=RequestMethod.POST)
 	public String insertPatient(Patient patient, MultipartFile upload){
 		
-		System.out.println(patient);
-		System.out.println("asdfasdfasdfasdf");
-		System.out.println("asdfasdfasdfasdf");
-		System.out.println("asdfasdfasdfasdf");
-		System.out.println("asdfasdfasdfasdf");
-		System.out.println("asdfasdfasdfasdf");
-		System.out.println("asdfasdfasdfasdf");
 		
-		System.out.println(patient);
 		if (!upload.isEmpty()) {
-			String savedfile = FileService.saveFile(upload, nurseUploadPath);
+			String savedfile = FileService.saveFile(upload, patientUploadPath);
 			patient.setOriginalphoto(upload.getOriginalFilename());
 			patient.setSavedphoto(savedfile);
 		}
