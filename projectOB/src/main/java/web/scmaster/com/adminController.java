@@ -62,13 +62,13 @@ public class adminController {
 			if(a.getPassword().equals(password)){
 				
 				model.addAttribute("id",id);
-				session.setAttribute("id", a.getId());
+				session.setAttribute("id",a.getId());
 				
 				return "/admin/adminPage";
 				
 			
 			
-			}else{			
+			}else{
 				model.addAttribute("PWnotMatch","패스워드가 맞지 않습니다");
 				return "home";	
 			
