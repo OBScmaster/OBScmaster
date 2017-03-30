@@ -11,10 +11,15 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+
 import web.scmaster.com.dao.dailyDAO;
 import web.scmaster.com.dao.patientDAO;
 import web.scmaster.com.vo.Meal;
+import web.scmaster.com.vo.Nurse;
 import web.scmaster.com.vo.Patient;
+import web.scmaster.com.vo.SensorLog;
 
 @Controller
 public class patientController {
@@ -34,7 +39,6 @@ public class patientController {
          if(p!=null){
             
          if(p.getPpt_pw().equals(password)){
-            
             
             session.setAttribute("id", p);
             
@@ -60,9 +64,36 @@ public class patientController {
       model.addAttribute("meal", meal);
       
       List<HashMap<String, Object>> exerciseList = new ArrayList<>();
-      System.out.println(exerciseList);
+     
       exerciseList = dailydao.ExerciseList(pt_no, today);
+      
+      System.out.println(exerciseList.size());
+      System.out.println(exerciseList);
+      
+      if(meal==null||exerciseList.size()==0){
+    	      	  	  
+    	  return "/protector/protectorPage";
+      }
+      
+      System.out.println("asdfasdf");
       
       return "/protector/patientDaily";
    }
+   
+   @RequestMapping(value="showVideo", method=RequestMethod.GET)
+   public String showVideo(int pt_no, Model model){
+	   
+      return "/protector/showVideo";
+   }
+   
+   
+   @ResponseBody
+   @RequestMapping(value="showLog", method=RequestMethod.GET)
+   public List<SensorLog> showLog(int pt_no, Model model){
+	   
+	   List<SensorLog> loglist = patientdao.showLogList(pt_no);
+		   
+      return loglist;
+   }
+   
 }

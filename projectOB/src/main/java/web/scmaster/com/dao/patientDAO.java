@@ -1,11 +1,14 @@
 package web.scmaster.com.dao;
 
+import java.util.List;
+
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import web.scmaster.com.vo.Patient;
 import web.scmaster.com.vo.Room;
+import web.scmaster.com.vo.SensorLog;
 
 @Repository
 public class patientDAO {
@@ -51,6 +54,14 @@ public class patientDAO {
 	patientMapper mapper = sqlsession.getMapper(patientMapper.class);
 		
 		return mapper.changeNurse(nurse_no);
+		
+	}
+	
+	public List<SensorLog> showLogList(int pt_no){
+		
+		patientMapper mapper = sqlsession.getMapper(patientMapper.class);
+		
+		return mapper.showSensorLog(pt_no);
 		
 	}
 

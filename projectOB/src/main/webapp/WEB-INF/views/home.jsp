@@ -39,6 +39,7 @@ function test(){
 </script>
 
 </head>
+
 <c:if test="${PWnotMatch!=null}">
 <script type="text/javascript">
 alert("비번틀림");

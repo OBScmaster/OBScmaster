@@ -25,7 +25,17 @@
     <script src="./resources/js/bootstrap.min.js"></script>
     <script src="./resources/js/responsive-calendar.js"></script>
     <script type="text/javascript">
-    $( document ).ready( function() {    	
+    $( document ).ready( function() {     
+    	
+    	var pt_no = $("#pt_no").val();
+   
+    	
+    	$("#web-camera").click(function(){
+    		
+    		window.open("showVideo?pt_no="+pt_no,"","width=500,height=300");
+    		/* location.href="showVideo?pt_no="+pt_no; */
+    	})
+    	
     	$(".responsive-calendar").responsiveCalendar({
     	    weekends: false,
     	    onDayClick: function(events) {    	    	  
@@ -42,17 +52,57 @@
     	    		  day="0"+day
       	    	  }    	    	  
     	    	  var daycheck = year+"/"+month+"/"+day;
-    	    	  var pt_no = $("#pt_no").val();
+    	    	
     	    	 
     	    	  location.href="dailyschedule?today="+daycheck+"&pt_no="+pt_no;
     	    	}
     		});
+    	
+    	
+    	$.ajax({
+    		
+    		 type:"get",
+    		 url:"showLog",
+    		 data:{
+    			 pt_no:pt_no
+    			 },
+    		 
+    		 success:function(data){
+    			
+    			 var logdata="<table class='table text-center'><tr><td>시간</td><td>일</td><td>등급</td></tr>"
+    			 
+    			 $.each(data,function(index,item){
+    				
+    				 logdata+="<tr><td>"+item.timeonlog+"</td><td>"+item.text+"</td><td>"+item.grade+"</td></tr>"
+    				 
+    			 })
+    			 
+    			 logdata+="</table>"
+    			 
+    			 $("#log").html(logdata);
+    			 
+    			 if(logdata.length>9){
+    				 $("#log").css("overflow","scroll")
+    			 }
+    			 
+    		 },
+    		
+    		 error:function(e){
+    			 
+    			console.log(e);
+    		 }
+    		
+    		
+    	})
+    	
+    	
+    	
     	});
     </script>
   </head>
   <body>
   <h1>${id.name}보호자님 환영요</h1>
-  <input type="hidden" id="pt_no" value="${id.pt_no}">
+  <input type="hidden" id="pt_no" name="pt_no" value="${id.pt_no}">
   
     <div class="container">
       <!-- Responsive calendar - START -->

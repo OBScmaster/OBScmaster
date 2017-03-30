@@ -3,16 +3,16 @@ package web.scmaster.com.vo;
 public class SensorLog {
 	
 	private int pt_no;
-	private String time;
+	private String timeonlog;
 	private String text;
 	private String grade;
 	
 	public SensorLog() {}
 
-	public SensorLog(int pt_no, String time, String text, String grade) {
+	public SensorLog(int pt_no, String timeonlog, String text, String grade) {
 		super();
 		this.pt_no = pt_no;
-		this.time = time;
+		this.timeonlog = timeonlog;
 		this.text = text;
 		this.grade = grade;
 	}
@@ -25,12 +25,12 @@ public class SensorLog {
 		this.pt_no = pt_no;
 	}
 
-	public String getTime() {
-		return time;
+	public String getTimeonlog() {
+		return timeonlog;
 	}
 
-	public void setTime(String time) {
-		this.time = time;
+	public void setTimeonlog(String timeonlog) {
+		this.timeonlog = timeonlog;
 	}
 
 	public String getText() {
@@ -51,7 +51,7 @@ public class SensorLog {
 
 	@Override
 	public String toString() {
-		return "SenserLog [pt_no=" + pt_no + ", time=" + time + ", text=" + text + ", grade=" + grade + "]";
+		return "SenserLog [pt_no=" + pt_no + ", time=" + timeonlog + ", text=" + text + ", grade=" + grade + "]";
 	}
 	
 

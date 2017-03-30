@@ -72,7 +72,13 @@ update PATIENT set DELETEFLAG='N' where PT_NO=#{pt_no}
 
 <!-- 요양사 변경 -->
 <update id="changeNurse" parameterType="int">
-update PATIENT set NURSE_NO=#{nurse_no} where PT_NO=#{PT_NO}
+update PATIENT set NURSE_NO=#{nurse_no} where PT_NO=#{pt_no}
 </update>
+
+<!-- 센서로그 -->
+
+<select id="showSensorLog" resultType="SensorLog" parameterType="int">
+select TIMEONLOG,TEXT,GRADE from SENSORLOG where PT_NO=#{pt_no}
+</select>
 	
 </mapper>

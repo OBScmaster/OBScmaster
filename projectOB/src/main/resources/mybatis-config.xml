@@ -15,7 +15,7 @@
 		<typeAlias type="web.scmaster.com.vo.Patient" alias="Patient" />
 		<typeAlias type="web.scmaster.com.vo.Room" alias="Room" />
 		<typeAlias type="web.scmaster.com.vo.SensorLog" alias="SensorLog" />
-		<typeAlias type="web.scmaster.com.vo.Daily2" alias="Daily2" />
+		
 		
 		
 	</typeAliases> 
