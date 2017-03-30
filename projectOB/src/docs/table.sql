@@ -1,4 +1,4 @@
-/* 트리거 */
+73/* 트리거 */
 
 /*개인 정보 삭제 트리거 */
 drop trigger TRG_PATIENT_DELETE;
