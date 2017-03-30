@@ -67,15 +67,17 @@
     <div class="panel-heading">
         <h3 class="panel-title">운동</h3>
     </div>
+    
     <div class="panel-body">
+    <c:choose>
+    	<c:when test="${exerciseList != null}">
     		<table class="table table-hover">
-    		<thead>
+    			<thead>
        				<tr>
             			<th>운동</th>
             			<th>시간</th>
         			</tr>
     			</thead>
-    			<c:if test="${exerciseList != null}">
     				<c:forEach var = "items" items="${exerciseList}">
     					<tbody>
        						<tr>
@@ -83,22 +85,41 @@
             					<td>${items.EXERCISETIME}</td>
         					</tr>
     					</tbody>
-    						</c:forEach>	
-    					</c:if>
-    			<c:if test="${exerciseList6 == null}">
-    				<tr>
-					<td>마다 토우로쿠사레나이</td>
-					</tr>
-				</c:if>
-			</table>
+    				</c:forEach>	
+				</table>
+    		</c:when>
+			
+			<c:otherwise>
+				마다 토우로쿠사레나이
+			</c:otherwise>
+	</c:choose>	
     </div>
 </div>
 
 <div class="panel panel-info">
     <div class="panel-heading">
-        <h3 class="panel-title">100 Continue</h3>
+        <h3 class="panel-title">청소</h3>
     </div>
-    <div class="panel-body">The client should continue with its request.</div>
+    <div class="panel-body">
+    	<div class="move-left">
+        	<div class="[ form-group ]">
+            	<input type="checkbox" name="fancy-checkbox-success" id="fancy-checkbox-success" autocomplete="off" checked = "checked" disabled="disabled"/>
+            	<div class="[ btn-group ]">
+                	<label for="fancy-checkbox-success" class="[ btn btn-success ]">
+                    	<span class="[ glyphicon glyphicon-ok ]"></span>
+                    	<span> </span>
+                	</label>
+                	<label for="fancy-checkbox-success" class="[ btn btn-default active ]">
+                    	청소여부
+                	</label>
+                	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                	<label for = "cleaning">
+	     				<input type="text" class="form-control" id="cleaning" size ="50" readonly="readonly">
+                	</label>
+            	</div>            	
+        	</div>
+    	</div>
+    </div>
 </div>
 
 <div class="panel panel-warning">

@@ -56,7 +56,6 @@ public class patientController {
    public String dailyschedule(int pt_no,String today,Model model){
       
       Meal meal = dailydao.searchMeal(pt_no, today);
-      System.out.println(meal);
       model.addAttribute("meal", meal);
       
       List<HashMap<String, Object>> exerciseList = new ArrayList<>();
