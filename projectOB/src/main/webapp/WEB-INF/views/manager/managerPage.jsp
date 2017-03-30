@@ -62,7 +62,7 @@
 	
 	$(function(){
 		
-		$(".col-md-6").click(function(){
+		$(".col-md-4").click(function(){
 			
 			location.href=$(this).attr("id");
 					
@@ -77,7 +77,7 @@
 <body>
 
 
-<h1>${id}님 환영합니다</h1>
+<h1>${nurse.name}님 환영합니다</h1>
 
   
  <!-- Preloader -->
@@ -94,7 +94,7 @@
     <section class="services" id="SERVICE">
         <div class="container">
             <div class="row">
-                <div class="col-md-6 text-center" id = "managerNurseInput">
+                <div class="col-md-4 text-center" id = "managerNurseInput">
                     <div class="single_service wow fadeInUp" data-wow-delay="1s">
                   
                          <img alt="" src="./resources/image/icons/play.png">
@@ -102,7 +102,15 @@
                     </div>
                 </div>
                 
-                <div class="col-md-6 text-center" id = "managerPatientInput">
+                  <div class="col-md-4 text-center" id = "scheduleInput">
+                    <div class="single_service wow fadeInUp" data-wow-delay="2s">
+                      
+                       <img alt="" src="./resources/image/icons/Nurse.png">
+                        <p>Excepteur sint occaecat cupidatat non proident, sunt in culpa.</p>
+                    </div>
+                </div>
+                
+                <div class="col-md-4 text-center" id = "managerPatientInput">
                     <div class="single_service wow fadeInUp" data-wow-delay="2s">
                       
                         <img alt="" src="./resources/image/icons/matureman.png">

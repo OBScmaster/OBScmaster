@@ -25,6 +25,14 @@ public class patientDAO {
 		
 	}
 	
+	public Patient selectPatientByPTNO(int pt_no){
+		
+		patientMapper mapper = sqlsession.getMapper(patientMapper.class);
+		
+		return mapper.selectPatientByPTNO(pt_no);
+		
+	}
+	
 	public int insertPatient(Patient patient){
 		
 		patientMapper mapper = sqlsession.getMapper(patientMapper.class);
@@ -62,6 +70,14 @@ public class patientDAO {
 		patientMapper mapper = sqlsession.getMapper(patientMapper.class);
 		
 		return mapper.showSensorLog(pt_no);
+		
+	}
+	
+	public List<Patient> patientlist(int nurse_no){
+		
+		patientMapper mapper = sqlsession.getMapper(patientMapper.class);
+		
+		return mapper.patientList(nurse_no);
 		
 	}
 

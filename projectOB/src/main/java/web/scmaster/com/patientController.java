@@ -90,4 +90,13 @@ public class patientController {
       return loglist;
    }
    
+   @ResponseBody
+   @RequestMapping(value="patientList", method=RequestMethod.GET)
+   public List<Patient> patientList(int nurse_no, Model model){
+	   
+	   List<Patient> patientList = patientdao.patientlist(nurse_no);
+		   
+      return patientList;
+   }
+   
 }

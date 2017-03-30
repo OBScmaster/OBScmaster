@@ -8,15 +8,18 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.multipart.MultipartFile;
 
 import web.scmaster.com.dao.nurseDAO;
+import web.scmaster.com.dao.patientDAO;
 import web.scmaster.com.util.FileService;
 import web.scmaster.com.vo.Nurse;
 import web.scmaster.com.vo.Patient;
 
 
-
+@SessionAttributes("nurse")
 @Controller
 public class nurseController {
 	
@@ -25,6 +28,9 @@ public class nurseController {
 
 	@Autowired
 	private nurseDAO nursedao;
+	
+	@Autowired
+	private patientDAO pationtdao;
 	
 	@RequestMapping(value = "managerNurseInput", method = RequestMethod.GET)
 	public String managerNurseInput() {
@@ -57,8 +63,7 @@ public class nurseController {
 			
 			if(n.getPassword().equals(password)){
 				
-				model.addAttribute("id",id);
-				session.setAttribute("id", n.getName());
+				session.setAttribute("nurse", n);
 				
 				return "/manager/managerPage";
 				
@@ -76,11 +81,11 @@ public class nurseController {
 	}
 	
 	@RequestMapping(value="nurseInput", method=RequestMethod.GET)
-	public String adminNurseInput(){
-		return "/admin/adminNurseInput";
+	public String nurseInput(){
+		return "/manaer/managerNurseInput";
 	}
 	
-	@RequestMapping(value="nursePatientInput", method=RequestMethod.GET)
+	@RequestMapping(value="nursePatientInput", method=RequestMethod.POST)
 	public String nursePatientInput(Patient patient, MultipartFile upload){
 		
 		if (!upload.isEmpty()) {
@@ -93,6 +98,20 @@ public class nurseController {
 		
 		
 		return "redirect:managerLogin";
+	}
+	
+	@RequestMapping(value="scheduleInput", method=RequestMethod.GET)
+	public String scheduleInput(){
+		return "/manager/scheduleInput";
+	}
+	
+	@ResponseBody
+	@RequestMapping(value="patientInput", method=RequestMethod.GET)
+	public Patient patientInput(int pt_no){
+		
+		Patient p=pationtdao.selectPatientByPTNO(pt_no);
+		
+		return p;
 	}
 
 }

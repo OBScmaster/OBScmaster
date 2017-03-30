@@ -4,7 +4,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>ManagerPatientInput</title>
+  <title>schedule input</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="./resources/css/bootstrap.min.css">
@@ -26,95 +26,100 @@
           readURL(this);
       });
       
-    $("#room_noSelect").click(function(){
-    	
-    	$.ajax({
-    	
-    		 type:"post",
-    		 url:"roomlist",
+      var nurse_no = $("#nurse_no").val();
+     
+      $.ajax({
+    		 
+    		type:"get",
+    		 url:"patientList",
+    		 data:{nurse_no:nurse_no},
     		 success:function(data){
-    			 
-    			 var roomselect = "<div class='col-md-15'><div class='btn-group btn-group-justified'><a href='#' class='btn btn-info'>방번호</a>"
- 			    	+"<a href='#' class='btn btn-info'>최대인원</a>"
-			    	  +"<a href='#' class='btn btn-info'>현재인원</a>"
-			    	  +"</div><div class='list-group text-left' style='height:540px;' id='roomgroup'>";
+    	 
+    			 var patientselect = "<div class='col-md-15'><div class='btn-group btn-group-justified'><a href='#' class='btn btn-info'>환자번호</a>"
+ 			    	+"<a href='#' class='btn btn-info'>환자명</a>"
+			    	  +"<a href='#' class='btn btn-info'>생년월일</a>"
+			    	  +"</div><div class='list-group text-left' style='height:540px;' id='patientgroup'>";
     			    	  
     			    	  $.each(data,function(index,item){
     			    	
-    			    		  roomselect+="<div class='list-group-item' id="+item.room_no+"><table class='text-center'><tr><td width='160px;'>"
-    			    		  +item.room_no+"호</td><td width='160px;'>"
-    			    		  +item.maximum+"명</td><td width='160px;'>"
-    			    		  +item.present+"명</td></tr></table></div>";
+    			    		  patientselect+="<div class='list-group-item' id="+item.pt_no+"><table class='text-center'><tr><td width='160px;'>"
+    			    		  +item.pt_no+"</td><td width='160px;'>"
+    			    		  +item.name+"</td><td width='160px;'>"
+    			    		  +item.birthdate+"</td></tr></table></div>";
     			    		  
     			    	  })
     			    	
-    			    	roomselect+="</div></div>";
+    			    	patientselect+="</div></div>";
     			    	
-    			    	$("#kk").html(roomselect);
+    			    	$("#kk").html(patientselect);
     			    	
     			    	 if(data.length>11){
-     			    		$("#roomgroup").css("overflow","scroll");
+     			    		$("#patientgroup").css("overflow","scroll");
      			    	};
-     			    	
 							$(".list-group-item").click(function(){
     			    		
     			    		$(".list-group-item").css("color","black");
     			    		$(this).css("color","red");
-    			    		$("#room_no").val($(this).attr("id"));
+    			    		/* $("#patient_no").val($(this).attr("id")); */
     			    		
+    			    		 $.ajax({
+    			        		 
+    			    	    		type:"get",
+    			    	    		 url:"patientInput",
+    			    	    		 data:{pt_no:$(this).attr("id")},
+    			    	    		 success:function(data){
+    			    	    	 
+    			    	    			 var patientselect = "<table>"
+    			    	    			 
+    			    	    				+"<tr><td>번호</td><td><input type='text' class=form-control readonly='readonly' name=pt_no id='pt_no' value="+data.pt_no+"></td></tr>"
+    			    	    			    +"<tr><td>이름</td><td><input type='text' class=form-control readonly='readonly' name='name' id='name' value="+data.name+"></td></tr>"
+    			    	    			    
+    			    	    			    
+    			    	    			    +"</table>";
+    			    	    			    
+    			    	    			  $("#scheduleDiv").html(patientselect);
+    			    	    			 
+    			    	    			  if(data.ppt_name==null)
+    			    	    				  data.ppt_name="　";
+    			    	    			  if(data.ppt_add==null)
+    			    	    				  data.ppt_add="　";
+    			    	    			  if(data.ppt_id==null)
+    			    	    				  data.ppt_id="　";
+    			    	    			  if(data.ppt_phone==null)
+    			    	    				  data.ppt_phone="　";
+    			    	    				  
+    			    	    			 var showProtector="<table><tr><td><label class=control-label>이름</label></td><td class=col-sm-3>"
+    			    	    			     +"<input type=text value="+data.ppt_name+" readonly=readonly class=form-control id=ppt_name name=ppt_name>"
+    			    	    			   +"</td><td><label class=control-label>전화번호</label></td><td class=col-sm-3>"
+    			    	    			     +"<input type=text value="+data.ppt_phone+" readonly=readonly class=form-control id=ppt_phone name=ppt_phone>"
+    			    	    			   +"</td><td><br><label class=control-label>ID</label></td><td class=col-sm-3>"
+    			    	    			     +"<input type=text value="+data.ppt_id+" readonly=readonly class=form-control id=ppt_id name=ppt_id>"
+    			    	    			   +"</td></tr><tr><td><label class=control-label>주소</label>"
+    			    	    			     +"</td><td colspan=6 class=col-sm-10>"
+    			    	    			      +"<input type=text value="+data.ppt_add+" readonly=readonly class=form-control id=ppt_add name=ppt_add>"
+											+"</td></tr></table>"
+    			    	    			 
+    			    	    			  $("#protectorDiv").html(showProtector);
+    			    	    						
+    			    	    		},
+    			    	    		 error:function(error){console.log(error);}
+    			    	    		})
+    			    		
+    			    		
+    			    		
+    			    		
+    			    		
+    			    		
+    			    	 
     			    	});
     		
     						
     		},
-    		 error:function(error){console(error);}
-    		})
-    	
-    })
-    
-      $("#nurse_noSelect").click(function(){
-    	
-    	$.ajax({
-    	
-    		 type:"post",
-    		 url:"nurselist",
-    		 success:function(data){
-    			 
-    			 var nurseselect =  "<div class='col-md-15'><div class='btn-group btn-group-justified'><a href='#' class='btn btn-info'>사번</a>"
-    			    	+"<a href='#' class='btn btn-info'>이름</a>"
-    			    	  +"<a href='#' class='btn btn-info'>전화번호</a>"
-    			    	  +"</div><div class='list-group text-left' style='height:540px;' id='nursegroup'>";
-    			    	  
-    			    	  $.each(data,function(index,item){
-    			    	
-    			    		  nurseselect+="<div class='list-group-item' id="+item.nurse_no+" nursename="+item.name+"><table class='text-center'><tr><td width='160px;'>"
-    			    		  +item.nurse_no+"</td><td width='160px;'>"
-    			    		  +item.name+"</td><td width='160px;'>"
-    			    		  +item.phone+"</td></tr></table></div>";
-    			    	
-    			    	  })
-    			    	
-    			    	nurseselect+="</div></div>";
-    			    	
-    			    	$("#kk").html(nurseselect);
-    			    	
-    			   	 if(data.length>11){
-  			    		$("#nursegroup").css("overflow","scroll");
-  			    	};
-    			    	
-    			    	$(".list-group-item").click(function(){
-    			    		
-    			    		$(".list-group-item").css("color","black");
-    			    		$(this).css("color","red");
-							$("#nurse_name").val($(this).attr("nursename"));
-							$("#nurse_no").val($(this).attr("id"));
-    			    	});
-    		
-    						
-    		},
-    		 error:function(error){console(error);}
-    		})
+    		 error:function(error){console.log(error);}
     		})
     		
+    		
+    	
   });
 
   function readURL(input) {
@@ -135,31 +140,13 @@
       }
   }
   
-  function postal(){
-		
-	    new daum.Postcode({
-	        oncomplete: function(data) {
-	        	$("#address").val(data.address);
-	    }
-	    }).open();
-	    
-	}
-  
-  function postal2(){
-		
-	    new daum.Postcode({
-	        oncomplete: function(data) {
-	        	$("#ppt_add").val(data.address);
-	    }
-	    }).open();
-	    
-	}
-  
   </script>
 
 
 </head>
 <body>
+
+<input type="hidden" id="nurse_no" name="nurse_no" value="${nurse.nurse_no}">
 
 <nav class="navbar navbar-inverse">
   <div class="container-fluid">
@@ -173,7 +160,7 @@
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav">
         <li class="active"><a href="managerLogin">Home</a></li>
-        <li><a href="scheduleInput">일정등록</a></li>
+        <li><a href="managerPatientInput">환자 등록</a></li>
       </ul>
      
       <ul class="nav navbar-nav navbar-right">
@@ -190,9 +177,38 @@
   
   <table>
   
-  <tr><td class="col-sm-7">
- 	<div class="text-left" style="font-weight: bold;">환자</div> 
-   <div class="col-sm-15 well"> 
+  <tr>
+  
+  <td rowspan="2" >  
+ 
+      <div class="col-sm-7">   
+   	 <div class="panel text-left">
+     <input type="button" class="btn btn-primary" readonly="readonly" id="patientSelect" value="환자를 선택해주세요">
+  	 </div>
+     </div>
+      
+ <div class="col-md-15" id="kk">
+<div class="btn-group btn-group-justified">
+
+  <a href="#" class="btn btn-info">선택해주세요</a>
+  
+</div>
+
+<div class="list-group text-left" style="height:540px;">
+
+
+  <a href="#"> </a>
+  
+ 
+</div>    
+
+</div>
+</td>
+  
+  
+  <td class="col-sm-7">
+ 	<div class="text-left" style="font-weight: bold;">스케쥴입력</div> 
+   <div class="col-sm-15 well" id="scheduleDiv"> 
    <table>
    <tr>
    <td rowspan="3" class="col-sm-4">
@@ -204,7 +220,7 @@
    
    <td class="col-sm-2">
    
- 	 <label class="control-label">이름</label>
+ 	 <label class="control-label">환자명</label>
      </td>
      
      <td class="col-sm-5">
@@ -293,38 +309,15 @@
  </div>
  </td>
 
- <td rowspan="2" >  
  
-      <div class="col-sm-7">   
-   	 <div class="panel text-left">
-     <input type="button" class="btn btn-primary" readonly="readonly" id="room_noSelect" value="방선택">
-  	 <input type="button" class="btn btn-primary" readonly="readonly" id="nurse_noSelect" value="요양사선택">
-     </div>
-     </div>
-      
- <div class="col-md-15" id="kk">
-<div class="btn-group btn-group-justified">
-
-  <a href="#" class="btn btn-info">선택해주세요</a>
-  
-</div>
-
-<div class="list-group text-left" style="height:540px;">
-
-
-  <a href="#"> </a>
-  
- 
-</div>    
-
-</div>
-</td>
 
 </tr>
+
+
  <tr><td class="col-sm-7">
 
      <div class="text-left" style="font-weight: bold;">보호자</div> 
-     <div class="col-sm-15 well"> 
+     <div class="col-sm-15 well" id="protectorDiv"> 
   <table>
   
   <tr>
@@ -332,40 +325,35 @@
     <label class="control-label">이름</label>
      </td>
      <td class="col-sm-3">
-      <input type="text" class="form-control" id="ppt_name" name="ppt_name" placeholder="보호자의 이름을 입력해주세요">
+      <input type="text" readonly="readonly" class="form-control" id="ppt_name" name="ppt_name">
    </td>
    
      <td>
     <label class="control-label">전화번호</label>
      </td>
      <td class="col-sm-3">
-      <input type="text" class="form-control" id="ppt_phone" name="ppt_phone" placeholder="보호자의 전화번호를 입력해주세요">
+      <input type="text" readonly="readonly" class="form-control" id="ppt_phone" name="ppt_phone">
    </td>
    
      <td>
-    <label class="control-label">주소</label>
-     </td>
-     <td class="col-sm-3">
-      <input type="text" onclick="postal2()" class="form-control" id="ppt_add" name="ppt_add" placeholder="보호자의 주소를 입력해주세요">
-   </td>
-  </tr>
-  
-    <tr>  
-  <td>
    <br>
     <label class="control-label">ID</label>
      </td>
      <td class="col-sm-3">
-      <input type="text" class="form-control" id="ppt_id" name="ppt_id" placeholder="보호자 ID를 입력해주세요">
+      <input type="text" readonly="readonly" class="form-control" id="ppt_id" name="ppt_id">
    </td>
    
-     <td>
-      <br>
-    <label class="control-label">비밀번호</label>
+  </tr>
+  
+    <tr>  
+
+ <td>
+    <label class="control-label">주소</label>
      </td>
-     <td class="col-sm-3">
-      <input type="text" class="form-control" id="ppt_pw" name="ppt_pw" placeholder="보호자 비밀번호를 입력해주세요">
+     <td colspan="6" class="col-sm-10">
+      <input type="text" readonly="readonly" class="form-control" id="ppt_add" name="ppt_add">
    </td>
+   
  
   </tr>
   
