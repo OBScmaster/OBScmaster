@@ -25,7 +25,9 @@
 		and to_char(today,'yyyy/mm/dd') = #{today}
 </select>
 
+
 <select id="exerciseList" parameterType="HashMap" resultType="Exercise">
+
 	select
 		pt_no
 		, today

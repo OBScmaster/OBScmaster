@@ -11,13 +11,13 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
+
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import web.scmaster.com.dao.dailyDAO;
 import web.scmaster.com.dao.patientDAO;
 import web.scmaster.com.vo.Meal;
-import web.scmaster.com.vo.Nurse;
+
 import web.scmaster.com.vo.Patient;
 import web.scmaster.com.vo.SensorLog;
 
@@ -60,23 +60,17 @@ public class patientController {
    public String dailyschedule(int pt_no,String today,Model model){
       
       Meal meal = dailydao.searchMeal(pt_no, today);
-      System.out.println(meal);
       model.addAttribute("meal", meal);
       
       List<HashMap<String, Object>> exerciseList = new ArrayList<>();
-     
-      exerciseList = dailydao.ExerciseList(pt_no, today);
-      
-      System.out.println(exerciseList.size());
-      System.out.println(exerciseList);
-      
+
       if(meal==null||exerciseList.size()==0){
     	      	  	  
     	  return "/protector/protectorPage";
       }
-      
-      System.out.println("asdfasdf");
-      
+
+      model.addAttribute("exerciseList", exerciseList);
+
       return "/protector/patientDaily";
    }
    

@@ -67,8 +67,10 @@
     <div class="panel-heading">
         <h3 class="panel-title">운동</h3>
     </div>
+    
     <div class="panel-body">
-    	<c:if test="${exercise.today != null}">
+    <c:choose>
+    	<c:when test="${exerciseList != null}">
     		<table class="table table-hover">
     			<thead>
        				<tr>
@@ -76,38 +78,48 @@
             			<th>시간</th>
         			</tr>
     			</thead>
-    			<tbody>
-       				<tr>
-            			<td>아침</td>
-            			<td>${meal.breakfastTime}</td>
-        			</tr>
-        			<c:if test="${meal.lunchTime != null}">
-        			<tr>
-            			<td>점심</td>
-            			<td>${meal.lunchTime}</td>
-        			</tr>
-        			</c:if>
-        			<c:if test="${meal.dinnerTime != null}">
-        			<tr>
-            			<td>저녁</td>
-            			<td>${meal.dinnerTime}</td>
-        			</tr>
-        			</c:if>
-    			</tbody>
-			</table>
-		</c:if>
-		
-		<c:if test="${meal.today == null}">
-		마다 토우로쿠사레나이
-		</c:if>
+    				<c:forEach var = "items" items="${exerciseList}">
+    					<tbody>
+       						<tr>
+            					<td>${items.EXERCISETEXT}</td>
+            					<td>${items.EXERCISETIME}</td>
+        					</tr>
+    					</tbody>
+    				</c:forEach>	
+				</table>
+    		</c:when>
+			
+			<c:otherwise>
+				마다 토우로쿠사레나이
+			</c:otherwise>
+	</c:choose>	
     </div>
 </div>
 
 <div class="panel panel-info">
     <div class="panel-heading">
-        <h3 class="panel-title">100 Continue</h3>
+        <h3 class="panel-title">청소</h3>
     </div>
-    <div class="panel-body">The client should continue with its request.</div>
+    <div class="panel-body">
+    	<div class="move-left">
+        	<div class="[ form-group ]">
+            	<input type="checkbox" name="fancy-checkbox-success" id="fancy-checkbox-success" autocomplete="off" checked = "checked" disabled="disabled"/>
+            	<div class="[ btn-group ]">
+                	<label for="fancy-checkbox-success" class="[ btn btn-success ]">
+                    	<span class="[ glyphicon glyphicon-ok ]"></span>
+                    	<span> </span>
+                	</label>
+                	<label for="fancy-checkbox-success" class="[ btn btn-default active ]">
+                    	청소여부
+                	</label>
+                	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                	<label for = "cleaning">
+	     				<input type="text" class="form-control" id="cleaning" size ="50" readonly="readonly">
+                	</label>
+            	</div>            	
+        	</div>
+    	</div>
+    </div>
 </div>
 
 <div class="panel panel-warning">
