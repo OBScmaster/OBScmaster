@@ -37,7 +37,9 @@ DROP TABLE BEDTIME CASCADE CONSTRAINTS;
 DROP TABLE DR_OP CASCADE CONSTRAINTS;
 DROP TABLE Exercise CASCADE CONSTRAINTS;
 DROP TABLE Meal CASCADE CONSTRAINTS;
-DROP TABLE Daily CASCADE CONSTRAINTS; 
+DROP TABLE Dailycleaning CASCADE CONSTRAINTS;
+DROP TABLE Dailywash CASCADE CONSTRAINTS; 
+DROP TABLE Dailyshower CASCADE CONSTRAINTS; 
 DROP TABLE SENSORLOG CASCADE CONSTRAINTS;
 DROP TABLE PATIENT CASCADE CONSTRAINTS;
 DROP TABLE NURSE CASCADE CONSTRAINTS;
@@ -66,9 +68,9 @@ CREATE TABLE ADMIN(
 CREATE TABLE BEDTIME
 (
    PT_NO number NOT NULL,
-   TODAY date DEFAULT SYSDATE NOT NULL,
+   TODAY date DEFAULT SYSDATE,
    TIMETOBED date,
-   DELETEFLAG varchar2(1) DEFAULT 'Y' NOT NULL
+   DELETEFLAG varchar2(1) DEFAULT 'Y'
 );
 
 
@@ -313,16 +315,16 @@ SELECT * FROM MEAL WHERE TODAY = TO_CHAR('2017-03-28','YYYY-MM-DD');
 
 INSERT INTO ADMIN values('admin', 'admin');
 
+
 insert into nurse values(2,'222-222','2','2','간호사이름','010-7777-7777','간호사사진','간호사또사진',sysdate);
 
-insert into patient (PT_NO,NURSE_NO,INS_NO,NAME,BIRTHDATE,DESEASE,PHONE,ADDRESS,ORIGINALPHOTO,SAVEDPHOTO,ROOM_NO,
+insert into patient (PT_NO,NURSE_NO,INS_NO,NAME,BIRTHDATE,DISEASE,PHONE,ADDRESS,ORIGINALPHOTO,SAVEDPHOTO,ROOM_NO,
    PPT_ID,PPT_PW,PPT_NAME,PPT_PHONE,PPT_ADD) values(1,3,'INS_NO','이름','생일','병명','폰번호','주소','사진','또사진','101','aaaaa','1','PPT_NAME','PPT_번호','PPT_주소');
 
 insert into Nurse (NURSE_NO,CERT_NO,ID,PASSWORD,NAME,PHONE,ORIGINALPHOTO,SAVEDPHOTO,INPUTDATE,DELETEFLAG) 
 values(3,'33','dum','11','dummy','010-000-3333','ORIGINALPHOTO','SAVEDPHOTO',sysdate,1)
 
-insert into daily(PT_NO,cleaning,wash,shower,report) values(1,sysdate,sysdate,sysdate,sysdate); 
-insert into meal(PT_NO,today,breakfast,lunch,dinner,snack) values(1,(select today from daily),'아','점','저','간식'); 
-insert into dr_op(PT_NO,today,text) values(1,(select today from daily),'의사양반');
-insert into exercise(PT_NO,today,text) values(1,(select today from daily),'운동하자');
-insert into bedtime(PT_NO,today,time) values(1,(select today from daily),'11시11분');
+insert into meal(PT_NO,today,breakfast,lunch,dinner,snack) values(1,sysdate,'아','점','저','간식'); 
+insert into dr_op(PT_NO,today,text) values(1,sysdate,'의사양반');
+insert into exercise(PT_NO,today,text) values(1,'2017/04/03','운동하자');
+insert into bedtime(PT_NO, timetobed) values(1, sysdate);
