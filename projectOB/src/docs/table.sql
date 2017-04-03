@@ -1,4 +1,4 @@
-73/* 트리거 */
+/* 트리거 */
 
 /*개인 정보 삭제 트리거 */
 drop trigger TRG_PATIENT_DELETE;
@@ -72,14 +72,38 @@ CREATE TABLE BEDTIME
 );
 
 
-CREATE TABLE Daily
+CREATE TABLE DAILYCLEANING
 (
    PT_NO number NOT NULL,
    TODAY date DEFAULT SYSDATE NOT NULL,
    CLEANING date,
+   CLEANINGREPORT varchar2(300),
+   INPUTDATE date DEFAULT SYSDATE NOT NULL,
+   UPDATEDATE date,
+   DELETEDATE date,
+   DELETEFLAG varchar2(1) DEFAULT 'Y' NOT NULL,
+   PRIMARY KEY (PT_NO, TODAY)
+);
+
+CREATE TABLE DAILYWASH
+(
+   PT_NO number NOT NULL,
+   TODAY date DEFAULT SYSDATE NOT NULL,
    WASH date,
+   WASHREPORT varchar2(300),
+   INPUTDATE date DEFAULT SYSDATE NOT NULL,
+   UPDATEDATE date,
+   DELETEDATE date,
+   DELETEFLAG varchar2(1) DEFAULT 'Y' NOT NULL,
+   PRIMARY KEY (PT_NO, TODAY)
+);
+
+CREATE TABLE DAILYSHOWER
+(
+   PT_NO number NOT NULL,
+   TODAY date DEFAULT SYSDATE NOT NULL,
    SHOWER date,
-   REPORT varchar2(300),
+   SHOWERREPORT varchar2(300),
    INPUTDATE date DEFAULT SYSDATE NOT NULL,
    UPDATEDATE date,
    DELETEDATE date,
@@ -229,7 +253,17 @@ ALTER TABLE PATIENT
 ;
 
 
-ALTER TABLE Daily
+ALTER TABLE DailyCleaning
+   ADD FOREIGN KEY (PT_NO)
+   REFERENCES PATIENT (PT_NO)
+;
+
+ALTER TABLE DailyWash
+   ADD FOREIGN KEY (PT_NO)
+   REFERENCES PATIENT (PT_NO)
+;
+
+ALTER TABLE DailyShower
    ADD FOREIGN KEY (PT_NO)
    REFERENCES PATIENT (PT_NO)
 ;
@@ -292,4 +326,3 @@ insert into meal(PT_NO,today,breakfast,lunch,dinner,snack) values(1,(select toda
 insert into dr_op(PT_NO,today,text) values(1,(select today from daily),'의사양반');
 insert into exercise(PT_NO,today,text) values(1,(select today from daily),'운동하자');
 insert into bedtime(PT_NO,today,time) values(1,(select today from daily),'11시11분');
->>>>>>> branch 'master' of https://github.com/OBScmaster/OBScmaster.git

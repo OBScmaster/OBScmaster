@@ -62,7 +62,7 @@ public class patientController {
       Meal meal = dailydao.searchMeal(pt_no, today);
       model.addAttribute("meal", meal);
       
-      List<HashMap<String, Object>> exerciseList = new ArrayList<>();
+      List<HashMap<String, Object>> exerciseList = new ArrayList<HashMap<String, Object>>();
 
       if(meal==null||exerciseList.size()==0){
     	      	  	  
