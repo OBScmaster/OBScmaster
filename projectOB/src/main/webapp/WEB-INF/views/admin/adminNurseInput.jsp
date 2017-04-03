@@ -142,6 +142,16 @@
      </div>
      </div>
      
+     <br>
+       <br>
+       
+         <div class="form-group">
+     <label class="control-label col-sm-3">환자</label>
+     <div class="col-sm-9">
+      <input type="text" class="form-control" id="phone" name="phone" placeholder="전화번호를 입력해주세요">
+     </div>
+     </div>
+     
     </div>
     
     
