@@ -1,29 +1,25 @@
 package web.scmaster.com.vo;
 
-public class Daily {
-	
+public class DailyShower {
+
 	private int pt_no;
 	private String today;
 	private String cleaning;
-	private String wash;
-	private String shower;
-	private String report;
+	private String dailyReport;
 	private String inputdate;
 	private String updatedate;
 	private String deletedate;
 	private String deleteflag;
 	
-	public Daily() {}
-
-	public Daily(int pt_no, String today, String cleaning, String wash, String shower, String report, String inputdate,
+	public DailyShower() {
+	}
+	
+	public DailyShower(int pt_no, String today, String cleaning, String dailyReport, String inputdate,
 			String updatedate, String deletedate, String deleteflag) {
-		super();
 		this.pt_no = pt_no;
 		this.today = today;
 		this.cleaning = cleaning;
-		this.wash = wash;
-		this.shower = shower;
-		this.report = report;
+		this.dailyReport = dailyReport;
 		this.inputdate = inputdate;
 		this.updatedate = updatedate;
 		this.deletedate = deletedate;
@@ -54,28 +50,12 @@ public class Daily {
 		this.cleaning = cleaning;
 	}
 
-	public String getWash() {
-		return wash;
+	public String getDailyReport() {
+		return dailyReport;
 	}
 
-	public void setWash(String wash) {
-		this.wash = wash;
-	}
-
-	public String getShower() {
-		return shower;
-	}
-
-	public void setShower(String shower) {
-		this.shower = shower;
-	}
-
-	public String getReport() {
-		return report;
-	}
-
-	public void setReport(String report) {
-		this.report = report;
+	public void setDailyReport(String dailyReport) {
+		this.dailyReport = dailyReport;
 	}
 
 	public String getInputdate() {
@@ -112,11 +92,8 @@ public class Daily {
 
 	@Override
 	public String toString() {
-		return "Daily [pt_no=" + pt_no + ", today=" + today + ", cleaning=" + cleaning + ", wash=" + wash + ", shower="
-				+ shower + ", report=" + report + ", inputdate=" + inputdate + ", updatedate=" + updatedate
-				+ ", deletedate=" + deletedate + ", deleteflag=" + deleteflag + "]";
+		return "DailyShower [pt_no=" + pt_no + ", today=" + today + ", cleaning=" + cleaning + ", dailyReport="
+				+ dailyReport + ", inputdate=" + inputdate + ", updatedate=" + updatedate + ", deletedate=" + deletedate
+				+ ", deleteflag=" + deleteflag + "]";
 	}
-	
-	
-
 }

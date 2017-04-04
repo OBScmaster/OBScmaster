@@ -16,7 +16,7 @@ public class dailyDAO {
 	
 	public Meal searchMeal(int pt_no, String today){
 		
-		HashMap<String, Object> map = new HashMap<>();
+		HashMap<String, Object> map = new HashMap<String, Object>();
 		map.put("pt_no", pt_no);
 		map.put("today", today);
 		
@@ -31,7 +31,7 @@ public class dailyDAO {
 	
 	public List<HashMap<String, Object>> ExerciseList(int pt_no, String today){
 		
-		HashMap<String , Object> map = new HashMap<>();
+		HashMap<String , Object> map = new HashMap<String, Object>();
 		map.put("pt_no", pt_no);
 		map.put("today", today);
 		

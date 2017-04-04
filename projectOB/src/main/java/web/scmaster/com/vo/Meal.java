@@ -4,30 +4,19 @@ public class Meal {
 	
 	private int pt_no;
 	private String today;
-	private String breakfast;
-	private String breakfastTime;
-	private String lunch;
-	private String lunchTime;
-	private String dinner;
-	private String dinnerTime;
-	private String snack;
-	private String snackTime;
+	private String typeEat;
+	private String mealTime;
+	private String whatEat;
 	private String deleteflag;
 
 	public Meal() {}
 
-	public Meal(int pt_no, String today, String breakfast, String breakfastTime, String lunch, String lunchTime,
-			String dinner, String dinnerTime, String snack, String snackTime, String deleteflag) {
-		super();
+	public Meal(int pt_no, String today, String typeEat, String mealTime, String whatEat, String deleteflag) {
 		this.pt_no = pt_no;
-		this.breakfast = breakfast;
-		this.breakfastTime = breakfastTime;
-		this.lunch = lunch;
-		this.lunchTime = lunchTime;
-		this.dinner = dinner;
-		this.dinnerTime = dinnerTime;
-		this.snack = snack;
-		this.snackTime = snackTime;
+		this.today = today;
+		this.typeEat = typeEat;
+		this.mealTime = mealTime;
+		this.whatEat = whatEat;
 		this.deleteflag = deleteflag;
 	}
 
@@ -39,7 +28,6 @@ public class Meal {
 		this.pt_no = pt_no;
 	}
 
-	
 	public String getToday() {
 		return today;
 	}
@@ -48,68 +36,28 @@ public class Meal {
 		this.today = today;
 	}
 
-	public String getBreakfast() {
-		return breakfast;
+	public String getTypeEat() {
+		return typeEat;
 	}
 
-	public void setBreakfast(String breakfast) {
-		this.breakfast = breakfast;
+	public void setTypeEat(String typeEat) {
+		this.typeEat = typeEat;
 	}
 
-	public String getBreakfastTime() {
-		return breakfastTime;
+	public String getMealTime() {
+		return mealTime;
 	}
 
-	public void setBreakfastTime(String breakfastTime) {
-		this.breakfastTime = breakfastTime;
+	public void setMealTime(String mealTime) {
+		this.mealTime = mealTime;
 	}
 
-	public String getLunch() {
-		return lunch;
+	public String getWhatEat() {
+		return whatEat;
 	}
 
-	public void setLunch(String lunch) {
-		this.lunch = lunch;
-	}
-
-	public String getLunchTime() {
-		return lunchTime;
-	}
-
-	public void setLunchTime(String lunchTime) {
-		this.lunchTime = lunchTime;
-	}
-
-	public String getDinner() {
-		return dinner;
-	}
-
-	public void setDinner(String dinner) {
-		this.dinner = dinner;
-	}
-
-	public String getDinnerTime() {
-		return dinnerTime;
-	}
-
-	public void setDinnerTime(String dinnerTime) {
-		this.dinnerTime = dinnerTime;
-	}
-
-	public String getSnack() {
-		return snack;
-	}
-
-	public void setSnack(String snack) {
-		this.snack = snack;
-	}
-
-	public String getSnackTime() {
-		return snackTime;
-	}
-
-	public void setSnackTime(String snackTime) {
-		this.snackTime = snackTime;
+	public void setWhatEat(String whatEat) {
+		this.whatEat = whatEat;
 	}
 
 	public String getDeleteflag() {
@@ -122,9 +70,7 @@ public class Meal {
 
 	@Override
 	public String toString() {
-		return "Meal [pt_no=" + pt_no + ", today=" + today + ", breakfast=" + breakfast + ", breakfastTime="
-				+ breakfastTime + ", lunch=" + lunch + ", lunchTime=" + lunchTime + ", dinner=" + dinner
-				+ ", dinnerTime=" + dinnerTime + ", snack=" + snack + ", snackTime=" + snackTime + ", deleteflag="
-				+ deleteflag + "]";
+		return "Meal [pt_no=" + pt_no + ", today=" + today + ", typeEat=" + typeEat + ", mealTime=" + mealTime
+				+ ", whatEat=" + whatEat + ", deleteflag=" + deleteflag + "]";
 	}
 }
