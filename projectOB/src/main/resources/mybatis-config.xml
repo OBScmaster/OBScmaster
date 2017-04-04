@@ -7,7 +7,9 @@
  	<typeAliases>
  		<typeAlias type="web.scmaster.com.vo.Admin" alias="Admin" />
 		<typeAlias type="web.scmaster.com.vo.Bedtime" alias="Bedtime" />
-		<typeAlias type="web.scmaster.com.vo.Daily" alias="Daily" />
+		<typeAlias type="web.scmaster.com.vo.DailyCleaning" alias="Cleaning" />
+		<typeAlias type="web.scmaster.com.vo.DailyWash" alias="Wash" />
+		<typeAlias type="web.scmaster.com.vo.DailyShower" alias="Shower" />
 		<typeAlias type="web.scmaster.com.vo.DR_OP" alias="DR_OP" />
 		<typeAlias type="web.scmaster.com.vo.Exercise" alias="Exercise" />
 		<typeAlias type="web.scmaster.com.vo.Meal" alias="Meal" />
