@@ -3,6 +3,8 @@ package web.scmaster.com.dao;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Param;
+
 import web.scmaster.com.vo.Admin;
 import web.scmaster.com.vo.Nurse;
 import web.scmaster.com.vo.Patient;
@@ -19,4 +21,6 @@ public interface AdminMapper {
 	public Patient selectPatient(String id);
 	public int insertNurse(Nurse nurse);
 	public int insertPatient(Patient patient);
+	public List<Patient> patientlist();
+	public int updatePatientaboutNurse(int pt_no, @Param("nurse_no")int nurse_no);
 }

@@ -21,9 +21,74 @@
   <script type="text/javascript">
   var fileType = /^(?:image\/bmp|image\/gif|image\/jpeg|image\/png|image\/x\-xwindowdump|image\/x\-portable\-bitmap)$/i;
   $(function() {
+	  
+	  $.ajax({  		 
+    		type:"get",
+    		 url:"patientlist",  
+    		 contentType:"application/json; charset=utf-8",
+    		 dataType:"json",
+    		 success:function(data){
+    			
+    			 var patientselect = "<div class='col-md-7'><div class='btn-group btn-group-justified'><a href='#' class='btn btn-info'>환자번호</a>"
+ 			    	+"<a href='#' class='btn btn-info'>환자명</a>"
+			    	  +"<a href='#' class='btn btn-info'>생년월일</a>"
+			    	  +"</div><div class='list-group text-left' style='height:540px;' id='patientgroup'>";
+    			    	  
+    			    	  $.each(data,function(index,item){
+    			    		  if(item.ppt_name==null){
+    			    			  item.ppt_name="-";    			    			  
+    			    		  }
+    			    		  if(item.ppt_phone==null){
+    			    			  item.ppt_phone="-";    			    			  
+    			    		  }
+    			    		  if(item.ppt_add==null){
+    			    			  item.ppt_add="-";    			    			  
+    			    		  }
+    			    	
+    			    		  patientselect+="<div class='list-group-item' name="+item.name+" pt_no="+item.pt_no+" ppt_phone="+item.ppt_phone+" ppt_add="+item.ppt_add+" ppt_name="+item.ppt_name+"><table class='text-center'><tr><td width='190px;'>"
+    			    		  +item.pt_no+"</td><td width='250px;'>"
+    			    		  +item.name+"</td><td width='200px;'>"
+    			    		  +item.birthdate+"</td></tr></table></div>";
+    			    		  
+    			    	  })
+    			    	
+    			    	patientselect+="</div></div>";
+    			    	
+    			    	$("#kk").html(patientselect);
+    			    	
+    			    	 if(data.length>11){
+     			    		$("#patientgroup").css("overflow","scroll");
+     			    	};
+							$(".list-group-item").click(function(){
+    			    		
+    			    		$(".list-group-item").css("color","black");
+    			    		$(this).css("color","red");
+    			    		
+    			    		
+    			    		$("#pt_name").val($(this).attr("name"));
+    			    		$("#pt_no").val($(this).attr("pt_no"));
+    			  
+    			    		 
+    			    	});
+    		
+    						
+    		},
+    		 error:function(error){console.log(error);}
+    		});
+	  
+	  
+	  
       $("#upload").on('change', function(){
           readURL(this);
       });
+      
+      $("#addPatient").click(function(){
+    	  alert("Adsfasdf");
+      });
+    	 
+      
+     
+      
   });
 
   function readURL(input) {
@@ -148,7 +213,8 @@
          <div class="form-group">
      <label class="control-label col-sm-3">환자</label>
      <div class="col-sm-9">
-      <input type="text" class="form-control" id="phone" name="phone" placeholder="전화번호를 입력해주세요">
+      <input type="text" class="form-control" id="pt_name" name="pt_name" readonly="readonly">
+     <input type="hidden" class="form-control" id="pt_no" name="pt_no">
      </div>
      </div>
      
@@ -167,21 +233,19 @@
     <br>
     </div>
     
- <div class="col-sm-7">   
+ <div class="col-md-15" id="kk">   
  
-<div class="btn-group btn-group-justified">
 
-  <a href="#" class="btn btn-info">이름</a>
-  <a href="#" class="btn btn-info">병명</a>
-  <a href="#" class="btn btn-info">나이</a>
-  
 </div>
 
-<div class="list-group text-left" style="height:500px; overflow:scroll">
+<div class="list-group text-left" style="height:540px;">
 
 
-  <a href="#" class="list-group-item" id="aaa">First item</a>
-  <a href="#" class="list-group-item" id="aaa">Second item</a>
+  <a href="#"> </a>
+  
+
+</div>
+
  
 </div>
     

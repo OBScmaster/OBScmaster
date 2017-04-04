@@ -105,7 +105,7 @@ public class adminController {
 	
 	
 	@RequestMapping(value="insertNurse", method=RequestMethod.POST)
-	public String insertNurse(Nurse nurse, MultipartFile upload){
+	public String insertNurse(Nurse nurse, int pt_no, MultipartFile upload){
 
 		if (!upload.isEmpty()) {
 			String savedfile = FileService.saveFile(upload, nurseUploadPath);
@@ -113,7 +113,8 @@ public class adminController {
 			nurse.setSavedphoto(savedfile);
 		}
 		
-		admindao.insertNurse(nurse);		
+		admindao.insertNurse(nurse);	
+		admindao.updatePatientaboutNurse(pt_no, nurse.getNurse_no());
 		
 		return "redirect:adminLogin";
 	}
@@ -133,4 +134,13 @@ public class adminController {
 		
 		return "redirect:adminLogin";
 	}
+	
+		@ResponseBody
+	   @RequestMapping(value="patientlist", method=RequestMethod.GET)
+	   public List<Patient> patientlist(){
+		   
+		   List<Patient> patientlist = admindao.patientlist();
+			   
+	      return patientlist;
+	   }
 }
