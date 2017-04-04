@@ -26,7 +26,7 @@
 		pt_no
 		, today
 		, to_char(exercisetime, 'HH24:MI') as exercisetime
-		, EXERCISETEXT
+		, exercisetext
 	from
 		exercise
 	where

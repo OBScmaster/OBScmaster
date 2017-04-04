@@ -23,7 +23,7 @@ public class dailyDAO {
 		return mapper.mealList(map);
 	}
 	
-	public List<HashMap<String, Object>> ExerciseList(int pt_no, String today){
+	public List<HashMap<String, Object>> exerciseList(int pt_no, String today){
 		
 		HashMap<String , Object> map = new HashMap<String, Object>();
 		map.put("pt_no", pt_no);

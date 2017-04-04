@@ -59,11 +59,13 @@ public class patientController {
    @RequestMapping(value="dailyschedule", method=RequestMethod.GET)
    public String dailyschedule(int pt_no,String today,Model model){
       
-      List<HashMap<String, Object>> mealList = new ArrayList<HashMap<String,Object>>();
+      List<HashMap<String, Object>> mealList = new ArrayList<>();
+      mealList =  dailydao.mealList(pt_no, today);
+      model.addAttribute("mealList", mealList);
       System.out.println(mealList);
-      model.addAttribute("meal", mealList);
       
-      List<HashMap<String, Object>> exerciseList = new ArrayList<HashMap<String, Object>>();
+      List<HashMap<String, Object>> exerciseList = new ArrayList<>();
+      exerciseList = dailydao.exerciseList(pt_no, today);
       model.addAttribute("exerciseList", exerciseList);
 
       return "/protector/patientDaily";

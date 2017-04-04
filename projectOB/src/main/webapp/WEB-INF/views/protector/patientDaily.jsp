@@ -24,7 +24,7 @@
         <h3 class="panel-title">식사</h3>
     </div>
     <div class="panel-body">
-    	<c:if test="${mealList.today != null}">
+    	<c:if test="${mealList != null}">
     		<table class="table table-hover">
     			<thead>
        				<tr>
@@ -36,17 +36,13 @@
     			<c:forEach var = "items" items="${mealList}">
     					<tbody>
        						<tr>
-            					<td>${items.TYPEEAT}</td>
-            					<td>${items.MEALTIME}</td>
-            					<td>${items.WHATEAT}</td>
+            					<td>${items.typeEat}</td>
+            					<td>${items.mealTime}</td>
+            					<td>${items.whatEat}</td>
         					</tr>
     					</tbody>
     				</c:forEach>
 			</table>
-		</c:if>
-		
-		<c:if test="${mealList.today == null}">
-		마다 토우로쿠사레나이
 		</c:if>
     </div>
 </div>
@@ -69,8 +65,8 @@
     				<c:forEach var = "items" items="${exerciseList}">
     					<tbody>
        						<tr>
-            					<td>${items.EXERCISETEXT}</td>
-            					<td>${items.EXERCISETIME}</td>
+            					<td>${items.exerciseText}</td>
+            					<td>${items.exerciseTime}</td>
         					</tr>
     					</tbody>
     				</c:forEach>	
