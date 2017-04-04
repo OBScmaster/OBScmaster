@@ -8,7 +8,9 @@ after UPDATE of DELETEFLAG ON PATIENT
 for each row    
 BEGIN   
    if :new.DELETEFLAG='N' THEN
-     UPDATE DAILY set DELETEFLAG=:new.DELETEFLAG where DAILY.PT_NO = :old.PT_NO;
+     UPDATE DAILYWASH set DELETEFLAG=:new.DELETEFLAG where DAILYWASH.PT_NO = :old.PT_NO;
+  	 UPDATE DAILYSHOWER set DELETEFLAG=:new.DELETEFLAG where DAILYSHOWER.PT_NO = :old.PT_NO;
+     UPDATE DAILYCLEANING set DELETEFLAG=:new.DELETEFLAG where DAILYCLEANING.PT_NO = :old.PT_NO;
      UPDATE meal set DELETEFLAG=:new.DELETEFLAG where meal.PT_NO = :old.PT_NO;
      UPDATE exercise set DELETEFLAG=:new.DELETEFLAG where exercise.PT_NO = :old.PT_NO;
      UPDATE dr_op set DELETEFLAG=:new.DELETEFLAG where dr_op.PT_NO = :old.PT_NO;
@@ -87,6 +89,13 @@ CREATE TABLE DAILYCLEANING
    PRIMARY KEY (PT_NO, TODAY)
 );
 
+TRUNCATE TABLE DAILYCLEANING;
+
+INSERT INTO DAILYCLEANING(PT_NO, TODAY, CLEANING, CLEANINGREPORT) VALUES(1, TO_DATE('2017/04/03'), TO_DATE('2017/04/03 16:17', 'YYYY-MM-DD HH24:MI'), '방청소, 욕실청소');
+INSERT INTO DAILYCLEANING(PT_NO, TODAY, CLEANING, CLEANINGREPORT) VALUES(1, TO_DATE('2017/04/03'), TO_DATE('2017/04/03 20:30', 'YYYY-MM-DD HH24:MI'), '방청소, 욕실청소');
+
+SELECT TO_CHAR(CLEANING, 'HH24:MI') AS CLEANING, CLEANINGREPORT FROM DAILYCLEANING;
+
 CREATE TABLE DAILYWASH
 (
    PT_NO number NOT NULL,
@@ -132,33 +141,26 @@ CREATE TABLE Exercise
    DELETEFLAG varchar2(1) DEFAULT 'Y' NOT NULL
 );
 
-insert into exercise(PT_NO, today, EXERCISETIME, EXERCISETEXT) VALUES(1,(select today from daily),TO_DATE('2017-03-28 14:28', 'YYYY/MM/DD HH24:MI'), '줄넘기 3000번');
+insert into exercise(PT_NO, today, EXERCISETIME, EXERCISETEXT) VALUES(1,TO_DATE('2017-04-04'),TO_DATE('2017-03-28 14:28', 'YYYY/MM/DD HH24:MI'), '줄넘기 3000번');
 insert into exercise(PT_NO, today, EXERCISETIME, EXERCISETEXT) VALUES(1,(select today from daily),TO_DATE('2017-03-28 18:38', 'YYYY/MM/DD HH24:MI'), '축구');
 
 CREATE TABLE Meal
 (
    PT_NO number NOT NULL,
    TODAY date DEFAULT SYSDATE NOT NULL,
-   BREAKFAST varchar2(150),
-   BREAKFASTTIME date,
-   LUNCH varchar2(150),
-   LUNCHTIME date,
-   DINNER varchar2(150),
-   DINNERTIME date,
-   SNACK varchar2(50),
-   SNACKTIME date,
+   TYPEEAT varchar2(10),
+   MEALTIME varchar2(10),
+   WHATEAT VARCHAR2(150),
    DELETEFLAG varchar2(1) DEFAULT 'Y' NOT NULL 
 );
 
-insert into meal(PT_NO,today,breakfast,breakfastTime,lunch,lunchTime,dinner,dinnerTime,snack,snackTime) values(1,(select today from daily),'아',TO_DATE('2017-03-28 09:35', 'YYYY/MM/DD HH24:MI'),'점',TO_DATE('2017-03-28 13:35', 'YYYY/MM/DD HH24:MI'),'저',TO_DATE('2017-03-28 17:35', 'YYYY/MM/DD HH24:MI'),'간식',TO_DATE('2017-03-28 20:35', 'YYYY/MM/DD HH24:MI')); 
+TRUNCATE TABLE MEAL;
 
-INSERT INTO MEAL(PT_NO,LUNCH, LUNCHTIME) VALUES(1, '점심', SYSDATE);
+INSERT INTO MEAL(PT_NO, TODAY, TYPEEAT, MEALTIME, WHATEAT) VALUES(1, TO_DATE('2017/04/04','YYYY/MM/DD'),'아침', '10:10', '콘푸로스트');
+INSERT INTO MEAL(PT_NO, TODAY, TYPEEAT, MEALTIME, WHATEAT) VALUES(1, TO_DATE('2017/04/04','YYYY/MM/DD'),'점심', '14:28', '밥, 김치찌개');
+INSERT INTO MEAL(PT_NO, TODAY, TYPEEAT, MEALTIME, WHATEAT) VALUES(1, TO_DATE('2017/04/04','YYYY/MM/DD'),'저녁', '18:40', '연어초밥');
 
-SELECT * FROM MEAL;
-
-SELECT TO_CHAR(LUNCHTIME, 'HH24:MI') FROM MEAL;
-
-SELECT * FROM MEAL WHERE TODAY = TO_CHAR('2017-03-28','YYYY-MM-DD');
+SELECT * FROM MEAL WHERE TODAY = TO_DATE('2017/04/04','YYYY-MM-DD');
 
 CREATE TABLE NURSE
 (
@@ -226,26 +228,26 @@ CREATE TABLE SENSORLOG
 /* Create Foreign Keys */
 
 ALTER TABLE BEDTIME
-   ADD FOREIGN KEY (PT_NO, TODAY)
-   REFERENCES Daily (PT_NO, TODAY)
+   ADD FOREIGN KEY (PT_NO)
+   REFERENCES PATIENT (PT_NO)
 ;
 
 
 ALTER TABLE DR_OP
    ADD FOREIGN KEY (PT_NO, TODAY)
-   REFERENCES Daily (PT_NO, TODAY)
+   REFERENCES PATIENT (PT_NO, TODAY)
 ;
 
 
 ALTER TABLE Exercise
-   ADD FOREIGN KEY (PT_NO, TODAY)
-   REFERENCES Daily (PT_NO, TODAY)
+   ADD FOREIGN KEY (PT_NO)
+   REFERENCES PATIENT (PT_NO)
 ;
 
 
 ALTER TABLE Meal
-   ADD FOREIGN KEY (PT_NO, TODAY)
-   REFERENCES Daily (PT_NO, TODAY)
+   ADD FOREIGN KEY (PT_NO)
+   REFERENCES PATIENT (PT_NO)
 ;
 
 
@@ -305,16 +307,8 @@ insert into room(room_no,maximum,present) values('403',2,0);
 insert into room(room_no,maximum,present) values('404',2,0);
 insert into room(room_no,maximum,present) values('405',2,0);
 
-insert into meal(PT_NO,today,breakfast,breakfastTime,lunch,lunchTime,dinner,dinnerTime,snack,snackTime) values(1,(select today from daily),'아',TO_DATE('2017-03-28 09:35', 'YYYY/MM/DD HH24:MI'),'점',TO_DATE('2017-03-28 13:35', 'YYYY/MM/DD HH24:MI'),'저',TO_DATE('2017-03-28 17:35', 'YYYY/MM/DD HH24:MI'),'간식',TO_DATE('2017-03-28 20:35', 'YYYY/MM/DD HH24:MI')); 
-
-INSERT INTO MEAL(PT_NO,LUNCH, LUNCHTIME) VALUES(1, '점심', SYSDATE);
-
-SELECT * FROM MEAL;
-
-SELECT * FROM MEAL WHERE TODAY = TO_CHAR('2017-03-28','YYYY-MM-DD');
 
 INSERT INTO ADMIN values('admin', 'admin');
-
 
 insert into nurse values(2,'222-222','2','2','간호사이름','010-7777-7777','간호사사진','간호사또사진',sysdate);
 
@@ -322,7 +316,7 @@ insert into patient (PT_NO,NURSE_NO,INS_NO,NAME,BIRTHDATE,DISEASE,PHONE,ADDRESS,
    PPT_ID,PPT_PW,PPT_NAME,PPT_PHONE,PPT_ADD) values(1,3,'INS_NO','이름','생일','병명','폰번호','주소','사진','또사진','101','aaaaa','1','PPT_NAME','PPT_번호','PPT_주소');
 
 insert into Nurse (NURSE_NO,CERT_NO,ID,PASSWORD,NAME,PHONE,ORIGINALPHOTO,SAVEDPHOTO,INPUTDATE,DELETEFLAG) 
-values(3,'33','dum','11','dummy','010-000-3333','ORIGINALPHOTO','SAVEDPHOTO',sysdate,1)
+values(3,'33','dum','11','dummy','010-000-3333','ORIGINALPHOTO','SAVEDPHOTO',sysdate,1);
 
 insert into meal(PT_NO,today,breakfast,lunch,dinner,snack) values(1,sysdate,'아','점','저','간식'); 
 insert into dr_op(PT_NO,today,text) values(1,sysdate,'의사양반');
