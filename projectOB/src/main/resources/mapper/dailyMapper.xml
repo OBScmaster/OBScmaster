@@ -21,7 +21,6 @@
 
 
 <select id="exerciseList" parameterType="HashMap" resultType="Exercise">
-
 	select
 		pt_no
 		, today
@@ -34,4 +33,83 @@
 		and to_char(today,'yyyy/mm/dd') = #{today}
 </select>
 
+<select id="cleaning" parameterType="HashMap" resultType="Cleaning">
+	select
+		pt_no
+		, today
+		, cleaning
+		, cleaningreport
+	from
+		dailycleaning
+	where
+		pt_no = #{pt_no}
+		and to_char(today,'yyyy/mm/dd') = #{today}
+</select>
+
+<select id="wash" parameterType="HashMap" resultType="Wash">
+	select
+		pt_no
+		, today
+		, wash
+		, washreport
+	from
+		dailywash
+	where
+		pt_no = #{pt_no}
+		and to_char(today,'yyyy/mm/dd') = #{today}
+</select>
+
+<select id="shower" parameterType="HashMap" resultType="Shower">
+	select
+		pt_no
+		, today
+		, shower
+		, showerreport
+	from
+		dailyshower
+	where
+		pt_no = #{pt_no}
+		and to_char(today,'yyyy/mm/dd') = #{today}
+</select>
+
+<select id="bedList" parameterType="HashMap" resultType="Bedtime">
+	select
+		pt_no
+		, today
+		, timetosleep
+		, timetogetup
+		, report
+	from
+		bedtime
+	where
+		pt_no = #{pt_no}
+		and to_char(today,'yyyy/mm/dd') = #{today}
+</select>
+
+<select id="dr_opList" parameterType="HashMap" resultType="DR_OP">
+	select
+		pt_no
+		, today
+		, reporttime
+		, report
+	from
+		dr_op
+	where
+		pt_no = #{pt_no}
+		and to_char(today,'yyyy/mm/dd') = #{today}
+</select>
+
+<select id="specialList" parameterType="HashMap" resultType="Special">
+	select
+		pt_no
+		, today
+		, reporttime
+		, report
+	from
+		special
+	where
+		pt_no = #{pt_no}
+		and to_char(today,'yyyy/mm/dd') = #{today}
+</select>
+	
 </mapper>

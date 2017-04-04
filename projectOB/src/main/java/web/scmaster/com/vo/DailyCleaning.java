@@ -5,7 +5,7 @@ public class DailyCleaning {
 	private int pt_no;
 	private String today;
 	private String cleaning;
-	private String dailyReport;
+	private String cleaningReport;
 	private String inputdate;
 	private String updatedate;
 	private String deletedate;
@@ -13,12 +13,12 @@ public class DailyCleaning {
 	
 	public DailyCleaning() {}
 
-	public DailyCleaning(int pt_no, String today, String cleaning, String dailyReport, String inputdate,
+	public DailyCleaning(int pt_no, String today, String cleaning, String cleaningReport, String inputdate,
 			String updatedate, String deletedate, String deleteflag) {
 		this.pt_no = pt_no;
 		this.today = today;
 		this.cleaning = cleaning;
-		this.dailyReport = dailyReport;
+		this.cleaningReport = cleaningReport;
 		this.inputdate = inputdate;
 		this.updatedate = updatedate;
 		this.deletedate = deletedate;
@@ -49,12 +49,12 @@ public class DailyCleaning {
 		this.cleaning = cleaning;
 	}
 
-	public String getDailyReport() {
-		return dailyReport;
+	public String getCleaningReport() {
+		return cleaningReport;
 	}
 
-	public void setDailyReport(String dailyReport) {
-		this.dailyReport = dailyReport;
+	public void setCleaningReport(String cleaningReport) {
+		this.cleaningReport = cleaningReport;
 	}
 
 	public String getInputdate() {
@@ -91,8 +91,9 @@ public class DailyCleaning {
 
 	@Override
 	public String toString() {
-		return "DailyCleaning [pt_no=" + pt_no + ", today=" + today + ", cleaning=" + cleaning + ", dailyReport="
-				+ dailyReport + ", inputdate=" + inputdate + ", updatedate=" + updatedate + ", deletedate=" + deletedate
-				+ ", deleteflag=" + deleteflag + "]";
+		return "DailyCleaning [pt_no=" + pt_no + ", today=" + today + ", cleaning=" + cleaning + ", cleaningReport="
+				+ cleaningReport + ", inputdate=" + inputdate + ", updatedate=" + updatedate + ", deletedate="
+				+ deletedate + ", deleteflag=" + deleteflag + "]";
 	}
+
 }

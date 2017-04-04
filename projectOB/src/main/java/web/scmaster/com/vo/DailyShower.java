@@ -4,8 +4,8 @@ public class DailyShower {
 
 	private int pt_no;
 	private String today;
-	private String cleaning;
-	private String dailyReport;
+	private String shower;
+	private String showerReport;
 	private String inputdate;
 	private String updatedate;
 	private String deletedate;
@@ -13,13 +13,13 @@ public class DailyShower {
 	
 	public DailyShower() {
 	}
-	
-	public DailyShower(int pt_no, String today, String cleaning, String dailyReport, String inputdate,
-			String updatedate, String deletedate, String deleteflag) {
+
+	public DailyShower(int pt_no, String today, String shower, String showerReport, String inputdate, String updatedate,
+			String deletedate, String deleteflag) {
 		this.pt_no = pt_no;
 		this.today = today;
-		this.cleaning = cleaning;
-		this.dailyReport = dailyReport;
+		this.shower = shower;
+		this.showerReport = showerReport;
 		this.inputdate = inputdate;
 		this.updatedate = updatedate;
 		this.deletedate = deletedate;
@@ -42,20 +42,20 @@ public class DailyShower {
 		this.today = today;
 	}
 
-	public String getCleaning() {
-		return cleaning;
+	public String getShower() {
+		return shower;
 	}
 
-	public void setCleaning(String cleaning) {
-		this.cleaning = cleaning;
+	public void setShower(String shower) {
+		this.shower = shower;
 	}
 
-	public String getDailyReport() {
-		return dailyReport;
+	public String getShowerReport() {
+		return showerReport;
 	}
 
-	public void setDailyReport(String dailyReport) {
-		this.dailyReport = dailyReport;
+	public void setShowerReport(String showerReport) {
+		this.showerReport = showerReport;
 	}
 
 	public String getInputdate() {
@@ -92,8 +92,8 @@ public class DailyShower {
 
 	@Override
 	public String toString() {
-		return "DailyShower [pt_no=" + pt_no + ", today=" + today + ", cleaning=" + cleaning + ", dailyReport="
-				+ dailyReport + ", inputdate=" + inputdate + ", updatedate=" + updatedate + ", deletedate=" + deletedate
-				+ ", deleteflag=" + deleteflag + "]";
+		return "DailyShower [pt_no=" + pt_no + ", today=" + today + ", shower=" + shower + ", showerReport="
+				+ showerReport + ", inputdate=" + inputdate + ", updatedate=" + updatedate + ", deletedate="
+				+ deletedate + ", deleteflag=" + deleteflag + "]";
 	}
 }

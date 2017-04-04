@@ -1,21 +1,20 @@
 package web.scmaster.com.vo;
 
-public class Bedtime {
+public class Special {
 	
 	private int pt_no;
 	private String today;
-	private String timeToSleep;
-	private String timeToGetup;
+	private String reportTime;
 	private String report;
 	private String deleteflag;
 	
-	public Bedtime() {}
+	public Special() {
+	}
 
-	public Bedtime(int pt_no, String today, String timeToSleep, String timeToGetup, String report, String deleteflag) {
+	public Special(int pt_no, String today, String reportTime, String report, String deleteflag) {
 		this.pt_no = pt_no;
 		this.today = today;
-		this.timeToSleep = timeToSleep;
-		this.timeToGetup = timeToGetup;
+		this.reportTime = reportTime;
 		this.report = report;
 		this.deleteflag = deleteflag;
 	}
@@ -36,20 +35,12 @@ public class Bedtime {
 		this.today = today;
 	}
 
-	public String getTimeToSleep() {
-		return timeToSleep;
+	public String getReportTime() {
+		return reportTime;
 	}
 
-	public void setTimeToSleep(String timeToSleep) {
-		this.timeToSleep = timeToSleep;
-	}
-
-	public String getTimeToGetup() {
-		return timeToGetup;
-	}
-
-	public void setTimeToGetup(String timeToGetup) {
-		this.timeToGetup = timeToGetup;
+	public void setReportTime(String reportTime) {
+		this.reportTime = reportTime;
 	}
 
 	public String getReport() {
@@ -70,7 +61,7 @@ public class Bedtime {
 
 	@Override
 	public String toString() {
-		return "Bedtime [pt_no=" + pt_no + ", today=" + today + ", timeToSleep=" + timeToSleep + ", timeToGetup="
-				+ timeToGetup + ", report=" + report + ", deleteflag=" + deleteflag + "]";
+		return "Special [pt_no=" + pt_no + ", today=" + today + ", reportTime=" + reportTime + ", report=" + report
+				+ ", deleteflag=" + deleteflag + "]";
 	}
 }
