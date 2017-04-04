@@ -24,7 +24,7 @@
         <h3 class="panel-title">식사</h3>
     </div>
     <div class="panel-body">
-    	<c:if test="${mealList != null}">
+    	<c:when test="${mealList != null }">
     		<table class="table table-hover">
     			<thead>
        				<tr>
@@ -43,7 +43,10 @@
     					</tbody>
     				</c:forEach>
 			</table>
-		</c:if>
+		</c:when>
+		<c:otherwise>
+			아직 등록되지 않았습니다.
+		</c:otherwise>
     </div>
 </div>
 
@@ -72,7 +75,6 @@
     				</c:forEach>	
 				</table>
     		</c:when>
-			
 			<c:otherwise>
 				마다 토우로쿠사레나이
 			</c:otherwise>
