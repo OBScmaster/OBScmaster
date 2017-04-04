@@ -142,7 +142,6 @@ CREATE TABLE Exercise
 );
 
 insert into exercise(PT_NO, today, EXERCISETIME, EXERCISETEXT) VALUES(1,TO_DATE('2017-04-04'),TO_DATE('2017-03-28 14:28', 'YYYY/MM/DD HH24:MI'), '줄넘기 3000번');
-insert into exercise(PT_NO, today, EXERCISETIME, EXERCISETEXT) VALUES(1,(select today from daily),TO_DATE('2017-03-28 18:38', 'YYYY/MM/DD HH24:MI'), '축구');
 
 CREATE TABLE Meal
 (
