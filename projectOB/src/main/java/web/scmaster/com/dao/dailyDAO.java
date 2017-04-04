@@ -14,19 +14,13 @@ public class dailyDAO {
 	@Autowired
 	SqlSession sqlsession;
 	
-	public Meal searchMeal(int pt_no, String today){
-		
+	public List<HashMap<String, Object>> mealList(int pt_no, String today){
 		HashMap<String, Object> map = new HashMap<String, Object>();
 		map.put("pt_no", pt_no);
 		map.put("today", today);
 		
 		dailyMapper mapper = sqlsession.getMapper(dailyMapper.class);
-		
-		Meal meal;
-		
-		meal = mapper.searchMeal(map);
-		
-		return meal;
+		return mapper.mealList(map);
 	}
 	
 	public List<HashMap<String, Object>> ExerciseList(int pt_no, String today){

@@ -6,6 +6,6 @@ import web.scmaster.com.vo.Meal;
 
 public interface dailyMapper {
 	
-	public Meal searchMeal(HashMap<String, Object> map);
+	public List<HashMap<String, Object>> mealList(HashMap<String, Object> map);
 	public List<HashMap<String, Object>> exerciseList(HashMap<String, Object> map);
 }

@@ -24,7 +24,7 @@
         <h3 class="panel-title">식사</h3>
     </div>
     <div class="panel-body">
-    	<c:if test="${meal.today != null}">
+    	<c:if test="${mealList.today != null}">
     		<table class="table table-hover">
     			<thead>
        				<tr>
@@ -33,31 +33,19 @@
             			<th>식단</th>
         			</tr>
     			</thead>
-    			<tbody>
-       				<tr>
-            			<td>아침</td>
-            			<td>${meal.breakfastTime}</td>
-            			<td>${meal.breakfast}</td>
-        			</tr>
-        			<c:if test="${meal.lunchTime != null}">
-        			<tr>
-            			<td>점심</td>
-            			<td>${meal.lunchTime}</td>
-            			<td>${meal.lunch}</td>
-        			</tr>
-        			</c:if>
-        			<c:if test="${meal.dinnerTime != null}">
-        			<tr>
-            			<td>저녁</td>
-            			<td>${meal.dinnerTime}</td>
-            			<td>${meal.dinner}</td>
-        			</tr>
-        			</c:if>
-    			</tbody>
+    			<c:forEach var = "items" items="${mealList}">
+    					<tbody>
+       						<tr>
+            					<td>${items.TYPEEAT}</td>
+            					<td>${items.MEALTIME}</td>
+            					<td>${items.WHATEAT}</td>
+        					</tr>
+    					</tbody>
+    				</c:forEach>
 			</table>
 		</c:if>
 		
-		<c:if test="${meal.today == null}">
+		<c:if test="${mealList.today == null}">
 		마다 토우로쿠사레나이
 		</c:if>
     </div>

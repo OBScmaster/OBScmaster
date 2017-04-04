@@ -5,19 +5,13 @@
     
 <mapper namespace="web.scmaster.com.dao.dailyMapper">
 
-<select id = "searchMeal" parameterType="HashMap" resultType="Meal">
+<select id = "mealList" parameterType="HashMap" resultType="Meal">
 	select
 		pt_no
 		, today
-		, breakfast
-		, to_char(breakfastTime, 'HH24:MI') as breakfastTime
-		, lunch
-		, to_char(lunchTime, 'HH24:MI') as lunchtime
-		, dinner
-		, to_char(dinnerTime, 'HH24:MI') as dinnerTime
-		, snack
-		, snackTime
-		, deleteflag
+		, typeEat
+		, mealTime
+		, whatEat
 	from
 		meal
 	where
