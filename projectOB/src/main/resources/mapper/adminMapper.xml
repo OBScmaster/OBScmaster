@@ -64,7 +64,9 @@ select PT_NO,NURSE_NO,INS_NO,NAME,BIRTHDATE,DISEASE,PHONE,ADDRESS,ORIGINALPHOTO,
 
 <!-- 환자등록 -->
 <insert id="insertPatient" parameterType="Patient">
-insert into Patient (PT_NO,NURSE_NO,INS_NO,NAME,BIRTHDATE
+insert into Patient (PT_NO
+	<if test="nurse_no!=null">,NURSE_NO</if>
+	,INS_NO,NAME,BIRTHDATE
 	<if test="disease!=null">,DISEASE</if>
 	<if test="phone!=null">,PHONE</if>
 	<if test="address!=null">,ADDRESS</if>
@@ -78,7 +80,9 @@ insert into Patient (PT_NO,NURSE_NO,INS_NO,NAME,BIRTHDATE
 	<if test="ppt_add!=null">,PPT_ADD</if>
 	) 
 	values(
-	ptno_seq.nextval,#{nurse_no},#{ins_no},#{name},#{birthdate}
+	ptno_seq.nextval
+	<if test="nurse_no!=null">,#{nurse_no}</if>
+	,#{ins_no},#{name},#{birthdate}
 	<if test="disease!=null">,#{disease}</if>
 	<if test="phone!=null">,#{phone}</if>
 	<if test="address!=null">,#{address}</if>

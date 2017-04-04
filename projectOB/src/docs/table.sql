@@ -1,9 +1,9 @@
 /* 트리거 */
 
 /*개인 정보 삭제 트리거 */
-drop trigger TRG_PATIENT_DELETE;
+drop trigger TRG_PATIENT_DATADEL;
 
-create or replace TRIGGER TRG_PATIENT_DEL
+create or replace TRIGGER TRG_PATIENT_DATADEL
 after UPDATE of DELETEFLAG ON PATIENT
 for each row    
 BEGIN   

@@ -110,7 +110,6 @@
   }
   
 
-
  
   
   </script>
@@ -213,8 +212,8 @@
          <div class="form-group">
      <label class="control-label col-sm-3">환자</label>
      <div class="col-sm-9">
-      <input type="text" class="form-control" id="pt_name" name="pt_name" readonly="readonly">
-     <input type="hidden" class="form-control" id="pt_no" name="pt_no">
+     <input type="text" class="form-control" id="pt_name" readonly="readonly">
+     <input type="hidden" class="form-control" value=0 id="pt_no" name="pt_no">
      </div>
      </div>
      
@@ -250,8 +249,6 @@
 </div>
     
 
-</div>
-</div>
 </div>
 
 <div class="container-fluid text-center">

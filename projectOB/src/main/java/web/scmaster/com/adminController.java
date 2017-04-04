@@ -11,6 +11,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -113,27 +114,47 @@ public class adminController {
 			nurse.setSavedphoto(savedfile);
 		}
 		
-		admindao.insertNurse(nurse);	
+		admindao.insertNurse(nurse);
+		
+		if(pt_no!=0){
 		admindao.updatePatientaboutNurse(pt_no, nurse.getNurse_no());
+		}
 		
 		return "redirect:adminLogin";
 	}
 	
+	
 	@RequestMapping(value="insertPatient", method=RequestMethod.POST)
 	public String insertPatient(Patient patient, MultipartFile upload){
-		
-		
-		if (!upload.isEmpty()) {
-			String savedfile = FileService.saveFile(upload, patientUploadPath);
-			patient.setOriginalphoto(upload.getOriginalFilename());
-			patient.setSavedphoto(savedfile);
+
+		if(patient.getNurse_no()==0){
+						
+			return "/admin/adminPatientInput";	
+			
+		}else{
+			
+			if (!upload.isEmpty()) {
+				String savedfile = FileService.saveFile(upload, patientUploadPath);
+				patient.setOriginalphoto(upload.getOriginalFilename());
+				patient.setSavedphoto(savedfile);
+			}
+			
+			int result = admindao.insertPatient(patient);			
+			
+			return "redirect:adminLogin";
 		}
 		
-		int result = admindao.insertPatient(patient);
-		System.out.println(result);
+		
+	}
+	
+	@RequestMapping(value="insertPatient", method=RequestMethod.GET)
+	public String insertPatient(Patient patient){
+		System.out.println(patient);
+		System.out.println("1111");
 		
 		return "redirect:adminLogin";
 	}
+	
 	
 		@ResponseBody
 	   @RequestMapping(value="patientlist", method=RequestMethod.GET)

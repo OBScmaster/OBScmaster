@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.multipart.MultipartFile;
 
+import web.scmaster.com.dao.AdminDAO;
 import web.scmaster.com.dao.nurseDAO;
 import web.scmaster.com.dao.patientDAO;
 import web.scmaster.com.util.FileService;
@@ -28,6 +29,9 @@ public class nurseController {
 
 	@Autowired
 	private nurseDAO nursedao;
+	
+	@Autowired
+	private AdminDAO admindao;
 	
 	@Autowired
 	private patientDAO pationtdao;
@@ -88,6 +92,12 @@ public class nurseController {
 	@RequestMapping(value="nursePatientInput", method=RequestMethod.POST)
 	public String nursePatientInput(Patient patient, MultipartFile upload){
 		
+		if(patient.getNurse_no()==0){
+			
+			return "/manager/managerPatientInput";	
+			
+		}else{
+		
 		if (!upload.isEmpty()) {
 			String savedfile = FileService.saveFile(upload, patientUploadPath);
 			patient.setOriginalphoto(upload.getOriginalFilename());
@@ -96,8 +106,9 @@ public class nurseController {
 		
 		int result = nursedao.insertPatient(patient);
 		
-		
 		return "redirect:managerLogin";
+		}
+	
 	}
 	
 	@RequestMapping(value="scheduleInput", method=RequestMethod.GET)

@@ -155,6 +155,16 @@
 	    
 	}
   
+  function dad() {
+
+	$("#name").val();
+	$("#room_no").val();
+	$("#birthdate").val();
+	$("#ins_no").val();
+	  
+	  
+}
+  
   </script>
 
 
@@ -183,7 +193,7 @@
   </div>
 </nav>
 
-<form action="insertPatient" method="post" enctype="multipart/form-data">
+<form action="insertPatient" method="post" enctype="multipart/form-data" onsubmit="dad()">
 
 <div class="container text-center">    
   <div class="row content">
@@ -259,7 +269,7 @@
   <br>
      <label class="control-label col-sm-3">병명</label>
      <div class="col-sm-9">
-      <input type="text" class="form-control" id="desease" name="desease" placeholder="병명을 입력해주세요">
+      <input type="text" class="form-control" id="disease" name="disease" placeholder="병명을 입력해주세요">
      </div>
     
      </td>     
@@ -284,7 +294,7 @@
      <label class="control-label col-sm-3">요양사</label>
      <div class="col-sm-9">
       <input type="text" class="form-control" id="nurse_name" readonly="readonly">
-      <input type="hidden" class="form-control" id="nurse_no" name="nurse_no" readonly="readonly">
+      <input type="hidden" class="form-control" value=0 id="nurse_no" name="nurse_no" readonly="readonly">
      </div>
     
      </td>  
