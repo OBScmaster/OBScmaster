@@ -156,7 +156,7 @@
   
   <tr>
   
-  <td rowspan="2" >  
+  <td>  
  
       <div class="col-sm-7">   
    	 <div class="panel text-left">
@@ -213,51 +213,7 @@
  
 
 </tr>
-
-
- <tr><td class="col-sm-7">
-
-     <div class="text-left" style="font-weight: bold;">보호자</div> 
-     <div class="col-sm-15 well"> 
-  <table>
-  
-  <tr>
-  <td>
-    <label class="control-label">이름</label>
-     </td>
-     <td class="col-sm-3">
-      <input type="text" readonly="readonly" class="form-control" id="ppt_name" name="ppt_name">
-   </td>
    
-     <td>
-    <label class="control-label">전화번호</label>
-     </td>
-     <td class="col-sm-3">
-      <input type="text" readonly="readonly" class="form-control" id="ppt_phone" name="ppt_phone">
-   </td>
-   
-   
-  </tr>
-  
-    <tr>  
-  <td>
-    <br>
-    <label class="control-label">주소</label>
-     </td>
-     
-     <td colspan="5" class="col-sm-10">
-     <br>
-      <input type="text" readonly="readonly" class="form-control" id="ppt_add" name="ppt_add">
-   </td>
- 
-  </tr>
-  
-  
-  </table>
-     
-    </div>
-    
-</td></tr>    
     
     </table>
 
