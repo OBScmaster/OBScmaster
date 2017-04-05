@@ -51,7 +51,7 @@
     	    	  if(day<10){
     	    		  day="0"+day
       	    	  }    	    	  
-    	    	  var daycheck = year+"/"+month+"/"+day;
+    	    	  var daycheck = year + "/" + month + "/" + day;
     	    	
     	    	 
     	    	  location.href="dailyschedule?today="+daycheck+"&pt_no="+pt_no;

@@ -4,8 +4,8 @@ public class DailyWash {
 	
 	private int pt_no;
 	private String today;
-	private String cleaning;
-	private String dailyReport;
+	private String wash;
+	private String washReport;
 	private String inputdate;
 	private String updatedate;
 	private String deletedate;
@@ -13,13 +13,13 @@ public class DailyWash {
 	
 	public DailyWash() {
 	}
-	
-	public DailyWash(int pt_no, String today, String cleaning, String dailyReport, String inputdate, String updatedate,
+
+	public DailyWash(int pt_no, String today, String wash, String washReport, String inputdate, String updatedate,
 			String deletedate, String deleteflag) {
 		this.pt_no = pt_no;
 		this.today = today;
-		this.cleaning = cleaning;
-		this.dailyReport = dailyReport;
+		this.wash = wash;
+		this.washReport = washReport;
 		this.inputdate = inputdate;
 		this.updatedate = updatedate;
 		this.deletedate = deletedate;
@@ -42,20 +42,20 @@ public class DailyWash {
 		this.today = today;
 	}
 
-	public String getCleaning() {
-		return cleaning;
+	public String getWash() {
+		return wash;
 	}
 
-	public void setCleaning(String cleaning) {
-		this.cleaning = cleaning;
+	public void setWash(String wash) {
+		this.wash = wash;
 	}
 
-	public String getDailyReport() {
-		return dailyReport;
+	public String getWashReport() {
+		return washReport;
 	}
 
-	public void setDailyReport(String dailyReport) {
-		this.dailyReport = dailyReport;
+	public void setWashReport(String washReport) {
+		this.washReport = washReport;
 	}
 
 	public String getInputdate() {
@@ -92,8 +92,8 @@ public class DailyWash {
 
 	@Override
 	public String toString() {
-		return "DailyWash [pt_no=" + pt_no + ", today=" + today + ", cleaning=" + cleaning + ", dailyReport="
-				+ dailyReport + ", inputdate=" + inputdate + ", updatedate=" + updatedate + ", deletedate=" + deletedate
+		return "DailyWash [pt_no=" + pt_no + ", today=" + today + ", wash=" + wash + ", washReport=" + washReport
+				+ ", inputdate=" + inputdate + ", updatedate=" + updatedate + ", deletedate=" + deletedate
 				+ ", deleteflag=" + deleteflag + "]";
 	}
 

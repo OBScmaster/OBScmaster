@@ -24,7 +24,8 @@
         <h3 class="panel-title">식사</h3>
     </div>
     <div class="panel-body">
-    	<c:if test="${meal.today != null}">
+    <c:choose>
+    	<c:when test="${mealList != null }">
     		<table class="table table-hover">
     			<thead>
        				<tr>
@@ -33,33 +34,21 @@
             			<th>식단</th>
         			</tr>
     			</thead>
-    			<tbody>
-       				<tr>
-            			<td>아침</td>
-            			<td>${meal.breakfastTime}</td>
-            			<td>${meal.breakfast}</td>
-        			</tr>
-        			<c:if test="${meal.lunchTime != null}">
-        			<tr>
-            			<td>점심</td>
-            			<td>${meal.lunchTime}</td>
-            			<td>${meal.lunch}</td>
-        			</tr>
-        			</c:if>
-        			<c:if test="${meal.dinnerTime != null}">
-        			<tr>
-            			<td>저녁</td>
-            			<td>${meal.dinnerTime}</td>
-            			<td>${meal.dinner}</td>
-        			</tr>
-        			</c:if>
-    			</tbody>
+    			<c:forEach var = "items" items="${mealList}">
+    					<tbody>
+       						<tr>
+            					<td>${items.typeEat}</td>
+            					<td>${items.mealTime}</td>
+            					<td>${items.whatEat}</td>
+        					</tr>
+    					</tbody>
+    				</c:forEach>
 			</table>
-		</c:if>
-		
-		<c:if test="${meal.today == null}">
-		마다 토우로쿠사레나이
-		</c:if>
+		</c:when>
+		<c:otherwise>
+			아직 등록되지 않았습니다.
+		</c:otherwise>
+	</c:choose>
     </div>
 </div>
 
@@ -81,14 +70,13 @@
     				<c:forEach var = "items" items="${exerciseList}">
     					<tbody>
        						<tr>
-            					<td>${items.EXERCISETEXT}</td>
-            					<td>${items.EXERCISETIME}</td>
+            					<td>${items.exerciseText}</td>
+            					<td>${items.exerciseTime}</td>
         					</tr>
     					</tbody>
     				</c:forEach>	
 				</table>
     		</c:when>
-			
 			<c:otherwise>
 				마다 토우로쿠사레나이
 			</c:otherwise>
@@ -103,7 +91,9 @@
     <div class="panel-body">
     	<div class="move-left">
         	<div class="[ form-group ]">
-            	<input type="checkbox" name="fancy-checkbox-success" id="fancy-checkbox-success" autocomplete="off" checked = "checked" disabled="disabled"/>
+        		<c:if test="${cleaning.cleaningReport != null }">
+            		<input type="checkbox" name="fancy-checkbox-success" id="fancy-checkbox-success" autocomplete="off" checked = "checked" disabled="disabled"/>
+            	</c:if>
             	<div class="[ btn-group ]">
                 	<label for="fancy-checkbox-success" class="[ btn btn-success ]">
                     	<span class="[ glyphicon glyphicon-ok ]"></span>
@@ -114,7 +104,10 @@
                 	</label>
                 	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                 	<label for = "cleaning">
-	     				<input type="text" class="form-control" id="cleaning" size ="50" readonly="readonly">
+                		<p>청소시간</p>
+                	</label>
+                	<label for = "cleaning">
+	     				<input type="text" class="form-control" id="cleaning" size ="20" readonly="readonly" value = "${cleaning.cleaning}">
                 	</label>
             	</div>            	
         	</div>
@@ -122,18 +115,167 @@
     </div>
 </div>
 
+<div class="panel panel-info">
+    <div class="panel-heading">
+        <h3 class="panel-title">세탁</h3>
+    </div>
+    <div class="panel-body">
+    	<div class="move-left">
+        	<div class="[ form-group ]">
+        		<c:if test="${wash.washReport != null }">
+            		<input type="checkbox" name="fancy-checkbox-success" id="fancy-checkbox-success" autocomplete="off" checked = "checked" disabled="disabled"/>
+            	</c:if>
+            	<div class="[ btn-group ]">
+                	<label for="fancy-checkbox-success" class="[ btn btn-success ]">
+                    	<span class="[ glyphicon glyphicon-ok ]"></span>
+                    	<span> </span>
+                	</label>
+                	<label for="fancy-checkbox-success" class="[ btn btn-default active ]">
+                    	세탁여부
+                	</label>
+                	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                	<label for = "wash">
+                		<p>세탁시간</p>
+                	</label>
+                	<label for = "wash">
+	     				<input type="text" class="form-control" id="cleaning" size ="20" readonly="readonly" value = "${wash.wash}">
+                	</label>
+                	<label for = "wash">
+	     				<input type="text" class="form-control" size ="40" readonly="readonly" value = "${wash.washReport}">
+                	</label>
+            	</div>            	
+        	</div>
+    	</div>
+    </div>
+</div>
+
+<div class="panel panel-info">
+    <div class="panel-heading">
+        <h3 class="panel-title">샤워</h3>
+    </div>
+    <div class="panel-body">
+    	<div class="move-left">
+        	<div class="[ form-group ]">
+        		<c:if test="${shower.showerReport != null }">
+            		<input type="checkbox" name="fancy-checkbox-success" id="fancy-checkbox-success" autocomplete="off" checked = "checked" disabled="disabled"/>
+            	</c:if>
+            	<div class="[ btn-group ]">
+                	<label for="fancy-checkbox-success" class="[ btn btn-success ]">
+                    	<span class="[ glyphicon glyphicon-ok ]"></span>
+                    	<span> </span>
+                	</label>
+                	<label for="fancy-checkbox-success" class="[ btn btn-default active ]">
+                    	샤워여부
+                	</label>
+                	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                	<label for = "shower">
+                		<p>샤워시간</p>
+                	</label>
+                	<label for = "shower">
+	     				<input type="text" class="form-control" id="cleaning" size ="20" readonly="readonly" value = "${shower.shower}">
+                	</label>
+                	<label for = "shower">
+	     				<input type="text" class="form-control" size ="40" readonly="readonly" value = "${shower.showerReport}">
+                	</label>
+            	</div>            	
+        	</div>
+    	</div>
+    </div>
+</div>
+
+<div class="panel panel-primary">
+    <div class="panel-heading">
+        <h3 class="panel-title">수면</h3>
+    </div>
+    <div class="panel-body">
+    <c:choose>
+    	<c:when test="${bedList != null }">
+    		<table class="table table-hover">
+    			<thead>
+       				<tr>
+            			<th>수면시간</th>
+            			<th>기상시간</th>
+            			<th>내용</th>
+        			</tr>
+    			</thead>
+    			<c:forEach var = "items" items="${bedList}">
+    					<tbody>
+       						<tr>
+            					<td>${items.timeToSleep}</td>
+            					<td>${items.timeToGetup}</td>
+            					<td>${items.report}</td>
+        					</tr>
+    					</tbody>
+    				</c:forEach>
+			</table>
+		</c:when>
+		<c:otherwise>
+			아직 등록되지 않았습니다.
+		</c:otherwise>
+	</c:choose>
+    </div>
+</div>
+
 <div class="panel panel-warning">
     <div class="panel-heading">
-        <h3 class="panel-title">400 Bad Request</h3>
+        <h3 class="panel-title">의사소견</h3>
     </div>
-    <div class="panel-body">The request cannot be fulfilled due to bad syntax.</div>
+    <div class="panel-body">
+    	<c:choose>
+    	<c:when test="${dr_opList != null }">
+    		<table class="table table-hover">
+    			<thead>
+       				<tr>
+            			<th>시간</th>
+            			<th>내용</th>
+        			</tr>
+    			</thead>
+    			<c:forEach var = "items" items="${dr_opList}">
+    					<tbody>
+       						<tr>
+            					<td>${items.reportTime}</td>
+            					<td>${items.report}</td>
+        					</tr>
+    					</tbody>
+    				</c:forEach>
+			</table>
+		</c:when>
+		<c:otherwise>
+			아직 등록되지 않았습니다.
+		</c:otherwise>
+	</c:choose>
+    </div>
 </div>
 
 <div class="panel panel-danger">
     <div class="panel-heading">
-        <h3 class="panel-title">503 Service Unavailable</h3>
+        <h3 class="panel-title">특이사항</h3>
     </div>
-    <div class="panel-body">The server is temporarily unable to handle the request.</div>
+    <div class="panel-body">
+    	<c:choose>
+    	<c:when test="${specialList != null }">
+    		<table class="table table-hover">
+    			<thead>
+       				<tr>
+            			<th>시간</th>
+            			<th>내용</th>
+        			</tr>
+    			</thead>
+    			<c:forEach var = "items" items="${specialList}">
+    					<tbody>
+       						<tr>
+            					<td>${items.reportTime}</td>
+            					<td>${items.report}</td>
+        					</tr>
+    					</tbody>
+    				</c:forEach>
+			</table>
+		</c:when>
+		<c:otherwise>
+			아직 등록되지 않았습니다.
+		</c:otherwise>
+	</c:choose>
+    </div>
 </div>
 
 </body>
