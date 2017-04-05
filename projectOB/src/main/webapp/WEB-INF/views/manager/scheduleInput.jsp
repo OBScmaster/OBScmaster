@@ -151,38 +151,8 @@
 
 <div class="container text-center">    
   <div class="row content">
-   
-    <div class="col-sm-15 well" id="scheduleDiv"> 
   
    <table>
-   
-    <tr>
-    
-     <td class="col-sm-3">
-
-    <label class="control-label">환자번호</label>
-    </td>
-    <td class="col-sm-3">
-    
-    <input type="text" readonly="readonly" class="form-control" id="pt_no" name="pt_no">
-   </td>
-     
-     <td class="col-sm-3">
-
-    <label class="control-label">이름</label>
-    </td>
-    <td class="col-sm-3">
-    
-    <input type="text" readonly="readonly" class="form-control" id="name" name="name">
-
-    </tr>
-   
-   </table>
- 
- </div>
-  
-  
-  <table>
   
   <tr>
   
@@ -202,12 +172,13 @@
 </td>
   
   
+  
   <td class="col-sm-7">
  	<div class="text-left" style="font-weight: bold;">스케쥴입력</div> 
    <div class="col-sm-15 well" id="scheduleDiv"> 
-   
+  
    <table>
-   
+  
     <tr>
     
      <td class="col-sm-4">
@@ -219,27 +190,6 @@
     <input type="text" readonly="readonly" class="form-control" id="pt_no" name="pt_no">
    </td>
    
-  <td rowspan="10">
-  
-    
-   	 
-   	 <div class="col-sm-7"> 
-   	 
-     <input type="button" class="btn btn-primary" readonly="readonly" id="patientSelect" value="환자 선택">
-     </div>	 
-
-
-     <div class="col-sm-7"> 
-     <br>
-	 <input type="button" class="btn btn-primary" readonly="readonly" id="today" name="today" value="날짜 선택">
-     </div>
-
-
-     <div class="col-sm-7"> <br>
-	 <input type="button" class="btn btn-primary" readonly="readonly" id="today" name="today" value="날짜 선택">
-     </div>
-  
-  
    
    </tr>
     
