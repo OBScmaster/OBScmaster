@@ -80,7 +80,7 @@ alert("모르겠네");
                         <div class="col-md-10">
                             <div class="checkbox">
                                 <label>
-                                    <input type="radio" name="divider" value="manager"/>병원관계자
+                                    <input type="radio" name="divider" value="manager" checked="checked"/>병원관계자
                                   	&nbsp;&nbsp;&nbsp;
                                     <input type="radio" name="divider" value="protector"/>보호자
                                 </label>

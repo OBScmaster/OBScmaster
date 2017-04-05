@@ -63,7 +63,6 @@ public class nurseController {
 		
 		Nurse n = nursedao.selectNurseById(id);
 		String nurseId = n.getId();
-		System.out.println(nurseId);
 		
 		if(n!=null){
 			
