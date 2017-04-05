@@ -1,6 +1,7 @@
 package web.scmaster.com;
 
 import java.util.ArrayList;
+
 import java.util.HashMap;
 import java.util.List;
 
@@ -19,7 +20,6 @@ import web.scmaster.com.dao.patientDAO;
 import web.scmaster.com.vo.DailyCleaning;
 import web.scmaster.com.vo.DailyShower;
 import web.scmaster.com.vo.DailyWash;
-import web.scmaster.com.vo.Meal;
 
 import web.scmaster.com.vo.Patient;
 import web.scmaster.com.vo.SensorLog;

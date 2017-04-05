@@ -61,13 +61,15 @@ public class nurseController {
 	@RequestMapping(value="managerLogin", method=RequestMethod.POST)
 	public String selectNurseById(String id, String password,Model model, HttpSession session){
 		
-		Nurse n=nursedao.selectNurseById(id);
+		Nurse n = nursedao.selectNurseById(id);
+		String nurseId = n.getId();
+		System.out.println(nurseId);
 		
 		if(n!=null){
 			
 			if(n.getPassword().equals(password)){
 				
-				session.setAttribute("nurse", n);
+				session.setAttribute("nurseId", nurseId);
 				
 				return "/manager/managerPage";
 				
@@ -77,11 +79,11 @@ public class nurseController {
 				model.addAttribute("PWnotMatch","패스워드가 맞지 않습니다");
 				return "home";	
 			
-			}
+				}
 			}
 			
 			model.addAttribute("whywhywhy","왜 그런지 모르겠네");
-		return "home";
+			return "home";
 	}
 	
 	@RequestMapping(value="nurseInput", method=RequestMethod.GET)
