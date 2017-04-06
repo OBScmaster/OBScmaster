@@ -21,6 +21,8 @@ public interface AdminMapper {
 	public Patient selectPatient(String id);
 	public int insertNurse(Nurse nurse);
 	public int insertPatient(Patient patient);
+	public int updatePatient(Patient patient);
 	public List<Patient> patientlist();
+	
 	public int updatePatientaboutNurse(int pt_no, @Param("nurse_no")int nurse_no);
 }

@@ -96,8 +96,17 @@ public class AdminDAO {
 	AdminMapper mapper = sqlsession.getMapper(AdminMapper.class);
 	
 	return mapper.insertPatient(patient);
-	
+		
 	}
+	
+	public int updatePatient(Patient patient){
+		
+		AdminMapper mapper = sqlsession.getMapper(AdminMapper.class);
+		
+		return mapper.updatePatient(patient);
+		
+	}
+	
 	
 	 public List<Patient> patientlist(){
 		   
@@ -105,5 +114,7 @@ public class AdminDAO {
 			   
 	      return mapper.patientlist();
 	   }
+	 
+
 
 }

@@ -183,7 +183,27 @@
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav">
         <li class="active"><a href="adminLogin">Home</a></li>
-        <li><a href="adminNurseInput">간호사등록</a></li>
+            <li class="active">
+                     
+    <a class="dropdown dropdown-toggle" data-toggle="dropdown">환자 관리</a>
+    <ul class="dropdown-menu">
+      <li><a href="adminPatientInput">환자 등록</a></li>
+      <li><a href="adminPatientInfo">환자 정보</a></li>
+    </ul>
+ 
+
+        </li>
+        
+          <li class="active">
+                 
+    <a class="dropdown dropdown-toggle" data-toggle="dropdown">요양사 관리</a>
+    <ul class="dropdown-menu">
+      <li><a href="adminNurseInput">요양사 등록</a></li>
+      <li><a href="adminNurseInfo">요양사 정보</a></li>
+    </ul>
+ 
+
+        </li>
       </ul>
      
       <ul class="nav navbar-nav navbar-right">

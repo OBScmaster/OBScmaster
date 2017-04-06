@@ -26,11 +26,25 @@ import web.scmaster.com.vo.Room;
 @Controller
 public class adminController {
 	
-	final String patientUploadPath = "/patientfile";
+	final String patientUploadPath = "../../../../../webapp/resources/image/patientfile";
 	final String nurseUploadPath = "/nursefile";
 	
 	@Autowired
 	private AdminDAO admindao;
+	
+	@RequestMapping(value = "adminNurseInfo", method = RequestMethod.GET)
+	public String adminNurseInfo() {
+	
+		return "/admin/adminNurseInfo";	
+	
+	}
+	
+	@RequestMapping(value = "adminPatientInfo", method = RequestMethod.GET)
+	public String adminPatientInfo() {
+	
+		return "/admin/adminPatientInfo";	
+	
+	}
 	
 	@RequestMapping(value = "adminPatientInput", method = RequestMethod.GET)
 	public String adminPatientInput() {
@@ -87,13 +101,7 @@ public class adminController {
 		List<Room> roomlist = admindao.roomlist();
 		return roomlist;
 	}
-	@ResponseBody
-	@RequestMapping(value="nurselist", method=RequestMethod.POST)
-	public List<Nurse> nurselist(){
-		List<Nurse> nurselist = admindao.nurselist();
-		return nurselist;
-	}
-	
+
 	
 	@ResponseBody
 	@RequestMapping(value="roomregist", method=RequestMethod.POST)
@@ -147,12 +155,26 @@ public class adminController {
 		
 	}
 	
-	@RequestMapping(value="insertPatient", method=RequestMethod.GET)
-	public String insertPatient(Patient patient){
-		System.out.println(patient);
-		System.out.println("1111");
-		
-		return "redirect:adminLogin";
+	
+	
+	@RequestMapping(value="updatePatient", method=RequestMethod.POST)
+	public String updatePatient(Patient patient, MultipartFile upload){
+		if(patient.getNurse_no()==0){
+			
+			return "/admin/adminPatientInfo";	
+			
+		}else{
+			
+			if (!upload.isEmpty()) {
+				String savedfile = FileService.saveFile(upload, patientUploadPath);
+				patient.setOriginalphoto(upload.getOriginalFilename());
+				patient.setSavedphoto(savedfile);
+			}
+			
+			int result = admindao.updatePatient(patient);			
+			
+			return "redirect:adminLogin";
+		}
 	}
 	
 	
@@ -163,5 +185,14 @@ public class adminController {
 		   List<Patient> patientlist = admindao.patientlist();
 			   
 	      return patientlist;
+	   }
+	
+	@ResponseBody
+	@RequestMapping(value="nurselist", method=RequestMethod.GET)
+	 public List<Nurse> nurselist(){
+		   
+		   List<Nurse> nurselist = admindao.nurselist();
+			   
+	      return nurselist;
 	   }
 }

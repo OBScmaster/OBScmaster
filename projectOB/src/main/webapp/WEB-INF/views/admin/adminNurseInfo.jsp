@@ -24,31 +24,25 @@
 	  
 	  $.ajax({  		 
     		type:"get",
-    		 url:"patientlist",  
+    		 url:"nurselist",  
     		 contentType:"application/json; charset=utf-8",
     		 dataType:"json",
     		 success:function(data){
     			
-    			 var patientselect = "<div class='col-md-7'><div class='btn-group btn-group-justified'><a href='#' class='btn btn-info'>환자번호</a>"
- 			    	+"<a href='#' class='btn btn-info'>환자명</a>"
-			    	  +"<a href='#' class='btn btn-info'>생년월일</a>"
+    			 
+    			 var patientselect = "<div class='col-md-7'><div class='btn-group btn-group-justified'><a href='#' class='btn btn-info'>요양사번호</a>"
+ 			    	+"<a href='#' class='btn btn-info'>이름</a>"
+			    	  +"<a href='#' class='btn btn-info'>전화번호</a>"
 			    	  +"</div><div class='list-group text-left' style='height:540px;' id='patientgroup'>";
     			    	  
     			    	  $.each(data,function(index,item){
-    			    		  if(item.ppt_name==null){
-    			    			  item.ppt_name="-";    			    			  
+    			    		  if(item.name==null){
+    			    			  item.name="-";    			    			  
     			    		  }
-    			    		  if(item.ppt_phone==null){
-    			    			  item.ppt_phone="-";    			    			  
-    			    		  }
-    			    		  if(item.ppt_add==null){
-    			    			  item.ppt_add="-";    			    			  
-    			    		  }
-    			    	
-    			    		  patientselect+="<div class='list-group-item' name="+item.name+" pt_no="+item.pt_no+" ppt_phone="+item.ppt_phone+" ppt_add="+item.ppt_add+" ppt_name="+item.ppt_name+"><table class='text-center'><tr><td width='190px;'>"
-    			    		  +item.pt_no+"</td><td width='250px;'>"
+    			    		  patientselect+="<div class='list-group-item' previewImg="+item.savefile+" phone="+item.phone+" cert_no="+item.cert_no+" nurse_no="+item.nurse_no+" name="+item.name+"><table class='text-center'><tr><td width='190px;'>"
+    			    		  +item.nurse_no+"</td><td width='250px;'>"
     			    		  +item.name+"</td><td width='200px;'>"
-    			    		  +item.birthdate+"</td></tr></table></div>";
+    			    		  +item.phone+"</td></tr></table></div>";
     			    		  
     			    	  })
     			    	
@@ -59,18 +53,101 @@
     			    	 if(data.length>11){
      			    		$("#patientgroup").css("overflow","scroll");
      			    	};
-							$(".list-group-item").click(function(){
+     			    	$(".list-group-item").click(function(){
+      			    		
+      			    		$(".list-group-item").css("color","black");
+      			    		$(this).css("color","red");
+      			    		
+      			    	   $("#cert_no").attr("readonly","readonly");
+      			    	   $("#name").attr("readonly","readonly");
+      			    	   $("#phone").attr("readonly","readonly");
+      			    	
+      			    	 
+      			    	
+      			    		
+      			    		$("#cert_no").val($(this).attr("cert_no"));
+      			    		$("#phone").val($(this).attr("phone"));
+      			    		$("#name").val($(this).attr("name"));
+      			    	
     			    		
-    			    		$(".list-group-item").css("color","black");
-    			    		$(this).css("color","red");
+    			    		$("#fd").remove();
+    			    		$("#upload").remove();
     			    		
+    			    		$("#nurseUpdate").remove();
     			    		
-    			    		$("#pt_name").val($(this).attr("name"));
-    			    		$("#pt_no").val($(this).attr("pt_no"));
-    			  
+    			    		$("#buttt").prepend("<button type='button' class='btn btn-primary' id='nurseUpdate'>수정</button>");
     			    		 
-    			    	});
+    			    		$("#nurseUpdate").click(function(){
+    			    			  
+    			    			   $("#nurseUpdate").remove();
+    			    			   $("#buttt").prepend("<input type='submit' class='btn btn-primary' id='fd' value=확인>");
+    			    			   $("#picdiv").append( "<input type='file' value='' id='upload' name='upload' style='width: 100%;'>");
+    			    			 
+    			    			  
+    			    			   $("#cert_no").removeAttr("readonly");
+    			    			   $("#phone").removeAttr("readonly");
+    			    			   $("#name").removeAttr("readonly");
+    			    		    			    			  
+    			    			   $("#upload").on('change', function(){
+    			    			          readURL(this);
+    			    			      });
+    			    	
+    			    			 })
+    			    		
+    			    		
+    			    		
+    			    		$("#previewImg").attr("src","");
+    			    		
+    			    		if($(this).attr('previewImg')!="-"){
+    			    			
+    			    		$("#previewImg").attr("src","./resources/image/nursefile/"+$(this).attr('previewImg'));
+    			    		
+    			    		}else{
+    			    			$("#previewImg").attr("alt","이미지 없음");
+    			    			
+    			    		}
+
+    						 $("#upload").on('change', function(){
+    			    		          readURL(this);
+    			    		 });
+    			    		
+    						//환자목록
+    				    		$.ajax({
+    		    		    		 
+    		    		    		type:"get",
+    		    		    		 url:"patientList",
+    		    		    		 data:{nurse_no:$(this).attr("nurse_no")},
+    		    		    		 success:function(data){
+    		    		    			 		    		
+    		    		    			
+    		    		    			 var patientselect = " <button class='form-control dropdown-toggle' type='button' data-toggle='dropdown' readonly='readonly'>환자목록<span class='caret'></span></button>"
+    		    		    			 +"<ul class='dropdown-menu'  role='menu'>";
+    		    		    			    	  
+    		    		    			    	  $.each(data,function(index,item){    			    		    			    	
+    		    		    			    	
+    		    		    			    		  patientselect+="<li><input type='text' class='form-control' readonly='readonly' value="+item.name+"></li>";
+    		    		    			    		  
+    		    		    			    	  })
+    		    		    			    	
+    		    		    			    	patientselect+="</ul>";
+    		    		    			    	
+    		    		    			    	$("#patientList").html(patientselect);
+    		    		    			    	
+    		    		    			    	 if(data.length>11){
+    		    		     			    		$("#patientgroup").css("overflow","scroll");
+    		    		     			    	};
+    		    									
+    		    		    						
+    		    		    		},
+    		    		    		 error:function(error){
+    		    		    			 
+    		    		    			 console.log(error);}
+    		    		    		});
+    						 
+    			    	
+    					});
     		
+     			    	
     						
     		},
     		 error:function(error){console.log(error);}
@@ -128,7 +205,7 @@
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav">
         <li class="active"><a href="adminLogin">Home</a></li>
-            <li class="active">
+        <li class="active">
                  
     <a class="active dropdown dropdown-toggle" data-toggle="dropdown">환자 관리</a>
     <ul class="active dropdown-menu">
@@ -149,6 +226,7 @@
  
 
         </li>
+        
       </ul>
      
       <ul class="nav navbar-nav navbar-right">
@@ -158,7 +236,7 @@
   </div>
 </nav>
 
-<form action="insertNurse" method="post" enctype="multipart/form-data">
+<form action="updateNurse" method="post" enctype="multipart/form-data">
 
 <div class="container text-center"> 
    
@@ -167,11 +245,11 @@
     <div class="col-sm-5 well">
     
      <div class="panel text-left">
-      <div class="wel well-lg" >
+      <div class="wel well-lg" id="picdiv">
  
      <img src="" class="img-circle" id="previewImg" name="previewImg" height="100" width="100" alt="등록">
      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;   
-    <input type="file" value="" id="upload" name="upload" style="width: 100%;">
+    
 
       </div>
       </div>
@@ -182,29 +260,10 @@
      <div class="form-group">
      <label class="control-label col-sm-3">자격증 번호</label>
      <div class="col-sm-9">
-      <input type="text" class="form-control" id="cert_no" name="cert_no" placeholder="자격증번호를 입력해주세요">
+      <input type="text" class="form-control" readonly="readonly" id="cert_no" name="cert_no">
      </div>
      </div>
-     
-     <br>
-     <br>
-      
-       <div class="form-group">
-     <label class="control-label col-sm-3">ID</label>
-     <div class="col-sm-9">
-      <input type="text" class="form-control" id="id" name="id" placeholder="ID를 입력해주세요">
-     </div>
-     </div>
-        
-        <br>
-        <br>
-        
-        <div class="form-group">
-     <label class="control-label col-sm-3">비밀번호</label>
-     <div class="col-sm-9">
-      <input type="text" class="form-control" id="password" name="password" placeholder="비밀번호를 입력해주세요">
-     </div>
-     </div>
+
         
         <br>
         <br>
@@ -212,7 +271,7 @@
        <div class="form-group">
      <label class="control-label col-sm-3">이름</label>
      <div class="col-sm-9">
-      <input type="text" class="form-control" id="name" name="name" placeholder="이름을 입력해주세요">
+      <input type="text" class="form-control" readonly="readonly" id="name" name="name" >
      </div>
      </div>
         
@@ -222,30 +281,37 @@
          <div class="form-group">
      <label class="control-label col-sm-3">전화번호</label>
      <div class="col-sm-9">
-      <input type="text" class="form-control" id="phone" name="phone" placeholder="전화번호를 입력해주세요">
+      <input type="text" class="form-control" readonly="readonly" id="phone" name="phone">
      </div>
      </div>
      
      <br>
        <br>
        
-         <div class="form-group">
+         <div class="form-group" >
      <label class="control-label col-sm-3">환자</label>
-     <div class="col-sm-9">
+     <div class="col-sm-9" id="patientList">
+     
      <input type="text" class="form-control" id="pt_name" readonly="readonly">
-     <input type="hidden" class="form-control" value=0 id="pt_no" name="pt_no">
+
      </div>
      </div>
+     
+    
      
     </div>
     
     
+   
+    
     
    <div class="col-sm-7">   
+   
+   
     <div class="panel text-left">
   
- 	 <button type="button" class="btn btn-primary" id="addPatient">환자등록</button>
-  	 <button type="button" class="btn btn-primary" id="cancelAddPatient">환자삭제</button>
+ 	 <button type="button" class="btn btn-primary" id="nurseInfo">간호사 정보</button>
+  	 
   	
     </div>
     
@@ -265,14 +331,19 @@
 
 </div>
 
- 
-</div>
+
+
     
 
+ 
 </div>
 
-<div class="container-fluid text-center">
-<input type="submit" class="btn btn-primary" id='nurseInsert' value="등록">
+
+
+</div>
+
+<div class="container-fluid text-center" id="buttt">
+<button type="button" class="btn btn-primary" id='nurseUpdate' >수정</button>
 <button type="button" class="btn btn-primary" id='nurseInsertCancel'>취소</button>
 </div>
 <br>

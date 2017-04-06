@@ -97,11 +97,32 @@ insert into Patient (PT_NO
 	)
 </insert>
 
+<update id="updatePatient" parameterType="Patient">
+
+update patient 
+	set
+	<if test="nurse_no!=null">NURSE_NO=#{nurse_no}</if>
+	<if test="disease!=null">,DISEASE=#{disease}</if>
+	<if test="phone!=null">,PHONE=#{phone}</if>
+	<if test="address!=null">,ADDRESS=#{address}</if>
+	<if test="originalphoto!=null">,ORIGINALPHOTO=#{originalphoto}</if>
+ 	<if test="savedphoto!=null">,SAVEDPHOTO=#{savedphoto}</if> 	
+	<if test="ppt_name!=null">,PPT_NAME=#{ppt_name}</if>
+	<if test="ppt_phone!=null">,PPT_PHONE=#{ppt_phone}</if>
+	<if test="ppt_add!=null">,PPT_ADD=#{ppt_add}</if>
+
+	where PT_NO=#{pt_no}	
+
+</update>
+
+<!-- 전체 간호사 -->
 <select id="nurselist" resultType="Nurse">
 
-select nurse_no, name, phone from nurse
+select cert_no, nurse_no, name, phone from nurse
+where deleteflag='Y'
 
 order by nurse_no
+
 
 </select>
 
@@ -115,6 +136,9 @@ select PT_NO,NURSE_NO,INS_NO,NAME,BIRTHDATE,DISEASE,PHONE,ADDRESS,ORIGINALPHOTO,
 from PATIENT
 where deleteflag='Y'
 </select>
+
+
+
 
 	
 </mapper>
