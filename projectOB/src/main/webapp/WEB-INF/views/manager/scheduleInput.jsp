@@ -37,11 +37,12 @@
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav">
         <li class="active"><a href="managerLogin">Home</a></li>
-        <li><a href="scheduleInput">일정등록</a></li>
+        <li><a href="managerPatientInput">환자 등록</a></li>
+        <li><a href="managerPatientInfo">담당 환자 정보</a></li>
       </ul>
      
       <ul class="nav navbar-nav navbar-right">
-        <li><a href="#"><span class="glyphicon glyphicon-user"></span>${nurse.id}</a></li>
+        <li><a href="#"><span class="glyphicon glyphicon-user"></span>${sessionScope.nurseId}</a></li>
       </ul>
     </div>
   </div>

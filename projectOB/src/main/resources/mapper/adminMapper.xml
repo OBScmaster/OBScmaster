@@ -105,6 +105,7 @@ update patient
 	<if test="disease!=null">,DISEASE=#{disease}</if>
 	<if test="phone!=null">,PHONE=#{phone}</if>
 	<if test="address!=null">,ADDRESS=#{address}</if>
+	<if test="room_no!=null">,ROOM_NO=#{room_no}</if>
 	<if test="originalphoto!=null">,ORIGINALPHOTO=#{originalphoto}</if>
  	<if test="savedphoto!=null">,SAVEDPHOTO=#{savedphoto}</if> 	
 	<if test="ppt_name!=null">,PPT_NAME=#{ppt_name}</if>

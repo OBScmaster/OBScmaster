@@ -93,9 +93,11 @@
 
   function readURL(input) {
 	  var img = document.getElementById("upload").files;
-      
+	  
       if (!fileType.test(img[0].type)) {
-    	alert("이미지 파일을 업로드 하세요"); 
+    	alert("이미지 파일을 선택해 주세요"); 
+    	document.getElementById("previewImg").src="";
+    	document.getElementById("upload").value="";
        return; 
       }
       if (input.files && input.files[0]) {
@@ -107,6 +109,48 @@
 
         reader.readAsDataURL(input.files[0]);
       }
+  }
+  
+ function checkForm(){
+	  
+
+	 
+	 if(document.getElementById("upload").value.length<1){
+		  
+		  alert("사진을 선택해 주세요");
+		  
+		  return false;
+	}
+	  
+	  if(document.getElementById("name").value.length<1){
+		  
+		  alert("이름을 입력해 주세요");
+		  
+		  return false;
+	  }
+	  
+ 	if(document.getElementById("cert_no").value.length<1){
+ 		
+ 		  alert("자격증 번호를 입력해 주세요");
+		  
+		  return false;
+	  }
+ 
+	 if(document.getElementById("id").value.length<1){
+	  
+		  alert("요양사의 아이디를 입력해 주세요");
+		  
+	  return false;
+ 	}
+	 
+	 if(document.getElementById("password").value.length<1){
+		  
+		  alert("요양사의 비밀번호를 입력해 주세요");
+		  
+		  return false;
+	}
+	  
+	 return false;
   }
   
 
@@ -128,7 +172,7 @@
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav">
         <li class="active"><a href="adminLogin">Home</a></li>
-            <li class="active">
+            <li>
                  
     <a class="active dropdown dropdown-toggle" data-toggle="dropdown">환자 관리</a>
     <ul class="active dropdown-menu">
@@ -139,16 +183,7 @@
 
         </li>
         
-          <li class="active">
-                 
-    <a class="active dropdown dropdown-toggle" data-toggle="dropdown">요양사 관리</a>
-    <ul class="active dropdown-menu">
-      <li><a href="adminNurseInput">요양사 등록</a></li>
-      <li><a href="adminNurseInfo">요양사 정보</a></li>
-    </ul>
- 
-
-        </li>
+          <li><a href="adminNurseInfo">요양사 정보</a></li>
       </ul>
      
       <ul class="nav navbar-nav navbar-right">
@@ -158,7 +193,7 @@
   </div>
 </nav>
 
-<form action="insertNurse" method="post" enctype="multipart/form-data">
+<form action="insertNurse" method="post" enctype="multipart/form-data" onsubmit="return checkForm()">
 
 <div class="container text-center"> 
    
@@ -202,7 +237,7 @@
         <div class="form-group">
      <label class="control-label col-sm-3">비밀번호</label>
      <div class="col-sm-9">
-      <input type="text" class="form-control" id="password" name="password" placeholder="비밀번호를 입력해주세요">
+      <input type="password" class="form-control" id="password" name="password" placeholder="비밀번호를 입력해주세요">
      </div>
      </div>
         

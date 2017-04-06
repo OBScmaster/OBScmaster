@@ -84,9 +84,9 @@
     			    			   $("#picdiv").append( "<input type='file' value='' id='upload' name='upload' style='width: 100%;'>");
     			    			 
     			    			  
-    			    			   $("#cert_no").removeAttr("readonly");
+    			    			  
     			    			   $("#phone").removeAttr("readonly");
-    			    			   $("#name").removeAttr("readonly");
+    			    			 
     			    		    			    			  
     			    			   $("#upload").on('change', function(){
     			    			          readURL(this);
@@ -121,15 +121,15 @@
     		    		    			 		    		
     		    		    			
     		    		    			 var patientselect = " <button class='form-control dropdown-toggle' type='button' data-toggle='dropdown' readonly='readonly'>환자목록<span class='caret'></span></button>"
-    		    		    			 +"<ul class='dropdown-menu'  role='menu'>";
+    		    		    			 +"";
     		    		    			    	  
     		    		    			    	  $.each(data,function(index,item){    			    		    			    	
     		    		    			    	
-    		    		    			    		  patientselect+="<li><input type='text' class='form-control' readonly='readonly' value="+item.name+"></li>";
+    		    		    			    		  patientselect+="<input type='text' class='form-control' readonly='readonly' value="+item.name+">";
     		    		    			    		  
     		    		    			    	  })
     		    		    			    	
-    		    		    			    	patientselect+="</ul>";
+    		    		    			    	patientselect+="";
     		    		    			    	
     		    		    			    	$("#patientList").html(patientselect);
     		    		    			    	
@@ -172,7 +172,9 @@
 	  var img = document.getElementById("upload").files;
       
       if (!fileType.test(img[0].type)) {
-    	alert("이미지 파일을 업로드 하세요"); 
+    	  alert("이미지 파일을 선택해 주세요"); 
+      	document.getElementById("previewImg").src="";
+      	document.getElementById("upload").value="";
        return; 
       }
       if (input.files && input.files[0]) {
@@ -186,7 +188,7 @@
       }
   }
   
-
+  
  
   
   </script>
@@ -205,7 +207,7 @@
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav">
         <li class="active"><a href="adminLogin">Home</a></li>
-        <li class="active">
+        <li>
                  
     <a class="active dropdown dropdown-toggle" data-toggle="dropdown">환자 관리</a>
     <ul class="active dropdown-menu">
@@ -216,16 +218,7 @@
 
         </li>
         
-          <li class="active">
-                 
-    <a class="active dropdown dropdown-toggle" data-toggle="dropdown">요양사 관리</a>
-    <ul class="active dropdown-menu">
-      <li><a href="adminNurseInput">요양사 등록</a></li>
-      <li><a href="adminNurseInfo">요양사 정보</a></li>
-    </ul>
- 
-
-        </li>
+         <li><a href="adminNurseInput">요양사 등록</a></li>
         
       </ul>
      

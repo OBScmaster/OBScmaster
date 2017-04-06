@@ -32,11 +32,16 @@ public class nurseController {
 	@Autowired
 	private nurseDAO nursedao;
 	
-	@Autowired
-	private AdminDAO admindao;
 	
 	@Autowired
 	private patientDAO pationtdao;
+	
+	@RequestMapping(value = "managerPatientInfo", method = RequestMethod.GET)
+	public String managerPatientInfo() {
+		
+		return "/manager/managerPatientInfo";	
+	
+	}
 	
 	@RequestMapping(value = "managerNurseInput", method = RequestMethod.GET)
 	public String managerNurseInput() {
@@ -72,7 +77,7 @@ public class nurseController {
 				
 				session.setAttribute("nurseId", nurseId);
 				model.addAttribute("nurse_no", n.getNurse_no());
-				
+				session.setAttribute("nurse_no", n.getNurse_no());
 				return "/manager/managerPage";
 				
 			

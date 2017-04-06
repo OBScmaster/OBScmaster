@@ -4,7 +4,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>AdminPatientInput</title>
+  <title>managerPatientInfo</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="./resources/css/bootstrap.min.css">
@@ -31,7 +31,7 @@
  		 
   		type:"get",
   		 url:"patientList",
-  		 data:{nurse_no:nurse_no}, 
+  		data:{nurse_no:nurse_no}, 
   	  success:function(data){
   			 
   			 var patientselect = "<div class='col-md-15'><div class='btn-group btn-group-justified'><a href='#' class='btn btn-info'>환자번호</a>"
@@ -115,12 +115,13 @@
 			    		$("#upload").remove();
 			    		
 			    		$("#patientUpdate").remove();
-			    		
+			    		$("#room_noSelect").remove();
 			    		$("#buttt").prepend("<button type='button' class='btn btn-primary' id='patientUpdate'>수정</button>");
 			    		 
 			    		$("#patientUpdate").click(function(){
 			    			  
 			    			   $("#patientUpdate").remove();
+			    			   $("#selectBtn").append("<input type='button' class='btn btn-primary' readonly='readonly' id='room_noSelect' value='방 선택'>");
 			    			   $("#buttt").prepend("<input type='submit' class='btn btn-primary' id='fd' value=확인>");
 			    			   $("#picdiv").append( "<input type='file' value='' id='upload' name='upload' style='width: 100%;'>");
 			    			 
@@ -155,6 +156,59 @@
 			    				    }).open();
 			    				
 			    				})
+			    				
+			    					 $("#room_noSelect").click(function(){
+						    	
+						    	$.ajax({
+						    	
+						    		 type:"post",
+						    		 url:"roomlist",
+						    		 success:function(data){
+						    			 
+						    			 var roomselect = "<div class='col-md-15'><div class='btn-group btn-group-justified'><a href='#' class='btn btn-info'>방번호</a>"
+						 			    	+"<a href='#' class='btn btn-info'>최대인원</a>"
+									    	  +"<a href='#' class='btn btn-info'>현재인원</a>"
+									    	  +"</div><div class='list-group text-left' style='height:540px;' id='roomgroup'>";
+						    			    	  
+						    			    	  $.each(data,function(index,item){
+						    			    	
+						    			    		  roomselect+="<div class='list-group-item' present="+item.present+" maximum="+item.maximum+" id="+item.room_no+"><table class='text-center'><tr><td width='160px;'>"
+						    			    		  +item.room_no+"호</td><td width='160px;'>"
+						    			    		  +item.maximum+"명</td><td width='160px;'>"
+						    			    		  +item.present+"명</td></tr></table></div>";
+						    			    		  
+						    			    	  })
+						    			    	
+						    			    	roomselect+="</div></div>";
+						    			    	
+						    			    	$("#kk").html(roomselect);
+						    			    	
+						    			    	 if(data.length>11){
+						     			    		$("#roomgroup").css("overflow","scroll");
+						     			    	};
+						     			    	
+													$(".list-group-item").click(function(){
+														
+														if($(this).attr("present")!=$(this).attr("maximum")){
+															
+															$(".list-group-item").css("color","black");
+								    			    		$(this).css("color","red");
+								    			    		$("#room_no").val($(this).attr("id"));
+								    			    		
+															
+														}else{
+															
+															alert("방의 정원이 다 찼습니다");
+														}
+						    			    		
+						    			    	});
+						    		
+						    						
+						    		},
+						    		 error:function(error){console(error);}
+						    		})
+						    	
+						    })
 			    			   
 
 			    			 })
@@ -188,7 +242,9 @@
  
 
       
-  		$("#patientUpdateCancel").click(function(){})
+  		$("#patientUpdateCancel").click(function(){
+  			location.href="managerPaientInfo";
+  		});
     	  
   		
   	    	  
@@ -202,7 +258,9 @@
 	  var img = document.getElementById("upload").files;
       
       if (!fileType.test(img[0].type)) {
-    	alert("이미지 파일을 업로드 하세요"); 
+    	  alert("이미지 파일을 선택해 주세요");
+    	document.getElementById("previewImg").src="";
+      	document.getElementById("upload").value="";
        return; 
       }
       if (input.files && input.files[0]) {
@@ -236,15 +294,31 @@
 	    
 	}
   
-  function dad() {
+  
+  function checkForm(){
+	  
+	if(document.getElementById("phone").value=="-"){
+			 document.getElementById("phone").value="";
+	}
+	  
+	if(document.getElementById("address").value=="-"){
+		  document.getElementById("address").value="";
+	}
+	  
+	if(document.getElementById("disease").value=="-"){
+		 document.getElementById("disease").value="";
+	 }
 
-	$("#name").val();
-	$("#room_no").val();
-	$("#birthdate").val();
-	$("#ins_no").val();
-	  
-	  
+	 if(document.getElementById("ppt_name").value=="-"){
+		 document.getElementById("ppt_name").value="";
+	 }
+	 
+	 if(document.getElementById("ppt_phone").value=="-"){
+		 document.getElementById("ppt_phone").value="";
+	 }
+
 }
+  
   
   </script>
 
@@ -263,19 +337,20 @@
   </div>
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav">
-        <li class="active"><a href="adminLogin">Home</a></li>
-        <li> <a href="adminNurseInput">간호사등록</a> </li>
+         <li class="active"><a href="managerLogin">Home</a></li>
+    	<li><a href="managerPatientInput">환자 등록</a></li>
+        <li><a href="scheduleInput">일정관리</a></li>
       </ul>
      
       <ul class="nav navbar-nav navbar-right">
-        <li><a href="#"><span class="glyphicon glyphicon-user"></span>${nurse.id}</a></li>
+        <li><a href="#"><span class="glyphicon glyphicon-user"></span>${sessionScope.nurseId}</a></li>
       </ul>
     </div>
   </div>
 </nav>
 
 
-<form action="updatePatient" method="post" enctype="multipart/form-data" id="updateForm" name="updateForm" onsubmit="dad()">
+<form action="updatePatient" method="post" enctype="multipart/form-data" id="updateForm" name="updateForm" onsubmit="checkForm()">
 <input type="hidden" id="pt_no" name="pt_no">
 <div class="container text-center">    
   <div class="row content">
@@ -288,8 +363,8 @@
  <td rowspan="2" >  
  
       <div class="col-sm-7">   
-   	 <div class="panel text-left">
-     <input type="button" class="btn btn-primary" readonly="readonly" id="room_noSelect" value="전체 환자 정보">
+   	 <div class="panel text-left" id="selectBtn">
+     <input type="button" class="btn btn-primary" readonly="readonly" value="전체 환자 정보">
   	
      </div>
      </div>
@@ -406,7 +481,7 @@
      <label class="control-label col-sm-3">요양사</label>
      <div class="col-sm-9">
       <input type="text" class="form-control" id="nurse_name" readonly="readonly">
-      <input type="hidden" class="form-control" value="${nurse.nurse_no}" id="nurse_no" name="nurse_no" readonly="readonly">
+      <input type="hidden" class="form-control" value="${sessionScope.nurse_no}" id="nurse_no" name="nurse_no" readonly="readonly">
      </div>
 
     

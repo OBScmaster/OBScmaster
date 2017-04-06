@@ -42,13 +42,13 @@ function test(){
 
 <c:if test="${PWnotMatch!=null}">
 <script type="text/javascript">
-alert("비번틀림");
+alert("비밀번호가 틀렸습니다");
 </script>
 </c:if>
 
 <c:if test="${whywhywhy!=null}">
 <script type="text/javascript">
-alert("모르겠네");
+alert("해당하는 아이디나 비밀번호가 없습니다");
 </script>
 </c:if>
 

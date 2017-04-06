@@ -41,7 +41,7 @@
     			    	  
     			    	  $.each(data,function(index,item){
     			    	
-    			    		  roomselect+="<div class='list-group-item' id="+item.room_no+"><table class='text-center'><tr><td width='160px;'>"
+    			    		  roomselect+="<div class='list-group-item' present="+item.present+" maximum="+item.maximum+" id="+item.room_no+"><table class='text-center'><tr><td width='160px;'>"
     			    		  +item.room_no+"호</td><td width='160px;'>"
     			    		  +item.maximum+"명</td><td width='160px;'>"
     			    		  +item.present+"명</td></tr></table></div>";
@@ -57,10 +57,19 @@
      			    	};
      			    	
 							$(".list-group-item").click(function(){
-    			    		
-    			    		$(".list-group-item").css("color","black");
-    			    		$(this).css("color","red");
-    			    		$("#room_no").val($(this).attr("id"));
+
+
+								if($(this).attr("present")!=$(this).attr("maximum")){
+									
+									$(".list-group-item").css("color","black");
+		    			    		$(this).css("color","red");
+		    			    		$("#room_no").val($(this).attr("id"));
+		    			    		
+									
+								}else{
+									
+									alert("방의 정원이 다 찼습니다");
+								}
     			    		
     			    	});
     		
@@ -121,7 +130,9 @@
 	  var img = document.getElementById("upload").files;
       
       if (!fileType.test(img[0].type)) {
-    	alert("이미지 파일을 업로드 하세요"); 
+    	  alert("이미지 파일을 선택해 주세요"); 
+      	document.getElementById("previewImg").src="";
+      	document.getElementById("upload").value="";
        return; 
       }
       if (input.files && input.files[0]) {
@@ -154,16 +165,83 @@
 	    }).open();
 	    
 	}
+ 
   
-  function dad() {
-
-	$("#name").val();
-	$("#room_no").val();
-	$("#birthdate").val();
-	$("#ins_no").val();
+  function checkForm(){
 	  
+		 if(document.getElementById("upload").value.length<1){
+			  
+			  alert("사진을 선택해 주세요");
+			  
+			  return false;
+		}
 	  
-}
+	  if(document.getElementById("name").value.length<1){
+		  
+		  alert("이름을 입력해 주세요");
+		  
+		  return false;
+	  }
+	  
+ 	if(document.getElementById("ins_no").value.length<1){
+ 		
+ 		  alert("의료 보험 번호를 입력해 주세요");
+		  
+		  return false;
+	  }
+ 
+	 if(document.getElementById("birthdate").value.length<1){
+	  
+		  alert("생년월일을 입력해 주세요");
+		  
+	  return false;
+ 	}
+	 
+	 if(document.getElementById("room_no").value.length<1){
+		  
+		  alert("방을 선택해 주세요");
+		  
+		  return false;
+	}
+	 
+	 if(document.getElementById("ppt_id").value.length>0&&document.getElementById("ppt_pw").value.length<1){
+		  
+		  alert("보호자의 비밀번호를 입력해 주세요");
+	
+		  		  
+		  return false;
+	}
+	 
+	 if(document.getElementById("ppt_id").value.length<1&&document.getElementById("ppt_pw").value.length>0){
+		  
+		  alert("보호자의 아이디를 입력해 주세요");
+		  		  
+		  return false;
+	}
+	 
+	 if(document.getElementById("ppt_id").value.length<1&&document.getElementById("ppt_pw").value.length<1&&document.getElementById("ppt_phone").value.length<1&&document.getElementById("ppt_name").value.length<1&&document.getElementById("ppt_add").value.length<1){
+		  
+		  if(confirm("보호자의 정보를 설정하지 않겠습니까?")){
+		  return true;
+		  }else{		  		  
+		  return false;
+		  }
+		  
+	}	 
+	 
+	 if(document.getElementById("ppt_id").value.length<1&&document.getElementById("ppt_pw").value.length<1){
+		  
+		  if(confirm("보호자의 아이디를 설정하지 않겠습니까?")){
+		  return true;
+		  }else{		  		  
+		  return false;
+		  }
+		  
+	}	 
+		
+	  
+	 return true;
+  }
   
   </script>
 
@@ -183,18 +261,8 @@
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav">
         <li class="active"><a href="adminLogin">Home</a></li>
-            <li class="active">
-                     
-    <a class="dropdown dropdown-toggle" data-toggle="dropdown">환자 관리</a>
-    <ul class="dropdown-menu">
-      <li><a href="adminPatientInput">환자 등록</a></li>
-      <li><a href="adminPatientInfo">환자 정보</a></li>
-    </ul>
- 
-
-        </li>
-        
-          <li class="active">
+           <li><a href="adminPatientInfo">환자 정보</a></li>        
+          <li>
                  
     <a class="dropdown dropdown-toggle" data-toggle="dropdown">요양사 관리</a>
     <ul class="dropdown-menu">
@@ -213,7 +281,7 @@
   </div>
 </nav>
 
-<form action="insertPatient" method="post" enctype="multipart/form-data" onsubmit="dad()">
+<form action="insertPatient" method="post" enctype="multipart/form-data" onsubmit="return checkForm()">
 
 <div class="container text-center">    
   <div class="row content">
