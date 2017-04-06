@@ -95,7 +95,6 @@
             <div class="row">
                 <div class="col-md-4 text-center" id = "managerNurseInput">
                     <div class="single_service wow fadeInUp" data-wow-delay="1s">
-                  
                          <img alt="" src="./resources/image/icons/play.png">
                         <p>Excepteur sint occaecat cupidatat non proident, sunt in culpa.</p>
                     </div>
@@ -110,8 +109,8 @@
                 </div>
                 
                 <div class="col-md-4 text-center" id = "managerPatientInput">
+                	<input type = "hidden" id = "nurse_no" value = "${nurse_no}">
                     <div class="single_service wow fadeInUp" data-wow-delay="2s">
-                      
                         <img alt="" src="./resources/image/icons/matureman.png">
                          <img alt="" src="./resources/image/icons/maturewoman.png">
                         <p>Excepteur sint occaecat cupidatat non proident, sunt in culpa.</p>

@@ -62,6 +62,15 @@ update NURSE
 update NURSE set DELETEFLAG='N' where NURSE_NO=#{nurse_no}
 </update>
 
-
+<select id="patientList" resultType="Patient" parameterType="int">
+	select
+		name
+		, room_no
+		, birthdate
+	from
+		patient
+	where
+		nurse_no = #{nurse_no}
+</select>
 	
 </mapper>

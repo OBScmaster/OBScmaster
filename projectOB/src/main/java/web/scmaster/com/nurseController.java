@@ -1,6 +1,8 @@
 package web.scmaster.com;
 
 
+import java.util.List;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -45,7 +47,7 @@ public class nurseController {
 	
 	@RequestMapping(value = "managerPatientInput", method = RequestMethod.GET)
 	public String managerPatientInput() {
-	
+		
 		return "/manager/managerPatientInput";	
 	
 	}
@@ -59,7 +61,7 @@ public class nurseController {
 
 	
 	@RequestMapping(value="managerLogin", method=RequestMethod.POST)
-	public String selectNurseById(String id, String password,Model model, HttpSession session){
+	public String selectNurseById(String id, String password, Model model, HttpSession session){
 		
 		Nurse n = nursedao.selectNurseById(id);
 		String nurseId = n.getId();
@@ -69,6 +71,7 @@ public class nurseController {
 			if(n.getPassword().equals(password)){
 				
 				session.setAttribute("nurseId", nurseId);
+				model.addAttribute("nurse_no", n.getNurse_no());
 				
 				return "/manager/managerPage";
 				
@@ -113,7 +116,12 @@ public class nurseController {
 	}
 	
 	@RequestMapping(value="scheduleInput", method=RequestMethod.GET)
-	public String scheduleInput(){
+	public String scheduleInput(HttpSession session, Model model){
+		String id = (String) session.getAttribute("nurseId");
+		Nurse nurse = nursedao.selectNurseById(id);
+		int nurse_no = nurse.getNurse_no();
+		List<Patient> patientList = nursedao.patientList(nurse_no);
+		model.addAttribute("patientList", patientList);
 		return "/manager/scheduleInput";
 	}
 	

@@ -1,5 +1,7 @@
 package web.scmaster.com.dao;
 
+import java.util.List;
+
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -44,5 +46,9 @@ public class nurseDAO {
 		return mapper.deleteNurse(nurse_no);
 	}
 	
-
+	public List<Patient> patientList(int nurse_no){
+		nurseMapper mapper = sqlsession.getMapper(nurseMapper.class);
+		
+		return mapper.patientList(nurse_no);
+	}
 }
