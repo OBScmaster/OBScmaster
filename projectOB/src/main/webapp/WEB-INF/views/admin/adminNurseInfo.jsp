@@ -23,7 +23,7 @@
   $(function() {
 	  
 	  $.ajax({  		 
-    		type:"get",
+    		type:"post",
     		 url:"nurselist",  
     		 contentType:"application/json; charset=utf-8",
     		 dataType:"json",
@@ -54,7 +54,10 @@
      			    		$("#patientgroup").css("overflow","scroll");
      			    	};
      			    	$(".list-group-item").click(function(){
-      			    		
+      			    	
+     			    		
+     			    		var nurse_no=$(this).attr("nurse_no");
+     			    		
       			    		$(".list-group-item").css("color","black");
       			    		$(this).css("color","red");
       			    		
@@ -62,9 +65,7 @@
       			    	   $("#name").attr("readonly","readonly");
       			    	   $("#phone").attr("readonly","readonly");
       			    	
-      			    	 
-      			    	
-      			    		
+      			    	 $("#nurse_no").val(nurse_no)
       			    		$("#cert_no").val($(this).attr("cert_no"));
       			    		$("#phone").val($(this).attr("phone"));
       			    		$("#name").val($(this).attr("name"));
@@ -78,19 +79,26 @@
     			    		$("#buttt").prepend("<button type='button' class='btn btn-primary' id='nurseUpdate'>수정</button>");
     			    		 
     			    		$("#nurseUpdate").click(function(){
-    			    			  
+    			    			
+    			    		 	$("#nurseUpdateCancel").click(function(){
+    			    				if(confirm("수정을 취소하시겠습니까?")){
+    			    					location.href="adminNurseInfo"
+    			    				 }
+    			    			});
+    			    		 	
     			    			   $("#nurseUpdate").remove();
+    			    			   
+    			    			   $("#btnSelect").html("<button type='button' class='btn btn-primary' id='nurseInfo'>배정되지 않은 환자</button>");
     			    			   $("#buttt").prepend("<input type='submit' class='btn btn-primary' id='fd' value=확인>");
     			    			   $("#picdiv").append( "<input type='file' value='' id='upload' name='upload' style='width: 100%;'>");
-    			    			 
-    			    			  
-    			    			  
     			    			   $("#phone").removeAttr("readonly");
     			    			 
     			    		    			    			  
     			    			   $("#upload").on('change', function(){
     			    			          readURL(this);
     			    			      });
+    			    			   
+    			    			   allPatients(nurse_no);
     			    	
     			    			 })
     			    		
@@ -111,38 +119,8 @@
     			    		          readURL(this);
     			    		 });
     			    		
-    						//환자목록
-    				    		$.ajax({
-    		    		    		 
-    		    		    		type:"get",
-    		    		    		 url:"patientList",
-    		    		    		 data:{nurse_no:$(this).attr("nurse_no")},
-    		    		    		 success:function(data){
-    		    		    			 		    		
-    		    		    			
-    		    		    			 var patientselect = " <button class='form-control dropdown-toggle' type='button' data-toggle='dropdown' readonly='readonly'>환자목록<span class='caret'></span></button>"
-    		    		    			 +"";
-    		    		    			    	  
-    		    		    			    	  $.each(data,function(index,item){    			    		    			    	
-    		    		    			    	
-    		    		    			    		  patientselect+="<input type='text' class='form-control' readonly='readonly' value="+item.name+">";
-    		    		    			    		  
-    		    		    			    	  })
-    		    		    			    	
-    		    		    			    	patientselect+="";
-    		    		    			    	
-    		    		    			    	$("#patientList").html(patientselect);
-    		    		    			    	
-    		    		    			    	 if(data.length>11){
-    		    		     			    		$("#patientgroup").css("overflow","scroll");
-    		    		     			    	};
-    		    									
-    		    		    						
-    		    		    		},
-    		    		    		 error:function(error){
-    		    		    			 
-    		    		    			 console.log(error);}
-    		    		    		});
+    						 
+    						myPatientList(nurse_no);
     						 
     			    	
     					});
@@ -162,9 +140,21 @@
       $("#addPatient").click(function(){
     	  alert("Adsfasdf");
       });
-    	 
       
-     
+      $("#nurseUpdate").click(function(){
+			if(document.getElementById("name").value.length<1){
+				alert("수정할 요양사를 선택해 주세요"); 
+			 }			 
+		 })
+		
+	   $("#nurseUpdateCancel").click(function(){
+			if(document.getElementById("name").value.length<1){
+				if(confirm("메인메뉴로 돌아가시겠습니까?")){
+					location.href="adminLogin"
+				 }
+			 }			 
+		 })
+		 
       
   });
 
@@ -188,6 +178,149 @@
       }
   }
   
+  function myPatientList(nurse_no){
+	  
+	//환자목록
+		$.ajax({
+  		 
+  		type:"get",
+  		 url:"patientList",
+  		 data:{nurse_no:nurse_no},
+  		 success:function(data){
+  			 		    		
+  			
+  			 var patientselect = " <button class='form-control dropdown-toggle' type='button' data-toggle='dropdown'  readonly='readonly'>환자목록<span class='caret' ></span></button>"
+  			 +"";
+  			    	  
+  			    	  $.each(data,function(index,item){    			    		    			    	
+  			    	
+  			    		  patientselect+="<input type='text' class='form-control' readonly='readonly' value="+item.name+">";
+  			    		  
+  			    	  })
+  			    	
+  			    	patientselect+="";
+  			    	
+  			    	$("#patientList").html(patientselect);
+  			    	
+  			    	 if(data.length>11){
+   			    		$("#patientgroup").css("overflow","scroll");
+   			    	};
+  		},
+  		 error:function(error){
+  			 
+  			 console.log(error);}
+  		});
+	  
+  }
+  
+  function allPatients(nurse_no){
+	  
+	  $.ajax({  		 
+  		type:"get",
+  		 url:"patientlist",  
+  		 contentType:"application/json; charset=utf-8",
+  		 dataType:"json",
+  		 success:function(data){
+  			
+  			 var patientselect = "<div class='col-md-7'><div class='btn-group btn-group-justified'><a href='#' class='btn btn-info'>환자명</a>"
+			    	+"<a href='#' class='btn btn-info'>병실</a>"
+			    	+"<a href='#' class='btn btn-info'>병명</a>"
+			    	+"</div><div class='list-group text-left' style='height:540px;' id='patientgroup'>";
+  			    	  
+  			    	  $.each(data,function(index,item){
+  			    		  if(item.ppt_name==null){
+  			    			  item.ppt_name="-";    			    			  
+  			    		  }
+  			    		  if(item.ppt_phone==null){
+  			    			  item.ppt_phone="-";    			    			  
+  			    		  }
+  			    		  if(item.ppt_add==null){
+  			    			  item.ppt_add="-";    			    			  
+  			    		  }
+  			    		  
+  			    		  if(item.disease==null){
+  			    			  item.disease="겡끼";    			    			  
+  			    		  }
+  			    		 if(item.nurse_no!=0){  
+  			    			 
+  			    		 }else{
+  			    		  patientselect+="<div class='list-group-item' name="+item.name+" pt_no="+item.pt_no+" room_no="+item.room_no+"><table class='text-center'><tr><td width='190px;'>"
+  			    		  +item.name+"</td><td width='250px;'>"
+  			    		  +item.room_no+"호</td><td width='200px;'>"
+  			    		  +item.disease+"</td></tr></table></div>";
+  			    		 }
+  			    	  })
+  			    	
+  			    	patientselect+="</div></div>";
+  			    	
+  			    	$("#kk").html(patientselect);
+  			    	
+  			    	 if(data.length>11){
+   			    		$("#patientgroup").css("overflow","scroll");
+   			    	};
+					
+   			    	
+   			    	
+   			    	$(".list-group-item").click(function(){
+  			    		
+   			    		var name = $(this).attr("name");
+   			    		var pt_no = $(this).attr("pt_no");
+   			    		
+  			    		$(".list-group-item").css("color","black");
+  			    		
+  			    		
+  			    		
+  			    		
+  			    		
+  			    		if(confirm(name+"님을 추가하시겠습니까?")){
+  			    			$(this).css("color","red");
+  			    			$("#pt_no").val(pt_no);
+  			    			
+  			    		
+								$.ajax({
+  			    		  		 
+  			    		  		type:"get",
+  			    		  		 url:"patientList",
+  			    		  		 data:{nurse_no:nurse_no},
+  			    		  		 success:function(data){
+  			    		  			 		    		
+  			    		  			
+  			    		  			 var patientselect = "<button class='form-control dropdown-toggle' type='button' data-toggle='dropdown'  readonly='readonly'>환자목록<span class='caret' ></span></button>"
+  			    		  			 +"";
+  			    		  			    	  
+  			    		  			    	  $.each(data,function(index,item){    			    		    			    	
+  			    		  			    	
+  			    		  			    		  patientselect+="<input type='text' class='form-control' readonly='readonly' value="+item.name+">";
+  			    		  			    		  
+  			    		  			    	  })
+  			    		  			    	
+  			    		  			    	patientselect+="new <input type='text' class='form-control' readonly='readonly' value="+name+">";
+  			    		  			    	
+  			    		  			    	$("#patientList").html(patientselect);
+  			    		  			    	
+  			    		  			    	 if(data.length>11){
+  			    		   			    		$("#patientgroup").css("overflow","scroll");
+  			    		   			    	};
+  			    		  		},
+  			    		  		 error:function(error){
+  			    		  			 
+  			    		  			 console.log(error);}
+  			    		  		});
+  			    			
+								
+  			    			
+  			    		}
+  			    		
+  			  
+  			    		 
+  			    	});
+  		
+  						
+  		},
+  		 error:function(error){console.log(error);}
+  		});
+	  
+  }
   
  
   
@@ -285,8 +418,9 @@
      <label class="control-label col-sm-3">환자</label>
      <div class="col-sm-9" id="patientList">
      
-     <input type="text" class="form-control" id="pt_name" readonly="readonly">
-
+     <input type="text" class="form-control" id="pt_name"  readonly="readonly">
+ 	
+    
      </div>
      </div>
      
@@ -301,7 +435,7 @@
    <div class="col-sm-7">   
    
    
-    <div class="panel text-left">
+    <div class="panel text-left" id="btnSelect">
   
  	 <button type="button" class="btn btn-primary" id="nurseInfo">간호사 정보</button>
   	 
@@ -337,11 +471,12 @@
 
 <div class="container-fluid text-center" id="buttt">
 <button type="button" class="btn btn-primary" id='nurseUpdate' >수정</button>
-<button type="button" class="btn btn-primary" id='nurseInsertCancel'>취소</button>
+<button type="button" class="btn btn-primary" id='nurseUpdateCancel'>취소</button>
 </div>
 <br>
-
- </form>
+<input type="hidden" class="form-control" value=0 id="nurse_no" name="nurse_no">
+<input type='hidden' class='form-control' id='pt_no' name='pt_no' value=0>
+</form>
 
  
 

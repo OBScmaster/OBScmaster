@@ -32,6 +32,15 @@ public class adminController {
 	@Autowired
 	private AdminDAO admindao;
 	
+	
+	@ResponseBody
+	@RequestMapping(value = "nursename", method = RequestMethod.GET)
+	public String nursename(int nurse_no) {
+		
+		return admindao.selectNurseByNurseno(nurse_no);
+	
+	}
+	
 	@RequestMapping(value = "adminNurseInfo", method = RequestMethod.GET)
 	public String adminNurseInfo() {
 	
@@ -116,7 +125,7 @@ public class adminController {
 	@RequestMapping(value="insertNurse", method=RequestMethod.POST)
 	public String insertNurse(Nurse nurse, int pt_no, MultipartFile upload){
 
-		if (!upload.isEmpty()) {
+		if (!upload.isEmpty()){
 			String savedfile = FileService.saveFile(upload, nurseUploadPath);
 			nurse.setOriginalphoto(upload.getOriginalFilename());
 			nurse.setSavedphoto(savedfile);
@@ -135,12 +144,6 @@ public class adminController {
 	@RequestMapping(value="insertPatient", method=RequestMethod.POST)
 	public String insertPatient(Patient patient, MultipartFile upload){
 
-		if(patient.getNurse_no()==0){
-						
-			return "/admin/adminPatientInput";	
-			
-		}else{
-			
 			if (!upload.isEmpty()) {
 				String savedfile = FileService.saveFile(upload, patientUploadPath);
 				patient.setOriginalphoto(upload.getOriginalFilename());
@@ -150,7 +153,7 @@ public class adminController {
 			int result = admindao.insertPatient(patient);			
 			
 			return "redirect:adminLogin";
-		}
+		
 		
 		
 	}
@@ -171,7 +174,54 @@ public class adminController {
 				patient.setSavedphoto(savedfile);
 			}
 			
-			int result = admindao.updatePatient(patient);			
+			admindao.updatePatient(patient);			
+			
+			return "redirect:adminLogin";
+		}
+	}
+	
+	@RequestMapping(value="updateNurse", method=RequestMethod.POST)
+	public String updateNurse(Nurse nurse, int pt_no, MultipartFile upload){
+		
+		System.out.println(pt_no);
+		System.out.println(pt_no);
+		System.out.println(pt_no);
+		System.out.println(pt_no);
+		
+		System.out.println("asdfasdfasdf");
+		
+		System.out.println(nurse.getNurse_no());
+		System.out.println(nurse.getNurse_no());
+		System.out.println(nurse.getNurse_no());
+		
+		if(nurse.getNurse_no()==0){		
+			return "/admin/adminNurseInfo";				
+		}else{
+			System.out.println();
+			if(pt_no>0){
+			
+				System.out.println(nurse.getNurse_no());
+				System.out.println(nurse.getNurse_no());
+				System.out.println(nurse.getNurse_no());
+				
+				System.out.println("fasdfasdf");
+				
+				
+				System.out.println(pt_no);
+				System.out.println(pt_no);
+				System.out.println(pt_no);
+				System.out.println(pt_no);
+				
+				admindao.updatePatientaboutNurse(pt_no, nurse.getNurse_no());
+			}
+			
+			if (!upload.isEmpty()) {
+				String savedfile = FileService.saveFile(upload, patientUploadPath);
+				nurse.setOriginalphoto(upload.getOriginalFilename());
+				nurse.setSavedphoto(savedfile);
+			}
+			
+			admindao.updateNurse(nurse);
 			
 			return "redirect:adminLogin";
 		}
@@ -188,7 +238,7 @@ public class adminController {
 	   }
 	
 	@ResponseBody
-	@RequestMapping(value="nurselist", method=RequestMethod.GET)
+	@RequestMapping(value="nurselist", method=RequestMethod.POST)
 	 public List<Nurse> nurselist(){
 		   
 		   List<Nurse> nurselist = admindao.nurselist();

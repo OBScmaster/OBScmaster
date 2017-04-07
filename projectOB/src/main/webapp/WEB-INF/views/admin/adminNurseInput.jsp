@@ -29,9 +29,9 @@
     		 dataType:"json",
     		 success:function(data){
     			
-    			 var patientselect = "<div class='col-md-7'><div class='btn-group btn-group-justified'><a href='#' class='btn btn-info'>환자번호</a>"
- 			    	+"<a href='#' class='btn btn-info'>환자명</a>"
-			    	  +"<a href='#' class='btn btn-info'>생년월일</a>"
+    			 var patientselect = "<div class='col-md-7'><div class='btn-group btn-group-justified'><a href='#' class='btn btn-info'>환자명</a>"
+ 			    	+"<a href='#' class='btn btn-info'>생년월일</a>"
+			    	  +"<a href='#' class='btn btn-info'>병명</a>"
 			    	  +"</div><div class='list-group text-left' style='height:540px;' id='patientgroup'>";
     			    	  
     			    	  $.each(data,function(index,item){
@@ -44,11 +44,15 @@
     			    		  if(item.ppt_add==null){
     			    			  item.ppt_add="-";    			    			  
     			    		  }
+    			    		  
+    			    		  if(item.disease==null){
+    			    			  item.disease="겡끼";    			    			  
+    			    		  }
     			    	
     			    		  patientselect+="<div class='list-group-item' name="+item.name+" pt_no="+item.pt_no+" ppt_phone="+item.ppt_phone+" ppt_add="+item.ppt_add+" ppt_name="+item.ppt_name+"><table class='text-center'><tr><td width='190px;'>"
-    			    		  +item.pt_no+"</td><td width='250px;'>"
-    			    		  +item.name+"</td><td width='200px;'>"
-    			    		  +item.birthdate+"</td></tr></table></div>";
+    			    		  +item.name+"</td><td width='250px;'>"
+    			    		  +item.birthdate+"</td><td width='200px;'>"
+    			    		  +item.disease+"</td></tr></table></div>";
     			    		  
     			    	  })
     			    	
@@ -85,6 +89,12 @@
       $("#addPatient").click(function(){
     	  alert("Adsfasdf");
       });
+      
+  	$("#nurseInsertCancel").click(function(){
+			if(confirm("메인메뉴로 돌아가시겠습니까?")){
+				location.href="managerLogin"
+			 }
+		});
     	 
       
      

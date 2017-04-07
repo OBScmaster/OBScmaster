@@ -68,7 +68,7 @@
 									
 								}else{
 									
-									alert("방의 정원이 다 찼습니다");
+									alert($(this).attr("id")+"호실은 정원이 다 찼습니다");
 								}
     			    		
     			    	});
@@ -123,6 +123,12 @@
     		 error:function(error){console(error);}
     		})
     		})
+    		
+    		$("#patientInsertCancel").click(function(){
+    			if(confirm("메인메뉴로 돌아가시겠습니까?")){
+    				location.href="managerLogin"
+    			 }
+    		});
     		
   });
 

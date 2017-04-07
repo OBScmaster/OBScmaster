@@ -26,7 +26,7 @@
           readURL(this);
       });
       
-    $("#room_noSelect").click(function(){
+
     	
     	$.ajax({
     	
@@ -67,7 +67,7 @@
 									
 								}else{
 									
-									alert("방의 정원이 다 찼습니다");
+									alert($(this).attr("id")+"호실은 정원이 다 찼습니다");
 								}
     			    		
     			    	});
@@ -76,8 +76,14 @@
     		},
     		 error:function(error){console(error);}
     		})
+    		
+    		$("#patientInsertCancel").click(function(){
+      			if(confirm("메인메뉴로 돌아가시겠습니까?")){
+     				location.href="managerLogin"
+     			 }
+      		});
     	
-    })
+    
     
   });
 
@@ -342,7 +348,7 @@
       <div class="col-sm-7">   
    	 <div class="panel text-left">
      <input type="button" class="btn btn-primary" readonly="readonly" id="room_noSelect" value="방선택">
-  	 <input type="button" class="btn btn-primary" readonly="readonly" id="nurse_noSelect" value="요양사선택">
+  
      </div>
      </div>
       

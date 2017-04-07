@@ -116,6 +116,18 @@ update patient
 
 </update>
 
+<update id="updateNurse" parameterType="Nurse">
+
+update Nurse 
+	set
+	<if test="phone!=null">PHONE=#{phone}</if>
+	<if test="originalphoto!=null">,ORIGINALPHOTO=#{originalphoto}</if>
+ 	<if test="savedphoto!=null">,SAVEDPHOTO=#{savedphoto}</if> 	
+
+	where NURSE_NO=#{nurse_no}	
+
+</update>
+
 <!-- 전체 간호사 -->
 <select id="nurselist" resultType="Nurse">
 
@@ -123,12 +135,17 @@ select cert_no, nurse_no, name, phone from nurse
 where deleteflag='Y'
 
 order by nurse_no
-
-
 </select>
 
+
+<select id="selectNurseByNurseno" resultType="String" parameterType="int">
+select name from nurse
+where nurse_no=#{nurse_no}
+</select>
+
+
 <update id="updatePatientaboutNurse" parameterType="int">
-update Patient set Nurse_no=#{nurse_no} where pt_id=#{pt_id}
+update Patient set nurse_no=#{nurse_no} where pt_no=#{pt_no}
 </update>
 
 <!-- 전체 환자 -->
