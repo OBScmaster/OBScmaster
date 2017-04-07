@@ -1,5 +1,6 @@
 package web.scmaster.com.dao;
 
+import java.util.HashMap;
 import java.util.List;
 
 import web.scmaster.com.vo.Nurse;
@@ -12,4 +13,5 @@ public interface nurseMapper {
 	public int updateNurse(Nurse nurse);
 	public int deleteNurse(int nurse_no);
 	public List<Patient> patientList(int nurse_no);
+	public List<HashMap<String, Object>> patientScheduleList(HashMap<String, Object> map);
 }
