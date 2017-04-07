@@ -1,6 +1,8 @@
 package web.scmaster.com;
 
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -20,6 +22,7 @@ import web.scmaster.com.dao.patientDAO;
 import web.scmaster.com.util.FileService;
 import web.scmaster.com.vo.Nurse;
 import web.scmaster.com.vo.Patient;
+import web.scmaster.com.vo.Room;
 
 
 @SessionAttributes("nurse")
@@ -139,4 +142,12 @@ public class nurseController {
 		return p;
 	}
 
+	@ResponseBody
+	@RequestMapping(value="patientSchedule", method=RequestMethod.POST)
+	public List<HashMap<String, Object>> patientSchedule(int pt_no, String today){
+		List<HashMap<String, Object>> patientScheduleList = new ArrayList<>();
+		patientScheduleList = nursedao.patientScheduleList(pt_no, today);
+		System.out.println(patientScheduleList);
+		return patientScheduleList;
+	}
 }

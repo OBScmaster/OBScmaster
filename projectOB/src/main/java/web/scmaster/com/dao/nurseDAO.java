@@ -1,5 +1,6 @@
 package web.scmaster.com.dao;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
@@ -50,5 +51,15 @@ public class nurseDAO {
 		nurseMapper mapper = sqlsession.getMapper(nurseMapper.class);
 		
 		return mapper.patientList(nurse_no);
+	}
+	
+	public List<HashMap<String, Object>> patientScheduleList(int pt_no, String today){
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		map.put("pt_no", pt_no);
+		map.put("today", today);
+		
+		nurseMapper mapper = sqlsession.getMapper(nurseMapper.class);
+		
+		return mapper.patientScheduleList(map);
 	}
 }
