@@ -41,6 +41,9 @@ $(document).ready(function() {
 		var pt_no = $(this).attr("id");
 		var today = $(".datepicker").val();
 		
+		alert(pt_no);
+		alert(today);
+		
 		$.ajax({
 			
 			type : "post",
@@ -73,8 +76,38 @@ $(document).ready(function() {
 			    html += "<h3 class='panel-title'>식사</h3>";
 			    html += "</div>";
 			    html += "<div class='panel-body'>";
-			    $.each(data, function(index,item){
-			    	
+			    html += "<table class='table table-hover'>";
+	    		html += "<thead>";
+	    		html += "<tr>";
+	    		html += "<th>식사</th>";
+	    		html += "<th>시간</th>";
+	    		html += "<th>식단</th>";
+	    		html += "</tr>";
+	    		html += "</thead>";
+			    $.each(data, function(index,patientScheduleList){
+			    	if(patientScheduleList.WHATEAT != ""){
+			    		html += "<tbody>";
+			    		html += "<tr>";
+			    		html += "<td>" + patientScheduleList.TYPEEAT + "</td>";
+			    		html += "<td>" + patientScheduleList.MEALTIME + "</td>";
+			    		html += "<td>" + patientScheduleList.WHATEAT + "</td>";
+			    		html += "</tr>";
+			    		html += "</tbody>";
+			    		html += "</table>";
+			    		html += "</div>";
+			    		html += "</div>";
+			    	} else{
+			    		html += "<tbody>";
+			    		html += "<tr>";
+			    		html += "<td>";
+			    		html += "<p>아직등록되지않았습니다.</p>";
+			    		html += "</td>";
+			    		html += "</tr>";
+			    		html += "</tbody>";
+			    		html += "</table>";
+			    		html += "</div>";
+			    		html += "</div>";
+			    	}
 			    })
 			    html += "<div id='menu2' class='tab-pane fade'>";
 				html += "<h3>Menu 2</h3>";  

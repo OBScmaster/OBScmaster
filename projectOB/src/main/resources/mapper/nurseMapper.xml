@@ -110,7 +110,8 @@ update NURSE set DELETEFLAG='N' where NURSE_NO=#{nurse_no}
 		and ds.pt_no = b.pt_no
 		and b.pt_no = do.pt_no
 		and do.pt_no = s.pt_no
-		and m.pt_no = #{pt_no}, m.today = #{today} 
+		and m.pt_no = #{pt_no}
+		and m.today = #{today} 
 </select>
 	
 </mapper>
