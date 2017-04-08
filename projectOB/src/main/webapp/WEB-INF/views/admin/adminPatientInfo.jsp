@@ -4,7 +4,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>AdminPatientInput</title>
+  <title>AdminPatientInfo</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="./resources/css/bootstrap.min.css">
@@ -80,8 +80,9 @@
   			    	 if(data.length>11){
    			    		$("#patientgroup").css("overflow","scroll");
    			    	};
-						
    			    	
+   			    	
+   			    	   			    	
    			    	$(".list-group-item").click(function(){
   			    		
   			    		$(".list-group-item").css("color","black");
@@ -102,8 +103,17 @@
   			    		$("#birthdate").val($(this).attr("birthdate"));
   			    		$("#disease").val($(this).attr("disease"));
   			    		$("#room_no").val($(this).attr("room_no"));
+  			    		
   			    		$("#nurse_no").val($(this).attr("nurse_no"));
   			    		
+  			    		$.ajax({
+  			    			type:"get",
+  			    			 url:"nursename",
+  			    			data:{nurse_no:$(this).attr("nurse_no")},
+  			    		  	  success:function(data){ $("#nurse_name").val(data);},
+  			    		  	  error:function(e){console.log(e)}
+  			    			
+  			    		})
   			    		
 			    		$("#pt_no").val($(this).attr("pt_no"));
 			    		$("#ppt_phone").val($(this).attr("ppt_phone"));
@@ -118,11 +128,22 @@
 			    		$("#buttt").prepend("<button type='button' class='btn btn-primary' id='patientUpdate'>수정</button>");
 			    		 
 			    		$("#patientUpdate").click(function(){
+			    			
+			    			$("#patientUpdateCancel").click(function(){
+			    	  			if(confirm("수정을 취소하시겠습니까")){
+			    		  			location.href="adminPatientInfo";
+			    					}
+			    	  		})
 			    			  
 			    			   $("#patientUpdate").remove();
+			    			
+			    			var buttons="<div class='panel text-left' id='selectBtn'>"
+			    			+"<input type='button' class='btn btn-primary' readonly='readonly' id='room_Select' value='방 변경'>&nbsp;"
+			    			+"<input type='button' class='btn btn-primary' readonly='readonly' id='nurse_Select' value='요양사 변경'></div>"
 			    			   
-				    			$("#selectBtn").append("<input type='button' class='btn btn-primary' readonly='readonly' id='room_noSelect' value='방 선택'>");
-			    			   $("#buttt").prepend("<input type='submit' class='btn btn-primary' id='fd' value=확인>");
+				    			$("#selectBtn").html(buttons);
+				    			
+				    			$("#buttt").prepend("<input type='submit' class='btn btn-primary' id='fd' value=확인>");
 			    			   $("#picdiv").append( "<input type='file' value='' id='upload' name='upload' style='width: 100%;'>");
 			    			 
 			    			  
@@ -156,59 +177,13 @@
 			    				    }).open();
 			    				
 			    				})
-			    				
-			    				 $("#room_noSelect").click(function(){
 						    	
-						    	$.ajax({
-						    	
-						    		 type:"post",
-						    		 url:"roomlist",
-						    		 success:function(data){
-						    			 
-						    			 var roomselect = "<div class='col-md-15'><div class='btn-group btn-group-justified'><a href='#' class='btn btn-info'>방번호</a>"
-						 			    	+"<a href='#' class='btn btn-info'>최대인원</a>"
-									    	  +"<a href='#' class='btn btn-info'>현재인원</a>"
-									    	  +"</div><div class='list-group text-left' style='height:540px;' id='roomgroup'>";
-						    			    	  
-						    			    	  $.each(data,function(index,item){
-						    			    	
-						    			    		  roomselect+="<div class='list-group-item' present="+item.present+" maximum="+item.maximum+" id="+item.room_no+"><table class='text-center'><tr><td width='160px;'>"
-						    			    		  +item.room_no+"호</td><td width='160px;'>"
-						    			    		  +item.maximum+"명</td><td width='160px;'>"
-						    			    		  +item.present+"명</td></tr></table></div>";
-						    			    		  
-						    			    	  })
-						    			    	
-						    			    	roomselect+="</div></div>";
-						    			    	
-						    			    	$("#kk").html(roomselect);
-						    			    	
-						    			    	 if(data.length>11){
-						     			    		$("#roomgroup").css("overflow","scroll");
-						     			    	};
-						     			    	
-													$(".list-group-item").click(function(){
-														
-														if($(this).attr("present")!=$(this).attr("maximum")){
-															
-															$(".list-group-item").css("color","black");
-								    			    		$(this).css("color","red");
-								    			    		$("#room_no").val($(this).attr("id"));
-								    			    		
-															
-														}else{
-															
-															alert("방의 정원이 다 찼습니다");
-														}
-						    			    		
-						    			    	});
+						    	roomSelect();
 						    		
-						    						
-						    		},
-						    		 error:function(error){console(error);}
-						    		})
+						    		$("#nurse_Select").click(function(){
+						    		nurseSelect();
+						    		});
 						    	
-						    })
 			    			   
 
 			    			 })
@@ -233,6 +208,7 @@
 						
 			    		
 					});
+   			    	
   		
   						
   		},
@@ -242,17 +218,13 @@
       
  
 
-      
-  		$("#patientUpdateCancel").click(function(){
-  			location.href="adminPatientInfo";
-  		})
-    	  
-  		
-  	    	  
-  			
-  	    	  
-  	      
-    		
+ 	 $("#patientUpdate").click(function(){
+			if(document.getElementById("name").value.length<1){
+				alert("수정할 환자를 선택해 주세요"); 
+			 }
+			 
+		 })
+     		
   });
 
   function readURL(input) {
@@ -319,6 +291,121 @@
 	}
 		 
 }
+  
+  
+  function roomSelect(){
+	  
+	  $.ajax({
+	    	
+ 		 type:"post",
+ 		 url:"roomlist",
+ 		 success:function(data){
+ 			 
+ 			 var roomselect = "<div class='col-md-15'><div class='btn-group btn-group-justified'><a href='#' class='btn btn-info'>방번호</a>"
+			    	+"<a href='#' class='btn btn-info'>최대인원</a>"
+			    	  +"<a href='#' class='btn btn-info'>현재인원</a>"
+			    	  +"</div><div class='list-group text-left' style='height:540px;' id='roomgroup'>";
+ 			    	  
+ 			    	  $.each(data,function(index,item){
+ 			    	
+ 			    		  roomselect+="<div class='list-group-item' present="+item.present+" maximum="+item.maximum+" id="+item.room_no+"><table class='text-center'><tr><td width='160px;'>"
+ 			    		  +item.room_no+"호</td><td width='160px;'>"
+ 			    		  +item.maximum+"명</td><td width='160px;'>"
+ 			    		  +item.present+"명</td></tr></table></div>";
+ 			    		  
+ 			    	  })
+ 			    	
+ 			    	roomselect+="</div></div>";
+ 			    	
+ 			    	$("#kk").html(roomselect);
+ 			    	
+ 			    	 if(data.length>11){
+  			    		$("#roomgroup").css("overflow","scroll");
+  			    	};
+  			    	
+							$(".list-group-item").click(function(){
+								
+								if($(this).attr("present")!=$(this).attr("maximum")){
+									
+									$(".list-group-item").css("color","black");
+		    			    		$(this).css("color","red");
+		    			    		$("#room_no").val($(this).attr("id"));
+		    			    		
+									
+								}else{
+									
+									alert($(this).attr("id")+"호실은 정원이 다 찼습니다");
+								}
+ 			    		
+ 			    	});
+ 		
+ 						
+ 		},
+ 		 error:function(error){console(error);}
+ 		})
+	  
+  }
+  
+  
+  function nurseSelect() {
+	  
+	  $.ajax({
+	    	
+		  type:"post",
+ 		 url:"nurselist",  
+ 		 contentType:"application/json; charset=utf-8",
+ 		 dataType:"json",
+ 		 success:function(data){
+ 		
+ 			
+ 			 
+ 			 var patientselect = "<div class='col-md-15'><div class='btn-group btn-group-justified'><a href='#' class='btn btn-info'>요양사번호</a>"
+			    	+"<a href='#' class='btn btn-info'>이름</a>"
+			    	  +"<a href='#' class='btn btn-info'>전화번호</a>"
+			    	  +"</div><div class='list-group text-left' style='height:540px;' id='patientgroup'>";
+ 			    	  
+ 			    	  $.each(data,function(index,item){
+ 			    		  if(item.name==null){
+ 			    			  item.name="-";    			    			  
+ 			    		  }
+ 			    		  patientselect+="<div class='list-group-item' nurse_no="+item.nurse_no+" name="+item.name+"><table class='text-center'><tr><td width='160px;'>"
+ 			    		  +item.nurse_no+"</td><td width='160px;'>"
+ 			    		  +item.name+"</td><td width='160px;'>"
+ 			    		  +item.phone+"</td></tr></table></div>";
+ 			    		  
+ 			    	  }) 
+ 			    	
+ 			    	patientselect+="</div></div>";
+ 			    	
+ 			    	$("#kk").html(patientselect);
+ 			    	
+ 			    	 if(data.length>11){
+  			    		$("#patientgroup").css("overflow","scroll");
+  			    	};
+  			    	
+  			    	$(".list-group-item").click(function(){
+   			    		
+  			    		
+   			    		$(".list-group-item").css("color","black");
+   			    		$(this).css("color","red");
+		    			$("#nurse_name").val($(this).attr("name"));
+		    			$("#nurse_no").val($(this).attr("nurse_no"));		
+		    			
+ 			    		
+ 			    	});
+  			    	
+  			    	$("#room_Select").click(function(){
+			    		roomSelect();
+			    	});
+  			    	
+  			    	$()
+ 		
+ 						
+ 		},
+ 		 error:function(error){console(error);}
+ 		})
+	
+}
 	  
 	  
 
@@ -377,9 +464,8 @@
  
       <div class="col-sm-7">   
    	 <div class="panel text-left" id="selectBtn">
-     <input type="button" class="btn btn-primary" readonly="readonly" value="전체 환자 정보">
-  	
-     </div>
+     <input type="button" class="btn btn-primary" id="allPaitent" readonly="readonly" value="전체 환자 정보">
+  	 </div>
      </div>
       
  <div class="col-md-15" id="kk">

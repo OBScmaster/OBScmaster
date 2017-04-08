@@ -22,7 +22,10 @@ public interface AdminMapper {
 	public int insertNurse(Nurse nurse);
 	public int insertPatient(Patient patient);
 	public int updatePatient(Patient patient);
+	public int updateNurse(Nurse nurse);
 	public List<Patient> patientlist();
 	
-	public int updatePatientaboutNurse(int pt_no, @Param("nurse_no")int nurse_no);
+	public String selectNurseByNurseno(int nurse_no);
+	
+	public int updatePatientaboutNurse(@Param("pt_no")int pt_no, @Param("nurse_no")int nurse_no);
 }

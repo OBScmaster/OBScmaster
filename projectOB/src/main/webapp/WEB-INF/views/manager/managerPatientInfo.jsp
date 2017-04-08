@@ -23,6 +23,8 @@
   var fileType = /^(?:image\/bmp|image\/gif|image\/jpeg|image\/png|image\/x\-xwindowdump|image\/x\-portable\-bitmap)$/i;
   $(function() {
 	  
+	
+	  
 	  $("#upload").on('change', function(){
           readURL(this);
       });
@@ -119,9 +121,15 @@
 			    		$("#buttt").prepend("<button type='button' class='btn btn-primary' id='patientUpdate'>수정</button>");
 			    		 
 			    		$("#patientUpdate").click(function(){
+			    			
+			    			$("#patientUpdateCancel").click(function(){
+			    	  			if(confirm("수정을 취소하시겠습니까")){
+			    		  			location.href="managerPatientInfo";
+			    					}
+			    	  		})
 			    			  
 			    			   $("#patientUpdate").remove();
-			    			   $("#selectBtn").append("<input type='button' class='btn btn-primary' readonly='readonly' id='room_noSelect' value='방 선택'>");
+			    			   $("#selectBtn").html("<input type='button' class='btn btn-primary' readonly='readonly' id='room_Select' value='방 변경'>");
 			    			   $("#buttt").prepend("<input type='submit' class='btn btn-primary' id='fd' value=확인>");
 			    			   $("#picdiv").append( "<input type='file' value='' id='upload' name='upload' style='width: 100%;'>");
 			    			 
@@ -157,7 +165,7 @@
 			    				
 			    				})
 			    				
-			    					 $("#room_noSelect").click(function(){
+			    			
 						    	
 						    	$.ajax({
 						    	
@@ -198,7 +206,7 @@
 															
 														}else{
 															
-															alert("방의 정원이 다 찼습니다");
+															alert($(this).attr("id")+"호실은 정원이 다 찼습니다");
 														}
 						    			    		
 						    			    	});
@@ -208,7 +216,7 @@
 						    		 error:function(error){console(error);}
 						    		})
 						    	
-						    })
+						   
 			    			   
 
 			    			 })
@@ -240,10 +248,17 @@
       
       
  
-
+ 		 $("#patientUpdate").click(function(){
+ 			if(document.getElementById("name").value.length<1){
+ 				alert("수정할 환자를 선택해 주세요"); 
+ 			 }
+ 			 
+ 		 })
       
   		$("#patientUpdateCancel").click(function(){
-  			location.href="managerPaientInfo";
+  			if(confirm("메인메뉴로 돌아가시겠습니까?")){
+ 				location.href="managerLogin"
+ 			 }
   		});
     	  
   		

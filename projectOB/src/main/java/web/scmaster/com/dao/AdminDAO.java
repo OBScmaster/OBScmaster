@@ -107,12 +107,27 @@ public class AdminDAO {
 		
 	}
 	
+	public int updateNurse(Nurse nurse){
+		
+		AdminMapper mapper = sqlsession.getMapper(AdminMapper.class);
+		
+		return mapper.updateNurse(nurse);
+		
+	}
+	
 	
 	 public List<Patient> patientlist(){
 		   
 		 AdminMapper mapper = sqlsession.getMapper(AdminMapper.class);
 			   
 	      return mapper.patientlist();
+	   }
+	 
+	 public String selectNurseByNurseno(int nurse_no){
+		   
+		 AdminMapper mapper = sqlsession.getMapper(AdminMapper.class);
+			   
+	      return mapper.selectNurseByNurseno(nurse_no);
 	   }
 	 
 
