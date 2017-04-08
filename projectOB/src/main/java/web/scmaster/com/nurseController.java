@@ -145,9 +145,9 @@ public class nurseController {
 	@ResponseBody
 	@RequestMapping(value="patientSchedule", method=RequestMethod.POST)
 	public List<HashMap<String, Object>> patientSchedule(int pt_no, String today){
-		List<HashMap<String, Object>> patientScheduleList = new ArrayList<>();
-		patientScheduleList = nursedao.patientScheduleList(pt_no, today);
-		System.out.println(patientScheduleList);
-		return patientScheduleList;
+		List<HashMap<String, Object>> scheduleList = new ArrayList<>();
+		scheduleList = nursedao.patientScheduleList(pt_no, today);
+		System.out.println(scheduleList);
+		return scheduleList;
 	}
 }

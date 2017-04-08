@@ -52,6 +52,7 @@ $(document).ready(function() {
 				pt_no : pt_no,
 				today : today
 			},
+			dataType : "json",
 			success : function(data){
 				console.log(data);
 				var html = "";
@@ -84,13 +85,13 @@ $(document).ready(function() {
 	    		html += "<th>식단</th>";
 	    		html += "</tr>";
 	    		html += "</thead>";
-			    $.each(data, function(index,patientScheduleList){
-			    	if(patientScheduleList.WHATEAT != ""){
+			    $.each(data, function(index,scheduleList){
+			    	if(scheduleList.whatEat != ""){
 			    		html += "<tbody>";
 			    		html += "<tr>";
-			    		html += "<td>" + patientScheduleList.TYPEEAT + "</td>";
-			    		html += "<td>" + patientScheduleList.MEALTIME + "</td>";
-			    		html += "<td>" + patientScheduleList.WHATEAT + "</td>";
+			    		html += "<td>" + scheduleList.typeEat + "</td>";
+			    		html += "<td>" + scheduleList.mealTime + "</td>";
+			    		html += "<td>" + scheduleList.whatEat + "</td>";
 			    		html += "</tr>";
 			    		html += "</tbody>";
 			    		html += "</table>";

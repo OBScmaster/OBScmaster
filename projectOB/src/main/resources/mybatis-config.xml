@@ -18,6 +18,7 @@
 		<typeAlias type="web.scmaster.com.vo.Room" alias="Room" />
 		<typeAlias type="web.scmaster.com.vo.SensorLog" alias="SensorLog" />
 		<typeAlias type="web.scmaster.com.vo.Special" alias="Special" />
+		<typeAlias type="web.scmaster.com.vo.Schedule" alias="Schedule" />
 	</typeAliases> 
 	
 	<mappers>	
