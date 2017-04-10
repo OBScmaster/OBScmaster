@@ -43,6 +43,22 @@
   			    	  
   			    	  $.each(data,function(index,item){
   			    		  
+  			    		var add = item.address;
+			    	      if(add==null){
+			    	    	address="-";    			    			  
+			    		  }else{  			    			  
+			    			  var address=add.replace(/ /gi,',');
+			    			 } 
+			    	 	  
+			    		var pptadd = item.ppt_add;
+			    		  if(pptadd==null){
+			    			pptadd="-";    			    			  
+			    		  }else{  			    			  
+			    			var ppt_add=pptadd.replace(/ /gi,',');
+			    		
+			    		}
+			    		  
+  			    		  
   			    		  if(item.ppt_name==null){
   			    			  item.ppt_name="-";    			    			  
   			    		  }
@@ -55,9 +71,7 @@
   			    		  if(item.disease==null){
   			    			  item.disease="-";    			    			  
   			    		  }  			    		 
-  			    		  if(item.ppt_add==null){
-  			    			  item.ppt_add="-";    			    			  
-  			    		  }
+  			    		 
   			    		  if(item.nurse_no==null){
   			    			  item.nurse_no="-";    			    			  
   			    		  }   		 
@@ -68,8 +82,9 @@
   			    	    if(item.savedphoto==null){
 			    			  item.savedphoto="-";    			    			  
 			    		  }
+  			    
   			    	
-  			    		  patientselect+="<div class='list-group-item' previewImg="+item.savedphoto+" phone="+item.phone+" disease="+item.disease+" room_no="+item.room_no+" ins_no="+item.ins_no+" birthdate="+item.birthdate+" nurse_no="+item.nurse_no+" address="+item.address+" name="+item.name+" pt_no="+item.pt_no+" ppt_phone="+item.ppt_phone+" ppt_add="+item.ppt_add+" ppt_name="+item.ppt_name+"><table class='text-center'><tr><td width='160px;'>"
+  			    		  patientselect+="<div class='list-group-item' previewImg="+item.savedphoto+" phone="+item.phone+" disease="+item.disease+" room_no="+item.room_no+" ins_no="+item.ins_no+" birthdate="+item.birthdate+" nurse_no="+item.nurse_no+" address="+address+" name="+item.name+" pt_no="+item.pt_no+" ppt_phone="+item.ppt_phone+" ppt_add="+ppt_add+" ppt_name="+item.ppt_name+"><table class='text-center'><tr><td width='160px;'>"
   			    		  +item.pt_no+"</td><td width='160px;'>"
   			    		  +item.name+"</td><td width='160px;'>"
   			    		  +item.birthdate+"</td></tr></table></div>";
@@ -101,7 +116,13 @@
   			    		$("#name").val($(this).attr("name"));
   			    		$("#phone").val($(this).attr("phone"));
   			    		$("#ins_no").val($(this).attr("ins_no"));
-  			    		$("#address").val($(this).attr("address"));
+  			    		
+  			    		
+  			    		var add=$(this).attr("address");
+ 			    		 var address = add.replace(/,/gi," ");
+ 			    		$("#address").val(address);
+  			    		
+  			    		
   			    		$("#birthdate").val($(this).attr("birthdate"));
   			    		$("#disease").val($(this).attr("disease"));
   			    		$("#room_no").val($(this).attr("room_no"));
@@ -110,7 +131,11 @@
   			    		
 			    		$("#pt_no").val($(this).attr("pt_no"));
 			    		$("#ppt_phone").val($(this).attr("ppt_phone"));
-			    		$("#ppt_add").val($(this).attr("ppt_add"));
+			    		
+			    		var pptadd=$(this).attr("ppt_add");
+	  			    	var ppt_add = pptadd.replace(/,/gi," ");
+	  			    	$("#ppt_add").val(ppt_add);
+			    		
 			    		$("#ppt_name").val($(this).attr("ppt_name"));
 			    		
 			    		$("#fd").remove();
