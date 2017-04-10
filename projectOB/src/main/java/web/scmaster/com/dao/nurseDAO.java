@@ -72,4 +72,14 @@ public class nurseDAO {
 		
 		return mapper.showExercise(map);
 	}
+	
+	public List<HashMap<String, Object>> showCleaning(int pt_no, String today){
+		HashMap<String, Object> map = new HashMap<>();
+		map.put("pt_no", pt_no);
+		map.put("today", today);
+		
+		nurseMapper mapper = sqlsession.getMapper(nurseMapper.class);
+		
+		return mapper.showCleaning(map);
+	}
 }

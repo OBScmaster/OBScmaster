@@ -15,4 +15,5 @@ public interface nurseMapper {
 	public List<Patient> patientList(int nurse_no);
 	public List<HashMap<String, Object>> showMeal(HashMap<String, Object> map);
 	public List<HashMap<String, Object>> showExercise(HashMap<String, Object> map);
+	public List<HashMap<String, Object>> showCleaning(HashMap<String, Object> map);
 }
