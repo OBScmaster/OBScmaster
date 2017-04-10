@@ -3,7 +3,7 @@
  */
  var fileType = /^(?:image\/bmp|image\/gif|image\/jpeg|image\/png|image\/x\-xwindowdump|image\/x\-portable\-bitmap)$/i;
   $(function() {
-	  
+		
 	  $("#upload").on('change', function(){
           readURL(this);
       });
@@ -15,15 +15,24 @@
   	  contentType:"application/json; charset=utf-8",
   	  dataType:"json",
   	  success:function(data){
+  		  
+  	     
+  		  data.sort(function(a,b) {
+  			
+  	        var val1 = a.pt_no;  	  
+  	        var val2 = b.pt_no;
+  	    
+  	        return(val1>val2)?-1:(val1<val2)?1:0;
+  	    });
   			 
+  		  
   			 var patientselect = "<div class='col-md-15'><div class='btn-group btn-group-justified'><a href='#' class='btn btn-info'>환자번호</a>"
 			    	+"<a href='#' class='btn btn-info'>환자명</a>"
 			    	  +"<a href='#' class='btn btn-info'>생년월일</a>"
 			    	  +"</div><div class='list-group text-left' style='height:540px;' id='patientgroup'>";
   			    	  
   			    	  $.each(data,function(index,item){
-  			    		
-  			    		
+  			    		  			    		
   			    		  if(item.ppt_name==null){
   			    			  item.ppt_name="-";    			    			  
   			    		  }
@@ -46,7 +55,7 @@
 			    	 	  
   			    		var pptadd = item.ppt_add;
   			    		  if(pptadd==null){
-  			    			pptadd="-";    			    			  
+  			    			ppt_add="-";    			    			  
   			    		  }else{  			    			  
   			    			var ppt_add=pptadd.replace(/ /gi,',');
   			    		

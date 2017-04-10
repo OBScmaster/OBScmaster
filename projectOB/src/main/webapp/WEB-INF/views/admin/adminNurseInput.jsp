@@ -28,6 +28,15 @@
     		 contentType:"application/json; charset=utf-8",
     		 dataType:"json",
     		 success:function(data){
+    			 
+
+   			  data.sort(function(a,b) {
+   		  			
+   		  	        var val1 = a.pt_no;  	  
+   		  	        var val2 = b.pt_no;
+   		  	    
+   		  	        return(val1>val2)?-1:(val1<val2)?1:0;
+   		  	    });
     			
     			 var patientselect = "<div class='col-md-7'><div class='btn-group btn-group-justified'><a href='#' class='btn btn-info'>환자명</a>"
  			    	+"<a href='#' class='btn btn-info'>생년월일</a>"

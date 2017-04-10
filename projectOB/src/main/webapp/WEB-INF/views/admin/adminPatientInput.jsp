@@ -81,6 +81,8 @@
     })
     
       $("#nurse_noSelect").click(function(){
+    	  
+    	
     	
     	$.ajax({
     	
@@ -88,6 +90,14 @@
     		 url:"nurselist",
     		 success:function(data){
     			 
+    			  data.sort(function(a,b) {
+    		  			
+    		  	        var val1 = a.nurse_no;  	  
+    		  	        var val2 = b.nurse_no;
+    		  	    
+    		  	        return(val1>val2)?-1:(val1<val2)?1:0;
+    		  	    });
+    			  
     			 var nurseselect =  "<div class='col-md-15'><div class='btn-group btn-group-justified'><a href='#' class='btn btn-info'>사번</a>"
     			    	+"<a href='#' class='btn btn-info'>이름</a>"
     			    	  +"<a href='#' class='btn btn-info'>전화번호</a>"
@@ -363,7 +373,7 @@
   <br>
      <label class="control-label col-sm-3">병명</label>
      <div class="col-sm-9">
-      <input type="text" class="form-control" id="disease" name="disease" placeholder="병명을 입력해주세요">
+ 	<input type="text" class="form-control" id="disease" name="disease" placeholder="병명을 입력해주세요">
      </div>
     
      </td>     

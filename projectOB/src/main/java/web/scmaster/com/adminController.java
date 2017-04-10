@@ -11,7 +11,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -26,8 +25,8 @@ import web.scmaster.com.vo.Room;
 @Controller
 public class adminController {
 	
-	final String patientUploadPath = "../../../../../webapp/resources/image/patientfile";
-	final String nurseUploadPath = "/nursefile";
+	final String patientUploadPath = "/Users/kita/Desktop/SpringWorkSpace/.metadata/.plugins/org.eclipse.wst.server.core/tmp0/wtpwebapps/projectOB/resources/image/patientfile";
+	final String nurseUploadPath = "/Users/kita/Desktop/SpringWorkSpace/.metadata/.plugins/org.eclipse.wst.server.core/tmp0/wtpwebapps/projectOB/resources/image/nursefile";
 	
 	@Autowired
 	private AdminDAO admindao;
@@ -143,14 +142,25 @@ public class adminController {
 	
 	@RequestMapping(value="insertPatient", method=RequestMethod.POST)
 	public String insertPatient(Patient patient, MultipartFile upload){
-
+			
+		System.out.println(patient.getDisease());
+		System.out.println(patient.getDisease());
+		System.out.println(patient.getDisease());
+		System.out.println(patient.getDisease());
+		
+		System.out.println(patient.getBirthdate());
+		System.out.println(patient.getBirthdate());
+		System.out.println(patient.getBirthdate());
+		System.out.println(patient.getBirthdate());
+		
+		
 			if (!upload.isEmpty()) {
 				String savedfile = FileService.saveFile(upload, patientUploadPath);
 				patient.setOriginalphoto(upload.getOriginalFilename());
 				patient.setSavedphoto(savedfile);
 			}
 			
-			int result = admindao.insertPatient(patient);			
+			admindao.insertPatient(patient);			
 			
 			return "redirect:adminLogin";
 		
@@ -233,7 +243,7 @@ public class adminController {
 	   public List<Patient> patientlist(){
 		   
 		   List<Patient> patientlist = admindao.patientlist();
-			   
+				   
 	      return patientlist;
 	   }
 	

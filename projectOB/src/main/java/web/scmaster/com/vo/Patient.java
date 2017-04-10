@@ -96,7 +96,7 @@ public class Patient {
 		return disease;
 	}
 
-	public void setDesease(String disease) {
+	public void setDisease(String disease) {
 		this.disease = disease;
 	}
 
