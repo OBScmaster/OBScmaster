@@ -35,7 +35,6 @@ $(document).ready(function() {
 		dateFormat: "yy/mm/dd"
 	});
 	
-
 	
 	$(".list-group-item").on("click", function() {
 		var pt_no = $(this).attr("id");
@@ -84,8 +83,8 @@ $(document).ready(function() {
 							html1 += "<th>식단</th>";
 							html1 += "</tr>";
 							html1 += "</thead>";
+							if(data.length > 0){
 							$.each(data, function(index,item) {
-								if(item != ""){
 								html1 += "<tbody>";
 								html1 += "<tr>";
 								html1 += "<td>" + item.TYPEEAT + "</td>";
@@ -93,14 +92,30 @@ $(document).ready(function() {
 								html1 += "<td>" + item.WHATEAT + "</td>";
 								html1 += "</tr>";
 								html1 += "</tbody>";
+								})//each
 								} else{
 									html1 += "<tbody>";
 									html1 += "<tr>";
 									html1 += "<td colspan='3'>아직등록되지않았습니다.</td>";
 									html1 += "</tr>";
+									html1 += "<tr>";
+									html1 += "<td>식사<select class='form-control'>";
+									html1 += "<option>아침</option>";
+									html1 += "<option>점심</option>";
+									html1 += "<option>저녁</option>";
+									html1 += "</select>";
+									html1 += "<td>시간<input type = 'text' class='form-control' name = 'mealTime' id = 'mealTime'></td>";
+									html1 += "<td>식단<input type = 'text' class='form-control' name = 'whatEat' id = 'whatEat'></td>";
+									html1 += "</tr>";
+									html1 += "<tr>";
+									html1 += "<td></td>";
+									html1 += "<td></td>";
+									html1 += "<td>";
+									html1 += "<input type='button' value = '등록' class='btn btn-primary' onclick = 'enrollMeal();'>";
+									html1 += "</td>";
+									html1 += "</tr>";
 									html1 += "</tbody>";
 								}
-							})
 							html1 += "</table>";
 							html1 += "</div>";
 							html1 += "</div>";
@@ -133,22 +148,24 @@ $(document).ready(function() {
 						html2 += "<th>시간</th>";
 						html2 += "</tr>";
 						html2 += "</thead>";
+						if(data.length > 0){
 						$.each(data, function(index,item) {
-							if(item.EXERCISETEXT != null){
+							
 							html2 += "<tbody>";
 							html2 += "<tr>";
 							html2 += "<td>" + item.EXERCISETEXT + "</td>";
 							html2 += "<td>" + item.EXERCISETIME + "</td>";
 							html2 += "</tr>";
 							html2 += "</tbody>";
-							} else{
+							})//each
+						}//if
+						else{
 								html2 += "<tbody>";
 								html2 += "<tr>";
 								html2 += "<td colspan='3'>아직등록되지않았습니다.</td>";
 								html2 += "</tr>";
 								html2 += "</tbody>";
 							}
-						})
 						html2 += "</table>";
 						html2 += "</div>";
 						html2 += "</div>";
@@ -181,22 +198,24 @@ $(document).ready(function() {
 						html3 += "<th>내용</th>";
 						html3 += "</tr>";
 						html3 += "</thead>";
+						if(data.length > 0){
 						$.each(data, function(index,item) {
-							if(item.length != 0){
+							console.log(item);
 							html3 += "<tbody>";
 							html3 += "<tr>";
 							html3 += "<td>" + item.CLEANING + "</td>";
 							html3 += "<td>" + item.CLEANINGREPORT + "</td>";
 							html3 += "</tr>";
 							html3 += "</tbody>";
-							} else{
-								html3 += "<tbody>";
-								html3 += "<tr>";
-								html3 += "<td colspan='3'>아직등록되지않았습니다.</td>";
-								html3 += "</tr>";
-								html3 += "</tbody>";
-							}
-						})
+						})//each
+						}//if 
+						else{
+							html3 += "<tbody>";
+							html3 += "<tr>";
+							html3 += "<td colspan='3'>아직등록되지않았습니다.</td>";
+							html3 += "</tr>";
+							html3 += "</tbody>";
+						}
 						html3 += "</table>";
 						html3 += "</div>";
 						html3 += "</div>";
