@@ -157,4 +157,12 @@ public class nurseController {
 		showExercise = nursedao.showExercise(pt_no, today);
 		return showExercise;
 	}
+	
+	@ResponseBody
+	@RequestMapping(value = "showCleaning", method = RequestMethod.POST)
+	public List<HashMap<String, Object>> showCleaning(int pt_no, String today){
+		List<HashMap<String, Object>> showCleaning = new ArrayList<>();
+		showCleaning = nursedao.showCleaning(pt_no, today);
+		return showCleaning;
+	}
 }

@@ -60,7 +60,7 @@ $(document).ready(function() {
 				html += "<li><a data-toggle='tab' href='#menu8'>특이사항</a></li>";
 				html += "</ul>";
 				html += "<div class='tab-content'>";
-				html += "<div id='menu1' class='tab-pane fade'>";
+				html += "<div id='menu1' class='tab-pane fade in active'>";
 					$.ajax({
 						type : "post",
 						url : "showMeal",
@@ -85,7 +85,7 @@ $(document).ready(function() {
 							html1 += "</tr>";
 							html1 += "</thead>";
 							$.each(data, function(index,item) {
-								if(item.TYPEEAT != null){
+								if(item != ""){
 								html1 += "<tbody>";
 								html1 += "<tr>";
 								html1 += "<td>" + item.TYPEEAT + "</td>";
@@ -101,6 +101,7 @@ $(document).ready(function() {
 									html1 += "</tbody>";
 								}
 							})
+							html1 += "</table>";
 							html1 += "</div>";
 							html1 += "</div>";
 							$("#menu1").html(html1);
@@ -109,7 +110,7 @@ $(document).ready(function() {
 							console.log(e);
 						}
 					})
-			    html += "<div id='menu2' class='tab-pane fade'>";
+			    html += "</div><div id='menu2' class='tab-pane fade'>";
 			    $.ajax({
 					type : "post",
 					url : "showExercise",
@@ -122,7 +123,7 @@ $(document).ready(function() {
 						var html2 = "";
 						html2 += "<div class='panel panel-success'>";
 						html2 += "<div class='panel-heading'>";
-						html2 += "<h3 class='panel-title'>식사</h3>";
+						html2 += "<h3 class='panel-title'>운동</h3>";
 						html2 += "</div>";
 						html2 += "<div class='panel-body'>";
 						html2 += "<table class='table table-hover'>";
@@ -148,6 +149,7 @@ $(document).ready(function() {
 								html2 += "</tbody>";
 							}
 						})
+						html2 += "</table>";
 						html2 += "</div>";
 						html2 += "</div>";
 						$("#menu2").html(html2);
@@ -156,9 +158,54 @@ $(document).ready(function() {
 						console.log(e);
 					}
 				})
-			    html += "<div id='menu3' class='tab-pane fade'>";
-				html += "<h3>Menu 3</h3>";  
-			    html += "<p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>";  
+			    html += "</div><div id='menu3' class='tab-pane fade'>";
+			    $.ajax({
+					type : "post",
+					url : "showCleaning",
+					data : {
+						pt_no : pt_no,
+						today : today
+					},
+					success : function(data) {
+						console.log(data);
+						var html3 = "";
+						html3 += "<div class='panel panel-info'>";
+						html3 += "<div class='panel-heading'>";
+						html3 += "<h3 class='panel-title'>청소</h3>";
+						html3 += "</div>";
+						html3 += "<div class='panel-body'>";
+						html3 += "<table class='table table-hover'>";
+						html3 += "<thead>";
+						html3 += "<tr>";
+						html3 += "<th>청소시간</th>";
+						html3 += "<th>내용</th>";
+						html3 += "</tr>";
+						html3 += "</thead>";
+						$.each(data, function(index,item) {
+							if(item.length != 0){
+							html3 += "<tbody>";
+							html3 += "<tr>";
+							html3 += "<td>" + item.CLEANING + "</td>";
+							html3 += "<td>" + item.CLEANINGREPORT + "</td>";
+							html3 += "</tr>";
+							html3 += "</tbody>";
+							} else{
+								html3 += "<tbody>";
+								html3 += "<tr>";
+								html3 += "<td colspan='3'>아직등록되지않았습니다.</td>";
+								html3 += "</tr>";
+								html3 += "</tbody>";
+							}
+						})
+						html3 += "</table>";
+						html3 += "</div>";
+						html3 += "</div>";
+						$("#menu3").html(html3);
+					},
+					error : function(e) {
+						console.log(e);
+					}
+				})
 			    html += "</div>";
 			    html += "<div id='menu4' class='tab-pane fade'>";
 				html += "<h3>Menu 4</h3>";  
@@ -187,11 +234,6 @@ $(document).ready(function() {
 			
 		})
 	})
-
-function showMeal(pt_no, today) {
-	alert(pt_no);
-	alert(today);
-}
 
 </script>
 </head>

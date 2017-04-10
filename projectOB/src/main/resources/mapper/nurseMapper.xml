@@ -96,5 +96,16 @@ update NURSE set DELETEFLAG='N' where NURSE_NO=#{nurse_no}
 		pt_no = #{pt_no}
 		and today = #{today}
 </select>
+
+<select id="showCleaning" resultType="HashMap" parameterType="HashMap">
+	select
+		cleaning
+		, cleaningreport
+	from
+		dailycleaning
+	where
+		pt_no = #{pt_no}
+		and today = #{today}
+</select>
 	
 </mapper>
