@@ -60,6 +60,16 @@ public class nurseDAO {
 		
 		nurseMapper mapper = sqlsession.getMapper(nurseMapper.class);
 		
-		return mapper.patientScheduleList(map);
+		return mapper.showMeal(map);
+	}
+	
+	public List<HashMap<String, Object>> showExercise(int pt_no, String today){
+		HashMap<String, Object> map = new HashMap<>();
+		map.put("pt_no", pt_no);
+		map.put("today", today);
+		
+		nurseMapper mapper = sqlsession.getMapper(nurseMapper.class);
+		
+		return mapper.showExercise(map);
 	}
 }

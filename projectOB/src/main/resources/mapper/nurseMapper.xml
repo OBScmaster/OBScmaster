@@ -74,44 +74,27 @@ update NURSE set DELETEFLAG='N' where NURSE_NO=#{nurse_no}
 		nurse_no = #{nurse_no}
 </select>
 
-<select id="patientScheduleList" resultType="Schedule" parameterType="HashMap">
+<select id="showMeal" resultType="HashMap" parameterType="HashMap">
 	select
-		m.typeeat
-		, m.mealtime
-		, m.whateat
-		, e.exercisetime
-		, e.exercisetext
-		, dc.cleaning
-		, dc.cleaningreport
-		, dw.wash
-		, dw.washreport
-		, ds.shower
-		, ds.showerreport
-		, b.timetosleep
-		, b.timetogetup
-		, do.reporttime
-		, do.report
-		, s.sreporttime
-		, s.sreport
+		typeeat
+		, mealtime
+		, whateat
 	from
-		meal m
-		, exercise e
-		, dailycleaning dc
-		, dailywash dw
-		, dailyshower ds
-		, bedtime b
-		, dr_op do
-		, special s
+		meal
 	where
-		m.pt_no = e.pt_no
-		and e.pt_no = dc.pt_no
-		and dc.pt_no = dw.pt_no
-		and dw.pt_no = ds.pt_no
-		and ds.pt_no = b.pt_no
-		and b.pt_no = do.pt_no
-		and do.pt_no = s.pt_no
-		and m.pt_no = #{pt_no}
-		and m.today = #{today} 
+		pt_no = #{pt_no}
+		and today = #{today} 
+</select>
+
+<select id="showExercise" resultType="HashMap" parameterType="HashMap">
+	select
+		exercisetime
+		, exercisetext
+	from
+		exercise
+	where
+		pt_no = #{pt_no}
+		and today = #{today}
 </select>
 	
 </mapper>

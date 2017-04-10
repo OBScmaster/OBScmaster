@@ -44,17 +44,6 @@ $(document).ready(function() {
 		alert(pt_no);
 		alert(today);
 		
-		$.ajax({
-			
-			type : "post",
-			url : "patientSchedule",
-			data : {
-				pt_no : pt_no,
-				today : today
-			},
-			dataType : "json",
-			success : function(data){
-				console.log(data);
 				var html = "";
 				html += "<div class='text-left' style='font-weight: bold;'>환자</div> ";
 				html += "<div class='container col-md-12'>";
@@ -72,48 +61,101 @@ $(document).ready(function() {
 				html += "</ul>";
 				html += "<div class='tab-content'>";
 				html += "<div id='menu1' class='tab-pane fade'>";
-				html += "<div class='panel panel-primary'>";  
-			    html += "<div class='panel-heading'>";  
-			    html += "<h3 class='panel-title'>식사</h3>";
-			    html += "</div>";
-			    html += "<div class='panel-body'>";
-			    html += "<table class='table table-hover'>";
-	    		html += "<thead>";
-	    		html += "<tr>";
-	    		html += "<th>식사</th>";
-	    		html += "<th>시간</th>";
-	    		html += "<th>식단</th>";
-	    		html += "</tr>";
-	    		html += "</thead>";
-			    $.each(data, function(index,scheduleList){
-			    	if(scheduleList.whatEat != ""){
-			    		html += "<tbody>";
-			    		html += "<tr>";
-			    		html += "<td>" + scheduleList.typeEat + "</td>";
-			    		html += "<td>" + scheduleList.mealTime + "</td>";
-			    		html += "<td>" + scheduleList.whatEat + "</td>";
-			    		html += "</tr>";
-			    		html += "</tbody>";
-			    		html += "</table>";
-			    		html += "</div>";
-			    		html += "</div>";
-			    	} else{
-			    		html += "<tbody>";
-			    		html += "<tr>";
-			    		html += "<td>";
-			    		html += "<p>아직등록되지않았습니다.</p>";
-			    		html += "</td>";
-			    		html += "</tr>";
-			    		html += "</tbody>";
-			    		html += "</table>";
-			    		html += "</div>";
-			    		html += "</div>";
-			    	}
-			    })
+					$.ajax({
+						type : "post",
+						url : "showMeal",
+						data : {
+							pt_no : pt_no,
+							today : today
+						},
+						success : function(data) {
+							console.log(data);
+							var html1 = "";
+							html1 += "<div class='panel panel-primary'>";
+							html1 += "<div class='panel-heading'>";
+							html1 += "<h3 class='panel-title'>식사</h3>";
+							html1 += "</div>";
+							html1 += "<div class='panel-body'>";
+							html1 += "<table class='table table-hover'>";
+							html1 += "<thead>";
+							html1 += "<tr>";
+							html1 += "<th>식사</th>";
+							html1 += "<th>시간</th>";
+							html1 += "<th>식단</th>";
+							html1 += "</tr>";
+							html1 += "</thead>";
+							$.each(data, function(index,item) {
+								if(item.TYPEEAT != null){
+								html1 += "<tbody>";
+								html1 += "<tr>";
+								html1 += "<td>" + item.TYPEEAT + "</td>";
+								html1 += "<td>" + item.MEALTIME + "</td>";
+								html1 += "<td>" + item.WHATEAT + "</td>";
+								html1 += "</tr>";
+								html1 += "</tbody>";
+								} else{
+									html1 += "<tbody>";
+									html1 += "<tr>";
+									html1 += "<td colspan='3'>아직등록되지않았습니다.</td>";
+									html1 += "</tr>";
+									html1 += "</tbody>";
+								}
+							})
+							html1 += "</div>";
+							html1 += "</div>";
+							$("#menu1").html(html1);
+						},
+						error : function(e) {
+							console.log(e);
+						}
+					})
 			    html += "<div id='menu2' class='tab-pane fade'>";
-				html += "<h3>Menu 2</h3>";  
-			    html += "<p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>";  
-			    html += "</div>";
+			    $.ajax({
+					type : "post",
+					url : "showExercise",
+					data : {
+						pt_no : pt_no,
+						today : today
+					},
+					success : function(data) {
+						console.log(data);
+						var html2 = "";
+						html2 += "<div class='panel panel-success'>";
+						html2 += "<div class='panel-heading'>";
+						html2 += "<h3 class='panel-title'>식사</h3>";
+						html2 += "</div>";
+						html2 += "<div class='panel-body'>";
+						html2 += "<table class='table table-hover'>";
+						html2 += "<thead>";
+						html2 += "<tr>";
+						html2 += "<th>운동</th>";
+						html2 += "<th>시간</th>";
+						html2 += "</tr>";
+						html2 += "</thead>";
+						$.each(data, function(index,item) {
+							if(item.EXERCISETEXT != null){
+							html2 += "<tbody>";
+							html2 += "<tr>";
+							html2 += "<td>" + item.EXERCISETEXT + "</td>";
+							html2 += "<td>" + item.EXERCISETIME + "</td>";
+							html2 += "</tr>";
+							html2 += "</tbody>";
+							} else{
+								html2 += "<tbody>";
+								html2 += "<tr>";
+								html2 += "<td colspan='3'>아직등록되지않았습니다.</td>";
+								html2 += "</tr>";
+								html2 += "</tbody>";
+							}
+						})
+						html2 += "</div>";
+						html2 += "</div>";
+						$("#menu2").html(html2);
+					},
+					error : function(e) {
+						console.log(e);
+					}
+				})
 			    html += "<div id='menu3' class='tab-pane fade'>";
 				html += "<h3>Menu 3</h3>";  
 			    html += "<p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>";  
@@ -142,13 +184,14 @@ $(document).ready(function() {
 			    html += "</div>";
 			    
 			    $("#tab").html(html);
-			},
-			error : function(e) {
-				console.log(e);
-			}
+			
 		})
 	})
-})
+
+function showMeal(pt_no, today) {
+	alert(pt_no);
+	alert(today);
+}
 
 </script>
 </head>
@@ -203,7 +246,7 @@ $(document).ready(function() {
 
   				<div class="tab-content">
     				
-			    <div id="menu1" class="tab-pane fade">
+			    <div id="menu1" class="tab-pane fade in active">
 			      <h3>Menu 1</h3>
 			      <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
 			    </div>

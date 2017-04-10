@@ -143,11 +143,18 @@ public class nurseController {
 	}
 
 	@ResponseBody
-	@RequestMapping(value="patientSchedule", method=RequestMethod.POST)
-	public List<HashMap<String, Object>> patientSchedule(int pt_no, String today){
-		List<HashMap<String, Object>> scheduleList = new ArrayList<>();
-		scheduleList = nursedao.patientScheduleList(pt_no, today);
-		System.out.println(scheduleList);
-		return scheduleList;
+	@RequestMapping(value="showMeal", method=RequestMethod.POST)
+	public List<HashMap<String, Object>> showMeal(int pt_no, String today){
+		List<HashMap<String, Object>> showMeal = new ArrayList<>();
+		showMeal = nursedao.patientScheduleList(pt_no, today);
+		return showMeal;
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "showExercise", method = RequestMethod.POST)
+	public List<HashMap<String, Object>> showExercise(int pt_no, String today){
+		List<HashMap<String, Object>> showExercise = new ArrayList<>();
+		showExercise = nursedao.showExercise(pt_no, today);
+		return showExercise;
 	}
 }
