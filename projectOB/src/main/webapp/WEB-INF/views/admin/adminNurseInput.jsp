@@ -19,6 +19,9 @@
     }
   </style>
   <script type="text/javascript">
+  var pt_no;
+  var pt_name;
+  var remoptno;
   var fileType = /^(?:image\/bmp|image\/gif|image\/jpeg|image\/png|image\/x\-xwindowdump|image\/x\-portable\-bitmap)$/i;
   $(function() {
 	  
@@ -72,16 +75,17 @@
     			    	 if(data.length>11){
      			    		$("#patientgroup").css("overflow","scroll");
      			    	};
-							$(".list-group-item").click(function(){
-    			    		
+     			    	
+     			    	
+						$(".list-group-item").click(function(){
+						
     			    		$(".list-group-item").css("color","black");
-    			    		$(this).css("color","red");
+    			    		$(this).css("color","red");    			    		
+    			    		pt_name=$(this).attr("name")	    		
+    			    		pt_no=$(this).attr("pt_no")
+    			    		$("#ptname").val(pt_name);
     			    		
     			    		
-    			    		$("#pt_name").val($(this).attr("name"));
-    			    		$("#pt_no").val($(this).attr("pt_no"));
-    			  
-    			    		 
     			    	});
     		
     						
@@ -96,7 +100,57 @@
       });
       
       $("#addPatient").click(function(){
-    	  alert("Adsfasdf");
+    	  
+    	  $.ajax({
+    		  type:"get",
+     		 url:"addPatient", 
+     		 data:{
+     			pt_no:pt_no,
+     			pt_name:pt_name
+     		 },
+     		success:function(data){
+     			
+     			var patientadd="";
+     			 $.each(data,function(index,item){ 
+     		    					 
+     			   	patientadd +="<input type='text' class='form-control' id='pt_name' value="+item.pt_name+" readonly='readonly'>"
+     	     		+"<input type='hidden' class='form-control' id='pt_no' value="+item.pt_no+" name='pt_no'>"
+     		
+     				 
+     			 })
+     			patientadd += "<input type='text' class='form-control' id='ptname' readonly='readonly'>";
+     			  $("#moreP").html(patientadd);
+     			  
+     			
+     		
+     			  
+     		},
+     		error:function(e){}    		  
+    	  })   	  
+    	    	   
+    	  
+      });      
+      
+        $("#removePatient").click(function(){
+        	
+        		  $.ajax({
+            		  type:"get",
+             		 url:"removePatient", 
+             		
+             		success:function(data){
+             			
+             			var patientadd="";
+             			 $.each(data,function(index,item){
+             			   	patientadd +="<input type='text' class='form-control' id='pt_name' value="+item.pt_name+" readonly='readonly'>"
+             	     			+"<input type='hidden' class='form-control' id='pt_no' value="+item.pt_no+" name='pt_no'>"
+             				 
+             			 })
+             			patientadd += "<input type='text' class='form-control' id='ptname' readonly='readonly'>";
+             			  $("#moreP").html(patientadd);
+             		},
+             		error:function(e){}    		  
+            	  })  
+        
       });
       
   	$("#nurseInsertCancel").click(function(){
@@ -104,9 +158,6 @@
 				location.href="managerLogin"
 			 }
 		});
-    	 
-      
-     
       
   });
 
@@ -123,7 +174,9 @@
       var reader = new FileReader();
 
       reader.onload = function (e) {
+    	  
               $('#previewImg').attr('src', e.target.result);
+              
           }
 
         reader.readAsDataURL(input.files[0]);
@@ -169,7 +222,7 @@
 		  return false;
 	}
 	  
-	 return false;
+	 return true;
   }
   
 
@@ -285,9 +338,12 @@
        
          <div class="form-group">
      <label class="control-label col-sm-3">환자</label>
-     <div class="col-sm-9">
-     <input type="text" class="form-control" id="pt_name" readonly="readonly">
+     <div class="col-sm-9" id="moreP">
+     
+     <input type="text" class="form-control" id="ptname" readonly="readonly">
      <input type="hidden" class="form-control" value=0 id="pt_no" name="pt_no">
+    
+     
      </div>
      </div>
      
@@ -299,7 +355,7 @@
     <div class="panel text-left">
   
  	 <button type="button" class="btn btn-primary" id="addPatient">환자등록</button>
-  	 <button type="button" class="btn btn-primary" id="cancelAddPatient">환자삭제</button>
+  	 <button type="button" class="btn btn-primary" id="removePatient">환자삭제</button>
   	
     </div>
     

@@ -259,10 +259,6 @@
    			    		
   			    		$(".list-group-item").css("color","black");
   			    		
-  			    		
-  			    		
-  			    		
-  			    		
   			    		if(confirm(name+"님을 추가하시겠습니까?")){
   			    			$(this).css("color","red");
   			    			$("#pt_no").val(pt_no);

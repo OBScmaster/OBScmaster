@@ -1,8 +1,10 @@
 package web.scmaster.com;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
-
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,6 +29,8 @@ public class adminController {
 	
 	final String patientUploadPath = "/Users/kita/Desktop/SpringWorkSpace/.metadata/.plugins/org.eclipse.wst.server.core/tmp0/wtpwebapps/projectOB/resources/image/patientfile";
 	final String nurseUploadPath = "/Users/kita/Desktop/SpringWorkSpace/.metadata/.plugins/org.eclipse.wst.server.core/tmp0/wtpwebapps/projectOB/resources/image/nursefile";
+	List<HashMap<String, String>>patients = new ArrayList<>();
+	
 	
 	@Autowired
 	private AdminDAO admindao;
@@ -122,7 +126,7 @@ public class adminController {
 	
 	
 	@RequestMapping(value="insertNurse", method=RequestMethod.POST)
-	public String insertNurse(Nurse nurse, int pt_no, MultipartFile upload){
+	public String insertNurse(Nurse nurse, MultipartFile upload, HttpServletRequest request){
 
 		if (!upload.isEmpty()){
 			String savedfile = FileService.saveFile(upload, nurseUploadPath);
@@ -131,10 +135,21 @@ public class adminController {
 		}
 		
 		admindao.insertNurse(nurse);
+		Nurse n = admindao.selectNurseById(nurse.getId());
+		String aa [] =  request.getParameterValues("pt_no");
 		
-		if(pt_no!=0){
-		admindao.updatePatientaboutNurse(pt_no, nurse.getNurse_no());
-		}
+			for(int i=0;i<aa.length;i++){		
+			int pt_no=Integer.parseInt(aa[i]);			
+			if(pt_no!=0){
+			System.out.println(pt_no);
+			System.out.println(n.getNurse_no());
+			admindao.updatePatientaboutNurse(pt_no, n.getNurse_no());
+			}
+			}
+		
+		
+		
+		
 		
 		return "redirect:adminLogin";
 	}
@@ -254,5 +269,24 @@ public class adminController {
 		   List<Nurse> nurselist = admindao.nurselist();
 			   
 	      return nurselist;
+	   }
+	
+	@ResponseBody
+	@RequestMapping(value="addPatient", method=RequestMethod.GET)
+	 public List<HashMap<String,String>> addPatient(String pt_no,String pt_name){
+		HashMap<String,String> add = new HashMap<>();
+		add.put("pt_no", pt_no);
+		add.put("pt_name", pt_name);
+		patients.add(add);
+	    return patients;
+	   }
+	
+	@ResponseBody
+	@RequestMapping(value="removePatient", method=RequestMethod.GET)
+	 public List<HashMap<String,String>> removePatient(String pt_name){
+		
+		patients.remove(patients.size()-1);
+		
+		return patients;
 	   }
 }
