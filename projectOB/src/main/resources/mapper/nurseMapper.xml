@@ -107,5 +107,11 @@ update NURSE set DELETEFLAG='N' where NURSE_NO=#{nurse_no}
 		pt_no = #{pt_no}
 		and today = #{today}
 </select>
+
+<insert id="enrollMeal" parameterType="Meal">
+	insert into
+		meal(PT_NO, today, TYPEEAT, MEALTIME, WHATEAT)
+	values(#{pt_no}, to_date(#{today}, 'yy/mm/dd'), #{typeEat}, #{mealTime}, #{whatEat})
+</insert>
 	
 </mapper>

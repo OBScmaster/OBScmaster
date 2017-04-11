@@ -7,6 +7,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import web.scmaster.com.vo.Meal;
 import web.scmaster.com.vo.Nurse;
 import web.scmaster.com.vo.Patient;
 
@@ -81,5 +82,11 @@ public class nurseDAO {
 		nurseMapper mapper = sqlsession.getMapper(nurseMapper.class);
 		
 		return mapper.showCleaning(map);
+	}
+	
+	public void enrollMeal(Meal meal){
+		nurseMapper mapper = sqlsession.getMapper(nurseMapper.class);
+		
+		mapper.enrollMeal(meal);
 	}
 }

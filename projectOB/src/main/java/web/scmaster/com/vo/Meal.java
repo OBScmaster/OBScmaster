@@ -7,16 +7,22 @@ public class Meal {
 	private String typeEat;
 	private String mealTime;
 	private String whatEat;
+	private String insertDate;
+	private String updateDate;
 	private String deleteflag;
 
 	public Meal() {}
 
-	public Meal(int pt_no, String today, String typeEat, String mealTime, String whatEat, String deleteflag) {
+	public Meal(int pt_no, String today, String typeEat, String mealTime, String whatEat, String insertDate,
+			String updateDate, String deleteflag) {
+		super();
 		this.pt_no = pt_no;
 		this.today = today;
 		this.typeEat = typeEat;
 		this.mealTime = mealTime;
 		this.whatEat = whatEat;
+		this.insertDate = insertDate;
+		this.updateDate = updateDate;
 		this.deleteflag = deleteflag;
 	}
 
@@ -60,6 +66,22 @@ public class Meal {
 		this.whatEat = whatEat;
 	}
 
+	public String getInsertDate() {
+		return insertDate;
+	}
+
+	public void setInsertDate(String insertDate) {
+		this.insertDate = insertDate;
+	}
+
+	public String getUpdateDate() {
+		return updateDate;
+	}
+
+	public void setUpdateDate(String updateDate) {
+		this.updateDate = updateDate;
+	}
+
 	public String getDeleteflag() {
 		return deleteflag;
 	}
@@ -71,6 +93,9 @@ public class Meal {
 	@Override
 	public String toString() {
 		return "Meal [pt_no=" + pt_no + ", today=" + today + ", typeEat=" + typeEat + ", mealTime=" + mealTime
-				+ ", whatEat=" + whatEat + ", deleteflag=" + deleteflag + "]";
+				+ ", whatEat=" + whatEat + ", insertDate=" + insertDate + ", updateDate=" + updateDate + ", deleteflag="
+				+ deleteflag + "]";
 	}
+
+	
 }

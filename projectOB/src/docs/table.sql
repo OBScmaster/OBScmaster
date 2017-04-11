@@ -172,12 +172,14 @@ CREATE TABLE Meal
    TYPEEAT varchar2(10),
    MEALTIME varchar2(10),
    WHATEAT VARCHAR2(150),
+   INSERTDATE date DEFAULT SYSDATE,
+   UPDATEDATE date DEFAULT SYSDATE,
    DELETEFLAG varchar2(1) DEFAULT 'Y' NOT NULL 
 );
 
 TRUNCATE TABLE MEAL;
 
-INSERT INTO MEAL(PT_NO, today, TYPEEAT, MEALTIME, WHATEAT) VALUES(3, to_date(sysdate, 'yy/mm/dd'), '아침', '10:10', '콘푸로스트');
+INSERT INTO MEAL(PT_NO, today, TYPEEAT, MEALTIME, WHATEAT, INSERTDATE) VALUES(3, to_date(sysdate, 'yy/mm/dd'), '아침', '10:10', '콘푸로스트', sysdate);
 INSERT INTO MEAL(PT_NO, today, TYPEEAT, MEALTIME, WHATEAT) VALUES(3, to_date(sysdate, 'yy/mm/dd'), '점심', '14:28', '밥, 김치찌개');
 INSERT INTO MEAL(PT_NO, today, TYPEEAT, MEALTIME, WHATEAT) VALUES(3, to_date(sysdate, 'yy/mm/dd'),'저녁', '18:40', '연어초밥');
 

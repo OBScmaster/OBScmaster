@@ -20,6 +20,7 @@ import web.scmaster.com.dao.AdminDAO;
 import web.scmaster.com.dao.nurseDAO;
 import web.scmaster.com.dao.patientDAO;
 import web.scmaster.com.util.FileService;
+import web.scmaster.com.vo.Meal;
 import web.scmaster.com.vo.Nurse;
 import web.scmaster.com.vo.Patient;
 import web.scmaster.com.vo.Room;
@@ -164,5 +165,18 @@ public class nurseController {
 		List<HashMap<String, Object>> showCleaning = new ArrayList<>();
 		showCleaning = nursedao.showCleaning(pt_no, today);
 		return showCleaning;
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "enrollMeal", method = RequestMethod.POST)
+	public List<HashMap<String, Object>> enrollMeal(Meal meal){
+		nursedao.enrollMeal(meal);
+		
+		int pt_no = meal.getPt_no();
+		String today = meal.getToday();
+		
+		List<HashMap<String, Object>> showMeal = new ArrayList<>();
+		showMeal = nursedao.patientScheduleList(pt_no, today);
+		return showMeal;
 	}
 }
