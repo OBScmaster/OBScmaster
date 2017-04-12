@@ -89,4 +89,23 @@ public class nurseDAO {
 		
 		mapper.enrollMeal(meal);
 	}
+	
+	public void delMeal(Meal meal){
+		nurseMapper mapper = sqlsession.getMapper(nurseMapper.class);
+		
+		mapper.delMeal(meal);
+	}
+	
+	public List<HashMap<String, Object>> showUpdateMeal(Meal meal){
+		
+		nurseMapper mapper = sqlsession.getMapper(nurseMapper.class);
+		
+		return mapper.showUpdateMeal(meal);
+	}
+	
+	public void updateMeal(Meal meal){
+		nurseMapper mapper = sqlsession.getMapper(nurseMapper.class);
+		
+		mapper.updateMeal(meal);
+	}
 }

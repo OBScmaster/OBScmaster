@@ -76,7 +76,8 @@ update NURSE set DELETEFLAG='N' where NURSE_NO=#{nurse_no}
 
 <select id="showMeal" resultType="HashMap" parameterType="HashMap">
 	select
-		typeeat
+		pt_no
+		, typeeat
 		, mealtime
 		, whateat
 	from
@@ -113,5 +114,46 @@ update NURSE set DELETEFLAG='N' where NURSE_NO=#{nurse_no}
 		meal(PT_NO, today, TYPEEAT, MEALTIME, WHATEAT)
 	values(#{pt_no}, to_date(#{today}, 'yy/mm/dd'), #{typeEat}, #{mealTime}, #{whatEat})
 </insert>
+
+<delete id="delMeal" parameterType="Meal">
+	delete 
+		from meal
+	where
+		pt_no = #{pt_no}
+		and today = #{today}
+		and mealtime = #{mealTime}	
+</delete>
+
+<select id="showUpdateMeal" parameterType="Meal" resultType="HashMap">
+	select
+		pt_no
+		, today
+		, typeeat
+		, mealtime
+		, whateat
+		, TO_CHAR(insertdate, 'yyyymmdd') as insertdate
+	from
+		meal
+	where
+		pt_no = #{pt_no}
+		and today = #{today}
+		and typeEat = #{typeEat}
+		and mealTime = #{mealTime}
+		and whatEat = #{whatEat}
+</select>
+
+<update id="updateMeal" parameterType="Meal">
+	update
+		meal
+	set
+		typeEat = #{typeEat}
+		, mealTime = #{mealTime}
+		, whatEat = #{whatEat}
+		, updatedate = #{today}
+	where
+		pt_no = #{pt_no}
+		and today = #{today}
+		and insertdate = TO_DATE(#{insertDate},'YYYYMMDD')
+</update>
 	
 </mapper>

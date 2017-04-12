@@ -10,13 +10,11 @@
 <link rel="stylesheet" href="./resources/css/bootstrap.min.css">
 <script src="./resources/js/jquery.min.js"></script>
 <script src="./resources/js/bootstrap.min.js"></script>
-<script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-<link rel="stylesheet" href="/resources/demos/style.css">
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <style>    
@@ -90,8 +88,10 @@ $(document).ready(function() {
 								html1 += "<td>" + item.TYPEEAT + "</td>";
 								html1 += "<td>" + item.MEALTIME + "</td>";
 								html1 += "<td>" + item.WHATEAT + "</td>";
-								html1 += "<td><input type='button' value = '삭제' class='btn btn-primary'></td>";
+								html1 += "<td><input type='button' value = '수정' class='btn btn-primary' onclick = 'showUpdateMeal("+pt_no+",&#34;"+item.TYPEEAT+"&#34;,&#34;"+item.MEALTIME+"&#34;,&#34;"+item.WHATEAT+"&#34;,&#34;"+item.INSERTDATE+"&#34;)'></td>";
+								html1 += "<td><input type='button' value = '삭제' class='btn btn-primary' onclick = 'delMeal("+pt_no+",&#34;"+item.MEALTIME+"&#34;)'></td>";
 								html1 += "</tr>";
+								})//each
 								html1 += "<tr>";
 								html1 += "<td>식사<select class='form-control' id = 'mealType'>";
 								html1 += "<option>아침</option>";
@@ -102,11 +102,9 @@ $(document).ready(function() {
 								html1 += "<td>시간<input type = 'text' class='form-control' name = 'mealTime' id = 'mealTime'></td>";
 								html1 += "<td>식단<input type = 'text' class='form-control' name = 'whatEat' id = 'whatEat'></td>";
 								html1 += "<td>";
-								html1 += "<input type='button' value = '추가' class='btn btn-primary'>";
+								html1 += "<input type='button' value = '추가' class='btn btn-primary' onclick = 'enrollMeal("+pt_no+")'>";
 								html1 += "</td>";
 								html1 += "</tr>";
-								html1 += "</tbody>";
-								})//each
 								} else{
 									html1 += "<tbody>";
 									html1 += "<tr>";
@@ -129,8 +127,8 @@ $(document).ready(function() {
 									html1 += "<input type='button' value = '등록' class='btn btn-primary' onclick = 'enrollMeal("+pt_no+")'>";
 									html1 += "</td>";
 									html1 += "</tr>";
-									html1 += "</tbody>";
 								}
+							html1 += "</tbody>";
 							html1 += "</table>";
 							html1 += "</div>";
 							html1 += "</div>";
@@ -307,8 +305,10 @@ function enrollMeal(pt_no) {
 				html1 += "<td>" + item.TYPEEAT + "</td>";
 				html1 += "<td>" + item.MEALTIME + "</td>";
 				html1 += "<td>" + item.WHATEAT + "</td>";
-				html1 += "<td><input type='button' value = '삭제' class='btn btn-primary'></td>";
+				html1 += "<td><input type='button' value = '수정' class='btn btn-primary' onclick = 'showUpdateMeal("+pt_no+",&#34;"+item.TYPEEAT+"&#34;,&#34;"+item.MEALTIME+"&#34;,&#34;"+item.WHATEAT+"&#34;,&#34;"+item.INSERTDATE+"&#34;)'></td>";
+				html1 += "<td><input type='button' value = '삭제' class='btn btn-primary' onclick = 'delMeal("+pt_no+",&#34;"+item.MEALTIME+"&#34;)'></td>";
 				html1 += "</tr>";
+				})//each
 				html1 += "<tr>";
 				html1 += "<td>식사<select class='form-control' id = 'mealType'>";
 				html1 += "<option>아침</option>";
@@ -319,11 +319,9 @@ function enrollMeal(pt_no) {
 				html1 += "<td>시간<input type = 'text' class='form-control' name = 'mealTime' id = 'mealTime'></td>";
 				html1 += "<td>식단<input type = 'text' class='form-control' name = 'whatEat' id = 'whatEat'></td>";
 				html1 += "<td>";
-				html1 += "<input type='button' value = '추가' class='btn btn-primary'>";
+				html1 += "<input type='button' value = '추가' class='btn btn-primary' onclick = 'enrollMeal("+pt_no+")'>";
 				html1 += "</td>";
 				html1 += "</tr>";
-				html1 += "</tbody>";
-				})//each
 				} else{
 					html1 += "<tbody>";
 					html1 += "<tr>";
@@ -346,8 +344,8 @@ function enrollMeal(pt_no) {
 					html1 += "<input type='button' value = '등록' class='btn btn-primary' onclick = 'enrollMeal("+pt_no+")'>";
 					html1 += "</td>";
 					html1 += "</tr>";
-					html1 += "</tbody>";
 				}
+			html1 += "</tbody>";
 			html1 += "</table>";
 			html1 += "</div>";
 			html1 += "</div>";
@@ -358,7 +356,274 @@ function enrollMeal(pt_no) {
 		}
 	})	
 }
+
+function delMeal(pt_no,mealTime) {
+	var today = $(".datepicker").val();
 	
+	$.ajax({
+		type : "post",
+		url : "delMeal",
+		data: {
+			pt_no : pt_no,
+			today : today,
+			mealTime : mealTime
+		},//data
+		success : function(data) {
+			var html1 = "";
+			html1 += "<div class='panel panel-primary'>";
+			html1 += "<div class='panel-heading'>";
+			html1 += "<h3 class='panel-title'>식사</h3>";
+			html1 += "</div>";
+			html1 += "<div class='panel-body' id = 'mealTable'>";
+			html1 += "<table class='table table-hover'>";
+			html1 += "<thead>";
+			html1 += "<tr>";
+			html1 += "<th>식사</th>";
+			html1 += "<th>시간</th>";
+			html1 += "<th>식단</th>";
+			html1 += "</tr>";
+			html1 += "</thead>";
+			if(data.length > 0){
+			$.each(data, function(index,item) {
+				html1 += "<tbody>";
+				html1 += "<tr>";
+				html1 += "<td>" + item.TYPEEAT + "</td>";
+				html1 += "<td>" + item.MEALTIME + "</td>";
+				html1 += "<td>" + item.WHATEAT + "</td>";
+				html1 += "<td><input type='button' value = '수정' class='btn btn-primary' onclick = 'showUpdateMeal("+pt_no+",&#34;"+item.TYPEEAT+"&#34;,&#34;"+item.MEALTIME+"&#34;,&#34;"+item.WHATEAT+"&#34;,&#34;"+item.INSERTDATE+"&#34;)'></td>";
+				html1 += "<td><input type='button' value = '삭제' class='btn btn-primary' onclick = 'delMeal("+pt_no+",&#34;"+item.MEALTIME+"&#34;)'></td>";
+				html1 += "</tr>";
+				})//each
+				html1 += "<tr>";
+				html1 += "<td>식사<select class='form-control' id = 'mealType'>";
+				html1 += "<option>아침</option>";
+				html1 += "<option>점심</option>";
+				html1 += "<option>저녁</option>";
+				html1 += "<option>간식</option>";
+				html1 += "</select>";
+				html1 += "<td>시간<input type = 'text' class='form-control' name = 'mealTime' id = 'mealTime'></td>";
+				html1 += "<td>식단<input type = 'text' class='form-control' name = 'whatEat' id = 'whatEat'></td>";
+				html1 += "<td>";
+				html1 += "<input type='button' value = '추가' class='btn btn-primary' onclick = 'enrollMeal("+pt_no+")'>";
+				html1 += "</td>";
+				html1 += "</tr>";
+				} else{
+					html1 += "<tbody>";
+					html1 += "<tr>";
+					html1 += "<td colspan='3'>아직등록되지않았습니다.</td>";
+					html1 += "</tr>";
+					html1 += "<tr>";
+					html1 += "<td>식사<select class='form-control' id = 'mealType'>";
+					html1 += "<option>아침</option>";
+					html1 += "<option>점심</option>";
+					html1 += "<option>저녁</option>";
+					html1 += "<option>간식</option>";
+					html1 += "</select>";
+					html1 += "<td>시간<input type = 'text' class='form-control' name = 'mealTime' id = 'mealTime'></td>";
+					html1 += "<td>식단<input type = 'text' class='form-control' name = 'whatEat' id = 'whatEat'></td>";
+					html1 += "</tr>";
+					html1 += "<tr>";
+					html1 += "<td></td>";
+					html1 += "<td></td>";
+					html1 += "<td>";
+					html1 += "<input type='button' value = '등록' class='btn btn-primary' onclick = 'enrollMeal("+pt_no+")'>";
+					html1 += "</td>";
+					html1 += "</tr>";
+				}
+			html1 += "</tbody>";
+			html1 += "</table>";
+			html1 += "</div>";
+			html1 += "</div>";
+			$("#menu1").html(html1);
+		},
+		error : function(e) {
+			console.log(e);
+		}
+	})	
+}
+
+function showUpdateMeal(pt_no,typeEat,mealTime,whatEat,insertDate){
+	var today = $(".datepicker").val();
+	
+	$.ajax({
+		type : "post",
+		url : "showUpdateMeal",
+		data: {
+			pt_no : pt_no,
+			today : today,
+			typeEat : typeEat,
+			mealTime : mealTime,
+			whatEat : whatEat
+		},//data
+		success : function(data) {
+			var html1 = "";
+			html1 += "<div class='panel panel-primary'>";
+			html1 += "<div class='panel-heading'>";
+			html1 += "<h3 class='panel-title'>식사</h3>";
+			html1 += "</div>";
+			html1 += "<div class='panel-body' id = 'mealTable'>";
+			html1 += "<table class='table table-hover'>";
+			html1 += "<thead>";
+			html1 += "<tr>";
+			html1 += "<th>식사</th>";
+			html1 += "<th>시간</th>";
+			html1 += "<th>식단</th>";
+			html1 += "</tr>";
+			html1 += "</thead>";
+			if(data.length > 0){
+			$.each(data, function(index,item) {
+				html1 += "<tbody>";
+				html1 += "<tr>";
+				html1 += "<td>" + item.TYPEEAT + "</td>";
+				html1 += "<td>" + item.MEALTIME + "</td>";
+				html1 += "<td>" + item.WHATEAT + "</td>";
+				html1 += "</tr>";
+				html1 += "<tr>";
+				if(item.TYPEEAT == "아침"){
+				html1 += "<td>식사<select class='form-control' id = 'updateMealType'>";
+				html1 += "<option selected='selected'>아침</option>";
+				html1 += "<option>점심</option>";
+				html1 += "<option>저녁</option>";
+				html1 += "<option>간식</option>";
+				html1 += "</select>";
+				} else if(item.TYPEEAT == "점심"){
+						html1 += "<td>식사<select class='form-control' id = 'updateMealType'>";
+						html1 += "<option>아침</option>";
+						html1 += "<option selected='selected'>점심</option>";
+						html1 += "<option>저녁</option>";
+						html1 += "<option>간식</option>";
+						html1 += "</select>";
+				} else if(item.TYPEEAT == "저녁"){
+					html1 += "<td>식사<select class='form-control' id = 'updateMealType'>";
+					html1 += "<option>아침</option>";
+					html1 += "<option>점심</option>";
+					html1 += "<option selected='selected'>저녁</option>";
+					html1 += "<option>간식</option>";
+					html1 += "</select>";
+				} else if(item.TYPEEAT == "간식"){
+					html1 += "<td>식사<select class='form-control' id = 'updateMealType'>";
+					html1 += "<option>아침</option>";
+					html1 += "<option>점심</option>";
+					html1 += "<option>저녁</option>";
+					html1 += "<option selected='selected'>간식</option>";
+					html1 += "</select>";
+				}
+				html1 += "<td>시간<input type = 'text' class='form-control' name = 'mealTime' id = 'updateMealTime'></td>";
+				html1 += "<td>식단<input type = 'text' class='form-control' name = 'whatEat' id = 'updateWhatEat'></td>";
+				html1 += "<td>";
+				html1 += "<input type='button' value = '확인' class='btn btn-primary' onclick = 'updateMeal("+pt_no+",&#34;"+item.INSERTDATE+"&#34;)'>";
+				html1 += "</td>";
+				html1 += "</tr>";
+				})//each
+				} else{
+					alert("뭔가 잘못됐어! 집으로 돌아가자");
+				}
+			html1 += "</tbody>";
+			html1 += "</table>";
+			html1 += "</div>";
+			html1 += "</div>";
+			$("#menu1").html(html1);
+		},
+		error : function(e) {
+			console.log(e);
+		}
+	})
+}
+
+function updateMeal(pt_no,insertDate) {
+	var today = $(".datepicker").val();
+	var typeEat = document.getElementById("updateMealType").value;
+	var mealTime = document.getElementById("updateMealTime").value;
+	var whatEat = document.getElementById("updateWhatEat").value;
+	
+	alert(typeEat);
+	alert(mealTime);
+	alert(whatEat);
+	
+	$.ajax({
+		type : "post",
+		url : "updateMeal",
+		data: {
+			pt_no : pt_no,
+			today : today,
+			typeEat : typeEat,
+			mealTime : mealTime,
+			whatEat : whatEat,
+			insertDate : insertDate
+		},//data
+		success : function(data) {
+			var html1 = "";
+			html1 += "<div class='panel panel-primary'>";
+			html1 += "<div class='panel-heading'>";
+			html1 += "<h3 class='panel-title'>식사</h3>";
+			html1 += "</div>";
+			html1 += "<div class='panel-body' id = 'mealTable'>";
+			html1 += "<table class='table table-hover'>";
+			html1 += "<thead>";
+			html1 += "<tr>";
+			html1 += "<th>식사</th>";
+			html1 += "<th>시간</th>";
+			html1 += "<th>식단</th>";
+			html1 += "</tr>";
+			html1 += "</thead>";
+			if(data.length > 0){
+			$.each(data, function(index,item) {
+				html1 += "<tbody>";
+				html1 += "<tr>";
+				html1 += "<td>" + item.TYPEEAT + "</td>";
+				html1 += "<td>" + item.MEALTIME + "</td>";
+				html1 += "<td>" + item.WHATEAT + "</td>";
+				html1 += "<td><input type='button' value = '수정' class='btn btn-primary' onclick = 'showUpdateMeal("+pt_no+",&#34;"+item.TYPEEAT+"&#34;,&#34;"+item.MEALTIME+"&#34;,&#34;"+item.WHATEAT+"&#34;,&#34;"+item.INSERTDATE+"&#34;)'></td>";
+				html1 += "<td><input type='button' value = '삭제' class='btn btn-primary' onclick = 'delMeal("+pt_no+",&#34;"+item.MEALTIME+"&#34;)'></td>";
+				html1 += "</tr>";
+				})//each
+				html1 += "<tr>";
+				html1 += "<td>식사<select class='form-control' id = 'mealType'>";
+				html1 += "<option>아침</option>";
+				html1 += "<option>점심</option>";
+				html1 += "<option>저녁</option>";
+				html1 += "<option>간식</option>";
+				html1 += "</select>";
+				html1 += "<td>시간<input type = 'text' class='form-control' name = 'mealTime' id = 'mealTime'></td>";
+				html1 += "<td>식단<input type = 'text' class='form-control' name = 'whatEat' id = 'whatEat'></td>";
+				html1 += "<td>";
+				html1 += "<input type='button' value = '추가' class='btn btn-primary' onclick = 'enrollMeal("+pt_no+")'>";
+				html1 += "</td>";
+				html1 += "</tr>";
+				} else{
+					html1 += "<tbody>";
+					html1 += "<tr>";
+					html1 += "<td colspan='3'>아직등록되지않았습니다.</td>";
+					html1 += "</tr>";
+					html1 += "<tr>";
+					html1 += "<td>식사<select class='form-control' id = 'mealType'>";
+					html1 += "<option>아침</option>";
+					html1 += "<option>점심</option>";
+					html1 += "<option>저녁</option>";
+					html1 += "<option>간식</option>";
+					html1 += "</select>";
+					html1 += "<td>시간<input type = 'text' class='form-control' name = 'mealTime' id = 'mealTime'></td>";
+					html1 += "<td>식단<input type = 'text' class='form-control' name = 'whatEat' id = 'whatEat'></td>";
+					html1 += "</tr>";
+					html1 += "<tr>";
+					html1 += "<td></td>";
+					html1 += "<td></td>";
+					html1 += "<td>";
+					html1 += "<input type='button' value = '등록' class='btn btn-primary' onclick = 'enrollMeal("+pt_no+")'>";
+					html1 += "</td>";
+					html1 += "</tr>";
+				}
+			html1 += "</tbody>";
+			html1 += "</table>";
+			html1 += "</div>";
+			html1 += "</div>";
+			$("#menu1").html(html1);
+		},
+		error : function(e) {
+			console.log(e);
+		}
+	})	
+}
 </script>
 </head>
 <body>
