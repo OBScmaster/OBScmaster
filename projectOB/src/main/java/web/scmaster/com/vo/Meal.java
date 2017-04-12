@@ -2,6 +2,7 @@ package web.scmaster.com.vo;
 
 public class Meal {
 	
+	private int meal_No;
 	private int pt_no;
 	private String today;
 	private String typeEat;
@@ -13,9 +14,9 @@ public class Meal {
 
 	public Meal() {}
 
-	public Meal(int pt_no, String today, String typeEat, String mealTime, String whatEat, String insertDate,
-			String updateDate, String deleteflag) {
-		super();
+	public Meal(int meal_No, int pt_no, String today, String typeEat, String mealTime, String whatEat,
+			String insertDate, String updateDate, String deleteflag) {
+		this.meal_No = meal_No;
 		this.pt_no = pt_no;
 		this.today = today;
 		this.typeEat = typeEat;
@@ -24,6 +25,14 @@ public class Meal {
 		this.insertDate = insertDate;
 		this.updateDate = updateDate;
 		this.deleteflag = deleteflag;
+	}
+
+	public int getMeal_No() {
+		return meal_No;
+	}
+
+	public void setMeal_No(int meal_No) {
+		this.meal_No = meal_No;
 	}
 
 	public int getPt_no() {
@@ -92,10 +101,8 @@ public class Meal {
 
 	@Override
 	public String toString() {
-		return "Meal [pt_no=" + pt_no + ", today=" + today + ", typeEat=" + typeEat + ", mealTime=" + mealTime
-				+ ", whatEat=" + whatEat + ", insertDate=" + insertDate + ", updateDate=" + updateDate + ", deleteflag="
-				+ deleteflag + "]";
+		return "Meal [meal_No=" + meal_No + ", pt_no=" + pt_no + ", today=" + today + ", typeEat=" + typeEat
+				+ ", mealTime=" + mealTime + ", whatEat=" + whatEat + ", insertDate=" + insertDate + ", updateDate="
+				+ updateDate + ", deleteflag=" + deleteflag + "]";
 	}
-
-	
 }

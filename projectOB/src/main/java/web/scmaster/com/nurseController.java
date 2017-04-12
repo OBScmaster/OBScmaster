@@ -204,7 +204,6 @@ public class nurseController {
 	@ResponseBody
 	@RequestMapping(value = "updateMeal", method = RequestMethod.POST)
 	public List<HashMap<String, Object>> updateMeal(Meal meal){
-		System.out.println(meal);
 		nursedao.updateMeal(meal);
 		
 		int pt_no = meal.getPt_no();

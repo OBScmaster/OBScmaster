@@ -2,6 +2,7 @@ package web.scmaster.com.vo;
 
 public class DailyCleaning {
 	
+	private int dailycleaning_No;
 	private int pt_no;
 	private String today;
 	private String cleaning;
@@ -13,8 +14,9 @@ public class DailyCleaning {
 	
 	public DailyCleaning() {}
 
-	public DailyCleaning(int pt_no, String today, String cleaning, String cleaningReport, String inputdate,
-			String updatedate, String deletedate, String deleteflag) {
+	public DailyCleaning(int dailycleaning_No, int pt_no, String today, String cleaning, String cleaningReport,
+			String inputdate, String updatedate, String deletedate, String deleteflag) {
+		this.dailycleaning_No = dailycleaning_No;
 		this.pt_no = pt_no;
 		this.today = today;
 		this.cleaning = cleaning;
@@ -23,6 +25,14 @@ public class DailyCleaning {
 		this.updatedate = updatedate;
 		this.deletedate = deletedate;
 		this.deleteflag = deleteflag;
+	}
+
+	public int getDailycleaning_No() {
+		return dailycleaning_No;
+	}
+
+	public void setDailycleaning_No(int dailycleaning_No) {
+		this.dailycleaning_No = dailycleaning_No;
 	}
 
 	public int getPt_no() {
@@ -91,9 +101,9 @@ public class DailyCleaning {
 
 	@Override
 	public String toString() {
-		return "DailyCleaning [pt_no=" + pt_no + ", today=" + today + ", cleaning=" + cleaning + ", cleaningReport="
-				+ cleaningReport + ", inputdate=" + inputdate + ", updatedate=" + updatedate + ", deletedate="
-				+ deletedate + ", deleteflag=" + deleteflag + "]";
+		return "DailyCleaning [dailycleaning_No=" + dailycleaning_No + ", pt_no=" + pt_no + ", today=" + today
+				+ ", cleaning=" + cleaning + ", cleaningReport=" + cleaningReport + ", inputdate=" + inputdate
+				+ ", updatedate=" + updatedate + ", deletedate=" + deletedate + ", deleteflag=" + deleteflag + "]";
 	}
 
 }

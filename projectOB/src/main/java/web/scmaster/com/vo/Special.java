@@ -2,21 +2,31 @@ package web.scmaster.com.vo;
 
 public class Special {
 	
+	private int special_No;
 	private int pt_no;
 	private String today;
-	private String reportTime;
-	private String report;
+	private String sreportTime;
+	private String sreport;
 	private String deleteflag;
 	
 	public Special() {
 	}
 
-	public Special(int pt_no, String today, String reportTime, String report, String deleteflag) {
+	public Special(int special_No, int pt_no, String today, String sreportTime, String sreport, String deleteflag) {
+		this.special_No = special_No;
 		this.pt_no = pt_no;
 		this.today = today;
-		this.reportTime = reportTime;
-		this.report = report;
+		this.sreportTime = sreportTime;
+		this.sreport = sreport;
 		this.deleteflag = deleteflag;
+	}
+
+	public int getSpecial_No() {
+		return special_No;
+	}
+
+	public void setSpecial_No(int special_No) {
+		this.special_No = special_No;
 	}
 
 	public int getPt_no() {
@@ -35,20 +45,20 @@ public class Special {
 		this.today = today;
 	}
 
-	public String getReportTime() {
-		return reportTime;
+	public String getSreportTime() {
+		return sreportTime;
 	}
 
-	public void setReportTime(String reportTime) {
-		this.reportTime = reportTime;
+	public void setSreportTime(String sreportTime) {
+		this.sreportTime = sreportTime;
 	}
 
-	public String getReport() {
-		return report;
+	public String getSreport() {
+		return sreport;
 	}
 
-	public void setReport(String report) {
-		this.report = report;
+	public void setSreport(String sreport) {
+		this.sreport = sreport;
 	}
 
 	public String getDeleteflag() {
@@ -61,7 +71,8 @@ public class Special {
 
 	@Override
 	public String toString() {
-		return "Special [pt_no=" + pt_no + ", today=" + today + ", reportTime=" + reportTime + ", report=" + report
-				+ ", deleteflag=" + deleteflag + "]";
+		return "Special [special_No=" + special_No + ", pt_no=" + pt_no + ", today=" + today + ", sreportTime="
+				+ sreportTime + ", sreport=" + sreport + ", deleteflag=" + deleteflag + "]";
 	}
+
 }

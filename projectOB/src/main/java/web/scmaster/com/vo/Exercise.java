@@ -2,6 +2,7 @@ package web.scmaster.com.vo;
 
 public class Exercise {
 	
+	private int exercise_No;
 	private int pt_no;
 	private String today;
 	private String exerciseTime;
@@ -10,12 +11,22 @@ public class Exercise {
 	
 	public Exercise() {}
 
-	public Exercise(int pt_no, String today, String exerciseTime, String exerciseText, String deleteflag) {
+	public Exercise(int exercise_No, int pt_no, String today, String exerciseTime, String exerciseText,
+			String deleteflag) {
+		this.exercise_No = exercise_No;
 		this.pt_no = pt_no;
 		this.today = today;
 		this.exerciseTime = exerciseTime;
 		this.exerciseText = exerciseText;
 		this.deleteflag = deleteflag;
+	}
+
+	public int getExercise_No() {
+		return exercise_No;
+	}
+
+	public void setExercise_No(int exercise_No) {
+		this.exercise_No = exercise_No;
 	}
 
 	public int getPt_no() {
@@ -60,9 +71,8 @@ public class Exercise {
 
 	@Override
 	public String toString() {
-		return "Exercise [pt_no=" + pt_no + ", today=" + today + ", exerciseTime=" + exerciseTime + ", exerciseText="
-				+ exerciseText + ", deleteflag=" + deleteflag + "]";
+		return "Exercise [exercise_No=" + exercise_No + ", pt_no=" + pt_no + ", today=" + today + ", exerciseTime="
+				+ exerciseTime + ", exerciseText=" + exerciseText + ", deleteflag=" + deleteflag + "]";
 	}
-	
-	
+
 }

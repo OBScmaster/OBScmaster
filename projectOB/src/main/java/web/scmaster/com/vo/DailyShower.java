@@ -2,6 +2,7 @@ package web.scmaster.com.vo;
 
 public class DailyShower {
 
+	private int dailyshower_No;
 	private int pt_no;
 	private String today;
 	private String shower;
@@ -14,8 +15,9 @@ public class DailyShower {
 	public DailyShower() {
 	}
 
-	public DailyShower(int pt_no, String today, String shower, String showerReport, String inputdate, String updatedate,
-			String deletedate, String deleteflag) {
+	public DailyShower(int dailyshower_No, int pt_no, String today, String shower, String showerReport,
+			String inputdate, String updatedate, String deletedate, String deleteflag) {
+		this.dailyshower_No = dailyshower_No;
 		this.pt_no = pt_no;
 		this.today = today;
 		this.shower = shower;
@@ -24,6 +26,14 @@ public class DailyShower {
 		this.updatedate = updatedate;
 		this.deletedate = deletedate;
 		this.deleteflag = deleteflag;
+	}
+
+	public int getDailyshower_No() {
+		return dailyshower_No;
+	}
+
+	public void setDailyshower_No(int dailyshower_No) {
+		this.dailyshower_No = dailyshower_No;
 	}
 
 	public int getPt_no() {
@@ -92,8 +102,9 @@ public class DailyShower {
 
 	@Override
 	public String toString() {
-		return "DailyShower [pt_no=" + pt_no + ", today=" + today + ", shower=" + shower + ", showerReport="
-				+ showerReport + ", inputdate=" + inputdate + ", updatedate=" + updatedate + ", deletedate="
-				+ deletedate + ", deleteflag=" + deleteflag + "]";
+		return "DailyShower [dailyshower_No=" + dailyshower_No + ", pt_no=" + pt_no + ", today=" + today + ", shower="
+				+ shower + ", showerReport=" + showerReport + ", inputdate=" + inputdate + ", updatedate=" + updatedate
+				+ ", deletedate=" + deletedate + ", deleteflag=" + deleteflag + "]";
 	}
+
 }

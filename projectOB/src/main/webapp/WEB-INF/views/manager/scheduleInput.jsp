@@ -511,7 +511,7 @@ function showUpdateMeal(pt_no,typeEat,mealTime,whatEat,insertDate){
 				html1 += "<td>시간<input type = 'text' class='form-control' name = 'mealTime' id = 'updateMealTime'></td>";
 				html1 += "<td>식단<input type = 'text' class='form-control' name = 'whatEat' id = 'updateWhatEat'></td>";
 				html1 += "<td>";
-				html1 += "<input type='button' value = '확인' class='btn btn-primary' onclick = 'updateMeal("+pt_no+",&#34;"+item.INSERTDATE+"&#34;)'>";
+				html1 += "<input type='button' value = '확인' class='btn btn-primary' onclick = 'updateMeal("+pt_no+",&#34;"+item.MEAL_NO+"&#34;)'>";
 				html1 += "</td>";
 				html1 += "</tr>";
 				})//each
@@ -530,15 +530,11 @@ function showUpdateMeal(pt_no,typeEat,mealTime,whatEat,insertDate){
 	})
 }
 
-function updateMeal(pt_no,insertDate) {
+function updateMeal(pt_no,meal_No) {
 	var today = $(".datepicker").val();
 	var typeEat = document.getElementById("updateMealType").value;
 	var mealTime = document.getElementById("updateMealTime").value;
 	var whatEat = document.getElementById("updateWhatEat").value;
-	
-	alert(typeEat);
-	alert(mealTime);
-	alert(whatEat);
 	
 	$.ajax({
 		type : "post",
@@ -549,7 +545,7 @@ function updateMeal(pt_no,insertDate) {
 			typeEat : typeEat,
 			mealTime : mealTime,
 			whatEat : whatEat,
-			insertDate : insertDate
+			meal_No : meal_No
 		},//data
 		success : function(data) {
 			var html1 = "";
