@@ -10,6 +10,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -20,6 +21,8 @@ import web.scmaster.com.dao.AdminDAO;
 import web.scmaster.com.dao.nurseDAO;
 import web.scmaster.com.dao.patientDAO;
 import web.scmaster.com.util.FileService;
+import web.scmaster.com.vo.DailyCleaning;
+import web.scmaster.com.vo.Exercise;
 import web.scmaster.com.vo.Meal;
 import web.scmaster.com.vo.Nurse;
 import web.scmaster.com.vo.Patient;
@@ -160,11 +163,11 @@ public class nurseController {
 	}
 	
 	@ResponseBody
-	@RequestMapping(value = "showCleaning", method = RequestMethod.POST)
-	public List<HashMap<String, Object>> showCleaning(int pt_no, String today){
-		List<HashMap<String, Object>> showCleaning = new ArrayList<>();
-		showCleaning = nursedao.showCleaning(pt_no, today);
-		return showCleaning;
+	@RequestMapping(value = "showDailyCleaning", method = RequestMethod.POST)
+	public List<HashMap<String, Object>> showDailyCleaning(int pt_no, String today){
+		List<HashMap<String, Object>> showDailyCleaning = new ArrayList<>();
+		showDailyCleaning = nursedao.showDailyCleaning(pt_no, today);
+		return showDailyCleaning;
 	}
 	
 	@ResponseBody
@@ -181,6 +184,32 @@ public class nurseController {
 	}
 	
 	@ResponseBody
+	@RequestMapping(value = "enrollExercise", method = RequestMethod.POST)
+	public List<HashMap<String, Object>> enrollExercise(Exercise exercise){
+		nursedao.enrollExercise(exercise);
+		
+		int pt_no = exercise.getPt_no();
+		String today = exercise.getToday();
+		
+		List<HashMap<String, Object>> showExercise = new ArrayList<>();
+		showExercise = nursedao.showExercise(pt_no, today);
+		return showExercise;
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "enrollDailyCleaning", method = RequestMethod.POST)
+	public List<HashMap<String, Object>> enrollDailyCleaning(DailyCleaning dailyCleaning){
+		nursedao.enrollDailyCleaning(dailyCleaning);
+		
+		int pt_no = dailyCleaning.getPt_no();
+		String today = dailyCleaning.getToday();
+		
+		List<HashMap<String, Object>> showDailyCleaning = new ArrayList<>();
+		showDailyCleaning = nursedao.showDailyCleaning(pt_no, today);
+		return showDailyCleaning;
+	}
+	
+	@ResponseBody
 	@RequestMapping(value = "delMeal", method = RequestMethod.POST)
 	public List<HashMap<String, Object>> delMeal(Meal meal){
 		nursedao.delMeal(meal);
@@ -194,11 +223,53 @@ public class nurseController {
 	}
 	
 	@ResponseBody
+	@RequestMapping(value = "delExercise", method = RequestMethod.POST)
+	public List<HashMap<String, Object>> delExercise(Exercise exercise){
+		nursedao.delExercise(exercise);
+		
+		int pt_no = exercise.getPt_no();
+		String today = exercise.getToday();
+		
+		List<HashMap<String, Object>> showExercise = new ArrayList<>();
+		showExercise = nursedao.showExercise(pt_no, today);
+		return showExercise;
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "delDailyCleaning", method = RequestMethod.POST)
+	public List<HashMap<String, Object>> delDailyCleaning(DailyCleaning dailycleaning){
+		nursedao.delDailycleaning(dailycleaning);
+		
+		int pt_no = dailycleaning.getPt_no();
+		String today = dailycleaning.getToday();
+		
+		List<HashMap<String, Object>> showDailyCleaning = new ArrayList<>();
+		showDailyCleaning = nursedao.showDailyCleaning(pt_no, today);
+		return showDailyCleaning;
+	}
+	
+	@ResponseBody
 	@RequestMapping(value = "showUpdateMeal", method = RequestMethod.POST)
 	public List<HashMap<String, Object>> showUpdateMeal(Meal meal){
 		List<HashMap<String, Object>> showMeal = new ArrayList<>();
 		showMeal = nursedao.showUpdateMeal(meal);
 		return showMeal;
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "showUpdateExercise", method = RequestMethod.POST)
+	public List<HashMap<String, Object>> showUpdateExercise(Exercise exercise){
+		List<HashMap<String, Object>> showExercise = new ArrayList<>();
+		showExercise = nursedao.showUpdateExercise(exercise);
+		return showExercise;
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "showUpdateDailycleaning", method = RequestMethod.POST)
+	public List<HashMap<String, Object>> showUpdateDailycleaning(DailyCleaning dailycleaning){
+		List<HashMap<String, Object>> showDailyCleaning = new ArrayList<>();
+		showDailyCleaning = nursedao.showUpdateDailycleaning(dailycleaning);
+		return showDailyCleaning;
 	}
 	
 	@ResponseBody
@@ -212,5 +283,31 @@ public class nurseController {
 		List<HashMap<String, Object>> showMeal = new ArrayList<>();
 		showMeal = nursedao.patientScheduleList(pt_no, today);
 		return showMeal;
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "updateExercise", method = RequestMethod.POST)
+	public List<HashMap<String, Object>> updateExercise(Exercise exercise){
+		nursedao.updateExercise(exercise);
+		
+		int pt_no = exercise.getPt_no();
+		String today = exercise.getToday();
+		
+		List<HashMap<String, Object>> showExercise = new ArrayList<>();
+		showExercise = nursedao.showExercise(pt_no, today);
+		return showExercise;
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "updateDailyCleaning", method = RequestMethod.POST)
+	public List<HashMap<String, Object>> updateDailyCleaning(DailyCleaning dailycleaning){
+		nursedao.updateDailyCleaning(dailycleaning);
+		
+		int pt_no = dailycleaning.getPt_no();
+		String today = dailycleaning.getToday();
+		
+		List<HashMap<String, Object>> showDailyCleaning = new ArrayList<>();
+		showDailyCleaning = nursedao.showDailyCleaning(pt_no, today);
+		return showDailyCleaning;
 	}
 }

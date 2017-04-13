@@ -103,8 +103,8 @@
 	select
 		pt_no
 		, today
-		, reporttime
-		, report
+		, sreporttime
+		, sreport
 	from
 		special
 	where

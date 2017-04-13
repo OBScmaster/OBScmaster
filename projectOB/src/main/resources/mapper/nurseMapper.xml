@@ -90,30 +90,50 @@ update NURSE set DELETEFLAG='N' where NURSE_NO=#{nurse_no}
 
 <select id="showExercise" resultType="HashMap" parameterType="HashMap">
 	select
-		exercisetime
+		exercise_no
+		, pt_no
+		, exercisetime
 		, exercisetext
 	from
 		exercise
 	where
 		pt_no = #{pt_no}
 		and today = #{today}
+		and deleteflag = 'Y'
 </select>
 
-<select id="showCleaning" resultType="HashMap" parameterType="HashMap">
+<select id="showDailyCleaning" resultType="HashMap" parameterType="HashMap">
 	select
-		cleaning
-		, cleaningreport
+		DAILYCLEANING_NO
+		, pt_no
+		, CLEANING
+		, CLEANINGREPORT
 	from
-		dailycleaning
+		DAILYCLEANING
 	where
 		pt_no = #{pt_no}
 		and today = #{today}
+		and deleteflag = 'Y'
+	order by	
+		DAILYCLEANING_NO asc
 </select>
 
 <insert id="enrollMeal" parameterType="Meal">
 	insert into
 		meal(MEAL_NO, PT_NO, today, TYPEEAT, MEALTIME, WHATEAT)
 	values(MEALNO_SEQ.NEXTVAL, #{pt_no}, to_date(#{today}, 'yy/mm/dd'), #{typeEat}, #{mealTime}, #{whatEat})
+</insert>
+
+<insert id="enrollExercise" parameterType="Exercise">
+	insert into
+		exercise(EXERCISE_NO, PT_NO, today, exercisetext, exercisetime)
+	values(EXERCISENO_SEQ.NEXTVAL, #{pt_no}, to_date(#{today}, 'yy/mm/dd'), #{exerciseText}, #{exerciseTime})
+</insert>
+	
+<insert id="enrollDailyCleaning" parameterType="Cleaning">
+	insert into
+		dailyCleaning(DAILYCLEANING_NO, PT_NO, today, cleaning, cleaningReport)
+	values(DAILYCLEANINGNO_SEQ.NEXTVAL, #{pt_no}, to_date(#{today}, 'yy/mm/dd'), #{cleaning}, #{cleaningReport})
 </insert>
 
 <update id="delMeal" parameterType="Meal">
@@ -125,6 +145,28 @@ update NURSE set DELETEFLAG='N' where NURSE_NO=#{nurse_no}
 		pt_no = #{pt_no}
 		and today = #{today}
 		and mealtime = #{mealTime}	
+</update>
+
+<update id="delExercise" parameterType="Exercise">
+	update
+		exercise
+	set
+		deleteflag = 'N'
+	where
+		pt_no = #{pt_no}
+		and today = #{today}
+		and exercise_No = #{exercise_No}
+</update>
+
+<update id="delDailycleaning" parameterType="Cleaning">
+	update
+		dailycleaning
+	set
+		deleteflag = 'N'
+	where
+		pt_no = #{pt_no}
+		and today = #{today}
+		and dailycleaning_No = #{dailycleaning_No}
 </update>
 
 <select id="showUpdateMeal" parameterType="Meal" resultType="HashMap">
@@ -146,6 +188,40 @@ update NURSE set DELETEFLAG='N' where NURSE_NO=#{nurse_no}
 		and deleteflag = 'Y'
 </select>
 
+<select id="showUpdateExercise" parameterType="Exercise" resultType="HashMap">
+	select
+		exercise_no
+		, pt_no
+		, today
+		, exercisetext
+		, exercisetime
+	from
+		exercise
+	where
+		pt_no = #{pt_no}
+		and today = #{today}
+		and exercisetext = #{exerciseText}
+		and exercisetime = #{exerciseTime}
+		and deleteflag = 'Y'
+</select>
+
+<select id="showUpdateDailycleaning" parameterType="Cleaning" resultType="HashMap">
+	select
+		dailycleaning_no
+		, pt_no
+		, today
+		, cleaning
+		, cleaningReport
+	from
+		dailycleaning
+	where
+		pt_no = #{pt_no}
+		and today = #{today}
+		and cleaning = #{cleaning}
+		and cleaningReport = #{cleaningReport}
+		and deleteflag = 'Y'
+</select>
+
 <update id="updateMeal" parameterType="Meal">
 	update
 		meal
@@ -158,6 +234,30 @@ update NURSE set DELETEFLAG='N' where NURSE_NO=#{nurse_no}
 		pt_no = #{pt_no}
 		and today = #{today}
 		and meal_no = #{meal_No}
+</update>
+
+<update id="updateExercise" parameterType="Exercise">
+	update
+		exercise
+	set
+		exerciseText = #{exerciseText}
+		, exerciseTime = #{exerciseTime}
+	where
+		pt_no = #{pt_no}
+		and today = #{today}
+		and exercise_no = #{exercise_No}
+</update>
+
+<update id="updateDailyCleaning" parameterType="Exercise">
+	update
+		dailycleaning
+	set
+		cleaning = #{cleaning}
+		, cleaningReport = #{cleaningReport}
+	where
+		pt_no = #{pt_no}
+		and today = #{today}
+		and dailycleaning_no = #{dailycleaning_No}
 </update>
 	
 </mapper>
