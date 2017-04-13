@@ -1,6 +1,7 @@
 package web.scmaster.com.dao;
 
-import java.util.HashMap;
+
+import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
@@ -75,6 +76,14 @@ public class AdminDAO {
 		
 	}
 	
+	public Patient selectPatientBypt_no(String pt_no){
+		
+		AdminMapper mapper = sqlsession.getMapper(AdminMapper.class);
+		
+		return mapper.selectPatientBypt_no(pt_no);
+		
+	}
+	
 	public int insertNurse(Nurse nurse){
 		
 		AdminMapper mapper = sqlsession.getMapper(AdminMapper.class);
@@ -123,7 +132,7 @@ public class AdminDAO {
 	      return mapper.patientlist();
 	   }
 	 
-	 public String selectNurseByNurseno(int nurse_no){
+	 public Nurse selectNurseByNurseno(int nurse_no){
 		   
 		 AdminMapper mapper = sqlsession.getMapper(AdminMapper.class);
 			   

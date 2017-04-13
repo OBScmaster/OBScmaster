@@ -3,6 +3,14 @@
  */
 
   var fileType = /^(?:image\/bmp|image\/gif|image\/jpeg|image\/png|image\/x\-xwindowdump|image\/x\-portable\-bitmap)$/i;
+  
+  var pt_no;
+  var pt_name;
+  var i=0;
+  var remo;
+  var remos = new Array();
+  var remoCancel;
+  
   $(function() {
 	  
 	  $.ajax({  		 
@@ -56,7 +64,7 @@
       			    	   $("#name").attr("readonly","readonly");
       			    	   $("#phone").attr("readonly","readonly");
       			    	
-      			    	 $("#nurse_no").val(nurse_no)
+      			    	    $("#nurse_no").val(nurse_no)
       			    		$("#cert_no").val($(this).attr("cert_no"));
       			    		$("#phone").val($(this).attr("phone"));
       			    		$("#name").val($(this).attr("name"));
@@ -90,7 +98,19 @@
     			    			      });
     			    			   
     			    			   allPatients(nurse_no);
-    			    	
+    			    			   $("input[target='target']").on('click', function(){
+      			   					 
+     				   				 if(confirm($(this).val()+"님을 제외하시겠습니까?")){
+     				   					var pt_no = $(this).attr("pt_no");     	
+     				   					
+     				   				    alert($(this).parent().children("input:hidden").attr("pt_no"));
+     				   					removePatientFromNurse(pt_no);
+     				   					$(this).remove();
+     				   				 }
+    			    				   
+    			    				   
+     				   				  
+     				   		       });
     			    			 })
     			    		
     			    		
@@ -103,7 +123,6 @@
     			    		
     			    		}else{
     			    			$("#previewImg").attr("alt","이미지 없음");
-    			    			
     			    		}
 
     						 $("#upload").on('change', function(){
@@ -112,11 +131,11 @@
     			    		
     						 
     						myPatientList(nurse_no);
-    						 
-    			    	
+    						
+    						
+    						     			    	
     					});
     		
-     			    	
     						
     		},
     		 error:function(error){console.log(error);}
@@ -128,9 +147,7 @@
           readURL(this);
       });
       
-      $("#addPatient").click(function(){
-    	  alert("Adsfasdf");
-      });
+     
       
       $("#nurseUpdate").click(function(){
 			if(document.getElementById("name").value.length<1){
@@ -148,6 +165,41 @@
 		 
       
   });
+  
+  function addPatient(pt_no, pt_name){
+
+	      remos[i]=remo;
+    	  i++;
+    	  remo.hide();
+    	  $.ajax({
+    		  type:"get",
+     		 url:"addPatient", 
+     		 data:{
+     			pt_no:pt_no,
+     			pt_name:pt_name
+     		 },
+     		success:function(data){
+     			
+     			var patientadd="";
+     			 $.each(data,function(index,item){ 
+     		    					 
+     			   	patientadd +="<input type='text' class='form-control' id='pt_name' value="+item.pt_name+" readonly='readonly'>"
+     	     		+"<input type='hidden' class='form-control' id='pt_no' value="+item.pt_no+" name='pt_no' pt_no="+item.pt_no+">"
+     		
+     			 })
+     			 
+     			patientadd += "<input type='text' class='form-control' id='ptname' readonly='readonly'>";
+     			 
+     			 $("#moreP").html(patientadd);
+     		   			  
+     			 $("#moreP .form-control").click(function(){
+     				remoCancel=$(this);
+     		      });    			  
+     		},
+     		error:function(e){}    		  
+    	  }) 
+	  
+  }
 
   function readURL(input) {
 	  var img = document.getElementById("upload").files;
@@ -185,17 +237,20 @@
   			    	  
   			    	  $.each(data,function(index,item){    			    		    			    	
   			    	
-  			    		  patientselect+="<input type='text' class='form-control' readonly='readonly' value="+item.name+">";
+  			    		  patientselect+="<input type='text' class='form-control' readonly='readonly' value="+item.name+" pt_no="+item.pt_no+" target='target'>";
   			    		  
   			    	  })
   			    	
-  			    	patientselect+="<div id='addNewPatient'></div>";
+  			    	patientselect+="<div id='moreP'></div>";
   			    	
   			    	$("#patientList").html(patientselect);
   			    	
   			    	 if(data.length>11){
    			    		$("#patientgroup").css("overflow","scroll");
-   			    	};
+   			    	}; 	
+   			    	
+   			  
+   			    	
   		},
   		 error:function(error){
   			 
@@ -212,6 +267,7 @@
   		 contentType:"application/json; charset=utf-8",
   		 dataType:"json",
   		 success:function(data){
+  			
   			
   			 var patientselect = "<div class='col-md-7'><div class='btn-group btn-group-justified'><a href='#' class='btn btn-info'>환자명</a>"
 			    	+"<a href='#' class='btn btn-info'>병실</a>"
@@ -254,16 +310,13 @@
    			    	
    			    	$(".list-group-item").click(function(){
   			    		
-   			    		var name = $(this).attr("name");
-   			    		var pt_no = $(this).attr("pt_no");
-   			    		
+   			    		pt_name = $(this).attr("name");
+   			    		pt_no = $(this).attr("pt_no");   			    		
   			    		$(".list-group-item").css("color","black");
-  			    		
-  			    		if(confirm(name+"님을 추가하시겠습니까?")){
+  			    		if(confirm(pt_name+"님을 추가하시겠습니까?")){
   			    			$(this).css("color","red");
-  			    			$("#pt_no").val(pt_no);
-  			    			$("#addNewPatient").html("<input type='text' class='form-control' readonly='readonly' value="+name+">");
-  			    		 	
+  			    			remo=$(this);
+  			    			addPatient(pt_no,pt_name);
   			    		}
   			    		
   			  
@@ -274,6 +327,29 @@
   		},
   		 error:function(error){console.log(error);}
   		});
+	  
+  }
+  
+  function removePatientFromNurse(pt_no){
+	  
+	  $.ajax({  		 
+	  		type:"get",
+	  		 url:"removePatientFromNurse",
+	  		 data:{pt_no:pt_no},
+	  		 contentType:"application/json; charset=utf-8",
+	  		 dataType:"json",
+	  		 success:function(data){
+	  			
+	  			 var patientselect="<div class='list-group-item' name="+data.name+" pt_no="+data.pt_no+" room_no="+data.room_no+"><table class='text-center'><tr><td width='190px;'>"
+		    		  +data.name+"</td><td width='250px;'>"
+			    		  +data.room_no+"호</td><td width='200px;'>"
+			    		  +data.disease+"</td></tr></table></div>";
+	  				 
+	  				$("#patientgroup").append(patientselect);
+	  						
+	  		},
+	  		 error:function(error){console.log(error);}
+	  		});
 	  
   }
   
