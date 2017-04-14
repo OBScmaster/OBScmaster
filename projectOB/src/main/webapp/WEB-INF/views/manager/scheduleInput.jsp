@@ -289,24 +289,332 @@ $(document).ready(function() {
 				})
 			    html += "</div>";
 			    html += "<div id='menu4' class='tab-pane fade'>";
-				html += "<h3>Menu 4</h3>";  
-			    html += "<p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>";  
+			    $.ajax({
+					type : "post",
+					url : "showDailyWash",
+					data : {
+						pt_no : pt_no,
+						today : today
+					},
+					success : function(data) {
+						console.log(data);
+						var html4 = "";
+						html4 += "<div class='panel panel-info'>";
+						html4 += "<div class='panel-heading'>";
+						html4 += "<h3 class='panel-title'>세탁</h3>";
+						html4 += "</div>";
+						html4 += "<div class='panel-body' id = 'dailyWashTable'>";
+						html4 += "<table class='table table-hover'>";
+						html4 += "<thead>";
+						html4 += "<tr>";
+						html4 += "<th>세탁시간</th>";
+						html4 += "<th>내용</th>";
+						html4 += "</tr>";
+						html4 += "</thead>";
+						if(data.length > 0){
+						$.each(data, function(index,item) {
+							html4 += "<tbody>";
+							html4 += "<tr>";
+							html4 += "<td>" + item.WASH + "</td>";
+							html4 += "<td>" + item.WASHREPORT + "</td>";
+							html4 += "<td><input type='button' value = '수정' class='btn btn-primary' onclick = 'showUpdateDailyWash("+pt_no+",&#34;"+item.WASH+"&#34;,&#34;"+item.WASHREPORT+"&#34;)'></td>";
+							html4 += "<td><input type='button' value = '삭제' class='btn btn-primary' onclick = 'delDailyWash("+pt_no+",&#34;"+item.DAILYWASH_NO+"&#34;)'></td>";
+							html4 += "</tr>";
+							})//each
+							html4 += "<tr>";
+							html4 += "<td>시간<input type = 'text' class='form-control' name = 'wash' id = 'wash'></td>";
+							html4 += "<td>내용<input type = 'text' class='form-control' name = 'washReport' id = 'washReport'></td>";
+							html4 += "<td>";
+							html4 += "<input type='button' value = '추가' class='btn btn-primary' onclick = 'enrollDailyWash("+pt_no+")'>";
+							html4 += "</td>";
+							html4 += "</tr>";
+							} else{
+								html4 += "<tbody>";
+								html4 += "<tr>";
+								html4 += "<td colspan='3'>아직등록되지않았습니다.</td>";
+								html4 += "</tr>";
+								html4 += "<tr>";
+								html4 += "<td>시간<input type = 'text' class='form-control' name = 'wash' id = 'wash'></td>";
+								html4 += "<td>내용<input type = 'text' class='form-control' name = 'washReport' id = 'washReport'></td>";
+								html4 += "<td>";
+								html4 += "<input type='button' value = '등록' class='btn btn-primary' onclick = 'enrollDailyWash("+pt_no+")'>";
+								html4 += "</td>";
+								html4 += "</tr>";
+							}
+						html4 += "</tbody>";
+						html4 += "</table>";
+						html4 += "</div>";
+						html4 += "</div>";
+						$("#menu4").html(html4);
+					},
+					error : function(e) {
+						console.log(e);
+					}
+				})
 			    html += "</div>";
 			    html += "<div id='menu5' class='tab-pane fade'>";
-				html += "<h3>Menu 5</h3>";  
-			    html += "<p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>";  
+			    $.ajax({
+					type : "post",
+					url : "showDailyShower",
+					data : {
+						pt_no : pt_no,
+						today : today
+					},
+					success : function(data) {
+						console.log(data);
+						var html5 = "";
+						html5 += "<div class='panel panel-info'>";
+						html5 += "<div class='panel-heading'>";
+						html5 += "<h3 class='panel-title'>샤워</h3>";
+						html5 += "</div>";
+						html5 += "<div class='panel-body' id = 'dailyShowerTable'>";
+						html5 += "<table class='table table-hover'>";
+						html5 += "<thead>";
+						html5 += "<tr>";
+						html5 += "<th>샤워시간</th>";
+						html5 += "<th>내용</th>";
+						html5 += "</tr>";
+						html5 += "</thead>";
+						if(data.length > 0){
+						$.each(data, function(index,item) {
+							html5 += "<tbody>";
+							html5 += "<tr>";
+							html5 += "<td>" + item.SHOWER + "</td>";
+							html5 += "<td>" + item.SHOWERREPORT + "</td>";
+							html5 += "<td><input type='button' value = '수정' class='btn btn-primary' onclick = 'showUpdateDailyShower("+pt_no+",&#34;"+item.SHOWER+"&#34;,&#34;"+item.SHOWERREPORT+"&#34;)'></td>";
+							html5 += "<td><input type='button' value = '삭제' class='btn btn-primary' onclick = 'delDailyShower("+pt_no+",&#34;"+item.DAILYSHOWER_NO+"&#34;)'></td>";
+							html5 += "</tr>";
+							})//each
+							html5 += "<tr>";
+							html5 += "<td>시간<input type = 'text' class='form-control' name = 'shower' id = 'shower'></td>";
+							html5 += "<td>내용<input type = 'text' class='form-control' name = 'showerReport' id = 'showerReport'></td>";
+							html5 += "<td>";
+							html5 += "<input type='button' value = '추가' class='btn btn-primary' onclick = 'enrollDailyShower("+pt_no+")'>";
+							html5 += "</td>";
+							html5 += "</tr>";
+							} else{
+								html5 += "<tbody>";
+								html5 += "<tr>";
+								html5 += "<td colspan='3'>아직등록되지않았습니다.</td>";
+								html5 += "</tr>";
+								html5 += "<tr>";
+								html5 += "<td>시간<input type = 'text' class='form-control' name = 'shower' id = 'shower'></td>";
+								html5 += "<td>내용<input type = 'text' class='form-control' name = 'showerReport' id = 'showerReport'></td>";
+								html5 += "<td>";
+								html5 += "<input type='button' value = '등록' class='btn btn-primary' onclick = 'enrollDailyShower("+pt_no+")'>";
+								html5 += "</td>";
+								html5 += "</tr>";
+							}
+						html5 += "</tbody>";
+						html5 += "</table>";
+						html5 += "</div>";
+						html5 += "</div>";
+						$("#menu5").html(html5);
+					},
+					error : function(e) {
+						console.log(e);
+					}
+				})
 			    html += "</div>";
 			    html += "<div id='menu6' class='tab-pane fade'>";
-				html += "<h3>Menu 6</h3>";  
-			    html += "<p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>";  
+			    $.ajax({
+					type : "post",
+					url : "showBedTime",
+					data : {
+						pt_no : pt_no,
+						today : today
+					},
+					success : function(data) {
+						console.log(data);
+						var html6 = "";
+						html6 += "<div class='panel panel-primary'>";
+						html6 += "<div class='panel-heading'>";
+						html6 += "<h3 class='panel-title'>식사</h3>";
+						html6 += "</div>";
+						html6 += "<div class='panel-body' id = 'BedTimeTable'>";
+						html6 += "<table class='table table-hover'>";
+						html6 += "<thead>";
+						html6 += "<tr>";
+						html6 += "<th>수면시간</th>";
+						html6 += "<th>기상시간</th>";
+						html6 += "<th>내용</th>";
+						html6 += "</tr>";
+						html6 += "</thead>";
+						if(data.length > 0){
+						$.each(data, function(index,item) {
+							html6 += "<tbody>";
+							html6 += "<tr>";
+							html6 += "<td>" + item.TIMETOSLEEP + "</td>";
+							html6 += "<td>" + item.TIMETOGETUP + "</td>";
+							html6 += "<td>" + item.REPORT + "</td>";
+							html6 += "<td><input type='button' value = '수정' class='btn btn-primary' onclick = 'showUpdateBedTime("+pt_no+",&#34;"+item.TIMETOSLEEP+"&#34;,&#34;"+item.TIMETOGETUP+"&#34;,&#34;"+item.REPORT+"&#34;)'></td>";
+							html6 += "<td><input type='button' value = '삭제' class='btn btn-primary' onclick = 'delBedTime("+pt_no+",&#34;"+item.BEDTIME_NO+"&#34;)'></td>";
+							html6 += "</tr>";
+							})//each
+							html6 += "<tr>";
+							html6 += "<td>수면시간<input type = 'text' class='form-control' name = 'timeToSleep' id = 'timeToSleep'></td>";
+							html6 += "<td>기상시간<input type = 'text' class='form-control' name = 'timeToGetup' id = 'timeToGetup'></td>";
+							html6 += "<td>내용<input type = 'text' class='form-control' name = 'report' id = 'report'></td>";
+							html6 += "<td>";
+							html6 += "<input type='button' value = '추가' class='btn btn-primary' onclick = 'enrollBedTime("+pt_no+")'>";
+							html6 += "</td>";
+							html6 += "</tr>";
+							} else{
+								html6 += "<tbody>";
+								html6 += "<tr>";
+								html6 += "<td colspan='3'>아직등록되지않았습니다.</td>";
+								html6 += "</tr>";
+								html6 += "<tr>";
+								html6 += "<td>수면시간<input type = 'text' class='form-control' name = 'timeToSleep' id = 'timeToSleep'></td>";
+								html6 += "<td>기상시간<input type = 'text' class='form-control' name = 'timeToGetup' id = 'timeToGetup'></td>";
+								html6 += "<td>내용<input type = 'text' class='form-control' name = 'report' id = 'report'></td>";
+								html6 += "</tr>";
+								html6 += "<tr>";
+								html6 += "<td></td>";
+								html6 += "<td></td>";
+								html6 += "<td>";
+								html6 += "<input type='button' value = '등록' class='btn btn-primary' onclick = 'enrollBedTime("+pt_no+")'>";
+								html6 += "</td>";
+								html6 += "</tr>";
+							}
+						html6 += "</tbody>";
+						html6 += "</table>";
+						html6 += "</div>";
+						html6 += "</div>";
+						$("#menu6").html(html6);
+					},
+					error : function(e) {
+						console.log(e);
+					}
+				})
 			    html += "</div>";
 			    html += "<div id='menu7' class='tab-pane fade'>";
-				html += "<h3>Menu 7</h3>";  
-			    html += "<p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>";  
+			    $.ajax({
+					type : "post",
+					url : "showDr_op",
+					data : {
+						pt_no : pt_no,
+						today : today
+					},
+					success : function(data) {
+						console.log(data);
+						var html7 = "";
+						html7 += "<div class='panel panel-warning'>";
+						html7 += "<div class='panel-heading'>";
+						html7 += "<h3 class='panel-title'>의사소견</h3>";
+						html7 += "</div>";
+						html7 += "<div class='panel-body' id = 'dr_opTable'>";
+						html7 += "<table class='table table-hover'>";
+						html7 += "<thead>";
+						html7 += "<tr>";
+						html7 += "<th>시간</th>";
+						html7 += "<th>내용</th>";
+						html7 += "</tr>";
+						html7 += "</thead>";
+						if(data.length > 0){
+						$.each(data, function(index,item) {
+							html7 += "<tbody>";
+							html7 += "<tr>";
+							html7 += "<td>" + item.REPORTTIME + "</td>";
+							html7 += "<td>" + item.REPORT + "</td>";
+							html7 += "<td><input type='button' value = '수정' class='btn btn-primary' onclick = 'showUpdateDr_op("+pt_no+",&#34;"+item.REPORTTIME+"&#34;,&#34;"+item.REPORT+"&#34;)'></td>";
+							html7 += "<td><input type='button' value = '삭제' class='btn btn-primary' onclick = 'delDr_op("+pt_no+",&#34;"+item.DR_OP_NO+"&#34;)'></td>";
+							html7 += "</tr>";
+							})//each
+							html7 += "<tr>";
+							html7 += "<td>시간<input type = 'text' class='form-control' name = 'reportTime' id = 'reportTime'></td>";
+							html7 += "<td>내용<input type = 'text' class='form-control' name = 'dreport' id = 'dreport'></td>";
+							html7 += "<td>";
+							html7 += "<input type='button' value = '추가' class='btn btn-primary' onclick = 'enrollDr_op("+pt_no+")'>";
+							html7 += "</td>";
+							html7 += "</tr>";
+							} else{
+								html7 += "<tbody>";
+								html7 += "<tr>";
+								html7 += "<td colspan='3'>아직등록되지않았습니다.</td>";
+								html7 += "</tr>";
+								html7 += "<tr>";
+								html7 += "<td>시간<input type = 'text' class='form-control' name = 'reportTime' id = 'reportTime'></td>";
+								html7 += "<td>내용<input type = 'text' class='form-control' name = 'dreport' id = 'dreport'></td>";
+								html7 += "<td>";
+								html7 += "<input type='button' value = '등록' class='btn btn-primary' onclick = 'enrollDr_op("+pt_no+")'>";
+								html7 += "</td>";
+								html7 += "</tr>";
+							}
+						html7 += "</tbody>";
+						html7 += "</table>";
+						html7 += "</div>";
+						html7 += "</div>";
+						$("#menu7").html(html7);
+					},
+					error : function(e) {
+						console.log(e);
+					}
+				})
 			    html += "</div>";
 			    html += "<div id='menu8' class='tab-pane fade'>";
-				html += "<h3>Menu 8</h3>";  
-			    html += "<p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>";  
+			    $.ajax({
+					type : "post",
+					url : "showSpecial",
+					data : {
+						pt_no : pt_no,
+						today : today
+					},
+					success : function(data) {
+						console.log(data);
+						var html8 = "";
+						html8 += "<div class='panel panel-danger'>";
+						html8 += "<div class='panel-heading'>";
+						html8 += "<h3 class='panel-title'>특이사항</h3>";
+						html8 += "</div>";
+						html8 += "<div class='panel-body' id = 'specialTable'>";
+						html8 += "<table class='table table-hover'>";
+						html8 += "<thead>";
+						html8 += "<tr>";
+						html8 += "<th>시간</th>";
+						html8 += "<th>내용</th>";
+						html8 += "</tr>";
+						html8 += "</thead>";
+						if(data.length > 0){
+						$.each(data, function(index,item) {
+							html8 += "<tbody>";
+							html8 += "<tr>";
+							html8 += "<td>" + item.SREPORTTIME + "</td>";
+							html8 += "<td>" + item.SREPORT + "</td>";
+							html8 += "<td><input type='button' value = '수정' class='btn btn-primary' onclick = 'showUpdateSpecial("+pt_no+",&#34;"+item.SREPORTTIME+"&#34;,&#34;"+item.SREPORT+"&#34;)'></td>";
+							html8 += "<td><input type='button' value = '삭제' class='btn btn-primary' onclick = 'delSpecial("+pt_no+",&#34;"+item.SPECIAL_NO+"&#34;)'></td>";
+							html8 += "</tr>";
+							})//each
+							html8 += "<tr>";
+							html8 += "<td>시간<input type = 'text' class='form-control' name = 'sreportTime' id = 'sreportTime'></td>";
+							html8 += "<td>내용<input type = 'text' class='form-control' name = 'sreport' id = 'sreport'></td>";
+							html8 += "<td>";
+							html8 += "<input type='button' value = '추가' class='btn btn-primary' onclick = 'enrollSpecial("+pt_no+")'>";
+							html8 += "</td>";
+							html8 += "</tr>";
+							} else{
+								html8 += "<tbody>";
+								html8 += "<tr>";
+								html8 += "<td colspan='3'>아직등록되지않았습니다.</td>";
+								html8 += "</tr>";
+								html8 += "<tr>";
+								html8 += "<td>시간<input type = 'text' class='form-control' name = 'sreportTime' id = 'sreportTime'></td>";
+								html8 += "<td>내용<input type = 'text' class='form-control' name = 'sreport' id = 'sreport'></td>";
+								html8 += "<td>";
+								html8 += "<input type='button' value = '등록' class='btn btn-primary' onclick = 'enrollSpecial("+pt_no+")'>";
+								html8 += "</td>";
+								html8 += "</tr>";
+							}
+						html8 += "</tbody>";
+						html8 += "</table>";
+						html8 += "</div>";
+						html8 += "</div>";
+						$("#menu8").html(html8);
+					},
+					error : function(e) {
+						console.log(e);
+					}
+				})
 			    html += "</div>";
 			    html += "</div>";
 			    html += "</div>";
@@ -1209,6 +1517,1388 @@ function updateDailyCleaning(pt_no,dailycleaning_No) {
 			html1 += "</div>";
 			html1 += "</div>";
 			$("#menu3").html(html1);
+		},
+		error : function(e) {
+			console.log(e);
+		}
+	})	
+}
+
+function enrollDailyWash(pt_no) {
+	var today = $(".datepicker").val();
+	var wash = document.getElementById("wash").value;
+	var washReport = document.getElementById("washReport").value;
+	
+	$.ajax({
+		type : "post",
+		url : "enrollDailyWash",
+		data: {
+			pt_no : pt_no,
+			today : today,
+			wash : wash,
+			washReport : washReport
+		},//data
+		success : function(data) {
+			var html1 = "";
+			html1 += "<div class='panel panel-info'>";
+			html1 += "<div class='panel-heading'>";
+			html1 += "<h3 class='panel-title'>세탁</h3>";
+			html1 += "</div>";
+			html1 += "<div class='panel-body' id = 'dailyWashTable'>";
+			html1 += "<table class='table table-hover'>";
+			html1 += "<thead>";
+			html1 += "<tr>";
+			html1 += "<th>시간</th>";
+			html1 += "<th>내용</th>";
+			html1 += "<th></th>";
+			html1 += "<th></th>";
+			html1 += "</tr>";
+			html1 += "</thead>";
+			if(data.length > 0){
+			$.each(data, function(index,item) {
+				html1 += "<tbody>";
+				html1 += "<tr>";
+				html1 += "<td>" + item.WASH + "</td>";
+				html1 += "<td>" + item.WASHREPORT + "</td>";
+				html1 += "<td><input type='button' value = '수정' class='btn btn-primary' onclick = 'showUpdateDailyWash("+pt_no+",&#34;"+item.WASH+"&#34;,&#34;"+item.WASHREPORT+"&#34;)'></td>";
+				html1 += "<td><input type='button' value = '삭제' class='btn btn-primary' onclick = 'delDailyWash("+pt_no+",&#34;"+item.DAILYWASH_NO+"&#34;)'></td>";
+				html1 += "</tr>";
+				})//each
+				html1 += "<tr>";
+				html1 += "<td>시간<input type = 'text' class='form-control' name = 'wash' id = 'wash'></td>";
+				html1 += "<td>내용<input type = 'text' class='form-control' name = 'washReport' id = 'washReport'></td>";
+				html1 += "<td>";
+				html1 += "<input type='button' value = '추가' class='btn btn-primary' onclick = 'enrollDailyWash("+pt_no+")'>";
+				html1 += "</td>";
+				html1 += "</tr>";
+				} else{
+					html1 += "<tbody>";
+					html1 += "<tr>";
+					html1 += "<td colspan='3'>아직등록되지않았습니다.</td>";
+					html1 += "</tr>";
+					html1 += "<tr>";
+					html1 += "<td>시간<input type = 'text' class='form-control' name = 'wash' id = 'wash'></td>";
+					html1 += "<td>내용<input type = 'text' class='form-control' name = 'washReport' id = 'washReport'></td>";
+					html1 += "<td>";
+					html1 += "<input type='button' value = '등록' class='btn btn-primary' onclick = 'enrollDailyWash("+pt_no+")'>";
+					html1 += "</td>";
+					html1 += "</tr>";
+				}
+			html1 += "</tbody>";
+			html1 += "</table>";
+			html1 += "</div>";
+			html1 += "</div>";
+			$("#menu4").html(html1);
+		},
+		error : function(e) {
+			console.log(e);
+		}
+	})	
+}
+
+function delDailyWash(pt_no,dailywash_No) {
+	var today = $(".datepicker").val();
+	
+	$.ajax({
+		type : "post",
+		url : "delDailyWash",
+		data: {
+			pt_no : pt_no,
+			today : today,
+			dailywash_No : dailywash_No
+		},//data
+		success : function(data) {
+			var html1 = "";
+			html1 += "<div class='panel panel-info'>";
+			html1 += "<div class='panel-heading'>";
+			html1 += "<h3 class='panel-title'>세탁</h3>";
+			html1 += "</div>";
+			html1 += "<div class='panel-body' id = 'dailyWashTable'>";
+			html1 += "<table class='table table-hover'>";
+			html1 += "<thead>";
+			html1 += "<tr>";
+			html1 += "<th>시간</th>";
+			html1 += "<th>내용</th>";
+			html1 += "</tr>";
+			html1 += "</thead>";
+			if(data.length > 0){
+			$.each(data, function(index,item) {
+				html1 += "<tbody>";
+				html1 += "<tr>";
+				html1 += "<td>" + item.WASH + "</td>";
+				html1 += "<td>" + item.WASHREPORT + "</td>";
+				html1 += "<td><input type='button' value = '수정' class='btn btn-primary' onclick = 'showUpdateDailyWash("+pt_no+",&#34;"+item.WASH+"&#34;,&#34;"+item.WASHREPORT+"&#34;)'></td>";
+				html1 += "<td><input type='button' value = '삭제' class='btn btn-primary' onclick = 'delDailyWash("+pt_no+",&#34;"+item.DAILYWASH_NO+"&#34;)'></td>";
+				html1 += "</tr>";
+				})//each
+				html1 += "<tr>";
+				html1 += "<td>시간<input type = 'text' class='form-control' name = 'wash' id = 'wash'></td>";
+				html1 += "<td>내용<input type = 'text' class='form-control' name = 'washReport' id = 'washReport'></td>";
+				html1 += "<td>";
+				html1 += "<input type='button' value = '추가' class='btn btn-primary' onclick = 'enrollDailyWash("+pt_no+")'>";
+				html1 += "</td>";
+				html1 += "</tr>";
+				} else{
+					html1 += "<tbody>";
+					html1 += "<tr>";
+					html1 += "<td colspan='3'>아직등록되지않았습니다.</td>";
+					html1 += "</tr>";
+					html1 += "<tr>";
+					html1 += "<td>시간<input type = 'text' class='form-control' name = 'wash' id = 'wash'></td>";
+					html1 += "<td>내용<input type = 'text' class='form-control' name = 'washReport' id = 'washReport'></td>";
+					html1 += "<td>";
+					html1 += "<input type='button' value = '등록' class='btn btn-primary' onclick = 'enrollDailyWash("+pt_no+")'>";
+					html1 += "</td>";
+					html1 += "</tr>";
+				}
+			html1 += "</tbody>";
+			html1 += "</table>";
+			html1 += "</div>";
+			html1 += "</div>";
+			$("#menu4").html(html1);
+		},
+		error : function(e) {
+			console.log(e);
+		}
+	})	
+}
+
+function showUpdateDailyWash(pt_no,wash,washReport){
+	var today = $(".datepicker").val();
+	
+	$.ajax({
+		type : "post",
+		url : "showUpdateDailyWash",
+		data: {
+			pt_no : pt_no,
+			today : today,
+			wash : wash,
+			washReport : washReport
+		},//data
+		success : function(data) {
+			var html1 = "";
+			html1 += "<div class='panel panel-info'>";
+			html1 += "<div class='panel-heading'>";
+			html1 += "<h3 class='panel-title'>세탁</h3>";
+			html1 += "</div>";
+			html1 += "<div class='panel-body' id = 'dailyWashTable'>";
+			html1 += "<table class='table table-hover'>";
+			html1 += "<thead>";
+			html1 += "<tr>";
+			html1 += "<th>시간</th>";
+			html1 += "<th>내용</th>";
+			html1 += "</tr>";
+			html1 += "</thead>";
+			if(data.length > 0){
+			$.each(data, function(index,item) {
+				html1 += "<tbody>";
+				html1 += "<tr>";
+				html1 += "<td>" + item.WASH + "</td>";
+				html1 += "<td>" + item.WASHREPORT + "</td>";
+				html1 += "</tr>";
+				html1 += "<tr>";
+				html1 += "<td>운동<input type = 'text' class='form-control' name = 'updateWash' id = 'updateWash'></td>";
+				html1 += "<td>시간<input type = 'text' class='form-control' name = 'updateWashReport' id = 'updateWashReport'></td>";
+				html1 += "<td>";
+				html1 += "<input type='button' value = '확인' class='btn btn-primary' onclick = 'updateDailyWash("+pt_no+",&#34;"+item.DAILYWASH_NO+"&#34;)'>";
+				html1 += "</td>";
+				html1 += "</tr>";
+				})//each
+				} else{
+					alert("뭔가 잘못됐어! 집으로 돌아가자");
+				}
+			html1 += "</tbody>";
+			html1 += "</table>";
+			html1 += "</div>";
+			html1 += "</div>";
+			$("#menu4").html(html1);
+		},
+		error : function(e) {
+			console.log(e);
+		}
+	})
+}
+
+function updateDailyWash(pt_no,dailywash_No) {
+	var today = $(".datepicker").val();
+	var wash = document.getElementById("updateWash").value;
+	var washReport = document.getElementById("updateWashReport").value;
+	
+	$.ajax({
+		type : "post",
+		url : "updateDailyWash",
+		data: {
+			pt_no : pt_no,
+			today : today,
+			wash : wash,
+			washReport : washReport,
+			dailywash_No : dailywash_No
+		},//data
+		success : function(data) {
+			var html1 = "";
+			html1 += "<div class='panel panel-info'>";
+			html1 += "<div class='panel-heading'>";
+			html1 += "<h3 class='panel-title'>세탁</h3>";
+			html1 += "</div>";
+			html1 += "<div class='panel-body' id = 'dailyWashTable'>";
+			html1 += "<table class='table table-hover'>";
+			html1 += "<thead>";
+			html1 += "<tr>";
+			html1 += "<th>시간</th>";
+			html1 += "<th>내용</th>";
+			html1 += "</tr>";
+			html1 += "</thead>";
+			if(data.length > 0){
+			$.each(data, function(index,item) {
+				html1 += "<tbody>";
+				html1 += "<tr>";
+				html1 += "<td>" + item.WASH + "</td>";
+				html1 += "<td>" + item.WASHREPORT + "</td>";
+				html1 += "<td><input type='button' value = '수정' class='btn btn-primary' onclick = 'showUpdateDailyWash("+pt_no+",&#34;"+item.WASH+"&#34;,&#34;"+item.WASHREPORT+"&#34;)'></td>";
+				html1 += "<td><input type='button' value = '삭제' class='btn btn-primary' onclick = 'delDailyWash("+pt_no+",&#34;"+item.DAILYWASH_NO+"&#34;)'></td>";
+				html1 += "</tr>";
+				})//each
+				html1 += "<tr>";
+				html1 += "<td>시간<input type = 'text' class='form-control' name = 'wash' id = 'wash'></td>";
+				html1 += "<td>내용<input type = 'text' class='form-control' name = 'washReport' id = 'washReport'></td>";
+				html1 += "<td>";
+				html1 += "<input type='button' value = '추가' class='btn btn-primary' onclick = 'enrollDailyWash("+pt_no+")'>";
+				html1 += "</td>";
+				html1 += "</tr>";
+				} else{
+					html1 += "<tbody>";
+					html1 += "<tr>";
+					html1 += "<td colspan='3'>아직등록되지않았습니다.</td>";
+					html1 += "</tr>";
+					html1 += "<tr>";
+					html1 += "<td>시간<input type = 'text' class='form-control' name = 'wash' id = 'wash'></td>";
+					html1 += "<td>내용<input type = 'text' class='form-control' name = 'washReport' id = 'washReport'></td>";
+					html1 += "<td>";
+					html1 += "<input type='button' value = '등록' class='btn btn-primary' onclick = 'enrollDailyWash("+pt_no+")'>";
+					html1 += "</td>";
+					html1 += "</tr>";
+				}
+			html1 += "</tbody>";
+			html1 += "</table>";
+			html1 += "</div>";
+			html1 += "</div>";
+			$("#menu4").html(html1);
+		},
+		error : function(e) {
+			console.log(e);
+		}
+	})	
+}
+
+function enrollDailyShower(pt_no) {
+	var today = $(".datepicker").val();
+	var shower = document.getElementById("shower").value;
+	var showerReport = document.getElementById("showerReport").value;
+	
+	$.ajax({
+		type : "post",
+		url : "enrollDailyShower",
+		data: {
+			pt_no : pt_no,
+			today : today,
+			shower : shower,
+			showerReport : showerReport
+		},//data
+		success : function(data) {
+			var html1 = "";
+			html1 += "<div class='panel panel-info'>";
+			html1 += "<div class='panel-heading'>";
+			html1 += "<h3 class='panel-title'>샤워</h3>";
+			html1 += "</div>";
+			html1 += "<div class='panel-body' id = 'dailyShowerTable'>";
+			html1 += "<table class='table table-hover'>";
+			html1 += "<thead>";
+			html1 += "<tr>";
+			html1 += "<th>시간</th>";
+			html1 += "<th>내용</th>";
+			html1 += "<th></th>";
+			html1 += "<th></th>";
+			html1 += "</tr>";
+			html1 += "</thead>";
+			if(data.length > 0){
+			$.each(data, function(index,item) {
+				html1 += "<tbody>";
+				html1 += "<tr>";
+				html1 += "<td>" + item.SHOWER + "</td>";
+				html1 += "<td>" + item.SHOWERREPORT + "</td>";
+				html1 += "<td><input type='button' value = '수정' class='btn btn-primary' onclick = 'showUpdateDailyShower("+pt_no+",&#34;"+item.SHOWER+"&#34;,&#34;"+item.SHOWERREPORT+"&#34;)'></td>";
+				html1 += "<td><input type='button' value = '삭제' class='btn btn-primary' onclick = 'delDailyShower("+pt_no+",&#34;"+item.DAILYSHOWER_NO+"&#34;)'></td>";
+				html1 += "</tr>";
+				})//each
+				html1 += "<tr>";
+				html1 += "<td>시간<input type = 'text' class='form-control' name = 'shower' id = 'shower'></td>";
+				html1 += "<td>내용<input type = 'text' class='form-control' name = 'showerReport' id = 'showerReport'></td>";
+				html1 += "<td>";
+				html1 += "<input type='button' value = '추가' class='btn btn-primary' onclick = 'enrollDailyShower("+pt_no+")'>";
+				html1 += "</td>";
+				html1 += "</tr>";
+				} else{
+					html1 += "<tbody>";
+					html1 += "<tr>";
+					html1 += "<td colspan='3'>아직등록되지않았습니다.</td>";
+					html1 += "</tr>";
+					html1 += "<tr>";
+					html1 += "<td>시간<input type = 'text' class='form-control' name = 'shower' id = 'shower'></td>";
+					html1 += "<td>내용<input type = 'text' class='form-control' name = 'showerReport' id = 'showerReport'></td>";
+					html1 += "<td>";
+					html1 += "<input type='button' value = '등록' class='btn btn-primary' onclick = 'enrollDailyShower("+pt_no+")'>";
+					html1 += "</td>";
+					html1 += "</tr>";
+				}
+			html1 += "</tbody>";
+			html1 += "</table>";
+			html1 += "</div>";
+			html1 += "</div>";
+			$("#menu5").html(html1);
+		},
+		error : function(e) {
+			console.log(e);
+		}
+	})	
+}
+
+function delDailyShower(pt_no,dailyshower_No) {
+	var today = $(".datepicker").val();
+	
+	$.ajax({
+		type : "post",
+		url : "delDailyShower",
+		data: {
+			pt_no : pt_no,
+			today : today,
+			dailyshower_No : dailyshower_No
+		},//data
+		success : function(data) {
+			var html1 = "";
+			html1 += "<div class='panel panel-info'>";
+			html1 += "<div class='panel-heading'>";
+			html1 += "<h3 class='panel-title'>샤워</h3>";
+			html1 += "</div>";
+			html1 += "<div class='panel-body' id = 'dailyShowerTable'>";
+			html1 += "<table class='table table-hover'>";
+			html1 += "<thead>";
+			html1 += "<tr>";
+			html1 += "<th>시간</th>";
+			html1 += "<th>내용</th>";
+			html1 += "</tr>";
+			html1 += "</thead>";
+			if(data.length > 0){
+			$.each(data, function(index,item) {
+				html1 += "<tbody>";
+				html1 += "<tr>";
+				html1 += "<td>" + item.SHOWER + "</td>";
+				html1 += "<td>" + item.SHOWERREPORT + "</td>";
+				html1 += "<td><input type='button' value = '수정' class='btn btn-primary' onclick = 'showUpdateDailyShower("+pt_no+",&#34;"+item.SHOWER+"&#34;,&#34;"+item.SHOWERREPORT+"&#34;)'></td>";
+				html1 += "<td><input type='button' value = '삭제' class='btn btn-primary' onclick = 'delDailyShower("+pt_no+",&#34;"+item.DAILYSHOWER_NO+"&#34;)'></td>";
+				html1 += "</tr>";
+				})//each
+				html1 += "<tr>";
+				html1 += "<td>시간<input type = 'text' class='form-control' name = 'shower' id = 'shower'></td>";
+				html1 += "<td>내용<input type = 'text' class='form-control' name = 'showerReport' id = 'showerReport'></td>";
+				html1 += "<td>";
+				html1 += "<input type='button' value = '추가' class='btn btn-primary' onclick = 'enrollDailyShower("+pt_no+")'>";
+				html1 += "</td>";
+				html1 += "</tr>";
+				} else{
+					html1 += "<tbody>";
+					html1 += "<tr>";
+					html1 += "<td colspan='3'>아직등록되지않았습니다.</td>";
+					html1 += "</tr>";
+					html1 += "<tr>";
+					html1 += "<td>시간<input type = 'text' class='form-control' name = 'shower' id = 'shower'></td>";
+					html1 += "<td>내용<input type = 'text' class='form-control' name = 'showerReport' id = 'showerReport'></td>";
+					html1 += "<td>";
+					html1 += "<input type='button' value = '등록' class='btn btn-primary' onclick = 'enrollDailyShower("+pt_no+")'>";
+					html1 += "</td>";
+					html1 += "</tr>";
+				}
+			html1 += "</tbody>";
+			html1 += "</table>";
+			html1 += "</div>";
+			html1 += "</div>";
+			$("#menu5").html(html1);
+		},
+		error : function(e) {
+			console.log(e);
+		}
+	})	
+}
+
+function showUpdateDailyShower(pt_no,shower,showerReport){
+	var today = $(".datepicker").val();
+	
+	$.ajax({
+		type : "post",
+		url : "showUpdateDailyShower",
+		data: {
+			pt_no : pt_no,
+			today : today,
+			shower : shower,
+			showerReport : showerReport
+		},//data
+		success : function(data) {
+			var html1 = "";
+			html1 += "<div class='panel panel-info'>";
+			html1 += "<div class='panel-heading'>";
+			html1 += "<h3 class='panel-title'>샤워</h3>";
+			html1 += "</div>";
+			html1 += "<div class='panel-body' id = 'dailyShowerTable'>";
+			html1 += "<table class='table table-hover'>";
+			html1 += "<thead>";
+			html1 += "<tr>";
+			html1 += "<th>시간</th>";
+			html1 += "<th>내용</th>";
+			html1 += "</tr>";
+			html1 += "</thead>";
+			if(data.length > 0){
+			$.each(data, function(index,item) {
+				html1 += "<tbody>";
+				html1 += "<tr>";
+				html1 += "<td>" + item.SHOWER + "</td>";
+				html1 += "<td>" + item.SHOWERREPORT + "</td>";
+				html1 += "</tr>";
+				html1 += "<tr>";
+				html1 += "<td>운동<input type = 'text' class='form-control' name = 'updateShower' id = 'updateShower'></td>";
+				html1 += "<td>시간<input type = 'text' class='form-control' name = 'updateShowerReport' id = 'updateShowerReport'></td>";
+				html1 += "<td>";
+				html1 += "<input type='button' value = '확인' class='btn btn-primary' onclick = 'updateDailyShower("+pt_no+",&#34;"+item.DAILYSHOWER_NO+"&#34;)'>";
+				html1 += "</td>";
+				html1 += "</tr>";
+				})//each
+				} else{
+					alert("뭔가 잘못됐어! 집으로 돌아가자");
+				}
+			html1 += "</tbody>";
+			html1 += "</table>";
+			html1 += "</div>";
+			html1 += "</div>";
+			$("#menu5").html(html1);
+		},
+		error : function(e) {
+			console.log(e);
+		}
+	})
+}
+
+function updateDailyShower(pt_no,dailyshower_No) {
+	var today = $(".datepicker").val();
+	var shower = document.getElementById("updateShower").value;
+	var showerReport = document.getElementById("updateShowerReport").value;
+	
+	$.ajax({
+		type : "post",
+		url : "updateDailyShower",
+		data: {
+			pt_no : pt_no,
+			today : today,
+			shower : shower,
+			showerReport : showerReport,
+			dailyshower_No : dailyshower_No
+		},//data
+		success : function(data) {
+			var html1 = "";
+			html1 += "<div class='panel panel-info'>";
+			html1 += "<div class='panel-heading'>";
+			html1 += "<h3 class='panel-title'>샤워</h3>";
+			html1 += "</div>";
+			html1 += "<div class='panel-body' id = 'dailyShowerTable'>";
+			html1 += "<table class='table table-hover'>";
+			html1 += "<thead>";
+			html1 += "<tr>";
+			html1 += "<th>시간</th>";
+			html1 += "<th>내용</th>";
+			html1 += "</tr>";
+			html1 += "</thead>";
+			if(data.length > 0){
+			$.each(data, function(index,item) {
+				html1 += "<tbody>";
+				html1 += "<tr>";
+				html1 += "<td>" + item.SHOWER + "</td>";
+				html1 += "<td>" + item.SHOWERREPORT + "</td>";
+				html1 += "<td><input type='button' value = '수정' class='btn btn-primary' onclick = 'showUpdateDailyShower("+pt_no+",&#34;"+item.SHOWER+"&#34;,&#34;"+item.SHOWERREPORT+"&#34;)'></td>";
+				html1 += "<td><input type='button' value = '삭제' class='btn btn-primary' onclick = 'delDailyShower("+pt_no+",&#34;"+item.DAILYSHOWER_NO+"&#34;)'></td>";
+				html1 += "</tr>";
+				})//each
+				html1 += "<tr>";
+				html1 += "<td>시간<input type = 'text' class='form-control' name = 'shower' id = 'shower'></td>";
+				html1 += "<td>내용<input type = 'text' class='form-control' name = 'showerReport' id = 'showerReport'></td>";
+				html1 += "<td>";
+				html1 += "<input type='button' value = '추가' class='btn btn-primary' onclick = 'enrollDailyWash("+pt_no+")'>";
+				html1 += "</td>";
+				html1 += "</tr>";
+				} else{
+					html1 += "<tbody>";
+					html1 += "<tr>";
+					html1 += "<td colspan='3'>아직등록되지않았습니다.</td>";
+					html1 += "</tr>";
+					html1 += "<tr>";
+					html1 += "<td>시간<input type = 'text' class='form-control' name = 'shower' id = 'shower'></td>";
+					html1 += "<td>내용<input type = 'text' class='form-control' name = 'showerReport' id = 'showerReport'></td>";
+					html1 += "<td>";
+					html1 += "<input type='button' value = '등록' class='btn btn-primary' onclick = 'enrollDailyShower("+pt_no+")'>";
+					html1 += "</td>";
+					html1 += "</tr>";
+				}
+			html1 += "</tbody>";
+			html1 += "</table>";
+			html1 += "</div>";
+			html1 += "</div>";
+			$("#menu5").html(html1);
+		},
+		error : function(e) {
+			console.log(e);
+		}
+	})	
+}
+
+function enrollBedTime(pt_no) {
+	var today = $(".datepicker").val();
+	var timeToSleep = document.getElementById("timeToSleep").value;
+	var timeToGetup = document.getElementById("timeToGetup").value;
+	var report = document.getElementById("report").value;
+	
+	$.ajax({
+		type : "post",
+		url : "enrollBedTime",
+		data: {
+			pt_no : pt_no,
+			today : today,
+			timeToSleep : timeToSleep,
+			timeToGetup : timeToGetup,
+			report : report
+		},//data
+		success : function(data) {
+			var html1 = "";
+			html1 += "<div class='panel panel-primary'>";
+			html1 += "<div class='panel-heading'>";
+			html1 += "<h3 class='panel-title'>수면시간</h3>";
+			html1 += "</div>";
+			html1 += "<div class='panel-body' id = 'bedTimeTable'>";
+			html1 += "<table class='table table-hover'>";
+			html1 += "<thead>";
+			html1 += "<tr>";
+			html1 += "<th>수면시간</th>";
+			html1 += "<th>기상시간</th>";
+			html1 += "<th>내용</th>";
+			html1 += "</tr>";
+			html1 += "</thead>";
+			if(data.length > 0){
+			$.each(data, function(index,item) {
+				html1 += "<tbody>";
+				html1 += "<tr>";
+				html1 += "<td>" + item.TIMETOSLEEP + "</td>";
+				html1 += "<td>" + item.TIMETOGETUP + "</td>";
+				html1 += "<td>" + item.REPORT + "</td>";
+				html1 += "<td><input type='button' value = '수정' class='btn btn-primary' onclick = 'showUpdateBedTime("+pt_no+",&#34;"+item.TIMETOSLEEP+"&#34;,&#34;"+item.TIMETOGETUP+"&#34;,&#34;"+item.REPORT+"&#34;)'></td>";
+				html1 += "<td><input type='button' value = '삭제' class='btn btn-primary' onclick = 'delBedTime("+pt_no+",&#34;"+item.BEDTIME_NO+"&#34;)'></td>";
+				html1 += "</tr>";
+				})//each
+				html1 += "<tr>";
+				html1 += "<td>수면시간<input type = 'text' class='form-control' name = 'timeToSleep' id = 'timeToSleep'></td>";
+				html1 += "<td>기상시간<input type = 'text' class='form-control' name = 'timeToGetup' id = 'timeToGetup'></td>";
+				html1 += "<td>내용<input type = 'text' class='form-control' name = 'report' id = 'report'></td>";
+				html1 += "<td>";
+				html1 += "<input type='button' value = '추가' class='btn btn-primary' onclick = 'enrollBedTime("+pt_no+")'>";
+				html1 += "</td>";
+				html1 += "</tr>";
+				} else{
+					html1 += "<tbody>";
+					html1 += "<tr>";
+					html1 += "<td colspan='3'>아직등록되지않았습니다.</td>";
+					html1 += "</tr>";
+					html1 += "<tr>";
+					html1 += "<td>수면시간<input type = 'text' class='form-control' name = 'timeToSleep' id = 'timeToSleep'></td>";
+					html1 += "<td>기상시간<input type = 'text' class='form-control' name = 'timeToGetup' id = 'timeToGetup'></td>";
+					html1 += "<td>내용<input type = 'text' class='form-control' name = 'report' id = 'report'></td>";
+					html1 += "</tr>";
+					html1 += "<tr>";
+					html1 += "<td></td>";
+					html1 += "<td></td>";
+					html1 += "<td>";
+					html1 += "<input type='button' value = '등록' class='btn btn-primary' onclick = 'enrollBedTime("+pt_no+")'>";
+					html1 += "</td>";
+					html1 += "</tr>";
+				}
+			html1 += "</tbody>";
+			html1 += "</table>";
+			html1 += "</div>";
+			html1 += "</div>";
+			$("#menu6").html(html1);
+		},
+		error : function(e) {
+			console.log(e);
+		}
+	})	
+}
+
+function delBedTime(pt_no,bedtime_No) {
+	var today = $(".datepicker").val();
+	
+	$.ajax({
+		type : "post",
+		url : "delBedTime",
+		data: {
+			pt_no : pt_no,
+			today : today,
+			bedtime_No : bedtime_No
+		},//data
+		success : function(data) {
+			var html1 = "";
+			html1 += "<div class='panel panel-primary'>";
+			html1 += "<div class='panel-heading'>";
+			html1 += "<h3 class='panel-title'>수면시간</h3>";
+			html1 += "</div>";
+			html1 += "<div class='panel-body' id = 'bedTimeTable'>";
+			html1 += "<table class='table table-hover'>";
+			html1 += "<thead>";
+			html1 += "<tr>";
+			html1 += "<th>수면식사</th>";
+			html1 += "<th>기상시간</th>";
+			html1 += "<th>내용</th>";
+			html1 += "</tr>";
+			html1 += "</thead>";
+			if(data.length > 0){
+			$.each(data, function(index,item) {
+				html1 += "<tbody>";
+				html1 += "<tr>";
+				html1 += "<td>" + item.TIMETOSLEEP + "</td>";
+				html1 += "<td>" + item.TIMETOGETUP + "</td>";
+				html1 += "<td>" + item.REPORT + "</td>";
+				html1 += "<td><input type='button' value = '수정' class='btn btn-primary' onclick = 'showUpdateBedTime("+pt_no+",&#34;"+item.TIMETOSLEEP+"&#34;,&#34;"+item.TIMETOGETUP+"&#34;,&#34;"+item.REPORT+"&#34;)'></td>";
+				html1 += "<td><input type='button' value = '삭제' class='btn btn-primary' onclick = 'delBedTime("+pt_no+",&#34;"+item.BEDTIME_NO+"&#34;)'></td>";
+				html1 += "</tr>";
+				})//each
+				html1 += "<tr>";
+				html1 += "<td>수면시간<input type = 'text' class='form-control' name = 'timeToSleep' id = 'timeToSleep'></td>";
+				html1 += "<td>기상시간<input type = 'text' class='form-control' name = 'timeToGetup' id = 'timeToGetup'></td>";
+				html1 += "<td>내용<input type = 'text' class='form-control' name = 'report' id = 'report'></td>";
+				html1 += "<td>";
+				html1 += "<input type='button' value = '추가' class='btn btn-primary' onclick = 'enrollBedTime("+pt_no+")'>";
+				html1 += "</td>";
+				html1 += "</tr>";
+				} else{
+					html1 += "<tbody>";
+					html1 += "<tr>";
+					html1 += "<td colspan='3'>아직등록되지않았습니다.</td>";
+					html1 += "</tr>";
+					html1 += "<tr>";
+					html1 += "<td>수면시간<input type = 'text' class='form-control' name = 'timeToSleep' id = 'timeToSleep'></td>";
+					html1 += "<td>기상시간<input type = 'text' class='form-control' name = 'timeToGetup' id = 'timeToGetup'></td>";
+					html1 += "<td>내용<input type = 'text' class='form-control' name = 'report' id = 'report'></td>";
+					html1 += "</tr>";
+					html1 += "<tr>";
+					html1 += "<td></td>";
+					html1 += "<td></td>";
+					html1 += "<td>";
+					html1 += "<input type='button' value = '등록' class='btn btn-primary' onclick = 'enrollBedTime("+pt_no+")'>";
+					html1 += "</td>";
+					html1 += "</tr>";
+				}
+			html1 += "</tbody>";
+			html1 += "</table>";
+			html1 += "</div>";
+			html1 += "</div>";
+			$("#menu6").html(html1);
+		},
+		error : function(e) {
+			console.log(e);
+		}
+	})	
+}
+
+function showUpdateBedTime(pt_no,timeToSleep,timeToGetup,report){
+	var today = $(".datepicker").val();
+	
+	$.ajax({
+		type : "post",
+		url : "showUpdateBedTime",
+		data: {
+			pt_no : pt_no,
+			today : today,
+			timeToSleep : timeToSleep,
+			timeToGetup : timeToGetup,
+			report : report
+		},//data
+		success : function(data) {
+			var html1 = "";
+			html1 += "<div class='panel panel-primary'>";
+			html1 += "<div class='panel-heading'>";
+			html1 += "<h3 class='panel-title'>수면시간</h3>";
+			html1 += "</div>";
+			html1 += "<div class='panel-body' id = 'mealTable'>";
+			html1 += "<table class='table table-hover'>";
+			html1 += "<thead>";
+			html1 += "<tr>";
+			html1 += "<th>수면시간</th>";
+			html1 += "<th>기상시간</th>";
+			html1 += "<th>내용</th>";
+			html1 += "</tr>";
+			html1 += "</thead>";
+			if(data.length > 0){
+			$.each(data, function(index,item) {
+				html1 += "<tbody>";
+				html1 += "<tr>";
+				html1 += "<td>" + item.TIMETOSLEEP + "</td>";
+				html1 += "<td>" + item.TIMETOGETUP + "</td>";
+				html1 += "<td>" + item.REPORT + "</td>";
+				html1 += "</tr>";
+				html1 += "<tr>";
+				html1 += "<td>수면시간<input type = 'text' class='form-control' name = 'updateTimeToSleep' id = 'updateTimeToSleep'></td>";
+				html1 += "<td>기상시간<input type = 'text' class='form-control' name = 'updateTimeToGetup' id = 'updateTimeToGetup'></td>";
+				html1 += "<td>내용<input type = 'text' class='form-control' name = 'updateReport' id = 'updateReport'></td>";
+				html1 += "<td>";
+				html1 += "<input type='button' value = '확인' class='btn btn-primary' onclick = 'updateBedTime("+pt_no+",&#34;"+item.BEDTIME_NO+"&#34;)'>";
+				html1 += "</td>";
+				html1 += "</tr>";
+				})//each
+				} else{
+					alert("뭔가 잘못됐어! 집으로 돌아가자");
+				}
+			html1 += "</tbody>";
+			html1 += "</table>";
+			html1 += "</div>";
+			html1 += "</div>";
+			$("#menu6").html(html1);
+		},
+		error : function(e) {
+			console.log(e);
+		}
+	})
+}
+
+function updateBedTime(pt_no,bedtime_No) {
+	var today = $(".datepicker").val();
+	var timeToSleep = document.getElementById("updateTimeToSleep").value;
+	var timeToGetup = document.getElementById("updateTimeToGetup").value;
+	var report = document.getElementById("updateReport").value;
+	
+	$.ajax({
+		type : "post",
+		url : "updateBedTime",
+		data: {
+			pt_no : pt_no,
+			today : today,
+			timeToSleep : timeToSleep,
+			timeToGetup : timeToGetup,
+			report : report,
+			bedtime_No : bedtime_No
+		},//data
+		success : function(data) {
+			var html1 = "";
+			html1 += "<div class='panel panel-primary'>";
+			html1 += "<div class='panel-heading'>";
+			html1 += "<h3 class='panel-title'>수면시간</h3>";
+			html1 += "</div>";
+			html1 += "<div class='panel-body' id = 'bedTimeTable'>";
+			html1 += "<table class='table table-hover'>";
+			html1 += "<thead>";
+			html1 += "<tr>";
+			html1 += "<th>수면식사</th>";
+			html1 += "<th>식사시간</th>";
+			html1 += "<th>내용</th>";
+			html1 += "</tr>";
+			html1 += "</thead>";
+			if(data.length > 0){
+			$.each(data, function(index,item) {
+				html1 += "<tbody>";
+				html1 += "<tr>";
+				html1 += "<td>" + item.TIMETOSLEEP + "</td>";
+				html1 += "<td>" + item.TIMETOGETUP + "</td>";
+				html1 += "<td>" + item.REPORT + "</td>";
+				html1 += "<td><input type='button' value = '수정' class='btn btn-primary' onclick = 'showUpdateBedTime("+pt_no+",&#34;"+item.TIMETOSLEEP+"&#34;,&#34;"+item.TIMETOGETUP+"&#34;,&#34;"+item.REPORT+"&#34;)'></td>";
+				html1 += "<td><input type='button' value = '삭제' class='btn btn-primary' onclick = 'delBedTime("+pt_no+",&#34;"+item.BEDTIME_NO+"&#34;)'></td>";
+				html1 += "</tr>";
+				})//each
+				html1 += "<tr>";
+				html1 += "<td>수면시간<input type = 'text' class='form-control' name = 'timeToSleep' id = 'timeToSleep'></td>";
+				html1 += "<td>기상시간<input type = 'text' class='form-control' name = 'timeToGetup' id = 'timeToGetup'></td>";
+				html1 += "<td>내용<input type = 'text' class='form-control' name = 'report' id = 'report'></td>";
+				html1 += "<td>";
+				html1 += "<input type='button' value = '추가' class='btn btn-primary' onclick = 'enrollBedTime("+pt_no+")'>";
+				html1 += "</td>";
+				html1 += "</tr>";
+				} else{
+					html1 += "<tbody>";
+					html1 += "<tr>";
+					html1 += "<td colspan='3'>아직등록되지않았습니다.</td>";
+					html1 += "</tr>";
+					html1 += "<tr>";
+					html1 += "<td>수면시간<input type = 'text' class='form-control' name = 'timeToSleep' id = 'timeToSleep'></td>";
+					html1 += "<td>기상시간<input type = 'text' class='form-control' name = 'timeToGetup' id = 'timeToGetup'></td>";
+					html1 += "<td>내용<input type = 'text' class='form-control' name = 'report' id = 'report'></td>";
+					html1 += "</tr>";
+					html1 += "<tr>";
+					html1 += "<td></td>";
+					html1 += "<td></td>";
+					html1 += "<td>";
+					html1 += "<input type='button' value = '등록' class='btn btn-primary' onclick = 'enrollBedTime("+pt_no+")'>";
+					html1 += "</td>";
+					html1 += "</tr>";
+				}
+			html1 += "</tbody>";
+			html1 += "</table>";
+			html1 += "</div>";
+			html1 += "</div>";
+			$("#menu6").html(html1);
+		},
+		error : function(e) {
+			console.log(e);
+		}
+	})	
+}
+
+function enrollDr_op(pt_no) {
+	var today = $(".datepicker").val();
+	var reportTime = document.getElementById("reportTime").value;
+	var report = document.getElementById("dreport").value;
+	
+	alert(report);
+	
+	$.ajax({
+		type : "post",
+		url : "enrollDr_op",
+		data: {
+			pt_no : pt_no,
+			today : today,
+			reportTime : reportTime,
+			report : report
+		},//data
+		success : function(data) {
+			var html1 = "";
+			html1 += "<div class='panel panel-warning'>";
+			html1 += "<div class='panel-heading'>";
+			html1 += "<h3 class='panel-title'>의사소견</h3>";
+			html1 += "</div>";
+			html1 += "<div class='panel-body' id = 'dr_opTable'>";
+			html1 += "<table class='table table-hover'>";
+			html1 += "<thead>";
+			html1 += "<tr>";
+			html1 += "<th>시간</th>";
+			html1 += "<th>내용</th>";
+			html1 += "</tr>";
+			html1 += "</thead>";
+			if(data.length > 0){
+			$.each(data, function(index,item) {
+				html1 += "<tbody>";
+				html1 += "<tr>";
+				html1 += "<td>" + item.REPORTTIME + "</td>";
+				html1 += "<td>" + item.REPORT + "</td>";
+				html1 += "<td><input type='button' value = '수정' class='btn btn-primary' onclick = 'showUpdateDr_op("+pt_no+",&#34;"+item.REPORTTIME+"&#34;,&#34;"+item.REPORT+"&#34;)'></td>";
+				html1 += "<td><input type='button' value = '삭제' class='btn btn-primary' onclick = 'delDr_op("+pt_no+",&#34;"+item.DR_OP_NO+"&#34;)'></td>";
+				html1 += "</tr>";
+				})//each
+				html1 += "<tr>";
+				html1 += "<td>시간<input type = 'text' class='form-control' name = 'reportTime' id = 'reportTime'></td>";
+				html1 += "<td>내용<input type = 'text' class='form-control' name = 'dreport' id = 'dreport'></td>";
+				html1 += "<td>";
+				html1 += "<input type='button' value = '추가' class='btn btn-primary' onclick = 'enrollDr_op("+pt_no+")'>";
+				html1 += "</td>";
+				html1 += "</tr>";
+				} else{
+					html1 += "<tbody>";
+					html1 += "<tr>";
+					html1 += "<td colspan='3'>아직등록되지않았습니다.</td>";
+					html1 += "</tr>";
+					html1 += "<tr>";
+					html1 += "<td>시간<input type = 'text' class='form-control' name = 'reportTime' id = 'reportTime'></td>";
+					html1 += "<td>내용<input type = 'text' class='form-control' name = 'dreport' id = 'dreport'></td>";
+					html1 += "</tr>";
+					html1 += "<tr>";
+					html1 += "<td></td>";
+					html1 += "<td></td>";
+					html1 += "<td>";
+					html1 += "<input type='button' value = '등록' class='btn btn-primary' onclick = 'enrollDr_op("+pt_no+")'>";
+					html1 += "</td>";
+					html1 += "</tr>";
+				}
+			html1 += "</tbody>";
+			html1 += "</table>";
+			html1 += "</div>";
+			html1 += "</div>";
+			$("#menu7").html(html1);
+		},
+		error : function(e) {
+			console.log(e);
+		}
+	})	
+}
+
+function delDr_op(pt_no, dr_op_No) {
+	var today = $(".datepicker").val();
+	
+	$.ajax({
+		type : "post",
+		url : "delDr_op",
+		data: {
+			pt_no : pt_no,
+			today : today,
+			dr_op_No : dr_op_No
+		},//data
+		success : function(data) {
+			var html1 = "";
+			html1 += "<div class='panel panel-warning'>";
+			html1 += "<div class='panel-heading'>";
+			html1 += "<h3 class='panel-title'>의사소견</h3>";
+			html1 += "</div>";
+			html1 += "<div class='panel-body' id = 'exerciseTable'>";
+			html1 += "<table class='table table-hover'>";
+			html1 += "<thead>";
+			html1 += "<tr>";
+			html1 += "<th>시간</th>";
+			html1 += "<th>내용</th>";
+			html1 += "</tr>";
+			html1 += "</thead>";
+			if(data.length > 0){
+			$.each(data, function(index,item) {
+				html1 += "<tbody>";
+				html1 += "<tr>";
+				html1 += "<td>" + item.REPORTTIME + "</td>";
+				html1 += "<td>" + item.REPORT + "</td>";
+				html1 += "<td><input type='button' value = '수정' class='btn btn-primary' onclick = 'showUpdateDr_op("+pt_no+",&#34;"+item.REPORTTIME+"&#34;,&#34;"+item.REPORT+"&#34;)'></td>";
+				html1 += "<td><input type='button' value = '삭제' class='btn btn-primary' onclick = 'delDr_op("+pt_no+",&#34;"+item.DR_OP_NO+"&#34;)'></td>";
+				html1 += "</tr>";
+				})//each
+				html1 += "<tr>";
+				html1 += "<td>시간<input type = 'text' class='form-control' name = 'reportTime' id = 'reportTime'></td>";
+				html1 += "<td>내용<input type = 'text' class='form-control' name = 'dreport' id = 'dreport'></td>";
+				html1 += "<td>";
+				html1 += "<input type='button' value = '추가' class='btn btn-primary' onclick = 'enrollDr_op("+pt_no+")'>";
+				html1 += "</td>";
+				html1 += "</tr>";
+				} else{
+					html1 += "<tbody>";
+					html1 += "<tr>";
+					html1 += "<td colspan='3'>아직등록되지않았습니다.</td>";
+					html1 += "</tr>";
+					html1 += "<tr>";
+					html1 += "<td>시간<input type = 'text' class='form-control' name = 'reportTime' id = 'reportTime'></td>";
+					html1 += "<td>내용<input type = 'text' class='form-control' name = 'dreport' id = 'dreport'></td>";
+					html1 += "</tr>";
+					html1 += "<tr>";
+					html1 += "<td></td>";
+					html1 += "<td></td>";
+					html1 += "<td>";
+					html1 += "<input type='button' value = '등록' class='btn btn-primary' onclick = 'enrollDr_op("+pt_no+")'>";
+					html1 += "</td>";
+					html1 += "</tr>";
+				}
+			html1 += "</tbody>";
+			html1 += "</table>";
+			html1 += "</div>";
+			html1 += "</div>";
+			$("#menu7").html(html1);
+		},
+		error : function(e) {
+			console.log(e);
+		}
+	})	
+}
+
+function showUpdateDr_op(pt_no,reportTime,report){
+	var today = $(".datepicker").val();
+	
+	$.ajax({
+		type : "post",
+		url : "showUpdateDr_op",
+		data: {
+			pt_no : pt_no,
+			today : today,
+			reportTime : reportTime,
+			report : report
+		},//data
+		success : function(data) {
+			var html1 = "";
+			html1 += "<div class='panel panel-warning'>";
+			html1 += "<div class='panel-heading'>";
+			html1 += "<h3 class='panel-title'>의사소견</h3>";
+			html1 += "</div>";
+			html1 += "<div class='panel-body' id = 'mealTable'>";
+			html1 += "<table class='table table-hover'>";
+			html1 += "<thead>";
+			html1 += "<tr>";
+			html1 += "<th>시간</th>";
+			html1 += "<th>내용</th>";
+			html1 += "</tr>";
+			html1 += "</thead>";
+			if(data.length > 0){
+			$.each(data, function(index,item) {
+				html1 += "<tbody>";
+				html1 += "<tr>";
+				html1 += "<td>" + item.REPORTTIME + "</td>";
+				html1 += "<td>" + item.REPORT + "</td>";
+				html1 += "</tr>";
+				html1 += "<tr>";
+				html1 += "<td>시간<input type = 'text' class='form-control' name = 'updateReportTime' id = 'updateReportTime'></td>";
+				html1 += "<td>내용<input type = 'text' class='form-control' name = 'updateDreport' id = 'updateDreport'></td>";
+				html1 += "<td>";
+				html1 += "<input type='button' value = '확인' class='btn btn-primary' onclick = 'updateDr_op("+pt_no+",&#34;"+item.DR_OP_NO+"&#34;)'>";
+				html1 += "</td>";
+				html1 += "</tr>";
+				})//each
+				} else{
+					alert("뭔가 잘못됐어! 집으로 돌아가자");
+				}
+			html1 += "</tbody>";
+			html1 += "</table>";
+			html1 += "</div>";
+			html1 += "</div>";
+			$("#menu7").html(html1);
+		},
+		error : function(e) {
+			console.log(e);
+		}
+	})
+}
+
+function updateDr_op(pt_no,dr_op_No) {
+	var today = $(".datepicker").val();
+	var reportTime = document.getElementById("updateReportTime").value;
+	var report = document.getElementById("updateDreport").value;
+	
+	$.ajax({
+		type : "post",
+		url : "updateDr_op",
+		data: {
+			pt_no : pt_no,
+			today : today,
+			reportTime : reportTime,
+			report : report,
+			dr_op_No : dr_op_No
+		},//data
+		success : function(data) {
+			var html1 = "";
+			html1 += "<div class='panel panel-warning'>";
+			html1 += "<div class='panel-heading'>";
+			html1 += "<h3 class='panel-title'>의사소견</h3>";
+			html1 += "</div>";
+			html1 += "<div class='panel-body' id = 'bedTimeTable'>";
+			html1 += "<table class='table table-hover'>";
+			html1 += "<thead>";
+			html1 += "<tr>";
+			html1 += "<th>시간</th>";
+			html1 += "<th>내용</th>";
+			html1 += "</tr>";
+			html1 += "</thead>";
+			if(data.length > 0){
+			$.each(data, function(index,item) {
+				html1 += "<tbody>";
+				html1 += "<tr>";
+				html1 += "<td>" + item.REPORTTIME + "</td>";
+				html1 += "<td>" + item.REPORT + "</td>";
+				html1 += "<td><input type='button' value = '수정' class='btn btn-primary' onclick = 'showUpdateDr_op("+pt_no+",&#34;"+item.REPORTTIME+"&#34;,&#34;"+item.REPORT+"&#34;,&#34;"+item.REPORT+"&#34;)'></td>";
+				html1 += "<td><input type='button' value = '삭제' class='btn btn-primary' onclick = 'delDr_op("+pt_no+",&#34;"+item.DR_OP_NO+"&#34;)'></td>";
+				html1 += "</tr>";
+				})//each
+				html1 += "<tr>";
+				html1 += "<td>시간<input type = 'text' class='form-control' name = 'reportTime' id = 'reportTime'></td>";
+				html1 += "<td>내용<input type = 'text' class='form-control' name = 'dreport' id = 'dreport'></td>";
+				html1 += "<td>";
+				html1 += "<input type='button' value = '추가' class='btn btn-primary' onclick = 'enrollDr_op("+pt_no+")'>";
+				html1 += "</td>";
+				html1 += "</tr>";
+				} else{
+					html1 += "<tbody>";
+					html1 += "<tr>";
+					html1 += "<td colspan='3'>아직등록되지않았습니다.</td>";
+					html1 += "</tr>";
+					html1 += "<tr>";
+					html1 += "<td>시간<input type = 'text' class='form-control' name = 'reportTime' id = 'reportTime'></td>";
+					html1 += "<td>내용<input type = 'text' class='form-control' name = 'dreport' id = 'dreport'></td>";
+					html1 += "</tr>";
+					html1 += "<tr>";
+					html1 += "<td></td>";
+					html1 += "<td></td>";
+					html1 += "<td>";
+					html1 += "<input type='button' value = '등록' class='btn btn-primary' onclick = 'enrollDr_op("+pt_no+")'>";
+					html1 += "</td>";
+					html1 += "</tr>";
+				}
+			html1 += "</tbody>";
+			html1 += "</table>";
+			html1 += "</div>";
+			html1 += "</div>";
+			$("#menu8").html(html1);
+		},
+		error : function(e) {
+			console.log(e);
+		}
+	})	
+}
+
+function enrollSpecial(pt_no) {
+	var today = $(".datepicker").val();
+	var sreportTime = document.getElementById("sreportTime").value;
+	var sreport = document.getElementById("sreport").value;
+	
+	$.ajax({
+		type : "post",
+		url : "enrollSpecial",
+		data: {
+			pt_no : pt_no,
+			today : today,
+			sreportTime : sreportTime,
+			sreport : sreport
+		},//data
+		success : function(data) {
+			var html1 = "";
+			html1 += "<div class='panel panel-danger'>";
+			html1 += "<div class='panel-heading'>";
+			html1 += "<h3 class='panel-title'>특이사항</h3>";
+			html1 += "</div>";
+			html1 += "<div class='panel-body' id = 'specialTable'>";
+			html1 += "<table class='table table-hover'>";
+			html1 += "<thead>";
+			html1 += "<tr>";
+			html1 += "<th>시간</th>";
+			html1 += "<th>내용</th>";
+			html1 += "</tr>";
+			html1 += "</thead>";
+			if(data.length > 0){
+			$.each(data, function(index,item) {
+				html1 += "<tbody>";
+				html1 += "<tr>";
+				html1 += "<td>" + item.SREPORTTIME + "</td>";
+				html1 += "<td>" + item.SREPORT + "</td>";
+				html1 += "<td><input type='button' value = '수정' class='btn btn-primary' onclick = 'showUpdateSpecial("+pt_no+",&#34;"+item.SREPORTTIME+"&#34;,&#34;"+item.SREPORT+"&#34;)'></td>";
+				html1 += "<td><input type='button' value = '삭제' class='btn btn-primary' onclick = 'delSpecial("+pt_no+",&#34;"+item.SPECIAL_NO+"&#34;)'></td>";
+				html1 += "</tr>";
+				})//each
+				html1 += "<tr>";
+				html1 += "<td>시간<input type = 'text' class='form-control' name = 'sreportTime' id = 'sreportTime'></td>";
+				html1 += "<td>내용<input type = 'text' class='form-control' name = 'sreport' id = 'sreport'></td>";
+				html1 += "<td>";
+				html1 += "<input type='button' value = '추가' class='btn btn-primary' onclick = 'enrollSpecial("+pt_no+")'>";
+				html1 += "</td>";
+				html1 += "</tr>";
+				} else{
+					html1 += "<tbody>";
+					html1 += "<tr>";
+					html1 += "<td colspan='3'>아직등록되지않았습니다.</td>";
+					html1 += "</tr>";
+					html1 += "<tr>";
+					html1 += "<td>시간<input type = 'text' class='form-control' name = 'sreportTime' id = 'sreportTime'></td>";
+					html1 += "<td>내용<input type = 'text' class='form-control' name = 'sreport' id = 'sreport'></td>";
+					html1 += "</tr>";
+					html1 += "<tr>";
+					html1 += "<td></td>";
+					html1 += "<td></td>";
+					html1 += "<td>";
+					html1 += "<input type='button' value = '등록' class='btn btn-primary' onclick = 'enrollSpecial("+pt_no+")'>";
+					html1 += "</td>";
+					html1 += "</tr>";
+				}
+			html1 += "</tbody>";
+			html1 += "</table>";
+			html1 += "</div>";
+			html1 += "</div>";
+			$("#menu8").html(html1);
+		},
+		error : function(e) {
+			console.log(e);
+		}
+	})	
+}
+
+function delSpecial(pt_no, special_No) {
+	var today = $(".datepicker").val();
+	
+	$.ajax({
+		type : "post",
+		url : "delSpecial",
+		data: {
+			pt_no : pt_no,
+			today : today,
+			special_No : special_No
+		},//data
+		success : function(data) {
+			var html1 = "";
+			html1 += "<div class='panel panel-danger'>";
+			html1 += "<div class='panel-heading'>";
+			html1 += "<h3 class='panel-title'>특이사항</h3>";
+			html1 += "</div>";
+			html1 += "<div class='panel-body' id = 'specialTable'>";
+			html1 += "<table class='table table-hover'>";
+			html1 += "<thead>";
+			html1 += "<tr>";
+			html1 += "<th>시간</th>";
+			html1 += "<th>내용</th>";
+			html1 += "</tr>";
+			html1 += "</thead>";
+			if(data.length > 0){
+			$.each(data, function(index,item) {
+				html1 += "<tbody>";
+				html1 += "<tr>";
+				html1 += "<td>" + item.SREPORTTIME + "</td>";
+				html1 += "<td>" + item.SREPORT + "</td>";
+				html1 += "<td><input type='button' value = '수정' class='btn btn-primary' onclick = 'showUpdateSpecial("+pt_no+",&#34;"+item.SREPORTTIME+"&#34;,&#34;"+item.SREPORT+"&#34;)'></td>";
+				html1 += "<td><input type='button' value = '삭제' class='btn btn-primary' onclick = 'delSpecial("+pt_no+",&#34;"+item.SPECIAL_NO+"&#34;)'></td>";
+				html1 += "</tr>";
+				})//each
+				html1 += "<tr>";
+				html1 += "<td>시간<input type = 'text' class='form-control' name = 'sreportTime' id = 'sreportTime'></td>";
+				html1 += "<td>내용<input type = 'text' class='form-control' name = 'sreport' id = 'sreport'></td>";
+				html1 += "<td>";
+				html1 += "<input type='button' value = '추가' class='btn btn-primary' onclick = 'enrollSpecial("+pt_no+")'>";
+				html1 += "</td>";
+				html1 += "</tr>";
+				} else{
+					html1 += "<tbody>";
+					html1 += "<tr>";
+					html1 += "<td colspan='3'>아직등록되지않았습니다.</td>";
+					html1 += "</tr>";
+					html1 += "<tr>";
+					html1 += "<td>시간<input type = 'text' class='form-control' name = 'sreportTime' id = 'sreportTime'></td>";
+					html1 += "<td>내용<input type = 'text' class='form-control' name = 'sreport' id = 'sreport'></td>";
+					html1 += "</tr>";
+					html1 += "<tr>";
+					html1 += "<td></td>";
+					html1 += "<td></td>";
+					html1 += "<td>";
+					html1 += "<input type='button' value = '등록' class='btn btn-primary' onclick = 'enrollSpecial("+pt_no+")'>";
+					html1 += "</td>";
+					html1 += "</tr>";
+				}
+			html1 += "</tbody>";
+			html1 += "</table>";
+			html1 += "</div>";
+			html1 += "</div>";
+			$("#menu8").html(html1);
+		},
+		error : function(e) {
+			console.log(e);
+		}
+	})	
+}
+
+function showUpdateSpecial(pt_no,sreportTime,sreport){
+	var today = $(".datepicker").val();
+	
+	$.ajax({
+		type : "post",
+		url : "showUpdateSpecial",
+		data: {
+			pt_no : pt_no,
+			today : today,
+			sreportTime : sreportTime,
+			sreport : sreport
+		},//data
+		success : function(data) {
+			var html1 = "";
+			html1 += "<div class='panel panel-danger'>";
+			html1 += "<div class='panel-heading'>";
+			html1 += "<h3 class='panel-title'>특이사항</h3>";
+			html1 += "</div>";
+			html1 += "<div class='panel-body' id = 'specialTable'>";
+			html1 += "<table class='table table-hover'>";
+			html1 += "<thead>";
+			html1 += "<tr>";
+			html1 += "<th>시간</th>";
+			html1 += "<th>내용</th>";
+			html1 += "</tr>";
+			html1 += "</thead>";
+			if(data.length > 0){
+			$.each(data, function(index,item) {
+				html1 += "<tbody>";
+				html1 += "<tr>";
+				html1 += "<td>" + item.SREPORTTIME + "</td>";
+				html1 += "<td>" + item.SREPORT + "</td>";
+				html1 += "</tr>";
+				html1 += "<tr>";
+				html1 += "<td>시간<input type = 'text' class='form-control' name = 'updatesReportTime' id = 'updatesReportTime'></td>";
+				html1 += "<td>내용<input type = 'text' class='form-control' name = 'updatesReport' id = 'updatesReport'></td>";
+				html1 += "<td>";
+				html1 += "<input type='button' value = '확인' class='btn btn-primary' onclick = 'updateSpecial("+pt_no+",&#34;"+item.SPECIAL_NO+"&#34;)'>";
+				html1 += "</td>";
+				html1 += "</tr>";
+				})//each
+				} else{
+					alert("뭔가 잘못됐어! 집으로 돌아가자");
+				}
+			html1 += "</tbody>";
+			html1 += "</table>";
+			html1 += "</div>";
+			html1 += "</div>";
+			$("#menu8").html(html1);
+		},
+		error : function(e) {
+			console.log(e);
+		}
+	})
+}
+
+function updateSpecial(pt_no,special_No) {
+	var today = $(".datepicker").val();
+	var sreportTime = document.getElementById("updatesReportTime").value;
+	var sreport = document.getElementById("updatesReport").value;
+	
+	$.ajax({
+		type : "post",
+		url : "updateSpecial",
+		data: {
+			pt_no : pt_no,
+			today : today,
+			sreportTime : sreportTime,
+			sreport : sreport,
+			special_No : special_No
+		},//data
+		success : function(data) {
+			var html1 = "";
+			html1 += "<div class='panel panel-danger'>";
+			html1 += "<div class='panel-heading'>";
+			html1 += "<h3 class='panel-title'>특이사항</h3>";
+			html1 += "</div>";
+			html1 += "<div class='panel-body' id = 'specialTable'>";
+			html1 += "<table class='table table-hover'>";
+			html1 += "<thead>";
+			html1 += "<tr>";
+			html1 += "<th>시간</th>";
+			html1 += "<th>내용</th>";
+			html1 += "</tr>";
+			html1 += "</thead>";
+			if(data.length > 0){
+			$.each(data, function(index,item) {
+				html1 += "<tbody>";
+				html1 += "<tr>";
+				html1 += "<td>" + item.SREPORTTIME + "</td>";
+				html1 += "<td>" + item.SREPORT + "</td>";
+				html1 += "<td><input type='button' value = '수정' class='btn btn-primary' onclick = 'showUpdateSpecial("+pt_no+",&#34;"+item.REPORTTIME+"&#34;,&#34;"+item.REPORT+"&#34;,&#34;"+item.REPORT+"&#34;)'></td>";
+				html1 += "<td><input type='button' value = '삭제' class='btn btn-primary' onclick = 'delSpecial("+pt_no+",&#34;"+item.DR_OP_NO+"&#34;)'></td>";
+				html1 += "</tr>";
+				})//each
+				html1 += "<tr>";
+				html1 += "<td>시간<input type = 'text' class='form-control' name = 'sreportTime' id = 'sreportTime'></td>";
+				html1 += "<td>내용<input type = 'text' class='form-control' name = 'sreport' id = 'sreport'></td>";
+				html1 += "<td>";
+				html1 += "<input type='button' value = '추가' class='btn btn-primary' onclick = 'enrollSpecial("+pt_no+")'>";
+				html1 += "</td>";
+				html1 += "</tr>";
+				} else{
+					html1 += "<tbody>";
+					html1 += "<tr>";
+					html1 += "<td colspan='3'>아직등록되지않았습니다.</td>";
+					html1 += "</tr>";
+					html1 += "<tr>";
+					html1 += "<td>시간<input type = 'text' class='form-control' name = 'sreportTime' id = 'sreportTime'></td>";
+					html1 += "<td>내용<input type = 'text' class='form-control' name = 'sreport' id = 'sreport'></td>";
+					html1 += "</tr>";
+					html1 += "<tr>";
+					html1 += "<td></td>";
+					html1 += "<td></td>";
+					html1 += "<td>";
+					html1 += "<input type='button' value = '등록' class='btn btn-primary' onclick = 'enrollSpecial("+pt_no+")'>";
+					html1 += "</td>";
+					html1 += "</tr>";
+				}
+			html1 += "</tbody>";
+			html1 += "</table>";
+			html1 += "</div>";
+			html1 += "</div>";
+			$("#menu8").html(html1);
 		},
 		error : function(e) {
 			console.log(e);

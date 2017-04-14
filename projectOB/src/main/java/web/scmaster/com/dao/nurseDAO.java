@@ -7,11 +7,16 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import web.scmaster.com.vo.Bedtime;
+import web.scmaster.com.vo.DR_OP;
 import web.scmaster.com.vo.DailyCleaning;
+import web.scmaster.com.vo.DailyShower;
+import web.scmaster.com.vo.DailyWash;
 import web.scmaster.com.vo.Exercise;
 import web.scmaster.com.vo.Meal;
 import web.scmaster.com.vo.Nurse;
 import web.scmaster.com.vo.Patient;
+import web.scmaster.com.vo.Special;
 
 @Repository
 public class nurseDAO {
@@ -86,6 +91,56 @@ public class nurseDAO {
 		return mapper.showDailyCleaning(map);
 	}
 	
+	public List<HashMap<String, Object>> showDailyWash(int pt_no, String today){
+		HashMap<String, Object> map = new HashMap<>();
+		map.put("pt_no", pt_no);
+		map.put("today", today);
+		
+		nurseMapper mapper = sqlsession.getMapper(nurseMapper.class);
+		
+		return mapper.showDailyWash(map);
+	}
+	
+	public List<HashMap<String, Object>> showDailyShower(int pt_no, String today){
+		HashMap<String, Object> map = new HashMap<>();
+		map.put("pt_no", pt_no);
+		map.put("today", today);
+		
+		nurseMapper mapper = sqlsession.getMapper(nurseMapper.class);
+		
+		return mapper.showDailyShower(map);
+	}
+	
+	public List<HashMap<String, Object>> showBedTime(int pt_no, String today){
+		HashMap<String, Object> map = new HashMap<>();
+		map.put("pt_no", pt_no);
+		map.put("today", today);
+		
+		nurseMapper mapper = sqlsession.getMapper(nurseMapper.class);
+		
+		return mapper.showBedTime(map);
+	}
+	
+	public List<HashMap<String, Object>> showDr_op(int pt_no, String today){
+		HashMap<String, Object> map = new HashMap<>();
+		map.put("pt_no", pt_no);
+		map.put("today", today);
+		
+		nurseMapper mapper = sqlsession.getMapper(nurseMapper.class);
+		
+		return mapper.showDr_op(map);
+	}
+	
+	public List<HashMap<String, Object>> showSpecial(int pt_no, String today){
+		HashMap<String, Object> map = new HashMap<>();
+		map.put("pt_no", pt_no);
+		map.put("today", today);
+		
+		nurseMapper mapper = sqlsession.getMapper(nurseMapper.class);
+		
+		return mapper.showSpecial(map);
+	}
+	
 	public void enrollMeal(Meal meal){
 		nurseMapper mapper = sqlsession.getMapper(nurseMapper.class);
 		
@@ -104,6 +159,36 @@ public class nurseDAO {
 		mapper.enrollDailyCleaning(dailyCleaning);
 	}
 	
+	public void enrollDailyWash(DailyWash dailywash){
+		nurseMapper mapper = sqlsession.getMapper(nurseMapper.class);
+		
+		mapper.enrollDailyWash(dailywash);
+	}
+	
+	public void enrollDailyShower(DailyShower dailyshower){
+		nurseMapper mapper = sqlsession.getMapper(nurseMapper.class);
+		
+		mapper.enrollDailyShower(dailyshower);
+	}
+	
+	public void enrollBedTime(Bedtime bedtime){
+		nurseMapper mapper = sqlsession.getMapper(nurseMapper.class);
+		
+		mapper.enrollBedTime(bedtime);
+	}
+	
+	public void enrollDr_op(DR_OP dr_op){
+		nurseMapper mapper = sqlsession.getMapper(nurseMapper.class);
+		
+		mapper.enrollDr_op(dr_op);
+	}
+	
+	public void enrollSpecial(Special special){
+		nurseMapper mapper = sqlsession.getMapper(nurseMapper.class);
+		
+		mapper.enrollSpecial(special);
+	}
+	
 	public void delMeal(Meal meal){
 		nurseMapper mapper = sqlsession.getMapper(nurseMapper.class);
 		
@@ -120,6 +205,36 @@ public class nurseDAO {
 		nurseMapper mapper = sqlsession.getMapper(nurseMapper.class);
 		
 		mapper.delDailycleaning(dailycleaning);
+	}
+	
+	public void delDailyWash(DailyWash dailywash){
+		nurseMapper mapper = sqlsession.getMapper(nurseMapper.class);
+		
+		mapper.delDailyWash(dailywash);
+	}
+	
+	public void delDailyShower(DailyShower dailyshower){
+		nurseMapper mapper = sqlsession.getMapper(nurseMapper.class);
+		
+		mapper.delDailyShower(dailyshower);
+	}
+	
+	public void delBedTime(Bedtime bedtime){
+		nurseMapper mapper = sqlsession.getMapper(nurseMapper.class);
+		
+		mapper.delBedTime(bedtime);
+	}
+	
+	public void delDr_op(DR_OP dr_op){
+		nurseMapper mapper = sqlsession.getMapper(nurseMapper.class);
+		
+		mapper.delDr_op(dr_op);
+	}
+	
+	public void delSpecial(Special special){
+		nurseMapper mapper = sqlsession.getMapper(nurseMapper.class);
+		
+		mapper.delSpecial(special);
 	}
 	
 	public List<HashMap<String, Object>> showUpdateMeal(Meal meal){
@@ -141,6 +256,36 @@ public class nurseDAO {
 		return mapper.showUpdateDailycleaning(dailycleaning);
 	}
 	
+	public List<HashMap<String, Object>> showUpdateDailyWash(DailyWash dailywash){
+		nurseMapper mapper = sqlsession.getMapper(nurseMapper.class);
+		
+		return mapper.showUpdateDailyWash(dailywash);
+	}
+	
+	public List<HashMap<String, Object>> showUpdateDailyShower(DailyShower dailyshower){
+		nurseMapper mapper = sqlsession.getMapper(nurseMapper.class);
+		
+		return mapper.showUpdateDailyShower(dailyshower);
+	}
+	
+	public List<HashMap<String, Object>> showUpdateBedTime(Bedtime bedtime){
+		nurseMapper mapper = sqlsession.getMapper(nurseMapper.class);
+		
+		return mapper.showUpdateBedTime(bedtime);
+	}
+	
+	public List<HashMap<String, Object>> showUpdateDr_op(DR_OP dr_op){
+		nurseMapper mapper = sqlsession.getMapper(nurseMapper.class);
+		
+		return mapper.showUpdateDr_op(dr_op);
+	}
+	
+	public List<HashMap<String, Object>> showUpdateSpecial(Special special){
+		nurseMapper mapper = sqlsession.getMapper(nurseMapper.class);
+		
+		return mapper.showUpdateSpecial(special);
+	}
+	
 	public void updateMeal(Meal meal){
 		nurseMapper mapper = sqlsession.getMapper(nurseMapper.class);
 		
@@ -157,5 +302,35 @@ public class nurseDAO {
 		nurseMapper mapper = sqlsession.getMapper(nurseMapper.class);
 		
 		mapper.updateDailyCleaning(dailycleaning);
+	}
+	
+	public void updateDailyWash(DailyWash dailywash){
+		nurseMapper mapper = sqlsession.getMapper(nurseMapper.class);
+		
+		mapper.updateDailyWash(dailywash);
+	}
+	
+	public void updateDailyShower(DailyShower dailyshower){
+		nurseMapper mapper = sqlsession.getMapper(nurseMapper.class);
+		
+		mapper.updateDailyShower(dailyshower);
+	}
+	
+	public void updateBedTime(Bedtime bedtime){
+		nurseMapper mapper = sqlsession.getMapper(nurseMapper.class);
+		
+		mapper.updateBedTime(bedtime);
+	}
+	
+	public void updateDr_op(DR_OP dr_op){
+		nurseMapper mapper = sqlsession.getMapper(nurseMapper.class);
+		
+		mapper.updateDr_op(dr_op);
+	}
+	
+	public void updateSpecial(Special special){
+		nurseMapper mapper = sqlsession.getMapper(nurseMapper.class);
+		
+		mapper.updateSpecial(special);
 	}
 }
