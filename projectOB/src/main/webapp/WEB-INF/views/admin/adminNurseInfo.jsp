@@ -10,7 +10,7 @@
   <link rel="stylesheet" href="./resources/css/bootstrap.min.css">
   <script src="./resources/js/jquery.min.js"></script>
   <script src="./resources/js/bootstrap.min.js"></script>
-   <script src="./resources/js/nurseInfo.js"></script>
+   <script src="./resources/js/admin/nurseInfo.js"></script>
   <style>    
     /* Set black background color, white text and some padding */
     footer {
@@ -111,21 +111,14 @@
        
          <div class="form-group" >
      <label class="control-label col-sm-3">환자</label>
-     <div class="col-sm-9" id="patientList">
+     <div class="col-sm-9" style='height:340px;' id="patientList">
      
      <input type="text" class="form-control" id="pt_name"  readonly="readonly">
  	
     
      </div>
      </div>
-     
-    
-     
-    </div>
-    
-    
-   
-    
+     </div>
     
    <div class="col-sm-7">   
    

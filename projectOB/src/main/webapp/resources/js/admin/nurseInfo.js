@@ -52,6 +52,7 @@
     			    	 if(data.length>11){
      			    		$("#patientgroup").css("overflow","scroll");
      			    	};
+     			    	
      			    	$(".list-group-item").click(function(){
       			    	
      			    		
@@ -69,6 +70,8 @@
       			    		$("#phone").val($(this).attr("phone"));
       			    		$("#name").val($(this).attr("name"));
       			    	
+      			    		
+      			    		$("#patientList").css("overflow","")
     			    		
     			    		$("#fd").remove();
     			    		$("#upload").remove();
@@ -98,19 +101,18 @@
     			    			      });
     			    			   
     			    			   allPatients(nurse_no);
+    			    			   
     			    			   $("input[target='target']").on('click', function(){
       			   					 
      				   				 if(confirm($(this).val()+"님을 제외하시겠습니까?")){
-     				   					var pt_no = $(this).attr("pt_no");     	
+     				   					var pt_no = $(this).attr("pt_no");
      				   					
-     				   				    alert($(this).parent().children("input:hidden").attr("pt_no"));
-     				   					removePatientFromNurse(pt_no);
+     				   				    removePatientFromNurse(pt_no);
      				   					$(this).remove();
      				   				 }
-    			    				   
-    			    				   
      				   				  
      				   		       });
+    			    			   
     			    			 })
     			    		
     			    		
@@ -122,6 +124,7 @@
     			    		$("#previewImg").attr("src","./resources/image/nursefile/"+$(this).attr('previewImg'));
     			    		
     			    		}else{
+    			    			
     			    			$("#previewImg").attr("alt","이미지 없음");
     			    		}
 
@@ -180,23 +183,26 @@
      		 },
      		success:function(data){
      			
+     			     			 
      			var patientadd="";
      			 $.each(data,function(index,item){ 
      		    					 
-     			   	patientadd +="<input type='text' class='form-control' id='pt_name' value="+item.pt_name+" readonly='readonly'>"
-     	     		+"<input type='hidden' class='form-control' id='pt_no' value="+item.pt_no+" name='pt_no' pt_no="+item.pt_no+">"
+     			   	patientadd +="<input type='text' class='form-control' id='pt_name' value="+item.pt_name+" target='target' pt_no="+item.pt_no+" readonly='readonly'>"
+     	     		+"<input type='hidden' class='form-control' id='pt_no' value="+item.pt_no+" name='pt_no'>"
      		
      			 })
      			 
      			patientadd += "<input type='text' class='form-control' id='ptname' readonly='readonly'>";
      			 
      			 $("#moreP").html(patientadd);
-     		   			  
-     			 $("#moreP .form-control").click(function(){
-     				remoCancel=$(this);
-     		      });    			  
+     			$("#moreP").children("input.last").prepend("new").css("color","red")
+     
+     			 
+     			
      		},
-     		error:function(e){}    		  
+     		error:function(e){
+     			console.log(e);
+     		}    		  
     	  }) 
 	  
   }
@@ -230,8 +236,7 @@
   		 url:"patientList",
   		 data:{nurse_no:nurse_no},
   		 success:function(data){
-  			 		    		
-  			
+  			 
   			 var patientselect = " <button class='form-control dropdown-toggle' type='button' data-toggle='dropdown'  readonly='readonly'>환자목록<span class='caret' ></span></button>"
   			 +"";
   			    	  
@@ -247,9 +252,11 @@
   			    	
   			    	 if(data.length>11){
    			    		$("#patientgroup").css("overflow","scroll");
-   			    	}; 	
+   			    	};
    			    	
-   			  
+   			        if(data.length>7){
+			    		$("#patientList").css("overflow","scroll");
+			    	};
    			    	
   		},
   		 error:function(error){
@@ -317,6 +324,7 @@
   			    			$(this).css("color","red");
   			    			remo=$(this);
   			    			addPatient(pt_no,pt_name);
+  			    			
   			    		}
   			    		
   			  
@@ -339,15 +347,22 @@
 	  		 contentType:"application/json; charset=utf-8",
 	  		 dataType:"json",
 	  		 success:function(data){
+	  			 
+	  			 if(data.disease==null){
+	  				data.disease="-";
+	  			 }
 	  			
 	  			 var patientselect="<div class='list-group-item' name="+data.name+" pt_no="+data.pt_no+" room_no="+data.room_no+"><table class='text-center'><tr><td width='190px;'>"
 		    		  +data.name+"</td><td width='250px;'>"
 			    		  +data.room_no+"호</td><td width='200px;'>"
 			    		  +data.disease+"</td></tr></table></div>";
 	  				 
+	  			 	  			
 	  				$("#patientgroup").append(patientselect);
-	  						
-	  		},
+	  				$("#patientList").append("<input type=hidden id=new"+data.pt_no+" name=delPatient value="+data.pt_no+">")		
+	  			
+	  				
+	  		 },
 	  		 error:function(error){console.log(error);}
 	  		});
 	  
