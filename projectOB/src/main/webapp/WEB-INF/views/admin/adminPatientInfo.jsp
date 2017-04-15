@@ -10,7 +10,7 @@
   <link rel="stylesheet" href="./resources/css/bootstrap.min.css">
   <script src="./resources/js/jquery.min.js"></script>
   <script src="./resources/js/bootstrap.min.js"></script>
-   <script src="./resources/js/patientInfo.js"></script>
+   <script src="./resources/js/admin/patientInfo.js"></script>
   <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
   <style>    
     /* Set black background color, white text and some padding */

@@ -211,11 +211,17 @@ public class adminController {
 			admindao.updateNurse(nurse);
 			
 			String aa [] =  request.getParameterValues("pt_no");
+			String bb [] =  request.getParameterValues("delPatient");
 			
+				if(bb!=null){
+				for(int i=0;i<bb.length;i++){		
+				int pt_no=Integer.parseInt(bb[i]);
+			    admindao.updatePatientaboutNurse(pt_no, 0);
+				}
+				}
 				for(int i=0;i<aa.length;i++){		
 				int pt_no=Integer.parseInt(aa[i]);
 			    admindao.updatePatientaboutNurse(pt_no, nurse.getNurse_no());
-				
 				}
 			
 			return "redirect:adminLogin";
@@ -263,7 +269,7 @@ public class adminController {
 	@ResponseBody
 	@RequestMapping(value="removePatientFromNurse", method=RequestMethod.GET)
 	 public Patient removePatientFromNurse(String pt_no){
-		
+				
 		return admindao.selectPatientBypt_no(pt_no);
 		
 	   }
