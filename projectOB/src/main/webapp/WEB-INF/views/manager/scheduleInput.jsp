@@ -61,8 +61,10 @@ $(document).ready(function() {
 		var pt_no = $(this).attr("id");
 		var today = $(".datepicker").val();
 		
-		alert(pt_no);
-		alert(today);
+		if(today.length == 0){
+			alert("날짜를 선택해주세요");
+			return false;
+		}
 		
 				var html = "";
 				html += "<div class='text-left' style='font-weight: bold;'>환자</div> ";
