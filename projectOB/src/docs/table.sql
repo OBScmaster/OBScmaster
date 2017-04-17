@@ -373,16 +373,16 @@ insert into room(room_no,maximum,present) values('202',6,0);
 insert into room(room_no,maximum,present) values('203',6,0);
 insert into room(room_no,maximum,present) values('204',6,0);
 insert into room(room_no,maximum,present) values('205',6,0);
-insert into room(room_no,maximum,present) values('301',8,0);
-insert into room(room_no,maximum,present) values('302',8,0);
-insert into room(room_no,maximum,present) values('303',8,0);
-insert into room(room_no,maximum,present) values('304',8,0);
-insert into room(room_no,maximum,present) values('305',8,0);
-insert into room(room_no,maximum,present) values('401',2,0);
-insert into room(room_no,maximum,present) values('402',2,0);
-insert into room(room_no,maximum,present) values('403',2,0);
-insert into room(room_no,maximum,present) values('404',2,0);
-insert into room(room_no,maximum,present) values('405',2,0);
+insert into room(room_no,maximum,present) values('301',2,0);
+insert into room(room_no,maximum,present) values('302',2,0);
+insert into room(room_no,maximum,present) values('303',2,0);
+insert into room(room_no,maximum,present) values('304',2,0);
+insert into room(room_no,maximum,present) values('305',2,0);
+insert into room(room_no,maximum,present) values('401',1,0);
+insert into room(room_no,maximum,present) values('402',1,0);
+insert into room(room_no,maximum,present) values('403',1,0);
+insert into room(room_no,maximum,present) values('404',1,0);
+insert into room(room_no,maximum,present) values('405',1,0);
 
 
 INSERT INTO ADMIN values('admin', 'admin');

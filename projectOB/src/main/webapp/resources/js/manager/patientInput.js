@@ -4,31 +4,12 @@
 
  var fileType = /^(?:image\/bmp|image\/gif|image\/jpeg|image\/png|image\/x\-xwindowdump|image\/x\-portable\-bitmap)$/i;
   $(function() {
-	  
-	  
-	  
       $("#upload").on('change', function(){
           readURL(this);
       });
       
-	   $("#address").click(function(){
-		
-	       if($("#address").val()==""){
-			postal();
-			}   				
-						    				
-		   })
-			
-			$("#ppt_add").click(function(){
-			
-			if($("#ppt_add").val()==""){
-			postal2();
-			}
-				
-			})
-      
-    $("#room_noSelect").click(function(){
 
+    	
     	$.ajax({
     	
     		 type:"post",
@@ -82,90 +63,36 @@
 			    		    			    			
 			    			return imagePath;}});
 			    		
-			    		
+     			    	
 							$(".list-group-item").click(function(){
-
-
+								
 								if($(this).attr("present")!=$(this).attr("maximum")){
+									
 									$(".list-group-item").css("color","black");
 		    			    		$(this).css("color","red");
 		    			    		$("#room_no").val($(this).attr("id"));
-								}else{									
+		    			    		
+									
+								}else{
+									
 									alert($(this).attr("id")+"호실은 정원이 다 찼습니다");
 								}
-								
-								
     			    		
     			    	});
     		
     						
     		},
     		 error:function(error){console(error);}
-    		})
-    	
-    })
-    
-      $("#nurse_noSelect").click(function(){
-    	  
-    	
-    	
-    	$.ajax({
-    	
-    		 type:"post",
-    		 url:"nurselist",
-    		 success:function(data){
-    			 
-    			  data.sort(function(a,b) {
-    		  			
-    		  	        var val1 = a.nurse_no;  	  
-    		  	        var val2 = b.nurse_no;
-    		  	    
-    		  	        return(val1>val2)?-1:(val1<val2)?1:0;
-    		  	    });
-    			  
-    			 var nurseselect =  "<div class='col-md-15'><div class='btn-group btn-group-justified'><a href='#' class='btn btn-info'>사번</a>"
-    			    	+"<a href='#' class='btn btn-info'>이름</a>"
-    			    	  +"<a href='#' class='btn btn-info'>전화번호</a>"
-    			    	  +"</div><div class='list-group text-left' style='height:540px;' id='nursegroup'>";
-    			    	  
-    			    	  $.each(data,function(index,item){
-    			    	
-    			    		  nurseselect+="<div class='list-group-item' id="+item.nurse_no+" nursename="+item.name+"><table class='text-center'><tr><td width='160px;'>"
-    			    		  +item.nurse_no+"</td><td width='160px;'>"
-    			    		  +item.name+"</td><td width='160px;'>"
-    			    		  +item.phone+"</td></tr></table></div>";
-    			    	
-    			    	  })
-    			    	
-    			    	nurseselect+="</div></div>";
-    			    	
-    			    	$("#kk").html(nurseselect);
-    			    	
-    			   	 if(data.length>11){
-  			    		$("#nursegroup").css("overflow","scroll");
-  			    	};
-    			    	
-    			    	$(".list-group-item").click(function(){
-    			    		
-    			    		$(".list-group-item").css("color","black");
-    			    		$(this).css("color","red");
-							$("#nurse_name").val($(this).attr("nursename"));
-							$("#nurse_no").val($(this).attr("id"));
-    			    	});
-    		
-    			    	
-    						
-    		},
-    		 error:function(error){console(error);}
-    		})
     		})
     		
     		$("#patientInsertCancel").click(function(){
-    			if(confirm("메인메뉴로 돌아가시겠습니까?")){
-    				location.href="managerLogin"
-    			 }
-    		});
-    		
+      			if(confirm("메인메뉴로 돌아가시겠습니까?")){
+     				location.href="managerLogin"
+     			 }
+      		});
+    	
+    
+    
   });
 
   function readURL(input) {
@@ -207,7 +134,6 @@
 	    }).open();
 	    
 	}
- 
   
   function checkForm(){
 	  
@@ -284,3 +210,4 @@
 	  
 	 return true;
   }
+  
