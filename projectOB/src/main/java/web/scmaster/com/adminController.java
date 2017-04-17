@@ -36,11 +36,10 @@ public class adminController {
 	
 	
 	@ResponseBody
-	@RequestMapping(value = "nursename", method = RequestMethod.GET)
+	@RequestMapping(value = "nursename", method = RequestMethod.GET,produces = "application/text; charset=utf8")
 	public String nursename(int nurse_no) {
 		
 		Nurse nurse = admindao.selectNurseByNurseno(nurse_no);
-		
 		return nurse.getName();
 	
 	}

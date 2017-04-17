@@ -123,10 +123,11 @@
   			    		
   			    		$.ajax({
   			    			type:"get",
-  			    			 url:"nursename",
+  			    			url:"nursename",
   			    			data:{nurse_no:$(this).attr("nurse_no")},
-  			    		  	  success:function(data){ $("#nurse_name").val(data);},
-  			    		  	  error:function(e){console.log(e)}
+  			    		  	success:function(data){ 
+  			    		  	$("#nurse_name").val(data);},
+  			    		  	error:function(e){console.log(e)}
   			    			
   			    		})
   			    		
@@ -366,9 +367,7 @@
 	  $.ajax({
 	    	
 		  type:"post",
- 		 url:"nurselist",  
- 		 contentType:"application/json; charset=utf-8",
- 		 dataType:"json",
+ 		 url:"nurselist",
  		 success:function(data){
  			 
  			 var patientselect = "<div class='col-md-15'><div class='btn-group btn-group-justified'><a href='#' class='btn btn-info'>요양사번호</a>"
