@@ -27,8 +27,8 @@ import web.scmaster.com.vo.Room;
 @Controller
 public class adminController {
 	
-	final String patientUploadPath = "/Users/kita/Desktop/SpringWorkSpace/.metadata/.plugins/org.eclipse.wst.server.core/tmp0/wtpwebapps/projectOB/resources/image/patientfile";
-	final String nurseUploadPath = "/Users/kita/Desktop/SpringWorkSpace/.metadata/.plugins/org.eclipse.wst.server.core/tmp0/wtpwebapps/projectOB/resources/image/nursefile";
+	final String patientUploadPath = "/Users/kita/git/OBScmaster/projectOB/src/main/webapp/resources/image/patientfile";
+	final String nurseUploadPath = "/Users/kita/git/OBScmaster/projectOB/src/main/webapp/resources/image/patientfile";
 	List<HashMap<String, String>>patients = new ArrayList<>();
 	
 	@Autowired

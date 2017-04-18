@@ -65,7 +65,7 @@
      			    	};
      			    	
      			    	
-			    		$('div[rel=popover').popover({placement: 'left', html: true, trigger:'hover', content: function(){
+			    		$('div[rel=popover]').popover({placement: 'left', html: true, trigger:'hover', content: function(){
 			    		    var room = $(this).attr('id');
 			    					    		    
 			    		    var imagePath = '';
@@ -130,10 +130,11 @@
     			    	  
     			    	  $.each(data,function(index,item){
     			    	
-    			    		  nurseselect+="<div class='list-group-item' id="+item.nurse_no+" nursename="+item.name+"><table class='text-center'><tr><td width='160px;'>"
+    			    		  nurseselect+="<div class='list-group-item' id="+item.nurse_no+" nursename="+item.name+" savedphoto="+item.savedphoto+" rel='popover' data-content='' title="+item.name+"><table class='text-center'><tr><td width='160px;'>"
     			    		  +item.nurse_no+"</td><td width='160px;'>"
     			    		  +item.name+"</td><td width='160px;'>"
     			    		  +item.phone+"</td></tr></table></div>";
+    			    		  
     			    	
     			    	  })
     			    	
@@ -144,6 +145,45 @@
     			   	 if(data.length>11){
   			    		$("#nursegroup").css("overflow","scroll");
   			    	};
+  			    	
+  			    	
+  			      $('div[rel=popover]').popover({placement: 'left', html: true, trigger:'hover', content: function(){
+		    		    
+  			    	  var nurse_no = $(this).attr("id");
+  			    	
+  			    	  var patientlist;
+  			    		
+  			    	  var savedphoto = $(this).attr("savedphoto");
+		    		
+		    		    var	imagePath="<img width=90px height=100px src=./resources/image/nursefile/"+savedphoto+"/>"
+		    		  		
+		    		    var table = "<table><tr><td>"+imagePath+"</td><td><table style=text-align:center;>"
+		    		    
+		    		    table+="<tr><th>&nbsp;&nbsp;담당환자<th></tr>"
+		    		    	
+		    		    	$.ajax({		    		     		 
+		    		      		type:"get",
+		    		      		 url:"patientList",
+		    		      		 async:false,
+		    		      		 data:{nurse_no:nurse_no},
+		    		      		 success:function(data){	
+		    		      			patientlist = data;
+		    		      			    		      		
+		    		      		},
+		    		      		 error:function(error){		    		      			 
+		    		      			 console.log(error);}
+		    		      		});
+		    			if(patientlist.length<1){
+		    				table+="<tr><td>-</td></tr>"
+		    			}else{
+		    			$.each(patientlist,function(index,item){				    		    		
+	    		    		table+="<tr><td>"+item.name+"</td></tr>"
+	    		    	
+	    		    	});
+		    			}
+		    		    table+="</table></td></tr></table>"
+		    		    	
+		    			return table;}});
     			    	
     			    	$(".list-group-item").click(function(){
     			    		

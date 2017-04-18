@@ -19,6 +19,7 @@
       });
       
       $("#addPatient").click(function(){
+    	  
     	  remos[i]=remo;
     	  i++;
     	  remo.hide();
@@ -36,8 +37,11 @@
      		    					 
      			   	patientadd +="<input type='text' class='form-control' id='pt_name' value="+item.pt_name+" readonly='readonly'>"
      	     		+"<input type='hidden' class='form-control' id='pt_no' value="+item.pt_no+" name='pt_no'>"
-     		
+     	     	
+     	     		
      			 })
+     			 
+     			
      			 
      			patientadd += "<input type='text' class='form-control' id='ptname' readonly='readonly'>";
      			 
@@ -153,7 +157,7 @@
   			    			  item.disease="겡끼";    			    			  
   			    		  }
   			    	
-  			    		  patientselect+="<div class='list-group-item' name="+item.name+" pt_no="+item.pt_no+" ppt_phone="+item.ppt_phone+" ppt_add="+item.ppt_add+" ppt_name="+item.ppt_name+"><table class='text-center'><tr><td width='190px;'>"
+  			    		  patientselect+="<div class='list-group-item' savedphoto="+item.savedphoto+" name="+item.name+" pt_no="+item.pt_no+" ppt_phone="+item.ppt_phone+" nurse_no="+item.nurse_no+" ppt_add="+item.ppt_add+" ppt_name="+item.ppt_name+" rel='popover' data-content='' title="+item.name+"><table class='text-center'><tr><td width='190px;'>"
   			    		  +item.name+"</td><td width='250px;'>"
   			    		  +item.birthdate+"</td><td width='200px;'>"
   			    		  +item.disease+"</td></tr></table></div>";
@@ -167,6 +171,41 @@
   			    	 if(data.length>11){
    			    		$("#patientgroup").css("overflow","scroll");
    			    	};
+   			    	
+   			    	
+   			    	$('div[rel=popover]').popover({placement: 'left', html: true, trigger:'hover', content: function(){
+		    		    
+    			    	  var nurse_no = $(this).attr("nurse_no");
+    			    	
+    			    	  var nursename;
+    			    		
+    			    	  var savedphoto = $(this).attr("savedphoto");
+  		    		
+  		    		    var	imagePath="<img width=90px height=100px src=./resources/image/patientfile/"+savedphoto+"/>"
+  		    		  		
+  		    		    var table = "<table><tr><td>"+imagePath+"</td><td><table style=text-align:center;>"
+  		    		    
+  		    		    table+="<tr><th>&nbsp;&nbsp;담당요양사<th></tr>"
+  		    		    	
+  		    		    	$.ajax({		    		     		 
+  		    		      		type:"get",
+  		    		      		 url:"nursename",
+  		    		      		 async:false,
+  		    		      		 data:{nurse_no:nurse_no},
+  		    		      		 success:function(data){	
+  		    		      			nursename = data; 		
+  		    		      		},
+  		    		      		 error:function(error){		    		      			 
+  		    		      			console.log(error);}
+  		    		      		});
+  		    			if(nursename==null){
+  		    				table+="<tr><td>-</td></tr>"
+  		    			}else{
+  	    		    		table+="<tr><td>"+nursename+"</td></tr>" 
+  		    			}
+  		    		    table+="</table></td></tr></table>"
+  		    		    	
+  		    			return table;}});
    			    	
    			    	
 						$(".list-group-item").click(function(){

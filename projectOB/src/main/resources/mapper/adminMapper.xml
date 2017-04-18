@@ -135,7 +135,7 @@ update Nurse
 <!-- 전체 간호사 -->
 <select id="nurselist" resultType="Nurse">
 
-select cert_no, nurse_no, name, phone from nurse
+select cert_no, nurse_no, name, phone, savedphoto from nurse
 where deleteflag='Y'
 
 order by nurse_no

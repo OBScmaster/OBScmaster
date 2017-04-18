@@ -106,6 +106,8 @@
   			    		$("#phone").val($(this).attr("phone"));
   			    		$("#ins_no").val($(this).attr("ins_no"));
   			    		
+  			    		
+  			    		
   			    		var add=$("#"+pt_no+"Address").val();
   			    		 var address = add.replace(/,/gi," ");
   			    		$("#address").val(address);
@@ -322,8 +324,15 @@
 			    	  +"</div><div class='list-group text-left' style='height:540px;' id='roomgroup'>";
  			    	  
  			    	  $.each(data,function(index,item){
+ 			    		  
+ 			    		  var full='';
+			    		  if(item.present!=item.maximum){
+			    			full=item.room_no+"호";
+							}else{
+							full=item.room_no+"호　풀방";
+							}
  			    	
- 			    		  roomselect+="<div class='list-group-item' present="+item.present+" maximum="+item.maximum+" id="+item.room_no+"><table class='text-center'><tr><td width='160px;'>"
+ 			    		  roomselect+="<div class='list-group-item' present="+item.present+" maximum="+item.maximum+" id="+item.room_no+" rel='popover' data-content='' title="+full+"><table class='text-center'><tr><td width='160px;'>"
  			    		  +item.room_no+"호</td><td width='160px;'>"
  			    		  +item.maximum+"명</td><td width='160px;'>"
  			    		  +item.present+"명</td></tr></table></div>";
@@ -337,6 +346,23 @@
  			    	 if(data.length>11){
   			    		$("#roomgroup").css("overflow","scroll");
   			    	};
+  			    	
+  			    	$('div[rel=popover]').popover({placement: 'right', html: true, trigger:'hover', content: function(){
+		    		    var room = $(this).attr('id');
+		    					    		    
+		    		    var imagePath = '';
+		    		    
+		    		    if(room<200){
+		    		    	imagePath='<img width=250px height=200px src=./resources/image/rooms/for4.jpg />'
+		    		    }else if(room<300){
+		    		    	imagePath='<img width=250px height=200px src=./resources/image/rooms/for6.JPG />'
+		    		    }else if(room<400){
+		    		    	imagePath='<img width=250px height=200px src=./resources/image/rooms/for2.JPG />'
+		    		    }else if(room<500){
+		    		    	imagePath='<img width=250px height=200px src=./resources/image/rooms/for1.jpg />'
+		    		    }
+		    		    			    			
+		    			return imagePath;}});
   			    	
 							$(".list-group-item").click(function(){
 								
@@ -379,7 +405,7 @@
  			    		  if(item.name==null){
  			    			  item.name="-";    			    			  
  			    		  }
- 			    		  patientselect+="<div class='list-group-item' nurse_no="+item.nurse_no+" name="+item.name+"><table class='text-center'><tr><td width='160px;'>"
+ 			    		  patientselect+="<div class='list-group-item' nurse_no="+item.nurse_no+" name="+item.name+" savedphoto="+item.savedphoto+" rel='popover' data-content='' title="+item.name+"><table class='text-center'><tr><td width='160px;'>"
  			    		  +item.nurse_no+"</td><td width='160px;'>"
  			    		  +item.name+"</td><td width='160px;'>"
  			    		  +item.phone+"</td></tr></table></div>";
@@ -393,6 +419,44 @@
  			    	 if(data.length>11){
   			    		$("#patientgroup").css("overflow","scroll");
   			    	};
+  			    	
+  			    	$('div[rel=popover]').popover({placement: 'right', html: true, trigger:'hover', content: function(){
+		    		    
+    			    	  var nurse_no = $(this).attr("nurse_no");
+    			    	
+    			    	  var patientlist;
+    			    		
+    			    	  var savedphoto = $(this).attr("savedphoto");
+  		    		
+  		    		    var	imagePath="<img width=90px height=100px src=./resources/image/nursefile/"+savedphoto+"/>"
+  		    		  		
+  		    		    var table = "<table><tr><td>"+imagePath+"</td><td><table style=text-align:center;>"
+  		    		    
+  		    		    table+="<tr><th>&nbsp;&nbsp;담당환자<th></tr>"
+  		    		    	
+  		    		    	$.ajax({		    		     		 
+  		    		      		type:"get",
+  		    		      		 url:"patientList",
+  		    		      		 async:false,
+  		    		      		 data:{nurse_no:nurse_no},
+  		    		      		 success:function(data){	
+  		    		      			patientlist = data;
+  		    		      			    		      		
+  		    		      		},
+  		    		      		 error:function(error){		    		      			 
+  		    		      			 console.log(error);}
+  		    		      		});
+  		    			if(patientlist.length<1){
+  		    				table+="<tr><td>-</td></tr>"
+  		    			}else{
+  		    			$.each(patientlist,function(index,item){				    		    		
+  	    		    		table+="<tr><td>"+item.name+"</td></tr>"
+  	    		    	
+  	    		    	});
+  		    			}
+  		    		    table+="</table></td></tr></table>"
+  		    		    	
+  		    			return table;}});
   			    	
   			    	$(".list-group-item").click(function(){
    			    		
