@@ -10,14 +10,13 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.multipart.MultipartFile;
 
-import web.scmaster.com.dao.AdminDAO;
+
 import web.scmaster.com.dao.nurseDAO;
 import web.scmaster.com.dao.patientDAO;
 import web.scmaster.com.util.FileService;
@@ -30,7 +29,6 @@ import web.scmaster.com.vo.Exercise;
 import web.scmaster.com.vo.Meal;
 import web.scmaster.com.vo.Nurse;
 import web.scmaster.com.vo.Patient;
-import web.scmaster.com.vo.Room;
 import web.scmaster.com.vo.Special;
 
 
@@ -72,7 +70,7 @@ public class nurseController {
 	@RequestMapping(value = "managerLogin", method = RequestMethod.GET)
 	public String managerLogin() {
 	
-		return "/manager/managerPage1";		
+		return "/manager/managerPage";		
 	
 	}
 
@@ -88,9 +86,10 @@ public class nurseController {
 			if(n.getPassword().equals(password)){
 				
 				session.setAttribute("nurseId", nurseId);
+				session.setAttribute("nurse_name", n.getName());
 				model.addAttribute("nurse_no", n.getNurse_no());
 				session.setAttribute("nurse_no", n.getNurse_no());
-				return "/manager/managerPage1";
+				return "/manager/managerPage";
 				
 			
 			

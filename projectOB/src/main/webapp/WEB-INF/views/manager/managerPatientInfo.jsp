@@ -178,7 +178,7 @@
   <br>
      <label class="control-label col-sm-3">요양사</label>
      <div class="col-sm-9">
-      <input type="text" class="form-control" value="${sessionScope.nurseId}" id="nurse_name" readonly="readonly">
+      <input type="text" class="form-control" value="${sessionScope.nurse_name}" id="nurse_name" readonly="readonly">
       <input type="hidden" class="form-control" value="${sessionScope.nurse_no}" id="nurse_no" name="nurse_no" readonly="readonly">
      </div>
 
