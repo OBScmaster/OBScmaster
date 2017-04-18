@@ -92,7 +92,6 @@ function test(){
 			<button type="submit">Sign In</button>
 			<br/>
 			</form>
-			<a href="#"><p class="small">Forgot your password?</p></a>
 		</div>
 	</div>
 
