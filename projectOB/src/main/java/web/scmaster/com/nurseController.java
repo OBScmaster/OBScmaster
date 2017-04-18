@@ -72,7 +72,7 @@ public class nurseController {
 	@RequestMapping(value = "managerLogin", method = RequestMethod.GET)
 	public String managerLogin() {
 	
-		return "/manager/managerPage";		
+		return "/manager/managerPage1";		
 	
 	}
 
@@ -90,7 +90,7 @@ public class nurseController {
 				session.setAttribute("nurseId", nurseId);
 				model.addAttribute("nurse_no", n.getNurse_no());
 				session.setAttribute("nurse_no", n.getNurse_no());
-				return "/manager/managerPage";
+				return "/manager/managerPage1";
 				
 			
 			

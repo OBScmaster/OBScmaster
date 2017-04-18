@@ -70,7 +70,7 @@ function test(){
 
 	<div class="container">
 		<div class="top">
-			<h1 id="title" class="hidden"><span id="logo">DAILY <span>UI</span></span></h1>
+			<h1 id="title" class="hidden"><span id="logo"> <span> </span></span></h1>
 		</div>
 		<div class="login-box animated fadeInUp">
 			<div class="box-header">
