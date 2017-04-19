@@ -32,6 +32,13 @@ public class patientController {
    @Autowired
    private dailyDAO dailydao;
    
+   @RequestMapping(value="patientLogin", method=RequestMethod.GET)
+   public String login(){
+	   
+        return "/protector/protectorPage";
+        
+      }
+   
    
    @RequestMapping(value="patientLogin", method=RequestMethod.POST)
    public String login(String id, String password, Model model, HttpSession session){

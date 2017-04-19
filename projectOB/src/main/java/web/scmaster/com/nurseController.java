@@ -89,7 +89,7 @@ public class nurseController {
 				session.setAttribute("nurse_name", n.getName());
 				model.addAttribute("nurse_no", n.getNurse_no());
 				session.setAttribute("nurse_no", n.getNurse_no());
-				return "/manager/managerPage";
+				return "/manager/managerPage1";
 				
 			
 			
@@ -102,6 +102,12 @@ public class nurseController {
 			
 			model.addAttribute("whywhywhy","왜 그런지 모르겠네");
 			return "home";
+	}
+	
+	@RequestMapping(value = "managerLogout", method = RequestMethod.GET)
+	public String managerLogout(HttpSession session){
+		session.invalidate();
+		return "redirect:/";
 	}
 	
 	@RequestMapping(value="nurseInput", method=RequestMethod.GET)

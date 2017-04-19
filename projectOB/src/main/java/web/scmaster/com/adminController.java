@@ -96,18 +96,20 @@ public class adminController {
 				session.setAttribute("id",a.getId());
 				
 				return "/admin/adminPage1";
-				
-			
 			
 			}else{
 				model.addAttribute("PWnotMatch","패스워드가 맞지 않습니다");
-				return "home";	
+				return "mainPage";	
 			
 			}
-			}
 			
-			model.addAttribute("whywhywhy","왜 그런지 모르겠네");
-		return "home";			
+		}else{
+			
+		model.addAttribute("whywhywhy","왜 그런지 모르겠네");
+		
+		return "mainPage";
+		
+		}
 	
 	}
 	

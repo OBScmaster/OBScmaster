@@ -32,21 +32,29 @@ $('#password').blur(function() {
 
 function test(){
 	
-	 if($(':radio[name="divider"]:checked').val()=="manager"){
-					
-		 $('#loginForm').attr("action","managerLogin");
+	var check = document.getElementById('id').value;
+	var divider = $(':radio[name="divider"]:checked').val();
+	
+	
+	 if(divider=='manager'){
 		 
-		 if($('#id').val()=="admin"){
-				$('#loginForm').attr("action","adminLogin");				
-			}
+		 if(check=="admin"){
+			 
+		$('#loginForm').attr("action","adminLogin");	
+		
+		}else{
+				
+		$('#loginForm').attr("action","managerLogin");
 		 
-	 }else{
+		}
 		 
+	 }else if(divider=='protector'){
+		
 		 $('#loginForm').attr("action","patientLogin");
 		 
-		 if($('#id').val()=="admin"){
+		 if(check=="admin"){
 				alert("관리자는 관계자 버튼을 클릭 후 로그인 해 주세요");
-			}
+		}
 	 }
 	
 }

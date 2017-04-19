@@ -32,7 +32,7 @@
     			 var patientselect = "<div class='col-md-7'><div class='btn-group btn-group-justified'><a href='#' class='btn btn-info'>요양사번호</a>"
  			    	+"<a href='#' class='btn btn-info'>이름</a>"
 			    	  +"<a href='#' class='btn btn-info'>전화번호</a>"
-			    	  +"</div><div class='list-group text-left' style='height:540px;' id='patientgroup'>";
+			    	  +"</div><div class='list-group text-left' style='height:630px;' id='patientgroup'>";
     			    	  
     			    	  $.each(data,function(index,item){
     			    		  if(item.name==null){
@@ -94,13 +94,12 @@
     			    			   $("#buttt").prepend("<input type='submit' class='btn btn-primary' id='fd' value=확인>");
     			    			   $("#picdiv").append( "<input type='file' value='' id='upload' name='upload' style='width: 100%;'>");
     			    			   $("#phone").removeAttr("readonly");
-    			    			 
-    			    		    			    			  
-    			    			   $("#upload").on('change', function(){
-    			    			          readURL(this);
-    			    			      });
     			    			   
-    			    			   allPatients(nurse_no);
+    			    			   allPatients();
+    			    			   
+    			    			   $("#upload").on('change', function(){
+ 			    			          readURL(this);
+ 			    			      });
     			    			   
     			    			   $("input[target='target']").on('click', function(){
       			   					 
@@ -114,8 +113,6 @@
      				   		       });
     			    			   
     			    			 })
-    			    		
-    			    		
     			    		
     			    		$("#previewImg").attr("src","");
     			    		
@@ -132,10 +129,7 @@
     			    		          readURL(this);
     			    		 });
     			    		
-    						 
     						myPatientList(nurse_no);
-    						
-    						
     						     			    	
     					});
     		
@@ -163,10 +157,8 @@
 				if(confirm("메인메뉴로 돌아가시겠습니까?")){
 					location.href="adminLogin"
 				 }
-			 }			 
-		 })
-		 
-      
+			 }
+		 })      
   });
   
   function addPatient(pt_no, pt_name){
@@ -236,7 +228,7 @@
   		 url:"patientList",
   		 data:{nurse_no:nurse_no},
   		 success:function(data){
-  			 
+  			$("#patientgroup").css("overflow","");
   			 var patientselect = " <button class='form-control dropdown-toggle' type='button' data-toggle='dropdown'  readonly='readonly'>환자목록<span class='caret' ></span></button>"
   			 +"";
   			    	  
@@ -257,29 +249,26 @@
    			        if(data.length>7){
 			    		$("#patientList").css("overflow","scroll");
 			    	};
-   			    	
+			    	
   		},
-  		 error:function(error){
-  			 
+  		 error:function(error){  			 
   			 console.log(error);}
   		});
-	  
   }
   
-  function allPatients(nurse_no){
-	  
+  function allPatients(){
+	  var count=0;
 	  $.ajax({  		 
   		type:"get",
   		 url:"patientlist",  
   		 contentType:"application/json; charset=utf-8",
   		 dataType:"json",
   		 success:function(data){
-  			
-  			
-  			 var patientselect = "<div class='col-md-7'><div class='btn-group btn-group-justified'><a href='#' class='btn btn-info'>환자명</a>"
+  			$("#patientgroup").css("overflow","");
+  		   var patientselect = "<div class='col-md-7'><div class='btn-group btn-group-justified'><a href='#' class='btn btn-info'>환자명</a>"
 			    	+"<a href='#' class='btn btn-info'>병실</a>"
 			    	+"<a href='#' class='btn btn-info'>병명</a>"
-			    	+"</div><div class='list-group text-left' style='height:540px;' id='patientgroup'>";
+			    	+"</div><div class='list-group text-left' style='height:630px;' id='patientgroup'>";
   			    	  
   			    	  $.each(data,function(index,item){
   			    		  if(item.ppt_name==null){
@@ -302,6 +291,8 @@
   			    		  +item.name+"</td><td width='250px;'>"
   			    		  +item.room_no+"호</td><td width='200px;'>"
   			    		  +item.disease+"</td></tr></table></div>";
+  			    		count++;
+  			    		
   			    		 }
   			    	  })
   			    	
@@ -309,11 +300,9 @@
   			    	
   			    	$("#kk").html(patientselect);
   			    	
-  			    	 if(data.length>11){
+  			    	 if(count>11){
    			    		$("#patientgroup").css("overflow","scroll");
    			    	};
-					
-   			    	
    			    	
    			    	$(".list-group-item").click(function(){
   			    		
@@ -324,14 +313,10 @@
   			    			$(this).css("color","red");
   			    			remo=$(this);
   			    			addPatient(pt_no,pt_name);
-  			    			
-  			    		}
-  			    		
-  			  
+  			    	 }
   			    		 
   			    	});
-  		
-  						
+  		  						
   		},
   		 error:function(error){console.log(error);}
   		});
@@ -356,12 +341,10 @@
 		    		  +data.name+"</td><td width='250px;'>"
 			    		  +data.room_no+"호</td><td width='200px;'>"
 			    		  +data.disease+"</td></tr></table></div>";
-	  				 
-	  			 	  			
+	  				 	  			 	  			
 	  				$("#patientgroup").append(patientselect);
 	  				$("#patientList").append("<input type=hidden id=new"+data.pt_no+" name=delPatient value="+data.pt_no+">")		
-	  			
-	  				
+	  				  				
 	  		 },
 	  		 error:function(error){console.log(error);}
 	  		});
