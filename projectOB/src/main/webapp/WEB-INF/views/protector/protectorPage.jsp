@@ -81,7 +81,7 @@
     			 
     			 $("#log").html(logdata);
     			 
-    			 if(logdata.length>9){
+    			 if(data.length>9){
     				 $("#log").css("overflow","scroll")
     			 }
     			 
@@ -106,7 +106,7 @@
   
     <div class="container">
       <!-- Responsive calendar - START -->
-    	<div class="responsive-calendar">
+    	<div class="responsive-calendar col-md-8">
         	<div class="controls">
            	 <a class="pull-left" data-go="prev"><div class="btn btn-primary">Prev</div></a>
             	<h4><span data-head-year></span> <span data-head-month></span></h4>
@@ -125,9 +125,9 @@
         </div>
      	</div>
       <!-- Responsive calendar - END -->
-    </div>
+   
     
-    <div id = "wrapper">
+    <div id = "wrapper" class="col-md-4" style='height:300px;'>
     	<div id = "web-camera">
     		Web-Camera
     		<img alt="" src="./resources/image/icons/play.png">
@@ -135,9 +135,11 @@
    		
    	</div>
    	
-   <div id = "log">
+   <div id = "log" class="col-md-4" style='height:300px;'>
    		LOG
    	</div>
+   	
+   	 </div>
     
   </body>
 </html>

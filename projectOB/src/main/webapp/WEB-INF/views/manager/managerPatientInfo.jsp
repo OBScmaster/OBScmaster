@@ -173,7 +173,6 @@
      
    </tr> 
           <tr>
-       
        <td  colspan="4" class="col-sm-5">
   <br>
      <label class="control-label col-sm-3">요양사</label>
@@ -181,15 +180,12 @@
       <input type="text" class="form-control" value="${sessionScope.nurse_name}" id="nurse_name" readonly="readonly">
       <input type="hidden" class="form-control" value="${sessionScope.nurse_no}" id="nurse_no" name="nurse_no" readonly="readonly">
      </div>
-
-    
+     
      </td>  
    </tr>     
    </table>
  </div>
  </td>
-
-
 </tr>
  <tr><td class="col-sm-7">
 
@@ -220,8 +216,6 @@
    </td>
   </tr>
   
-     
-  
   </table>
      
     </div>
@@ -229,7 +223,6 @@
 </td></tr>    
     
     </table>
-
 
 </div>
 </div>
@@ -241,9 +234,7 @@
 <br>
 
  </form>
-
  
-
 <footer class="container-fluid text-center">
   <p>Footer Text</p>
 </footer>
