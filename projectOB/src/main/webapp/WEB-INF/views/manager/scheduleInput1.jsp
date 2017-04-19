@@ -7,7 +7,7 @@
 <title>ManagerPatientInput</title>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="./resources/css/bootstrap.css">
+<link rel="stylesheet" href="./resources/scheduleInput/css/bootstrap.css">
 <script src="./resources/js/jquery.min.js"></script>
 <script src="./resources/js/bootstrap.min.js"></script>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
@@ -2912,132 +2912,135 @@ function updateSpecial(pt_no,special_No) {
 <body>
 
 <nav class="navbar navbar-inverse">
-  <div class="container-fluid">
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>                        
-      </button>
-  </div>
-    <div class="collapse navbar-collapse" id="myNavbar">
-      <ul class="nav navbar-nav">
-        <li class="active"><a href="managerLogin">Home</a></li>
-        <li><a href="managerPatientInput">환자 등록</a></li>
-        <li><a href="managerPatientInfo">담당 환자 정보</a></li>
-      </ul>
+	<div class="container-fluid">
+		<div class="navbar-header">
+			<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>                        
+			</button>
+		</div>
+		<div class="collapse navbar-collapse" id="myNavbar">
+			<ul class="nav navbar-nav">
+				<li class="active"><a href="managerLogin">Home</a></li>
+				<li><a href="managerPatientInput">환자 등록</a></li>
+				<li><a href="managerPatientInfo">담당 환자 정보</a></li>
+			</ul>
      
-      <ul class="nav navbar-nav navbar-right">
-        <li><a href="#"><span class="glyphicon glyphicon-user"></span>${sessionScope.nurseId}</a></li>
-      </ul>
-    </div>
-  </div>
+			<ul class="nav navbar-nav navbar-right">
+				<li><a href="#"><span class="glyphicon glyphicon-user"></span>${sessionScope.nurseId}</a></li>
+			</ul>
+		</div>
+	</div>
 </nav>
 
-<form>
+<div class="container-fluid">
+	<div class="row">
+		<div class="col-md-4">
+			<div class="col-md-12">
+				<div class="example sidebar">
+					<div class="text-left" style="font-weight: bold;">환자</div> 
+						<div class="container col-md-12">
+  							<h2>환자 스케쥴 입력</h2>
+  							<ul class="nav nav-tabs">
+								<li class="active">
+							    <li><a data-toggle="tab" href="#menu1">식사</a></li>
+							    <li><a data-toggle="tab" href="#menu2">운동</a></li>
+							    <li><a data-toggle="tab" href="#menu3">청소</a></li>
+							    <li><a data-toggle="tab" href="#menu4">세탁</a></li>
+							    <li><a data-toggle="tab" href="#menu5">샤워</a></li>
+							    <li><a data-toggle="tab" href="#menu6">수면</a></li>
+							    <li><a data-toggle="tab" href="#menu7">의사소견</a></li>
+							    <li><a data-toggle="tab" href="#menu8">특이사항</a></li>
+							</ul>
 
-<div class="container text-center">    
-	<div class="row content">
-		<table>
-			<tr>
- 				<td class="col-sm-7" id="tabStart">
- 		 			<div class="col-md-12" id="tab">
- 						<div class="text-left" style="font-weight: bold;">환자</div> 
-							<div class="container col-md-12">
-  								<h2>환자 스케쥴 입력</h2>
-				  					<ul class="nav nav-tabs">
-										<li class="active">
-									    <li><a data-toggle="tab" href="#menu1">식사</a></li>
-									    <li><a data-toggle="tab" href="#menu2">운동</a></li>
-									    <li><a data-toggle="tab" href="#menu3">청소</a></li>
-									    <li><a data-toggle="tab" href="#menu4">세탁</a></li>
-									    <li><a data-toggle="tab" href="#menu5">샤워</a></li>
-									    <li><a data-toggle="tab" href="#menu6">수면</a></li>
-									    <li><a data-toggle="tab" href="#menu7">의사소견</a></li>
-									    <li><a data-toggle="tab" href="#menu8">특이사항</a></li>
-									</ul>
-  								
-  								<div class="tab-content">
-								    <div id="menu1" class="tab-pane fade in active">
-								      <h3>Menu 1</h3>
-								      <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-								    </div>
-			    
-								    <div id="menu2" class="tab-pane fade">
-								      <h3>Menu 2</h3>
-								      <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam.</p>
-								    </div>
-			    
-								    <div id="menu3" class="tab-pane fade">
-								      <h3>Menu 3</h3>
-								      <p>Eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.</p>
-								    </div>
-			    
-								    <div id="menu4" class="tab-pane fade">
-								      <h3>Menu 4</h3>
-								      <p>Eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.</p>
-								    </div>
-			    
-								    <div id="menu5" class="tab-pane fade">
-								      <h3>Menu 5</h3>
-								      <p>Eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.</p>
-								    </div>
-			    
-								    <div id="menu6" class="tab-pane fade">
-								      <h3>Menu 6</h3>
-								      <p>Eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.</p>
-								    </div>
-			    
-								    <div id="menu7" class="tab-pane fade">
-								      <h3>Menu 7</h3>
-								      <p>Eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.</p>
-								    </div>
-			    
-								    <div id="menu8" class="tab-pane fade">
-								      <h3>Menu 8</h3>
-								      <p>Eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.</p>
-								    </div>
-  								</div>
-							</div>
-						</div>   			
- 					</td>
- 		
- 					<td rowspan="2" >
- 						<div class="col-sm-15">
-							<p>Date: <input type="text" class="datepicker"></p>
-	 							<div class="panel text-left">  
-		      						<div class = 'col-md-15'>
-						      			<div class='btn-group btn-group-justified'>
-						      				<a href='#' class='btn btn-info'>환자번호</a>
-						      				<a href='#' class='btn btn-info'>이름</a>
-						      				<a href='#' class='btn btn-info'>호실</a>
-						      				<a href='#' class='btn btn-info'>생년월일</a>
-						      			</div>
-		      			
-						      			<div class='list-group text-left' style='height:540px;'>
-						      				<c:if test="${patientList != null }">
-						      					<table class='text-center'>
-								      				<c:forEach var = "item" items="${patientList}">
-								      					<tr class='list-group-item' id="${item.pt_no}">
-								      						<td width='160px;'>${item.pt_no }</td> 
-								      						<td width='160px;'>${item.name }</td>
-								      						<td width='160px;'>${item.room_no }</td>
-								      						<td width='160px;'>${item.birthdate }</td>
-								      					</tr>
-								      				</c:forEach>
-								      			</table>
-						      				</c:if>
-						      			</div>
-						      		</div>
-						      	</div>
-							</div>
-						</td>
-					</tr>
-				</table>
+  							<div class="tab-content">
+							    <div id="menu1" class="tab-pane fade in active">
+							      <h3>Menu 1</h3>
+							      <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+							    </div>
+							    
+							    <div id="menu2" class="tab-pane fade">
+							      <h3>Menu 2</h3>
+							      <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam.</p>
+							    </div>
+							    
+							    <div id="menu3" class="tab-pane fade">
+							      <h3>Menu 3</h3>
+							      <p>Eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.</p>
+							    </div>
+							    
+							    <div id="menu4" class="tab-pane fade">
+							      <h3>Menu 4</h3>
+							      <p>Eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.</p>
+							    </div>
+							    
+							    <div id="menu5" class="tab-pane fade">
+							      <h3>Menu 5</h3>
+							      <p>Eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.</p>
+							    </div>
+							    
+							    <div id="menu6" class="tab-pane fade">
+							      <h3>Menu 6</h3>
+							      <p>Eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.</p>
+							    </div>
+							    
+							    <div id="menu7" class="tab-pane fade">
+							      <h3>Menu 7</h3>
+							      <p>Eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.</p>
+							    </div>
+							    
+							    <div id="menu8" class="tab-pane fade">
+							      <h3>Menu 8</h3>
+							      <p>Eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.</p>
+							    </div>
+  							</div>
+						</div>
+					</div>
+				</div>
 			</div>
 		</div>
+		
+		<div class="col-md-8">
+			<div class="row">
+				<div class="col-md-12">
+					<div class="example">
+						<p>Date: <input type="text" class="datepicker"></p>
+					</div>
+				</div>
 
-</form>
+				<div class="col-md-12">
+					<div class="example">
+						<div class="panel text-left">  
+		      				<div class = 'col-md-15'>
+		      					<div class='btn-group btn-group-justified'>
+				      				<a href='#' class='btn btn-info'>환자번호</a>
+				      				<a href='#' class='btn btn-info'>이름</a>
+				      				<a href='#' class='btn btn-info'>호실</a>
+				      				<a href='#' class='btn btn-info'>생년월일</a>
+				      			</div>
+		      			
+		      					<div class='list-group text-left' style='height:540px;'>
+				      				<c:if test="${patientList != null }">
+				      					<table class='text-center'>
+						      				<c:forEach var = "item" items="${patientList}">
+						      					<tr class='list-group-item' id="${item.pt_no}">
+						      						<td width='160px;'>${item.pt_no }</td> 
+						      						<td width='160px;'>${item.name }</td>
+						      						<td width='160px;'>${item.room_no }</td>
+						      						<td width='160px;'>${item.birthdate }</td>
+						      					</tr>
+						      				</c:forEach>
+						      			</table>
+				      				</c:if>
+				      			</div>
+				      		</div>
+				      	</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
 
 <footer class="container-fluid text-center">
 	<p>Footer Text</p>

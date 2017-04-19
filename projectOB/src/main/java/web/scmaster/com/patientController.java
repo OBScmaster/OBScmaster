@@ -45,7 +45,7 @@ public class patientController {
             
             session.setAttribute("id", p);
             
-            return "/protector/protectorPage1";
+            return "/protector/protectorPage";
          
          }else{         
             model.addAttribute("PWnotMatch","패스워드가 맞지 않습니다");

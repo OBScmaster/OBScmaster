@@ -130,15 +130,15 @@
     <div id = "wrapper">
     	<div id = "web-camera">
     		Web-Camera
-    		<img alt="" src="http://192.168.0.6:8080/?action=stream">
+    		<img alt="" src="./resources/image/icons/play.png">
    		</div>
+   		
    	</div>
    	
-   	<div id = "log">
+   <div id = "log">
    		LOG
    	</div>
     
   </body>
-
 </html>
 
