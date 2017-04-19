@@ -31,7 +31,6 @@ import web.scmaster.com.vo.Nurse;
 import web.scmaster.com.vo.Patient;
 import web.scmaster.com.vo.Special;
 
-
 @SessionAttributes("nurse")
 @Controller
 public class nurseController {
@@ -90,8 +89,6 @@ public class nurseController {
 				model.addAttribute("nurse_no", n.getNurse_no());
 				session.setAttribute("nurse_no", n.getNurse_no());
 				return "/manager/managerPage1";
-				
-			
 			
 			}else{			
 				model.addAttribute("PWnotMatch","패스워드가 맞지 않습니다");
@@ -103,6 +100,13 @@ public class nurseController {
 			model.addAttribute("whywhywhy","왜 그런지 모르겠네");
 			return "home";
 	}
+	
+	@RequestMapping(value = "managerLogout", method = RequestMethod.GET)
+	public String managerLogout(HttpSession session){
+		session.invalidate();
+		return "redirect:/";
+	}
+	
 
 	@RequestMapping(value="nurseInput", method=RequestMethod.GET)
 	public String nurseInput(){
