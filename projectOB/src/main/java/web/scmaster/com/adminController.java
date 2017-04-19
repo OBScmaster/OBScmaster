@@ -111,6 +111,12 @@ public class adminController {
 	
 	}
 	
+	@RequestMapping(value = "adminLogout", method = RequestMethod.GET)
+	public String adminLogout(HttpSession session){
+		session.invalidate();
+		return "redirect:/";
+	}
+	
 	@ResponseBody
 	@RequestMapping(value="roomlist", method=RequestMethod.POST)
 	public List<Room> roomlist(){
