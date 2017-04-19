@@ -103,13 +103,7 @@ public class nurseController {
 			model.addAttribute("whywhywhy","왜 그런지 모르겠네");
 			return "home";
 	}
-	
-	@RequestMapping(value = "managerLogout", method = RequestMethod.GET)
-	public String managerLogout(HttpSession session){
-		session.invalidate();
-		return "redirect:/";
-	}
-	
+
 	@RequestMapping(value="nurseInput", method=RequestMethod.GET)
 	public String nurseInput(){
 		return "/manaer/managerNurseInput";

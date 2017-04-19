@@ -17,7 +17,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href='http://fonts.googleapis.com/css?family=Economica' rel='stylesheet' type='text/css'>
     <!-- Bootstrap -->
-     <link rel="stylesheet" href="./resources/css/bootstrap.min.css">
+     <link rel="stylesheet" 
+     href="./resources/css/bootstrap.min.css">
  
     <!-- Respomsive slider -->
     <link href="./resources/css/responsive-calendar.css" rel="stylesheet">
