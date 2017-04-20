@@ -78,6 +78,7 @@ insert into Patient (PT_NO
 	<if test="originalphoto!=null">,ORIGINALPHOTO</if>
  	<if test="savedphoto!=null">,SAVEDPHOTO	</if> 	
 	,ROOM_NO
+	<if test="ipaddress!=null">,IPADDRESS</if>
 	<if test="ppt_id!=null">,PPT_ID</if>
 	<if test="ppt_pw!=null">,PPT_PW</if>
 	<if test="ppt_name!=null">,PPT_NAME</if>

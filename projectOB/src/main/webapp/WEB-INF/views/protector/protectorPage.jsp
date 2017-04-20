@@ -32,9 +32,7 @@
    
     	
     	$("#web-camera").click(function(){
-    		
     		window.open("showVideo?pt_no="+pt_no,"","width=500,height=300");
-    		/* location.href="showVideo?pt_no="+pt_no; */
     	})
     	
     	$(".responsive-calendar").responsiveCalendar({
@@ -48,13 +46,11 @@
     	    	  dayLink.parent().addClass('active');    	    	  
     	    	  if(month<10){
       	    		  month="0"+month
-      	    	  }    	    	  
+      	    	  }
     	    	  if(day<10){
     	    		  day="0"+day
-      	    	  }    	    	  
-    	    	  var daycheck = year + "/" + month + "/" + day;
-    	    	
-    	    	 
+      	    	  }
+    	    	  var daycheck = year + "/" + month + "/" + day;    	    	
     	    	  location.href="dailyschedule?today="+daycheck+"&pt_no="+pt_no;
     	    	}
     		});
