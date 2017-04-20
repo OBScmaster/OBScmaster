@@ -116,12 +116,22 @@ public class patientController {
    
    @ResponseBody
    @RequestMapping(value="showLog", method=RequestMethod.GET)
-   public List<SensorLog> showLog(int pt_no, Model model){
+   public List<SensorLog> showLog(String ipaddress, Model model){
 	   
-	   List<SensorLog> loglist = patientdao.showLogList(pt_no);
+	   List<SensorLog> loglist = patientdao.showLogList(ipaddress);
 		   
       return loglist;
    }
+   
+   @ResponseBody
+   @RequestMapping(value="showAisleLog", method=RequestMethod.GET)
+   public List<SensorLog> showAisleLog(String ipaddress, Model model){
+	   
+	   List<SensorLog> loglist = patientdao.showAisleSensorLog(ipaddress);
+		   
+      return loglist;
+   }
+   
    
    @ResponseBody
    @RequestMapping(value="patientList", method=RequestMethod.GET)

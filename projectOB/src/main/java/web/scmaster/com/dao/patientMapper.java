@@ -16,7 +16,8 @@ public interface patientMapper {
 	public int updatePatient(Patient patient);
 	public int deletePatient(int pt_no);
 	public int changeNurse(int nurse_no);
-	public List<SensorLog> showSensorLog(int pt_no);
+	public List<SensorLog> showSensorLog(String ipaddress);
+	public List<SensorLog> showAisleSensorLog(String ipaddress);
 	public List<Patient> patientList(int nurse_no);
 	
 }

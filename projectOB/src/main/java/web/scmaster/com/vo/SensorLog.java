@@ -2,27 +2,27 @@ package web.scmaster.com.vo;
 
 public class SensorLog {
 	
-	private int pt_no;
+	private String ipaddress;
 	private String timeonlog;
 	private String text;
-	private String grade;
+	private String sensortype;
 	
 	public SensorLog() {}
 
-	public SensorLog(int pt_no, String timeonlog, String text, String grade) {
+	public SensorLog(String ipaddress, String timeonlog, String text, String sensortype) {
 		super();
-		this.pt_no = pt_no;
+		this.ipaddress = ipaddress;
 		this.timeonlog = timeonlog;
 		this.text = text;
-		this.grade = grade;
+		this.sensortype = sensortype;
+	}
+	
+	public String getIpaddress() {
+		return ipaddress;
 	}
 
-	public int getPt_no() {
-		return pt_no;
-	}
-
-	public void setPt_no(int pt_no) {
-		this.pt_no = pt_no;
+	public void setIpaddress(String ipaddress) {
+		this.ipaddress = ipaddress;
 	}
 
 	public String getTimeonlog() {
@@ -40,19 +40,21 @@ public class SensorLog {
 	public void setText(String text) {
 		this.text = text;
 	}
-
-	public String getGrade() {
-		return grade;
+	
+	public String getSensortype() {
+		return sensortype;
 	}
 
-	public void setGrade(String grade) {
-		this.grade = grade;
+	public void setSensortype(String sensortype) {
+		this.sensortype = sensortype;
 	}
 
 	@Override
 	public String toString() {
-		return "SenserLog [pt_no=" + pt_no + ", time=" + timeonlog + ", text=" + text + ", grade=" + grade + "]";
+		return "SensorLog [ipaddress=" + ipaddress + ", timeonlog=" + timeonlog + ", text=" + text + ", sensortype="
+				+ sensortype + "]";
 	}
-	
+
+
 
 }

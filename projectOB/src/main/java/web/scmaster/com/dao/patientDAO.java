@@ -65,11 +65,19 @@ public class patientDAO {
 		
 	}
 	
-	public List<SensorLog> showLogList(int pt_no){
+	public List<SensorLog> showLogList(String ipaddress){
 		
 		patientMapper mapper = sqlsession.getMapper(patientMapper.class);
 		
-		return mapper.showSensorLog(pt_no);
+		return mapper.showSensorLog(ipaddress);
+		
+	}
+	
+    public List<SensorLog> showAisleSensorLog(String ipaddress){
+		
+		patientMapper mapper = sqlsession.getMapper(patientMapper.class);
+		
+		return mapper.showAisleSensorLog(ipaddress);
 		
 	}
 	

@@ -166,8 +166,6 @@ public class adminController {
 	@RequestMapping(value="insertPatient", method=RequestMethod.POST)
 	public String insertPatient(Patient patient, MultipartFile upload){
 	
-		
-
 			if (!upload.isEmpty()) {
 				String savedfile = FileService.saveFile(upload, patientUploadPath);
 				patient.setOriginalphoto(upload.getOriginalFilename());

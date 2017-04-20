@@ -74,7 +74,7 @@
 			    		  }
   			    
   			    	
-  			    		  patientselect+="<div class='list-group-item' previewImg="+item.savedphoto+" phone="+item.phone+" disease="+item.disease+" room_no="+item.room_no+" ins_no="+item.ins_no+" birthdate="+item.birthdate+" nurse_no="+item.nurse_no+" address="+address+" name="+item.name+" pt_no="+item.pt_no+" ppt_phone="+item.ppt_phone+" ppt_add="+ppt_add+" ppt_name="+item.ppt_name+"><table class='text-center'><tr><td width='160px;'>"
+  			    		  patientselect+="<div class='list-group-item' previewImg="+item.savedphoto+" ipaddress="+item.ipaddress+" phone="+item.phone+" disease="+item.disease+" room_no="+item.room_no+" ins_no="+item.ins_no+" birthdate="+item.birthdate+" nurse_no="+item.nurse_no+" address="+address+" name="+item.name+" pt_no="+item.pt_no+" ppt_phone="+item.ppt_phone+" ppt_add="+ppt_add+" ppt_name="+item.ppt_name+"><table class='text-center'><tr><td width='160px;'>"
   			    		  +item.pt_no+"</td><td width='160px;'>"
   			    		  +item.name+"</td><td width='160px;'>"
   			    		  +item.birthdate+"</td></tr></table></div>";
@@ -116,6 +116,8 @@
   			    		$("#birthdate").val($(this).attr("birthdate"));
   			    		$("#disease").val($(this).attr("disease"));
   			    		$("#room_no").val($(this).attr("room_no"));
+  			    		$("#ipaddress").val($(this).attr("room_no"));
+  			    		
   			    		$("#nurse_no").val($(this).attr("nurse_no"));
   			    		
   			    		
@@ -195,7 +197,7 @@
 						    			    	  
 						    			    	  $.each(data,function(index,item){
 						    			    	
-						    			    		  roomselect+="<div class='list-group-item' present="+item.present+" maximum="+item.maximum+" id="+item.room_no+"><table class='text-center'><tr><td width='160px;'>"
+						    			    		  roomselect+="<div class='list-group-item' present="+item.present+" ipaddress="+item.ipaddress+" maximum="+item.maximum+" id="+item.room_no+"><table class='text-center'><tr><td width='160px;'>"
 						    			    		  +item.room_no+"호</td><td width='160px;'>"
 						    			    		  +item.maximum+"명</td><td width='160px;'>"
 						    			    		  +item.present+"명</td></tr></table></div>";
@@ -217,7 +219,7 @@
 															$(".list-group-item").css("color","black");
 								    			    		$(this).css("color","red");
 								    			    		$("#room_no").val($(this).attr("id"));
-								    			    		
+								    			    		$("#ipaddress").val($(this).attr("ipaddress"));
 															
 														}else{
 															

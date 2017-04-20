@@ -29,8 +29,8 @@
     $( document ).ready( function() {     
     	
     	var pt_no = $("#pt_no").val();
-   
-    	
+    	var ipaddress = $("#ipaddress").val();
+        	
     	$("#web-camera").click(function(){
     		window.open("showVideo?pt_no="+pt_no,"","width=500,height=300");
     	})
@@ -55,34 +55,34 @@
     	    	}
     		});
     	
-    	
+setInterval(function() { 	
     	$.ajax({
     		
     		 type:"get",
     		 url:"showLog",
     		 data:{
-    			 pt_no:pt_no
+    			 ipaddress:ipaddress
     			 },
     		 
-    		 success:function(data){
-    			
-    			 var logdata="<table class='table text-center'><tr><td>시간</td><td>일</td><td>등급</td></tr>"
-    			 
-    			 $.each(data,function(index,item){
-    				
-    				 logdata+="<tr><td>"+item.timeonlog+"</td><td>"+item.text+"</td><td>"+item.grade+"</td></tr>"
-    				 
-    			 })
-    			 
-    			 logdata+="</table>"
-    			 
-    			 $("#log").html(logdata);
-    			 
-    			 if(data.length>9){
-    				 $("#log").css("overflow","scroll")
-    			 }
-    			 
-    		 },
+    			 success:function(data){
+    	    		
+        			 var logdata="<table class='table text-center'><tr><td>시간</td><td>사건</td><td>종류</td></tr>"
+        			 
+        			 $.each(data,function(index,item){
+        				
+        				 logdata+="<tr><td>"+item.timeonlog+"</td><td>"+item.text+"</td><td>"+item.sensortype+"</td></tr>"
+        				 
+        			 })
+        			 
+        			 logdata+="</table>"
+        			 
+        			 $("#log").html(logdata);
+        			 
+        			 if(data.length>9){
+        				 $("#log").css("overflow","scroll")
+        			 }
+        			 
+        		 },
     		
     		 error:function(e){
     			 
@@ -91,12 +91,18 @@
     		
     		
     	})
+    	
+}, 1000);
+
+
     	});
     </script>
   </head>
   <body>
-   <input type="hidden" id="pt_no" name="pt_no" value="${id.pt_no}">
   
+   <input type="hidden" id="pt_no" name="pt_no" value="${id.pt_no}">
+   <input type="hidden" id="ipaddress" name="ipaddress" value="${id.ipaddress}">
+   
 <nav class="navbar navbar-inverse">
   <div class="container-fluid">
     <div class="navbar-header">
@@ -114,7 +120,7 @@
       </ul>
      
       <ul class="nav navbar-nav navbar-right">
-        <li><a href="#"><span class="glyphicon glyphicon-user"></span>${id.name}보호자님 환영</a></li>
+        <li><a href="#"><span class="glyphicon glyphicon-user"></span>${id.name}님 보호자님 환영</a></li>
       </ul>
     </div>
   </div>
@@ -152,7 +158,7 @@
    	</div>
    	
    <div id = "log" class="col-md-4" style='height:300px;'>
-   		LOG
+   		<table class='table text-center'><tr><td>시간</td><td>사건</td><td>종류</td></tr></table>
    	</div>
    	
    	 </div>

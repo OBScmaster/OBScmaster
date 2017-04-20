@@ -69,7 +69,7 @@
 			    			  item.savedphoto="-";    			    			  
 			    		  }
   			    
-  			    		  patientselect+="<div class='list-group-item' previewImg="+item.savedphoto+" phone="+item.phone+" disease="+item.disease+" room_no="+item.room_no+" ins_no="+item.ins_no+" birthdate="+item.birthdate+" nurse_no="+item.nurse_no+" name="+item.name+" pt_no="+item.pt_no+" ppt_phone="+item.ppt_phone+" ppt_name="+item.ppt_name+">"
+  			    		  patientselect+="<div class='list-group-item' previewImg="+item.savedphoto+" ipaddress="+item.ipaddress+" phone="+item.phone+" disease="+item.disease+" room_no="+item.room_no+" ins_no="+item.ins_no+" birthdate="+item.birthdate+" nurse_no="+item.nurse_no+" name="+item.name+" pt_no="+item.pt_no+" ppt_phone="+item.ppt_phone+" ppt_name="+item.ppt_name+">"
   			    		  +"<table class='text-center'><tr><tr><td><input type=hidden id="+item.pt_no+"Address value="+address+"><input type=hidden id="+item.pt_no+"PPTadd value="+ppt_add+"></td></tr><td width='160px;'>"
   			    		  +item.pt_no+"</td><td width='160px;'>"
   			    		  +item.name+"</td><td width='160px;'>"
@@ -113,14 +113,14 @@
   			    		$("#address").val(address);
   			    		
   			    		var pptadd=$("#"+pt_no+"PPTadd").val();
-  			    	  var ppt_add = pptadd.replace(/,/gi," ");
+  			    	    var ppt_add = pptadd.replace(/,/gi," ");
   			    		
   			    		$("#ppt_add").val(ppt_add);
   			    	
   			    		$("#birthdate").val($(this).attr("birthdate"));
   			    		$("#disease").val($(this).attr("disease"));
   			    		$("#room_no").val($(this).attr("room_no"));
-  			    		
+  			    		$("#ipaddress").val($(this).attr("ipaddress"));
   			    		$("#nurse_no").val($(this).attr("nurse_no"));
   			    		
   			    		$.ajax({
@@ -332,7 +332,7 @@
 							full=item.room_no+"호　풀방";
 							}
  			    	
- 			    		  roomselect+="<div class='list-group-item' present="+item.present+" maximum="+item.maximum+" id="+item.room_no+" rel='popover' data-content='' title="+full+"><table class='text-center'><tr><td width='160px;'>"
+ 			    		  roomselect+="<div class='list-group-item' present="+item.present+" maximum="+item.maximum+" ipaddress="+item.ipaddress+" id="+item.room_no+" rel='popover' data-content='' title="+full+"><table class='text-center'><tr><td width='160px;'>"
  			    		  +item.room_no+"호</td><td width='160px;'>"
  			    		  +item.maximum+"명</td><td width='160px;'>"
  			    		  +item.present+"명</td></tr></table></div>";
@@ -371,7 +371,7 @@
 									$(".list-group-item").css("color","black");
 		    			    		$(this).css("color","red");
 		    			    		$("#room_no").val($(this).attr("id"));
-		    			    		
+		    			    		$("#ipaddress").val($(this).attr("ipaddress"));
 									
 								}else{
 									

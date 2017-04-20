@@ -166,7 +166,8 @@
   <br>
      <label class="control-label col-sm-3">방</label>
      <div class="col-sm-9">
-      <input type="text" class="form-control" id="room_no" name="room_no" readonly="readonly">
+     <input type="text" class="form-control" id="room_no" name="room_no" readonly="readonly">
+     <input type="hidden" class="form-control" id="ipaddress" name="ipaddress" value="">
      </div>
     
      </td> 

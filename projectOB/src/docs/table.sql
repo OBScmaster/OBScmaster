@@ -292,6 +292,7 @@ CREATE TABLE ROOM
    ROOM_NO varchar2(5),
    MAXIMUM number NOT NULL,
    PRESENT number NOT NULL,
+   IPADDRESS varchar2(20) NOT NULL,
    DELETEFLAG varchar2(1) DEFAULT 'Y' NOT NULL,
    PRIMARY KEY (ROOM_NO)
 );
@@ -299,10 +300,16 @@ CREATE TABLE ROOM
 
 CREATE TABLE SENSORLOG
 (
-   PT_NO number NOT NULL,
-   TIMEONLOG date NOT NULL,
+   IPADDRESS varchar2(20) NOT NULL,
+   TIMEONLOG date default sysdate,
    TEXT varchar2(100) NOT NULL,
-   GRADE number NOT NULL
+   SENSORTYPE varchar2(20) NOT NULL
+);
+
+create table AISLESENSOR(
+IPADDRESS varchar2(20)
+, TIMEONLOG date default sysdate
+, TEXT varchar2(20)
 );
 
 /* Create Foreign Keys */
@@ -357,33 +364,33 @@ ALTER TABLE DailyShower
 ;
 
 ALTER TABLE SENSORLOG
-   ADD FOREIGN KEY (PT_NO)
-   REFERENCES PATIENT (PT_NO)
+   ADD FOREIGN KEY (IPADDRESS)
+   REFERENCES PATIENT (IPADDRESS)
 ;
 
 
 /*room data*/
 
-insert into room(room_no,maximum,present) values('101',4,0);
-insert into room(room_no,maximum,present) values('102',4,0);
-insert into room(room_no,maximum,present) values('103',4,0);
-insert into room(room_no,maximum,present) values('104',4,0);
-insert into room(room_no,maximum,present) values('105',4,0);
-insert into room(room_no,maximum,present) values('201',6,0);
-insert into room(room_no,maximum,present) values('202',6,0);
-insert into room(room_no,maximum,present) values('203',6,0);
-insert into room(room_no,maximum,present) values('204',6,0);
-insert into room(room_no,maximum,present) values('205',6,0);
-insert into room(room_no,maximum,present) values('301',2,0);
-insert into room(room_no,maximum,present) values('302',2,0);
-insert into room(room_no,maximum,present) values('303',2,0);
-insert into room(room_no,maximum,present) values('304',2,0);
-insert into room(room_no,maximum,present) values('305',2,0);
-insert into room(room_no,maximum,present) values('401',1,0);
-insert into room(room_no,maximum,present) values('402',1,0);
-insert into room(room_no,maximum,present) values('403',1,0);
-insert into room(room_no,maximum,present) values('404',1,0);
-insert into room(room_no,maximum,present) values('405',1,0);
+insert into room(room_no,maximum,present,ipaddress) values('101',4,0,'10.10.5.32');
+insert into room(room_no,maximum,present,ipaddress) values('102',4,0,'10.10.5.32');
+insert into room(room_no,maximum,present,ipaddress) values('103',4,0,'10.10.5.32');
+insert into room(room_no,maximum,present,ipaddress) values('104',4,0,'10.10.5.32');
+insert into room(room_no,maximum,present,ipaddress) values('105',4,0,'10.10.5.32');
+insert into room(room_no,maximum,present,ipaddress) values('201',6,0,'10.10.5.32');
+insert into room(room_no,maximum,present,ipaddress) values('202',6,0,'10.10.5.32');
+insert into room(room_no,maximum,present,ipaddress) values('203',6,0,'10.10.5.32');
+insert into room(room_no,maximum,present,ipaddress) values('204',6,0,'10.10.5.32');
+insert into room(room_no,maximum,present,ipaddress) values('205',6,0,'10.10.5.32');
+insert into room(room_no,maximum,present,ipaddress) values('301',2,0,'10.10.5.32');
+insert into room(room_no,maximum,present,ipaddress) values('302',2,0,'10.10.5.32');
+insert into room(room_no,maximum,present,ipaddress) values('303',2,0,'10.10.5.32');
+insert into room(room_no,maximum,present,ipaddress) values('304',2,0,'10.10.5.32');
+insert into room(room_no,maximum,present,ipaddress) values('305',2,0,'10.10.5.32');
+insert into room(room_no,maximum,present,ipaddress) values('401',1,0,'10.10.5.32');
+insert into room(room_no,maximum,present,ipaddress) values('402',1,0,'10.10.5.32');
+insert into room(room_no,maximum,present,ipaddress) values('403',1,0,'10.10.5.32');
+insert into room(room_no,maximum,present,ipaddress) values('404',1,0,'10.10.5.32');
+insert into room(room_no,maximum,present,ipaddress) values('405',1,0,'10.10.5.32');
 
 
 INSERT INTO ADMIN values('admin', 'admin');

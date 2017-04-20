@@ -30,7 +30,7 @@
     							full=item.room_no+"호　풀방";
     							}
     			    	
-    			    		  roomselect+="<div class='list-group-item' present="+item.present+" maximum="+item.maximum+" id="+item.room_no+" rel='popover' data-content='' title="+full+"><table class='text-center'><tr><td width='160px;'>"
+    			    		  roomselect+="<div class='list-group-item' present="+item.present+" maximum="+item.maximum+" ipaddress="+item.ipaddress+" id="+item.room_no+" rel='popover' data-content='' title="+full+"><table class='text-center'><tr><td width='160px;'>"
     			    		  +item.room_no+"호</td><td width='160px;'>"
     			    		  +item.maximum+"명</td><td width='160px;'>"
     			    		  +item.present+"명</td></tr></table></div>";
@@ -66,12 +66,14 @@
      			    	
 							$(".list-group-item").click(function(){
 								
+								var ipaddress = $(this).attr("ipaddress");
+								
 								if($(this).attr("present")!=$(this).attr("maximum")){
 									
 									$(".list-group-item").css("color","black");
 		    			    		$(this).css("color","red");
 		    			    		$("#room_no").val($(this).attr("id"));
-		    			    		
+		    			    		$("#ipaddress").val(ipaddress);
 									
 								}else{
 									
