@@ -69,7 +69,7 @@ public class nurseController {
 	@RequestMapping(value = "managerLogin", method = RequestMethod.GET)
 	public String managerLogin() {
 	
-		return "/manager/managerPage";		
+		return "/manager/managerPage1";		
 	
 	}
 

@@ -13,6 +13,7 @@ public class Patient {
 	private String originalphoto;
 	private String savedphoto;
 	private String room_no;
+	private String ipaddress;
 	private String ppt_id;
 	private String ppt_pw;
 	private String ppt_name;
@@ -26,9 +27,9 @@ public class Patient {
 	public Patient() {}
 
 	public Patient(int pt_no, int nurse_no, String ins_no, String name, String birthdate, String disease, String phone,
-			String address, String originalphoto, String savedphoto, String room_no, String ppt_id, String ppt_pw,
-			String ppt_name, String ppt_phone, String ppt_add, String inputdate, String updatedate, String deletedate,
-			String deleteflag) {
+			String address, String originalphoto, String savedphoto, String room_no, String ipaddress, String ppt_id,
+			String ppt_pw, String ppt_name, String ppt_phone, String ppt_add, String inputdate, String updatedate,
+			String deletedate, String deleteflag) {
 		super();
 		this.pt_no = pt_no;
 		this.nurse_no = nurse_no;
@@ -41,6 +42,7 @@ public class Patient {
 		this.originalphoto = originalphoto;
 		this.savedphoto = savedphoto;
 		this.room_no = room_no;
+		this.ipaddress = ipaddress;
 		this.ppt_id = ppt_id;
 		this.ppt_pw = ppt_pw;
 		this.ppt_name = ppt_name;
@@ -51,6 +53,8 @@ public class Patient {
 		this.deletedate = deletedate;
 		this.deleteflag = deleteflag;
 	}
+
+
 
 	public int getPt_no() {
 		return pt_no;
@@ -139,6 +143,14 @@ public class Patient {
 	public void setRoom_no(String room_no) {
 		this.room_no = room_no;
 	}
+	
+	public String getIpaddress() {
+		return ipaddress;
+	}
+
+	public void setIpaddress(String ipaddress) {
+		this.ipaddress = ipaddress;
+	}
 
 	public String getPpt_id() {
 		return ppt_id;
@@ -217,10 +229,12 @@ public class Patient {
 		return "Patient [pt_no=" + pt_no + ", nurse_no=" + nurse_no + ", ins_no=" + ins_no + ", name=" + name
 				+ ", birthdate=" + birthdate + ", disease=" + disease + ", phone=" + phone + ", address=" + address
 				+ ", originalphoto=" + originalphoto + ", savedphoto=" + savedphoto + ", room_no=" + room_no
-				+ ", ppt_id=" + ppt_id + ", ppt_pw=" + ppt_pw + ", ppt_name=" + ppt_name + ", ppt_phone=" + ppt_phone
-				+ ", ppt_add=" + ppt_add + ", inputdate=" + inputdate + ", updatedate=" + updatedate + ", deletedate="
-				+ deletedate + ", deleteflag=" + deleteflag + "]";
+				+ ", ipaddress=" + ipaddress + ", ppt_id=" + ppt_id + ", ppt_pw=" + ppt_pw + ", ppt_name=" + ppt_name
+				+ ", ppt_phone=" + ppt_phone + ", ppt_add=" + ppt_add + ", inputdate=" + inputdate + ", updatedate="
+				+ updatedate + ", deletedate=" + deletedate + ", deleteflag=" + deleteflag + "]";
 	}
+
+	
 	
 	
 	

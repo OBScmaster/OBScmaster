@@ -95,10 +95,6 @@
     </script>
   </head>
   <body>
-<<<<<<< HEAD
-  <h1>${id.ppt_id}보호자님 환영요</h1>
-  <input type="hidden" id="pt_no" name="pt_no" value="${id.pt_no}">
-=======
    <input type="hidden" id="pt_no" name="pt_no" value="${id.pt_no}">
   
 <nav class="navbar navbar-inverse">
@@ -123,7 +119,6 @@
     </div>
   </div>
 </nav>
->>>>>>> branch 'master' of https://github.com/OBScmaster/OBScmaster.git
   
     <div class="container">
       <!-- Responsive calendar - START -->

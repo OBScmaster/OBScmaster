@@ -36,6 +36,7 @@ insert into Patient (PT_NO,NURSE_NO,INS_NO,NAME,BIRTHDATE
 	<if test="originalphoto!=null">,#{originalphoto}</if>
  	<if test="savedphoto!=null">,#{savedphoto}</if> 	
 	,#{room_no}
+	<if test="ipaddress!=null">,#{ipaddress}</if>
 	<if test="ppt_id!=null">,#{ppt_id}</if>
 	<if test="ppt_pw!=null">,#{ppt_pw}</if>
 	<if test="ppt_name!=null">,#{ppt_name}</if>
