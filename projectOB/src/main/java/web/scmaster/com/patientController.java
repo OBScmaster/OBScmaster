@@ -58,6 +58,12 @@ public class patientController {
       return "home";
       }
    
+   @RequestMapping(value = "protectorLogout", method = RequestMethod.GET)
+   public String protectorLogout(HttpSession session){
+	   session.invalidate();
+	   return "redirect:/";
+   }
+   
    
    @RequestMapping(value="dailyschedule", method=RequestMethod.GET)
    public String dailyschedule(int pt_no,String today,Model model){

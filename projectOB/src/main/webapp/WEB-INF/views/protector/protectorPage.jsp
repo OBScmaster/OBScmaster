@@ -101,7 +101,7 @@
     </script>
   </head>
   <body>
-  <h1>${id.name}보호자님 환영요</h1>
+  <h1>${id.ppt_id}보호자님 환영요</h1>
   <input type="hidden" id="pt_no" name="pt_no" value="${id.pt_no}">
   
     <div class="container">
