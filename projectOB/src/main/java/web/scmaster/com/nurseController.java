@@ -31,7 +31,6 @@ import web.scmaster.com.vo.Nurse;
 import web.scmaster.com.vo.Patient;
 import web.scmaster.com.vo.Special;
 
-
 @SessionAttributes("nurse")
 @Controller
 public class nurseController {
@@ -78,30 +77,29 @@ public class nurseController {
 	@RequestMapping(value="managerLogin", method=RequestMethod.POST)
 	public String selectNurseById(String id, String password, Model model, HttpSession session){
 		
-		Nurse n = nursedao.selectNurseById(id);
-		String nurseId = n.getId();
+		Nurse n = nursedao.selectNurseById(id);	
 		
 		if(n!=null){
 			
 			if(n.getPassword().equals(password)){
-				
+				String nurseId = n.getId();
 				session.setAttribute("nurseId", nurseId);
 				session.setAttribute("nurse_name", n.getName());
 				model.addAttribute("nurse_no", n.getNurse_no());
 				session.setAttribute("nurse_no", n.getNurse_no());
 				return "/manager/managerPage1";
-				
-			
 			
 			}else{			
 				model.addAttribute("PWnotMatch","패스워드가 맞지 않습니다");
-				return "home";	
+				return "mainPage";	
 			
 				}
-			}
+			}else{
 			
 			model.addAttribute("whywhywhy","왜 그런지 모르겠네");
-			return "home";
+			return "mainPage";
+			}
+		
 	}
 	
 	@RequestMapping(value = "managerLogout", method = RequestMethod.GET)
@@ -110,6 +108,7 @@ public class nurseController {
 		return "redirect:/";
 	}
 	
+
 	@RequestMapping(value="nurseInput", method=RequestMethod.GET)
 	public String nurseInput(){
 		return "/manaer/managerNurseInput";

@@ -1,12 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<!DOCTYPE html>
 <%@ page session="true"%>
 <html>
  <head>
     <meta charset="utf-8">
-    <script src= "./resources/js/jquery-3.1.1.js"></script>
     <title>Responsive Calendar Widget that will make your day</title>
     <meta name="distributor" content="Global" />
     <meta itemprop="contentRating" content="General" />
@@ -18,11 +17,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href='http://fonts.googleapis.com/css?family=Economica' rel='stylesheet' type='text/css'>
     <!-- Bootstrap -->
-    <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css">
+     <link rel="stylesheet" 
+     href="./resources/css/bootstrap.min.css">
+ 
     <!-- Respomsive slider -->
     <link href="./resources/css/responsive-calendar.css" rel="stylesheet">
     <script src="./resources/js/jquery.js"></script>
-    <script src="./resources/js/bootstrap.min.js"></script>
+    <script src= "./resources/js/jquery-3.1.1.js"></script>    
     <script src="./resources/js/responsive-calendar.js"></script>
     <script type="text/javascript">
     $( document ).ready( function() {     
@@ -31,9 +32,7 @@
    
     	
     	$("#web-camera").click(function(){
-    		
     		window.open("showVideo?pt_no="+pt_no,"","width=500,height=300");
-    		/* location.href="showVideo?pt_no="+pt_no; */
     	})
     	
     	$(".responsive-calendar").responsiveCalendar({
@@ -47,13 +46,11 @@
     	    	  dayLink.parent().addClass('active');    	    	  
     	    	  if(month<10){
       	    		  month="0"+month
-      	    	  }    	    	  
+      	    	  }
     	    	  if(day<10){
     	    		  day="0"+day
-      	    	  }    	    	  
-    	    	  var daycheck = year + "/" + month + "/" + day;
-    	    	
-    	    	 
+      	    	  }
+    	    	  var daycheck = year + "/" + month + "/" + day;    	    	
     	    	  location.href="dailyschedule?today="+daycheck+"&pt_no="+pt_no;
     	    	}
     		});
@@ -94,15 +91,39 @@
     		
     		
     	})
-    	
-    	
-    	
     	});
     </script>
   </head>
   <body>
+<<<<<<< HEAD
   <h1>${id.ppt_id}보호자님 환영요</h1>
   <input type="hidden" id="pt_no" name="pt_no" value="${id.pt_no}">
+=======
+   <input type="hidden" id="pt_no" name="pt_no" value="${id.pt_no}">
+  
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>                        
+      </button>
+  </div>
+    <div class="collapse navbar-collapse" id="myNavbar">
+      <ul class="nav navbar-nav">
+        <li class="active"><a href="patientLogin">Home</a></li>
+        <li><a href="showVideo?pt_no=${id.pt_no}">웹캠</a></li>
+        <li><a href="#">로그</a></li>
+      </ul>
+     
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="#"><span class="glyphicon glyphicon-user"></span>${id.name}보호자님 환영</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+>>>>>>> branch 'master' of https://github.com/OBScmaster/OBScmaster.git
   
     <div class="container">
       <!-- Responsive calendar - START -->
@@ -140,6 +161,11 @@
    	</div>
    	
    	 </div>
+   	 
+
+<footer class="container-fluid text-center">
+  <p>Footer Text</p>
+</footer>
     
   </body>
 </html>

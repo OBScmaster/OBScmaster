@@ -32,6 +32,13 @@ public class patientController {
    @Autowired
    private dailyDAO dailydao;
    
+   @RequestMapping(value="patientLogin", method=RequestMethod.GET)
+   public String login(){
+	   
+        return "/protector/protectorPage";
+        
+      }
+   
    
    @RequestMapping(value="patientLogin", method=RequestMethod.POST)
    public String login(String id, String password, Model model, HttpSession session){
@@ -49,13 +56,13 @@ public class patientController {
          
          }else{         
             model.addAttribute("PWnotMatch","패스워드가 맞지 않습니다");
-            return "home";   
+            return "mainPage";   
          
          	}
          }
          
          model.addAttribute("whywhywhy","왜 그런지 모르겠네");
-      return "home";
+      return "mainPage";
       }
    
    @RequestMapping(value = "protectorLogout", method = RequestMethod.GET)

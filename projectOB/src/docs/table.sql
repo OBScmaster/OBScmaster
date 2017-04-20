@@ -273,6 +273,7 @@ CREATE TABLE PATIENT
    ORIGINALPHOTO varchar2(200),
    SAVEDPHOTO varchar2(200),
    ROOM_NO varchar2(5) NOT NULL,
+   IPADDRESS varchar2(20),
    PPT_ID varchar2(13) UNIQUE,
    PPT_PW varchar2(15),
    PPT_NAME varchar2(51),
