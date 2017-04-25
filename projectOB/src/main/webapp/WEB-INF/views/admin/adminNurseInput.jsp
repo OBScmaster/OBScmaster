@@ -24,6 +24,12 @@
 </head>
 <body>
 
+<c:if test="${errorNurseInput!=null}">
+<script type="text/javascript">
+alert("중복된 값이 있습니다");
+</script>
+</c:if>
+
 <nav class="navbar navbar-inverse">
   <div class="container-fluid">
     <div class="navbar-header">
@@ -35,7 +41,7 @@
   </div>
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav">
-        <li class="active"><a href="adminLogin">Home</a></li>
+        <li class="active"><a href="adminHome">Home</a></li>
             <li>
                  
     <a class="active dropdown dropdown-toggle" data-toggle="dropdown">환자 관리</a>
@@ -147,7 +153,7 @@
     <div class="panel text-left">
   
  	 <button type="button" class="btn btn-primary" id="addPatient">환자등록</button>
-  	 <button type="button" class="btn btn-primary" id="removePatient">환자삭제</button>
+  	 <button type="button" class="btn btn-primary" id="removePatient">등록취소</button>
   	
     </div>
     

@@ -23,7 +23,9 @@ public interface AdminMapper {
 	public int insertNurse(Nurse nurse);
 	public int insertPatient(Patient patient);
 	public int updatePatient(Patient patient);
+	public int deletePatient(int pt_no);
 	public int updateNurse(Nurse nurse);
+	public int deleteNurse(int nurse_no);
 	public List<Patient> patientlist();
 	
 	public Nurse selectNurseByNurseno(int nurse_no);

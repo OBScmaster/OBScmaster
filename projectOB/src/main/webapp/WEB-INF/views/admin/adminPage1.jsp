@@ -77,7 +77,7 @@
             <div class="intro-text">
                 <div class="intro-lead-in">Welcome To Our Hospital!</div>
                 <div class="intro-heading">It's Nice To Meet You</div>
-                <a href="#services" class="page-scroll btn btn-xl">Tell Me More</a>
+                <a href="#services" class="page-scroll btn btn-xl">About us</a>
             </div>
         </div>
     </header>
@@ -88,27 +88,43 @@
             <div class="row">
                 <div class="col-lg-12 text-center">
                     <h2 class="section-heading">Services</h2>
-                    <h3 class="section-subheading text-muted">Lorem ipsum dolor sit amet consectetur.</h3>
+                    <h3 class="section-subheading text-muted">We provide these services</h3>
                 </div>
             </div>
             <div class="row text-center">
                 <div class="col-md-4">
                     <a href = "#"><img alt="" src="./resources/image/icons/play.png"></a>
                     <h4 class="service-heading">Web-Camera</h4>
-                    <p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minima maxime quam architecto quo inventore harum ex magni, dicta impedit.</p>
+                    <p class="text-muted"></p>
                 </div>
                 <div class="col-md-4">
                     <a href="adminNurseInput"><img alt="" src="./resources/image/icons/Nurse.png"></a>
                     <h4 class="service-heading">요양사등록</h4>
-                    <p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minima maxime quam architecto quo inventore harum ex magni, dicta impedit.</p>
+                    <p class="text-muted"></p>
                 </div>
                 <div class="col-md-4">
                     <a href="adminPatientInput"><img alt="" src="./resources/image/icons/matureman.png"></a>
                     <a><img alt="" src="./resources/image/icons/maturewoman.png"></a>
                     <h4 class="service-heading">환자등록</h4>
-                    <p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minima maxime quam architecto quo inventore harum ex magni, dicta impedit.</p>
+                    <p class="text-muted"></p>
                 </div>
             </div>
+            
+                  <div class="row text-center">
+           
+                <div class="col-md-6">
+                    <a href="adminNurseInfo"><img alt="" src="./resources/image/icons/Nurse.png"></a>
+                    <h4 class="service-heading">요양사관리</h4>
+                    <p class="text-muted"></p>
+                </div>
+                <div class="col-md-6">
+                    <a href="adminPatientInfo"><img alt="" src="./resources/image/icons/matureman.png"></a>
+                    <a><img alt="" src="./resources/image/icons/maturewoman.png"></a>
+                    <h4 class="service-heading">환자관리</h4>
+                    <p class="text-muted"></p>
+                </div>
+            </div>
+            
         </div>
     </section>
 
@@ -118,35 +134,42 @@
             <div class="row">
                 <div class="col-lg-12 text-center">
                     <h2 class="section-heading">Our Amazing Team</h2>
-                    <h3 class="section-subheading text-muted">Lorem ipsum dolor sit amet consectetur.</h3>
+                    <h3 class="section-subheading text-muted"></h3>
                 </div>
             </div>
             <div class="row">
-                <div class="col-sm-4">
+                <div class="col-sm-3">
                     <div class="team-member">
                         <img src="./resources/adminPage/img/team/1.jpg" class="img-responsive img-circle" alt="">
-                        <h4>Kay Garland</h4>
-                        <p class="text-muted">Lead Designer</p>
+                        <h4>박재만</h4>
+                        <p class="text-muted">Leader</p>
                     </div>
                 </div>
-                <div class="col-sm-4">
+                <div class="col-sm-3">
                     <div class="team-member">
                         <img src="./resources/adminPage/img/team/2.jpg" class="img-responsive img-circle" alt="">
-                        <h4>Larry Parker</h4>
-                        <p class="text-muted">Lead Marketer</p>
+                        <h4>경민호</h4>
+                        <p class="text-muted">Developer</p>
                     </div>
                 </div>
-                <div class="col-sm-4">
+                <div class="col-sm-3">
+                    <div class="team-member">
+                        <img src="./resources/adminPage/img/team/2.jpg" class="img-responsive img-circle" alt="">
+                        <h4>김동준</h4>
+                        <p class="text-muted">Developer</p>
+                    </div>
+                </div>
+                 <div class="col-sm-3">
                     <div class="team-member">
                         <img src="./resources/adminPage/img/team/3.jpg" class="img-responsive img-circle" alt="">
-                        <h4>Diana Pertersen</h4>
-                        <p class="text-muted">Lead Developer</p>
+                        <h4>백민선</h4>
+                        <p class="text-muted">Developer</p>
                     </div>
                 </div>
             </div>
             <div class="row">
                 <div class="col-lg-8 col-lg-offset-2 text-center">
-                    <p class="large text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aut eaque, laboriosam veritatis, quos non quis ad perspiciatis, totam corporis ea, alias ut unde.</p>
+                    <p class="large text-muted">감사용</p>
                 </div>
             </div>
         </div>

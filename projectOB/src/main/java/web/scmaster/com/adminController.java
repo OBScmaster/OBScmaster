@@ -76,6 +76,13 @@ public class adminController {
 	
 	}
 	
+	@RequestMapping(value = "adminHome", method = RequestMethod.GET)
+	public String adminHome() {
+	
+		return "/admin/adminPage1";			
+	
+	}
+	
 	@RequestMapping(value = "adminLogin", method = RequestMethod.GET)
 	public String adminLogin() {
 	
@@ -131,21 +138,25 @@ public class adminController {
 	@RequestMapping(value="roomregist", method=RequestMethod.POST)
 	public String regist(@RequestBody Room room){
 	
-		admindao.insertRoom(room);		
+		admindao.insertRoom(room);
 	
 		return "등록완료";
 	}
 	
 	
 	@RequestMapping(value="insertNurse", method=RequestMethod.POST)
-	public String insertNurse(Nurse nurse, MultipartFile upload, HttpServletRequest request){
-
+	public String insertNurse(Nurse nurse, MultipartFile upload, HttpServletRequest request, Model model){
+		
+		model.addAttribute("errorNurseInput", null);
+		
 		if (!upload.isEmpty()){
 			String savedfile = FileService.saveFile(upload, nurseUploadPath);
 			nurse.setOriginalphoto(upload.getOriginalFilename());
 			nurse.setSavedphoto(savedfile);
 		}
 		
+		
+		try{
 		admindao.insertNurse(nurse);
 		Nurse n = admindao.selectNurseById(nurse.getId());
 		String aa [] =  request.getParameterValues("pt_no");
@@ -159,24 +170,51 @@ public class adminController {
 			}
 			}
 			
+		
 		return "redirect:adminLogin";
+		
+		}catch(Exception e){
+			
+			
+		System.out.println("dddddddddddddddddddddddddddddd");
+		System.out.println(e.getMessage());
+		System.out.println("dddddddddddddddddddddddddddddd");
+		
+		model.addAttribute("errorNurseInput", "중복된 값이 있어요");
+		
+		return "/admin/adminNurseInput";
+			
+		}
+		
+		
+		
 	}
 	
 	
 	@RequestMapping(value="insertPatient", method=RequestMethod.POST)
-	public String insertPatient(Patient patient, MultipartFile upload){
+	public String insertPatient(Patient patient, MultipartFile upload, Model model){
 	
+		model.addAttribute("errorPatientInput", null);
+		
 			if (!upload.isEmpty()) {
 				String savedfile = FileService.saveFile(upload, patientUploadPath);
 				patient.setOriginalphoto(upload.getOriginalFilename());
 				patient.setSavedphoto(savedfile);
 			}
 			
+			try{
+				
 			admindao.insertPatient(patient);			
 			
 			return "redirect:adminLogin";
 		
-		
+			}catch(Exception e){
+				
+				model.addAttribute("errorPatientInput", "중복된 값이 있어요");
+				return "/admin/adminPatientInput";
+				
+			}
+			
 		
 	}
 	
@@ -202,8 +240,16 @@ public class adminController {
 		}
 	}
 	
+	@RequestMapping(value="deletePatient", method=RequestMethod.GET)
+	public String deletePatient(int pt_no){	
+		
+		admindao.deletePatient(pt_no);
+		
+	 return "/admin/adminPatientInfo";
+	}
+	
 	@RequestMapping(value="updateNurse", method=RequestMethod.POST)
-	public String updateNurse(Nurse nurse, MultipartFile upload, HttpServletRequest request){
+	public String updateNurse(Nurse nurse, MultipartFile upload, HttpServletRequest request, Model model){
 		
 		if(nurse.getNurse_no()==0){		
 			return "/admin/adminNurseInfo";				
@@ -215,6 +261,8 @@ public class adminController {
 				nurse.setSavedphoto(savedfile);
 			}
 			
+			
+			try{
 			admindao.updateNurse(nurse);
 			
 			String aa [] =  request.getParameterValues("pt_no");
@@ -232,7 +280,24 @@ public class adminController {
 				}
 			
 			return "redirect:adminLogin";
+			
+			}catch(Exception e){
+				
+				model.addAttribute("","");
+			return "/admin/adminNurseInfo";
+			
+				
+			}
+			
 		}
+	}
+	
+	@RequestMapping(value="deleteNurse", method=RequestMethod.GET)
+	public String deleteNurse(int nurse_no){	
+		
+		admindao.deleteNurse(nurse_no);
+		
+	 return "/admin/adminNurseInfo";
 	}
 	
 	
@@ -267,6 +332,7 @@ public class adminController {
 	@ResponseBody
 	@RequestMapping(value="removePatient", method=RequestMethod.GET)
 	 public List<HashMap<String,String>> removePatient(String pt_name){
+		
 		
 		patients.remove(patients.size()-1);
 		

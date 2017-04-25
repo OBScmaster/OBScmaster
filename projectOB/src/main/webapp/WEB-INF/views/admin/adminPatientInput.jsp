@@ -27,6 +27,12 @@
 </head>
 <body>
 
+<c:if test="${errorPatientInput!=null}">
+<script type="text/javascript">
+alert("중복된 값이 있습니다");
+</script>
+</c:if>
+
 <nav class="navbar navbar-inverse">
   <div class="container-fluid">
     <div class="navbar-header">
@@ -38,7 +44,7 @@
   </div>
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav">
-        <li class="active"><a href="adminLogin">Home</a></li>
+        <li class="active"><a href="adminHome">Home</a></li>
            <li><a href="adminPatientInfo">환자 정보</a></li>        
           <li>
                  

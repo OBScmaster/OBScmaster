@@ -2,7 +2,7 @@
  * 
  */
 
- var pt_no;
+  var pt_no;
   var pt_name;
   var i=0;
   var remo;
@@ -18,7 +18,17 @@
           readURL(this);
       });
       
+      
       $("#addPatient").click(function(){
+    	  
+    	  $.each(remos,function(index,item){
+    		  
+    		  if(item==remo){
+    			
+    		  }
+    		  
+    	  })
+    	  
     	  
     	  remos[i]=remo;
     	  i++;

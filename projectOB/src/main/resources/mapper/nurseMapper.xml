@@ -55,7 +55,7 @@ update NURSE
 	<if test="ADDRESS!=null">,ADDRESS=#{address}</if>
 	<if test="ORIGINALPHOTO!=null">,ORIGINALPHOTO=#{originalphoto}</if>
  	<if test="SAVEDPHOTO!=null">,SAVEDPHOTO=#{savedphoto}</if> 	
-		
+	,updatedate=sysdate
 	where NURSE_NO=#{nurse_no}	
 
 </update>
@@ -74,6 +74,7 @@ update NURSE set DELETEFLAG='N' where NURSE_NO=#{nurse_no}
 		patient
 	where
 		nurse_no = #{nurse_no}
+	and DELETEFLAG='Y'
 </select>
 
 <select id="showMeal" resultType="HashMap" parameterType="HashMap">

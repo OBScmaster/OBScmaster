@@ -37,7 +37,7 @@
   </div>
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav">
-        <li class="active"><a href="managerLogin">Home</a></li>
+        <li class="active"><a href="managerHome">Home</a></li>
     	<li><a href="managerPatientInfo">담당 환자 정보</a></li>
         <li><a href="scheduleInput">일정관리</a></li>
     	</ul>

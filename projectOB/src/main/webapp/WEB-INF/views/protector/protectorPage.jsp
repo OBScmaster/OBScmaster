@@ -25,8 +25,9 @@
     <script src="./resources/js/jquery.js"></script>
     <script src= "./resources/js/jquery-3.1.1.js"></script>    
     <script src="./resources/js/responsive-calendar.js"></script>
+
     <script type="text/javascript">
-    $( document ).ready( function() {     
+ $( document ).ready( function() {     
     	
     	var pt_no = $("#pt_no").val();
     	var ipaddress = $("#ipaddress").val();
@@ -114,12 +115,13 @@ setInterval(function() {
   </div>
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav">
-        <li class="active"><a href="patientLogin">Home</a></li>
+        <li class="active"><a href="patientHome">Home</a></li>
         <li><a href="showVideo?pt_no=${id.pt_no}">웹캠</a></li>
         <li><a href="#">로그</a></li>
       </ul>
      
       <ul class="nav navbar-nav navbar-right">
+        <li><a href="protectorLogout">로그아웃</a></li>
         <li><a href="#"><span class="glyphicon glyphicon-user"></span>${id.name}님 보호자님 환영</a></li>
       </ul>
     </div>
@@ -127,6 +129,20 @@ setInterval(function() {
 </nav>
   
     <div class="container">
+    
+ <c:choose>
+ 
+ <c:when test="${nurse.name!=null}">
+     <div>담당요양사는  ${nurse.name}입니다</div>
+ </c:when>
+ 
+ <c:otherwise>
+ <div>담당요양사가 없습니다</div>
+ </c:otherwise>
+ 
+ </c:choose>
+
+    
       <!-- Responsive calendar - START -->
     	<div class="responsive-calendar col-md-8">
         	<div class="controls">

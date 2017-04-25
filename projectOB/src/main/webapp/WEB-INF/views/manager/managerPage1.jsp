@@ -61,9 +61,7 @@
                     <li>
                         <a class="page-scroll" href="#services">Services</a>
                     </li>
-                    <li>
-                        <a class="page-scroll" href="#team">Team</a>
-                    </li>
+                 
                 </ul>
             </div>
             <!-- /.navbar-collapse -->
@@ -77,7 +75,7 @@
             <div class="intro-text">
                 <div class="intro-lead-in">Welcome To Our Hospital!</div>
                 <div class="intro-heading">It's Nice To Meet You</div>
-                <a href="#services" class="page-scroll btn btn-xl">Tell Me More</a>
+                <a href="#services" class="page-scroll btn btn-xl">Go to our Services</a>
             </div>
         </div>
     </header>
@@ -88,25 +86,25 @@
             <div class="row">
                 <div class="col-lg-12 text-center">
                     <h2 class="section-heading">Services</h2>
-                    <h3 class="section-subheading text-muted">Lorem ipsum dolor sit amet consectetur.</h3>
+                    <h3 class="section-subheading text-muted"></h3>
                 </div>
             </div>
             <div class="row text-center">
                 <div class="col-md-4">
                     <a href = "#"><img alt="" src="./resources/image/icons/play.png"></a>
                     <h4 class="service-heading">Web-Camera</h4>
-                    <p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minima maxime quam architecto quo inventore harum ex magni, dicta impedit.</p>
+                    <p class="text-muted"></p>
                 </div>
                 <div class="col-md-4">
                     <a href="scheduleInput"><img alt="" src="./resources/image/icons/Nurse.png"></a>
                     <h4 class="service-heading">환자스케쥴</h4>
-                    <p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minima maxime quam architecto quo inventore harum ex magni, dicta impedit.</p>
+                    <p class="text-muted"></p>
                 </div>
                 <div class="col-md-4">
                     <a href="managerPatientInput"><img alt="" src="./resources/image/icons/matureman.png"></a>
                     <a><img alt="" src="./resources/image/icons/maturewoman.png"></a>
                     <h4 class="service-heading">환자등록</h4>
-                    <p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minima maxime quam architecto quo inventore harum ex magni, dicta impedit.</p>
+                    <p class="text-muted"></p>
                 </div>
             </div>
         </div>

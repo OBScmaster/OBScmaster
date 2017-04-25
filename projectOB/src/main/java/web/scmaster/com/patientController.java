@@ -15,12 +15,13 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import web.scmaster.com.dao.AdminDAO;
 import web.scmaster.com.dao.dailyDAO;
 import web.scmaster.com.dao.patientDAO;
 import web.scmaster.com.vo.DailyCleaning;
 import web.scmaster.com.vo.DailyShower;
 import web.scmaster.com.vo.DailyWash;
-
+import web.scmaster.com.vo.Nurse;
 import web.scmaster.com.vo.Patient;
 import web.scmaster.com.vo.SensorLog;
 
@@ -31,9 +32,18 @@ public class patientController {
    private patientDAO patientdao;
    @Autowired
    private dailyDAO dailydao;
+   @Autowired
+   private AdminDAO admindao;
    
    @RequestMapping(value="patientLogin", method=RequestMethod.GET)
    public String login(){
+	   
+        return "/protector/protectorPage";
+        
+      }
+   
+   @RequestMapping(value="patientHome", method=RequestMethod.GET)
+   public String patientHome(){
 	   
         return "/protector/protectorPage";
         
@@ -51,6 +61,9 @@ public class patientController {
          if(p.getPpt_pw().equals(password)){
             
             session.setAttribute("id", p);
+            
+            Nurse n = admindao.selectNurseByNurseno(p.getNurse_no());
+            model.addAttribute("nurse", n);
             
             return "/protector/protectorPage";
          
@@ -103,6 +116,8 @@ public class patientController {
       List<HashMap<String, Object>> specialList = new ArrayList<>();
       specialList = dailydao.specialList(pt_no, today);
       model.addAttribute("specialList", specialList);
+      
+      model.addAttribute("today", today);
 
       return "/protector/patientDaily";
    }

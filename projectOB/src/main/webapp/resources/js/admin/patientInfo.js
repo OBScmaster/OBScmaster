@@ -89,8 +89,8 @@
    			    	   			    	
    			    	$(".list-group-item").click(function(){
   			    		
-   			    		var pt_no = $(this).attr("pt_no")
-   			    		
+   			    		var pt_no = $(this).attr("pt_no");
+   			    		var name = $(this).attr("name");
   			    		$(".list-group-item").css("color","black");
   			    		$(this).css("color","red");
   			    		
@@ -102,7 +102,7 @@
   			    	   $("#ppt_add").attr("readonly","readonly");
   			    	
   			    		
-  			    		$("#name").val($(this).attr("name"));
+  			    		$("#name").val(name);
   			    		$("#phone").val($(this).attr("phone"));
   			    		$("#ins_no").val($(this).attr("ins_no"));
   			    		
@@ -145,7 +145,17 @@
 			    		$("#room_noSelect").remove();
 			    		$("#buttt").prepend("<button type='button' class='btn btn-primary' id='patientUpdate'>수정</button>");
 			    		 
+			    		$("#patientDelete").click(function(){
+			    			
+			    			if(confirm(name+"을 삭제하시겠습니까?")){
+			  					location.href="deletePatient?pt_no="+pt_no;
+			  				 } 
+			    			
+			    		});
+			    		
 			    		$("#patientUpdate").click(function(){
+			    			
+			    			$("#patientDelete").hide();
 			    			
 			    			$("#patientUpdateCancel").click(function(){
 			    	  			if(confirm("수정을 취소하시겠습니까")){

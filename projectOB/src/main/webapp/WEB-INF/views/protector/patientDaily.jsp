@@ -19,10 +19,39 @@
 </style>
 </head>
 <body>
+
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>                        
+      </button>
+  </div>
+    <div class="collapse navbar-collapse" id="myNavbar">
+      <ul class="nav navbar-nav">
+        <li class="active"><a href="patientHome">Home</a></li>
+        <li><a href="showVideo?pt_no=${id.pt_no}">웹캠</a></li>
+        <li><a href="#">로그</a></li>
+      </ul>
+      
+       
+     
+      <ul class="nav navbar-nav navbar-right">
+           <li><a href="#">${today}의 일정</a></li>
+       <li><a href="protectorLogout">로그아웃</a></li>
+        <li><a href="#"><span class="glyphicon glyphicon-user"></span>${id.name}님 보호자님 환영</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+    
 <div class="panel panel-primary">
     <div class="panel-heading">
         <h3 class="panel-title">식사</h3>
     </div>
+ <div>최종 업데이트 시간 ${today}</div>
     <div class="panel-body">
     <c:choose>
     	<c:when test="${mealList != null }">
@@ -120,6 +149,9 @@
         <h3 class="panel-title">세탁</h3>
     </div>
     <div class="panel-body">
+    
+     <div>최종 업데이트 시간 ${wash.updatedate}</div>
+     
     	<div class="move-left">
         	<div class="[ form-group ]">
         		<c:if test="${wash.washReport != null }">

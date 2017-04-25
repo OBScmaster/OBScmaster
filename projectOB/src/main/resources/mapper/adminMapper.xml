@@ -32,18 +32,21 @@ order by room_no
 
 <!-- 요양사검색 -->
 <select id="selectNurseById" parameterType="String" resultType="Nurse">
-		select NURSE_NO,CERT_NO,ID,PASSWORD,NAME,PHONE,ORIGINALPHOTO,SAVEDPHOTO,TO_CHAR(INPUTDATE,'YYYY-MM-DD') AS INPUTDATE,TO_CHAR(UPDATEDATE,'YYYY-MM-DD') AS UPDATEDATE,TO_CHAR(DELETEDATE,'YYYY-MM-DD') AS DELETEDATE,DELETEFLAG from nurse where ID = #{id}
+		select NURSE_NO,CERT_NO,ID,PASSWORD,NAME,PHONE,ORIGINALPHOTO,SAVEDPHOTO,TO_CHAR(INPUTDATE,'YYYY-MM-DD') AS INPUTDATE,TO_CHAR(UPDATEDATE,'YYYY-MM-DD') AS UPDATEDATE,TO_CHAR(DELETEDATE,'YYYY-MM-DD') AS DELETEDATE,DELETEFLAG 
+		from nurse where ID = #{id} and deleteflag='Y'
 </select>
 
 
 <!-- 환자검색 -->
 <select id="selectPatient" parameterType="String" resultType="Patient">
-select PT_NO,NURSE_NO,INS_NO,NAME,BIRTHDATE,DISEASE,PHONE,ADDRESS,ORIGINALPHOTO,SAVEDPHOTO,ROOM_NO,IPADDRESS,PPT_ID,PPT_PW,PPT_NAME,PPT_PHONE,PPT_ADD,TO_CHAR(INPUTDATE,'YYYY,MM,DD') AS INPUTDATE,TO_CHAR(UPDATEDATE,'YYYY,MM,DD') AS UPDATEDATE,TO_CHAR(DELETEDATE,'YYYY,MM,DD') DELETEDATE,DELETEFLAG from PATIENT where PPT_ID = #{ppt_id}
+select PT_NO,NURSE_NO,INS_NO,NAME,BIRTHDATE,DISEASE,PHONE,ADDRESS,ORIGINALPHOTO,SAVEDPHOTO,ROOM_NO,IPADDRESS,PPT_ID,PPT_PW,PPT_NAME,PPT_PHONE,PPT_ADD,TO_CHAR(INPUTDATE,'YYYY,MM,DD') AS INPUTDATE,TO_CHAR(UPDATEDATE,'YYYY,MM,DD') AS UPDATEDATE,TO_CHAR(DELETEDATE,'YYYY,MM,DD') DELETEDATE,DELETEFLAG 
+from PATIENT where PPT_ID = #{ppt_id} and deleteflag='Y'
 </select>
 
 <!-- 환자검색 -->
 <select id="selectPatientBypt_no" parameterType="String" resultType="Patient">
-select PT_NO,NURSE_NO,INS_NO,NAME,BIRTHDATE,DISEASE,PHONE,ADDRESS,ORIGINALPHOTO,SAVEDPHOTO,ROOM_NO,IPADDRESS,PPT_ID,PPT_PW,PPT_NAME,PPT_PHONE,PPT_ADD,TO_CHAR(INPUTDATE,'YYYY,MM,DD') AS INPUTDATE,TO_CHAR(UPDATEDATE,'YYYY,MM,DD') AS UPDATEDATE,TO_CHAR(DELETEDATE,'YYYY,MM,DD') DELETEDATE,DELETEFLAG from PATIENT where pt_no = #{pt_no}
+select PT_NO,NURSE_NO,INS_NO,NAME,BIRTHDATE,DISEASE,PHONE,ADDRESS,ORIGINALPHOTO,SAVEDPHOTO,ROOM_NO,IPADDRESS,PPT_ID,PPT_PW,PPT_NAME,PPT_PHONE,PPT_ADD,TO_CHAR(INPUTDATE,'YYYY,MM,DD') AS INPUTDATE,TO_CHAR(UPDATEDATE,'YYYY,MM,DD') AS UPDATEDATE,TO_CHAR(DELETEDATE,'YYYY,MM,DD') DELETEDATE,DELETEFLAG 
+from PATIENT where pt_no = #{pt_no} and deleteflag='Y'
 </select>
 
 <!-- 요양사등록 -->
@@ -108,6 +111,7 @@ insert into Patient (PT_NO
 
 update patient 
 	set
+	
 	<if test="nurse_no!=null">NURSE_NO=#{nurse_no}</if>
 	<if test="disease!=null">,DISEASE=#{disease}</if>
 	<if test="phone!=null">,PHONE=#{phone}</if>
@@ -119,10 +123,20 @@ update patient
 	<if test="ppt_name!=null">,PPT_NAME=#{ppt_name}</if>
 	<if test="ppt_phone!=null">,PPT_PHONE=#{ppt_phone}</if>
 	<if test="ppt_add!=null">,PPT_ADD=#{ppt_add}</if>
+	,updatedate=sysdate
 
 	where PT_NO=#{pt_no}	
 
 </update>
+
+<update id="deletePatient" parameterType="int">
+update Patient
+	set
+	deleteflag='N'
+ 	,deletedate=sysdate 	
+	where PT_NO=#{pt_no}
+</update>
+
 
 <update id="updateNurse" parameterType="Nurse">
 
@@ -131,8 +145,18 @@ update Nurse
 	<if test="phone!=null">PHONE=#{phone}</if>
 	<if test="originalphoto!=null">,ORIGINALPHOTO=#{originalphoto}</if>
  	<if test="savedphoto!=null">,SAVEDPHOTO=#{savedphoto}</if>
+ 	,updatedate=sysdate
+ 	
 	where NURSE_NO=#{nurse_no}	
 
+</update>
+
+<update id="deleteNurse" parameterType="int">
+update Nurse
+	set
+	deleteflag='N'
+ 	,deletedate=sysdate 	
+	where NURSE_NO=#{nurse_no}	
 </update>
 
 <!-- 전체 간호사 -->
@@ -140,19 +164,20 @@ update Nurse
 
 select cert_no, nurse_no, name, phone, savedphoto from nurse
 where deleteflag='Y'
-
 order by nurse_no
 </select>
 
 
 <select id="selectNurseByNurseno" resultType="Nurse" parameterType="int">
 select id, name from nurse
-where nurse_no=#{nurse_no}
+where nurse_no=#{nurse_no} and deleteflag='Y'
+
 </select>
 
 
 <update id="updatePatientaboutNurse" parameterType="int">
 update Patient set nurse_no=#{nurse_no} where pt_no=#{pt_no}
+
 </update>
 
 <!-- 전체 환자 -->

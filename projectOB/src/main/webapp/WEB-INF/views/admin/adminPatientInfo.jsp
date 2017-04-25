@@ -39,7 +39,7 @@
   </div>
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav">
-        <li class="active"><a href="adminLogin">Home</a></li>
+        <li class="active"><a href="adminHome">Home</a></li>
          <li><a href="adminPatientInput">환자 등록</a></li>
         
           <li>
@@ -256,6 +256,7 @@
 
 <div class="container-fluid text-center" id="buttt">
 <button type="button" class="btn btn-primary" id='patientUpdate'>수정</button>
+<button type="button" class="btn btn-primary" id='patientDelete'>삭제</button>
 <button type="button" class="btn btn-primary" id='patientUpdateCancel'>취소</button>
 </div>
 <br>

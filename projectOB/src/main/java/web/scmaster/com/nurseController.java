@@ -72,6 +72,13 @@ public class nurseController {
 		return "/manager/managerPage1";		
 	
 	}
+	
+	@RequestMapping(value = "managerHome", method = RequestMethod.GET)
+	public String managerHome() {
+	
+		return "/manager/managerPage1";		
+	
+	}
 
 	
 	@RequestMapping(value="managerLogin", method=RequestMethod.POST)

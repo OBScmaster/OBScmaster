@@ -31,10 +31,25 @@
 	
 	<context:component-scan base-package="web.scmaster.com" />
 	
-<!-- 	<mvc:interceptors>	
+ 	<mvc:interceptors>	
 
 	<mvc:interceptor>
 	<mvc:mapping path="/adminPatientInput"/>
+	<beans:ref bean="loginIntercepter"/>
+	</mvc:interceptor>
+	
+	<mvc:interceptor>
+	<mvc:mapping path="/adminPatientInfo"/>
+	<beans:ref bean="loginIntercepter"/>
+	</mvc:interceptor>
+	
+	<mvc:interceptor>
+	<mvc:mapping path="/adminNurseInput"/>
+	<beans:ref bean="loginIntercepter"/>
+	</mvc:interceptor>
+	
+	<mvc:interceptor>
+	<mvc:mapping path="/adminNurseInfo"/>
 	<beans:ref bean="loginIntercepter"/>
 	</mvc:interceptor>
 	
@@ -44,16 +59,27 @@
 	</mvc:interceptor>
 	
 	<mvc:interceptor>
-	<mvc:mapping path="/adminLogin"/>
+	<mvc:mapping path="/managerPatientInfo"/>
 	<beans:ref bean="loginIntercepter"/>
 	</mvc:interceptor>
 	
 	<mvc:interceptor>
-	<mvc:mapping path="/managerLogin"/>
+	<mvc:mapping path="/managerHome"/>
 	<beans:ref bean="loginIntercepter"/>
 	</mvc:interceptor>
 	
-	</mvc:interceptors> -->
+	<mvc:interceptor>
+	<mvc:mapping path="/patientHome"/>
+	<beans:ref bean="loginIntercepter"/>
+	</mvc:interceptor>
+	
+	<mvc:interceptor>
+	<mvc:mapping path="/adminHome"/>
+	<beans:ref bean="loginIntercepter"/>
+	</mvc:interceptor>
+	
+	
+	</mvc:interceptors>
 	
 	
 	

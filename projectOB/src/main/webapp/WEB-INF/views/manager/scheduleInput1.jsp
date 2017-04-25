@@ -2922,7 +2922,7 @@ function updateSpecial(pt_no,special_No) {
 		</div>
 		<div class="collapse navbar-collapse" id="myNavbar">
 			<ul class="nav navbar-nav">
-				<li class="active"><a href="managerLogin">Home</a></li>
+				<li class="active"><a href="managerHome">Home</a></li>
 				<li><a href="managerPatientInput">환자 등록</a></li>
 				<li><a href="managerPatientInfo">담당 환자 정보</a></li>
 			</ul>

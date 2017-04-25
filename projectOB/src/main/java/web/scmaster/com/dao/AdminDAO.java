@@ -116,11 +116,27 @@ public class AdminDAO {
 		
 	}
 	
+	public int deletePatient(int pt_no){
+		
+		AdminMapper mapper = sqlsession.getMapper(AdminMapper.class);
+		
+		return mapper.deletePatient(pt_no);
+		
+	}
+	
 	public int updateNurse(Nurse nurse){
 		
 		AdminMapper mapper = sqlsession.getMapper(AdminMapper.class);
 		
 		return mapper.updateNurse(nurse);
+		
+	}
+	
+	public int deleteNurse(int nurse_no){
+		
+		AdminMapper mapper = sqlsession.getMapper(AdminMapper.class);
+		
+		return mapper.deleteNurse(nurse_no);
 		
 	}
 	
