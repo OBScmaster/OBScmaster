@@ -12,7 +12,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Agency - Start Bootstrap Theme</title>
+    <title>Main</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="./resources/adminPage/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -109,21 +109,7 @@
                     <p class="text-muted"></p>
                 </div>
             </div>
-            
-                  <div class="row text-center">
            
-                <div class="col-md-6">
-                    <a href="adminNurseInfo"><img alt="" src="./resources/image/icons/Nurse.png"></a>
-                    <h4 class="service-heading">요양사관리</h4>
-                    <p class="text-muted"></p>
-                </div>
-                <div class="col-md-6">
-                    <a href="adminPatientInfo"><img alt="" src="./resources/image/icons/matureman.png"></a>
-                    <a><img alt="" src="./resources/image/icons/maturewoman.png"></a>
-                    <h4 class="service-heading">환자관리</h4>
-                    <p class="text-muted"></p>
-                </div>
-            </div>
             
         </div>
     </section>

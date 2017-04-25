@@ -18,4 +18,5 @@ public interface dailyMapper {
 	public List<HashMap<String , Object>> bedList(HashMap<String, Object> map);
 	public List<HashMap<String, Object>> dr_opList(HashMap<String, Object> map);
 	public List<HashMap<String, Object>> specialList(HashMap<String, Object> map);
+
 }

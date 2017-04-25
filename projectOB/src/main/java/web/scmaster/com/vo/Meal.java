@@ -8,24 +8,66 @@ public class Meal {
 	private String typeEat;
 	private String mealTime;
 	private String whatEat;
-	private String insertDate;
-	private String updateDate;
+	private String inputdate;
+	private String updatedate;
+	private String deletedate;
 	private String deleteflag;
 
 	public Meal() {}
 
-	public Meal(int meal_No, int pt_no, String today, String typeEat, String mealTime, String whatEat,
-			String insertDate, String updateDate, String deleteflag) {
+
+	public Meal(int meal_No, int pt_no, String today, String typeEat, String mealTime, String whatEat, String inputdate,
+			String updatedate, String deletedate, String deleteflag) {
+		super();
 		this.meal_No = meal_No;
 		this.pt_no = pt_no;
 		this.today = today;
 		this.typeEat = typeEat;
 		this.mealTime = mealTime;
 		this.whatEat = whatEat;
-		this.insertDate = insertDate;
-		this.updateDate = updateDate;
+		this.inputdate = inputdate;
+		this.updatedate = updatedate;
+		this.deletedate = deletedate;
 		this.deleteflag = deleteflag;
 	}
+
+
+
+	public String getInputdate() {
+		return inputdate;
+	}
+
+
+
+	public void setInputdate(String inputdate) {
+		this.inputdate = inputdate;
+	}
+
+
+
+	public String getUpdatedate() {
+		return updatedate;
+	}
+
+
+
+	public void setUpdatedate(String updatedate) {
+		this.updatedate = updatedate;
+	}
+
+
+
+	public String getDeletedate() {
+		return deletedate;
+	}
+
+
+
+	public void setDeletedate(String deletedate) {
+		this.deletedate = deletedate;
+	}
+
+
 
 	public int getMeal_No() {
 		return meal_No;
@@ -75,21 +117,6 @@ public class Meal {
 		this.whatEat = whatEat;
 	}
 
-	public String getInsertDate() {
-		return insertDate;
-	}
-
-	public void setInsertDate(String insertDate) {
-		this.insertDate = insertDate;
-	}
-
-	public String getUpdateDate() {
-		return updateDate;
-	}
-
-	public void setUpdateDate(String updateDate) {
-		this.updateDate = updateDate;
-	}
 
 	public String getDeleteflag() {
 		return deleteflag;
@@ -99,10 +126,17 @@ public class Meal {
 		this.deleteflag = deleteflag;
 	}
 
+
 	@Override
 	public String toString() {
 		return "Meal [meal_No=" + meal_No + ", pt_no=" + pt_no + ", today=" + today + ", typeEat=" + typeEat
-				+ ", mealTime=" + mealTime + ", whatEat=" + whatEat + ", insertDate=" + insertDate + ", updateDate="
-				+ updateDate + ", deleteflag=" + deleteflag + "]";
+				+ ", mealTime=" + mealTime + ", whatEat=" + whatEat + ", inputdate=" + inputdate + ", updatedate="
+				+ updatedate + ", deletedate=" + deletedate + ", deleteflag=" + deleteflag + "]";
 	}
+
+
+
+	
+
+	
 }

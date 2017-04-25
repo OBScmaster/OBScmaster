@@ -106,4 +106,6 @@ public class DailyCleaning {
 				+ ", updatedate=" + updatedate + ", deletedate=" + deletedate + ", deleteflag=" + deleteflag + "]";
 	}
 
+	
+
 }

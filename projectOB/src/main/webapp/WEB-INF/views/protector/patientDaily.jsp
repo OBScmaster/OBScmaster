@@ -51,10 +51,10 @@
     <div class="panel-heading">
         <h3 class="panel-title">식사</h3>
     </div>
- <div>최종 업데이트 시간 ${today}</div>
+
     <div class="panel-body">
     <c:choose>
-    	<c:when test="${mealList != null }">
+    	<c:when test="${mealList != null }">    	
     		<table class="table table-hover">
     			<thead>
        				<tr>
@@ -150,9 +150,7 @@
     </div>
     <div class="panel-body">
     
-     <div>최종 업데이트 시간 ${wash.updatedate}</div>
-     
-    	<div class="move-left">
+     <div class="move-left">
         	<div class="[ form-group ]">
         		<c:if test="${wash.washReport != null }">
             		<input type="checkbox" name="fancy-checkbox-success" id="fancy-checkbox-success" autocomplete="off" checked = "checked" disabled="disabled"/>

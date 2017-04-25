@@ -91,20 +91,26 @@ public class patientController {
       List<HashMap<String, Object>> mealList = new ArrayList<>();
       mealList =  dailydao.mealList(pt_no, today);
       model.addAttribute("mealList", mealList);
+ 
+      System.out.println("asdfasdfasdf");
+      System.out.println(mealList);
+      System.out.println("asdfasdfasdf");
       
       List<HashMap<String, Object>> exerciseList = new ArrayList<>();
       exerciseList = dailydao.exerciseList(pt_no, today);
       model.addAttribute("exerciseList", exerciseList);
       
+      
       DailyCleaning cleaning = dailydao.cleaning(pt_no, today);
       model.addAttribute("cleaning", cleaning);
       
+      
       DailyWash wash = dailydao.wash(pt_no, today);
       model.addAttribute("wash", wash);
-      
+            
       DailyShower shower = dailydao.shower(pt_no, today);
       model.addAttribute("shower", shower);
-      
+            
       List<HashMap<String, Object>> bedList = new ArrayList<>();
       bedList = dailydao.bedList(pt_no, today);
       model.addAttribute("bedList", bedList);
@@ -116,7 +122,7 @@ public class patientController {
       List<HashMap<String, Object>> specialList = new ArrayList<>();
       specialList = dailydao.specialList(pt_no, today);
       model.addAttribute("specialList", specialList);
-      
+            
       model.addAttribute("today", today);
 
       return "/protector/patientDaily";

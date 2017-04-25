@@ -8,20 +8,67 @@ public class Bedtime {
 	private String timeToSleep;
 	private String timeToGetup;
 	private String report;
+	private String inputdate;
+	private String updatedate;
+	private String deletedate;
 	private String deleteflag;
 	
 	public Bedtime() {}
 
+
+
 	public Bedtime(int bedtime_No, int pt_no, String today, String timeToSleep, String timeToGetup, String report,
-			String deleteflag) {
+			String inputdate, String updatedate, String deletedate, String deleteflag) {
+		super();
 		this.bedtime_No = bedtime_No;
 		this.pt_no = pt_no;
 		this.today = today;
 		this.timeToSleep = timeToSleep;
 		this.timeToGetup = timeToGetup;
 		this.report = report;
+		this.inputdate = inputdate;
+		this.updatedate = updatedate;
+		this.deletedate = deletedate;
 		this.deleteflag = deleteflag;
 	}
+
+
+
+	public String getInputdate() {
+		return inputdate;
+	}
+
+
+
+	public void setInputdate(String inputdate) {
+		this.inputdate = inputdate;
+	}
+
+
+
+	public String getUpdatedate() {
+		return updatedate;
+	}
+
+
+
+	public void setUpdatedate(String updatedate) {
+		this.updatedate = updatedate;
+	}
+
+
+
+	public String getDeletedate() {
+		return deletedate;
+	}
+
+
+
+	public void setDeletedate(String deletedate) {
+		this.deletedate = deletedate;
+	}
+
+
 
 	public int getBedtime_No() {
 		return bedtime_No;
@@ -79,11 +126,15 @@ public class Bedtime {
 		this.deleteflag = deleteflag;
 	}
 
+
+
 	@Override
 	public String toString() {
 		return "Bedtime [bedtime_No=" + bedtime_No + ", pt_no=" + pt_no + ", today=" + today + ", timeToSleep="
-				+ timeToSleep + ", timeToGetup=" + timeToGetup + ", report=" + report + ", deleteflag=" + deleteflag
-				+ "]";
+				+ timeToSleep + ", timeToGetup=" + timeToGetup + ", report=" + report + ", inputdate=" + inputdate
+				+ ", updatedate=" + updatedate + ", deletedate=" + deletedate + ", deleteflag=" + deleteflag + "]";
 	}
+
+
 
 }

@@ -174,12 +174,7 @@ public class adminController {
 		return "redirect:adminLogin";
 		
 		}catch(Exception e){
-			
-			
-		System.out.println("dddddddddddddddddddddddddddddd");
-		System.out.println(e.getMessage());
-		System.out.println("dddddddddddddddddddddddddddddd");
-		
+				
 		model.addAttribute("errorNurseInput", "중복된 값이 있어요");
 		
 		return "/admin/adminNurseInput";

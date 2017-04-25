@@ -107,4 +107,6 @@ public class DailyShower {
 				+ ", deletedate=" + deletedate + ", deleteflag=" + deleteflag + "]";
 	}
 
+	
+
 }

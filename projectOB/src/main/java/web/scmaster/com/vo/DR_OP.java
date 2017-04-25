@@ -7,18 +7,67 @@ public class DR_OP {
 	private String today;
 	private String reportTime;
 	private String report;
+	private String inputdate;
+	private String updatedate;
+	private String deletedate;
 	private String deleteflag;
 	
 	public DR_OP() {}
 
-	public DR_OP(int dr_op_No, int pt_no, String today, String reportTime, String report, String deleteflag) {
+	
+
+	public DR_OP(int dr_op_No, int pt_no, String today, String reportTime, String report, String inputdate,
+			String updatedate, String deletedate, String deleteflag) {
+		super();
 		this.dr_op_No = dr_op_No;
 		this.pt_no = pt_no;
 		this.today = today;
 		this.reportTime = reportTime;
 		this.report = report;
+		this.inputdate = inputdate;
+		this.updatedate = updatedate;
+		this.deletedate = deletedate;
 		this.deleteflag = deleteflag;
 	}
+
+
+	
+
+	public String getInputdate() {
+		return inputdate;
+	}
+
+
+
+	public void setInputdate(String inputdate) {
+		this.inputdate = inputdate;
+	}
+
+
+
+	public String getUpdatedate() {
+		return updatedate;
+	}
+
+
+
+	public void setUpdatedate(String updatedate) {
+		this.updatedate = updatedate;
+	}
+
+
+
+	public String getDeletedate() {
+		return deletedate;
+	}
+
+
+
+	public void setDeletedate(String deletedate) {
+		this.deletedate = deletedate;
+	}
+
+
 
 	public int getDr_op_No() {
 		return dr_op_No;
@@ -68,10 +117,15 @@ public class DR_OP {
 		this.deleteflag = deleteflag;
 	}
 
+
+
 	@Override
 	public String toString() {
 		return "DR_OP [dr_op_No=" + dr_op_No + ", pt_no=" + pt_no + ", today=" + today + ", reportTime=" + reportTime
-				+ ", report=" + report + ", deleteflag=" + deleteflag + "]";
+				+ ", report=" + report + ", inputdate=" + inputdate + ", updatedate=" + updatedate + ", deletedate="
+				+ deletedate + ", deleteflag=" + deleteflag + "]";
 	}
+
+
 
 }

@@ -87,15 +87,19 @@ update PATIENT set NURSE_NO=#{nurse_no} where PT_NO=#{pt_no}
 <!-- 센서로그 -->
 
 <select id="showSensorLog" resultType="SensorLog" parameterType="String">
+
 select TIMEONLOG,TEXT,SENSORTYPE 
-from SENSORLOG where IPADDRESS=#{ipaddress} and DELETEFLAG='Y'
+from SENSORLOG where IPADDRESS=#{ipaddress}
+
 </select>
 
 <!-- 복도센서로그 -->
 
 <select id="showAisleSensorLog" resultType="AisleSensorLog" parameterType="String">
+
 select TIMEONLOG,TIMEONLOG,TEXT 
-from AISLESENSORLOG where IPADDRESS=#{ipaddress} and DELETEFLAG='Y'
+from AISLESENSORLOG where IPADDRESS=#{ipaddress}
+
 </select>
 
 <!-- 요양사 담당 환자 -->

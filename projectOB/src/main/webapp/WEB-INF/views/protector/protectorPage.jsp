@@ -56,6 +56,7 @@
     	    	}
     		});
     	
+    	
 setInterval(function() { 	
     	$.ajax({
     		
@@ -69,8 +70,7 @@ setInterval(function() {
     	    		
         			 var logdata="<table class='table text-center'><tr><td>시간</td><td>사건</td><td>종류</td></tr>"
         			 
-        			 $.each(data,function(index,item){
-        				
+        			 $.each(data,function(index,item){        			
         				 logdata+="<tr><td>"+item.timeonlog+"</td><td>"+item.text+"</td><td>"+item.sensortype+"</td></tr>"
         				 
         			 })

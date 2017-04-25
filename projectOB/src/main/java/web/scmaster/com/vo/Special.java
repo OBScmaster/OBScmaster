@@ -7,18 +7,54 @@ public class Special {
 	private String today;
 	private String sreportTime;
 	private String sreport;
+	private String inputdate;
+	private String updatedate;
+	private String deletedate;
 	private String deleteflag;
 	
 	public Special() {
 	}
 
-	public Special(int special_No, int pt_no, String today, String sreportTime, String sreport, String deleteflag) {
+	public Special(int special_No, int pt_no, String today, String sreportTime, String sreport, String inputdate,
+			String updatedate, String deletedate, String deleteflag) {
+		super();
 		this.special_No = special_No;
 		this.pt_no = pt_no;
 		this.today = today;
 		this.sreportTime = sreportTime;
 		this.sreport = sreport;
+		this.inputdate = inputdate;
+		this.updatedate = updatedate;
+		this.deletedate = deletedate;
 		this.deleteflag = deleteflag;
+	}
+
+	
+	
+
+
+	public String getInputdate() {
+		return inputdate;
+	}
+
+	public void setInputdate(String inputdate) {
+		this.inputdate = inputdate;
+	}
+
+	public String getUpdatedate() {
+		return updatedate;
+	}
+
+	public void setUpdatedate(String updatedate) {
+		this.updatedate = updatedate;
+	}
+
+	public String getDeletedate() {
+		return deletedate;
+	}
+
+	public void setDeletedate(String deletedate) {
+		this.deletedate = deletedate;
 	}
 
 	public int getSpecial_No() {
@@ -72,7 +108,10 @@ public class Special {
 	@Override
 	public String toString() {
 		return "Special [special_No=" + special_No + ", pt_no=" + pt_no + ", today=" + today + ", sreportTime="
-				+ sreportTime + ", sreport=" + sreport + ", deleteflag=" + deleteflag + "]";
+				+ sreportTime + ", sreport=" + sreport + ", inputdate=" + inputdate + ", updatedate=" + updatedate
+				+ ", deletedate=" + deletedate + ", deleteflag=" + deleteflag + "]";
 	}
+
+	
 
 }
