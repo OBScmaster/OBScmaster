@@ -93,8 +93,8 @@
             </div>
             <div class="row text-center">
                 <div class="col-md-4">
-                    <a href = "#"><img alt="" src="./resources/image/icons/play.png"></a>
-                    <h4 class="service-heading">Web-Camera</h4>
+                    <a href = "adminCamera"><img alt="" src="./resources/image/icons/play.png"></a>
+                    <h4 class="service-heading">전체카메라</h4>
                     <p class="text-muted"></p>
                 </div>
                 <div class="col-md-4">

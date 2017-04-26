@@ -68,19 +68,20 @@ setInterval(function() {
     		 
     			 success:function(data){
     	    		
-        			 var logdata="<table class='table text-center'><tr><td>시간</td><td>사건</td><td>종류</td></tr>"
+        			 var logdata="<table class='table text-center'>"
         			 
         			 $.each(data,function(index,item){        			
         				 logdata+="<tr><td>"+item.timeonlog+"</td><td>"+item.text+"</td><td>"+item.sensortype+"</td></tr>"
-        				 
-        			 })
+        			})
         			 
         			 logdata+="</table>"
         			 
         			 $("#log").html(logdata);
         			 
         			 if(data.length>9){
-        				 $("#log").css("overflow","scroll")
+        				$("#log").css("overflow","scroll");
+        				$("#log").scrollTop($("#log")[0].scrollHeight);
+        				$(".table tr:last").css("color","red");
         			 }
         			 
         		 },
@@ -98,6 +99,16 @@ setInterval(function() {
 
     	});
     </script>
+    
+      <style>    
+    /* Set black background color, white text and some padding */
+    footer {
+      background-color: #555;
+      color: white;
+      padding: 15px;
+    }
+  </style>
+    
   </head>
   <body>
   
@@ -173,16 +184,15 @@ setInterval(function() {
    		
    	</div>
    	
-   <div id = "log" class="col-md-4" style='height:300px;'>
-   		<table class='table text-center'><tr><td>시간</td><td>사건</td><td>종류</td></tr></table>
+   <div id = "logDiv" class="col-md-4">
+   	<table class='table text-center'><tr><td>시간</td><td>사건</td><td>종류</td></tr></table>
+   	<div id = "log" class="col-md-12" style='height:300px;'>   		
    	</div>
+   </div>
    	
    	 </div>
    	 
 
-<footer class="container-fluid text-center">
-  <p>Footer Text</p>
-</footer>
     
   </body>
 </html>

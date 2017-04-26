@@ -24,7 +24,6 @@
   	    
   	        return(val1>val2)?-1:(val1<val2)?1:0;
   	    });
-  			 
   		  
   			 var patientselect = "<div class='col-md-15'><div class='btn-group btn-group-justified'><a href='#' class='btn btn-info'>환자번호</a>"
 			    	+"<a href='#' class='btn btn-info'>환자명</a>"
@@ -93,6 +92,8 @@
    			    		var name = $(this).attr("name");
   			    		$(".list-group-item").css("color","black");
   			    		$(this).css("color","red");
+  			    		$("#nurse_no").val("0");
+  			    		$("#nurse_name").val("");
   			    		
   			    	   $("#ppt_name").attr("readonly","readonly");
   			    	   $("#phone").attr("readonly","readonly");
@@ -118,9 +119,13 @@
   			    		$("#ppt_add").val(ppt_add);
   			    	
   			    		$("#birthdate").val($(this).attr("birthdate"));
+  			    		
   			    		$("#disease").val($(this).attr("disease"));
+  			    		
   			    		$("#room_no").val($(this).attr("room_no"));
+  			    		
   			    		$("#ipaddress").val($(this).attr("ipaddress"));
+  			    		
   			    		$("#nurse_no").val($(this).attr("nurse_no"));
   			    		
   			    		$.ajax({
@@ -230,11 +235,7 @@
 			    		          readURL(this);
 			    		 });
 			    		
-						
-			    		
 					});
-   			    	
-  		
   						
   		},
   		 error:function(error){console.log(error);}

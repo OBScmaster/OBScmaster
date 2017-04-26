@@ -53,6 +53,20 @@ public class adminController {
 	
 	}
 	
+	@RequestMapping(value = "adminLog", method = RequestMethod.GET)
+	public String adminLog() {
+	
+		return "/admin/adminLog";	
+	
+	}
+	
+	@RequestMapping(value = "adminCamera", method = RequestMethod.GET)
+	public String adminCamera() {
+	
+		return "/admin/adminCamera";	
+	
+	}
+	
 	@RequestMapping(value = "adminPatientInfo", method = RequestMethod.GET)
 	public String adminPatientInfo() {
 	
@@ -217,11 +231,7 @@ public class adminController {
 	
 	@RequestMapping(value="updatePatient", method=RequestMethod.POST)
 	public String updatePatient(Patient patient, MultipartFile upload){
-		if(patient.getNurse_no()==0){
-			
-			return "/admin/adminPatientInfo";	
-			
-		}else{
+	
 			
 			if (!upload.isEmpty()) {
 				String savedfile = FileService.saveFile(upload, patientUploadPath);
@@ -232,7 +242,7 @@ public class adminController {
 			admindao.updatePatient(patient);			
 			
 			return "redirect:adminLogin";
-		}
+		
 	}
 	
 	@RequestMapping(value="deletePatient", method=RequestMethod.GET)
@@ -341,6 +351,25 @@ public class adminController {
 		return admindao.selectPatientBypt_no(pt_no);
 		
 	   }
+	
+	@ResponseBody
+	@RequestMapping(value="showLogDivs", method=RequestMethod.GET)
+	 public int showLogDivs(int part){
+				
+		return part;
+		
+	   }
+	
+
+	@ResponseBody
+	@RequestMapping(value="setCamera", method=RequestMethod.GET)
+	 public void setCamera(){
+				
+	
+		
+	   }
+	
+	
 	
 	
 }

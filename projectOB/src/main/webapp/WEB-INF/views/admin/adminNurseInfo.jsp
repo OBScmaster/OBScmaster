@@ -47,6 +47,13 @@
         </li>
         
          <li><a href="adminNurseInput">요양사 등록</a></li>
+         
+      <li><a class="active dropdown dropdown-toggle" data-toggle="dropdown">전체관리</a>   
+       <ul class="active dropdown-menu">    
+         <li><a href="adminLog">로그보기</a></li>
+          <li><a href="adminCamera">카메라</a></li>          
+       </ul>
+       </li>
         
       </ul>
      
