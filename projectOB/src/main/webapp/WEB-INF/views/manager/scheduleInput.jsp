@@ -113,7 +113,7 @@ $(document).ready(function() {
 								html1 += "<td>" + item.TYPEEAT + "</td>";
 								html1 += "<td>" + item.MEALTIME + "</td>";
 								html1 += "<td>" + item.WHATEAT + "</td>";
-								html1 += "<td><input type='button' value = '수정' class='btn btn-primary' onclick = 'showUpdateMeal("+pt_no+",&#34;"+item.TYPEEAT+"&#34;,&#34;"+item.MEALTIME+"&#34;,&#34;"+item.WHATEAT+"&#34;,&#34;"+item.INSERTDATE+"&#34;)'></td>";
+								html1 += "<td><input type='button' value = '수정' class='btn btn-primary' onclick = 'showUpdateMeal("+pt_no+",&#34;"+item.TYPEEAT+"&#34;,&#34;"+item.MEALTIME+"&#34;,&#34;"+item.WHATEAT+"&#34;,&#34;"+item.INPUTDATE+"&#34;)'></td>";
 								html1 += "<td><input type='button' value = '삭제' class='btn btn-primary' onclick = 'delMeal("+pt_no+",&#34;"+item.MEALTIME+"&#34;)'></td>";
 								html1 += "</tr>";
 								})//each
@@ -664,7 +664,7 @@ function enrollMeal(pt_no) {
 				html1 += "<td>" + item.TYPEEAT + "</td>";
 				html1 += "<td>" + item.MEALTIME + "</td>";
 				html1 += "<td>" + item.WHATEAT + "</td>";
-				html1 += "<td><input type='button' value = '수정' class='btn btn-primary' onclick = 'showUpdateMeal("+pt_no+",&#34;"+item.TYPEEAT+"&#34;,&#34;"+item.MEALTIME+"&#34;,&#34;"+item.WHATEAT+"&#34;,&#34;"+item.INSERTDATE+"&#34;)'></td>";
+				html1 += "<td><input type='button' value = '수정' class='btn btn-primary' onclick = 'showUpdateMeal("+pt_no+",&#34;"+item.TYPEEAT+"&#34;,&#34;"+item.MEALTIME+"&#34;,&#34;"+item.WHATEAT+"&#34;,&#34;"+item.INPUTDATE+"&#34;)'></td>";
 				html1 += "<td><input type='button' value = '삭제' class='btn btn-primary' onclick = 'delMeal("+pt_no+",&#34;"+item.MEALTIME+"&#34;)'></td>";
 				html1 += "</tr>";
 				})//each
@@ -749,7 +749,7 @@ function delMeal(pt_no,mealTime) {
 				html1 += "<td>" + item.TYPEEAT + "</td>";
 				html1 += "<td>" + item.MEALTIME + "</td>";
 				html1 += "<td>" + item.WHATEAT + "</td>";
-				html1 += "<td><input type='button' value = '수정' class='btn btn-primary' onclick = 'showUpdateMeal("+pt_no+",&#34;"+item.TYPEEAT+"&#34;,&#34;"+item.MEALTIME+"&#34;,&#34;"+item.WHATEAT+"&#34;,&#34;"+item.INSERTDATE+"&#34;)'></td>";
+				html1 += "<td><input type='button' value = '수정' class='btn btn-primary' onclick = 'showUpdateMeal("+pt_no+",&#34;"+item.TYPEEAT+"&#34;,&#34;"+item.MEALTIME+"&#34;,&#34;"+item.WHATEAT+"&#34;,&#34;"+item.INPUTDATE+"&#34;)'></td>";
 				html1 += "<td><input type='button' value = '삭제' class='btn btn-primary' onclick = 'delMeal("+pt_no+",&#34;"+item.MEALTIME+"&#34;)'></td>";
 				html1 += "</tr>";
 				})//each
@@ -801,7 +801,7 @@ function delMeal(pt_no,mealTime) {
 	})	
 }
 
-function showUpdateMeal(pt_no,typeEat,mealTime,whatEat,insertDate){
+function showUpdateMeal(pt_no,typeEat,mealTime,whatEat,INPUTDATE){
 	var today = $(".datepicker").val();
 	
 	$.ajax({
@@ -928,7 +928,7 @@ function updateMeal(pt_no,meal_No) {
 				html1 += "<td>" + item.TYPEEAT + "</td>";
 				html1 += "<td>" + item.MEALTIME + "</td>";
 				html1 += "<td>" + item.WHATEAT + "</td>";
-				html1 += "<td><input type='button' value = '수정' class='btn btn-primary' onclick = 'showUpdateMeal("+pt_no+",&#34;"+item.TYPEEAT+"&#34;,&#34;"+item.MEALTIME+"&#34;,&#34;"+item.WHATEAT+"&#34;,&#34;"+item.INSERTDATE+"&#34;)'></td>";
+				html1 += "<td><input type='button' value = '수정' class='btn btn-primary' onclick = 'showUpdateMeal("+pt_no+",&#34;"+item.TYPEEAT+"&#34;,&#34;"+item.MEALTIME+"&#34;,&#34;"+item.WHATEAT+"&#34;,&#34;"+item.INPUTDATE+"&#34;)'></td>";
 				html1 += "<td><input type='button' value = '삭제' class='btn btn-primary' onclick = 'delMeal("+pt_no+",&#34;"+item.MEALTIME+"&#34;)'></td>";
 				html1 += "</tr>";
 				})//each
@@ -2624,7 +2624,7 @@ function updateDr_op(pt_no,dr_op_No) {
 			html1 += "</table>";
 			html1 += "</div>";
 			html1 += "</div>";
-			$("#menu8").html(html1);
+			$("#menu7").html(html1);
 		},
 		error : function(e) {
 			console.log(e);

@@ -7,11 +7,15 @@
 
 <select id = "mealList" parameterType="HashMap" resultType="Meal">
 	select
-		pt_no
-		, today
+		meal_No
+		, pt_no
+		, to_char(today,'yy/mm/dd') as today
 		, typeEat
 		, mealTime
 		, whatEat
+		, to_char(inputdate,'yy/mm/dd') as inputdate
+		, to_char(updatedate,'yy/mm/dd') as updatedate
+		, to_char(deletedate,'yy/mm/dd') as deletedate
 	from
 		meal
 	where
@@ -24,8 +28,12 @@
 	select
 		pt_no
 		, today
-		, to_char(exercisetime, 'HH24:MI') as exercisetime
+<!-- 		, to_char(exercisetime, 'HH24:MI') as exercisetime -->
+        , exercisetime
 		, exercisetext
+		, to_char(inputdate,'yy/mm/dd') as inputdate
+		, to_char(updatedate,'yy/mm/dd') as updatedate
+		, to_char(deletedate,'yy/mm/dd') as deletedate
 	from
 		exercise
 	where
@@ -39,6 +47,9 @@
 		, today
 		, cleaning
 		, cleaningreport
+		, to_char(inputdate,'yy/mm/dd') as inputdate
+		, to_char(updatedate,'yy/mm/dd') as updatedate
+		, to_char(deletedate,'yy/mm/dd') as deletedate
 	from
 		dailycleaning
 	where
@@ -53,6 +64,9 @@
 		, wash
 		, washreport
 		, updatedate
+		, to_char(inputdate,'yy/mm/dd') as inputdate
+		, to_char(updatedate,'yy/mm/dd') as updatedate
+		, to_char(deletedate,'yy/mm/dd') as deletedate
 	from
 		dailywash
 	where
@@ -66,6 +80,9 @@
 		, today
 		, shower
 		, showerreport
+		, to_char(inputdate,'yy/mm/dd') as inputdate
+		, to_char(updatedate,'yy/mm/dd') as updatedate
+		, to_char(deletedate,'yy/mm/dd') as deletedate
 	from
 		dailyshower
 	where
@@ -80,6 +97,9 @@
 		, timetosleep
 		, timetogetup
 		, report
+		, to_char(inputdate,'yy/mm/dd') as inputdate
+		, to_char(updatedate,'yy/mm/dd') as updatedate
+		, to_char(deletedate,'yy/mm/dd') as deletedate
 	from
 		bedtime
 	where
@@ -93,6 +113,9 @@
 		, today
 		, reporttime
 		, report
+		, to_char(inputdate,'yy/mm/dd') as inputdate
+		, to_char(updatedate,'yy/mm/dd') as updatedate
+		, to_char(deletedate,'yy/mm/dd') as deletedate
 	from
 		dr_op
 	where
@@ -106,6 +129,9 @@
 		, today
 		, sreporttime
 		, sreport
+		, to_char(inputdate,'yy/mm/dd') as inputdate
+		, to_char(updatedate,'yy/mm/dd') as updatedate
+		, to_char(deletedate,'yy/mm/dd') as deletedate
 	from
 		special
 	where

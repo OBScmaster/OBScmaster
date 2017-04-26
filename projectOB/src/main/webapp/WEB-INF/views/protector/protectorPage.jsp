@@ -27,8 +27,8 @@
     <script src="./resources/js/responsive-calendar.js"></script>
 
     <script type="text/javascript">
- $( document ).ready( function() {     
-    	
+ $( document ).ready( function() {  
+	 
     	var pt_no = $("#pt_no").val();
     	var ipaddress = $("#ipaddress").val();
         	
@@ -118,8 +118,7 @@ setInterval(function() {
         <li class="active"><a href="patientHome">Home</a></li>
         <li><a href="showVideo?pt_no=${id.pt_no}">웹캠</a></li>
         <li><a href="#">로그</a></li>
-      </ul>
-     
+      </ul>     
       <ul class="nav navbar-nav navbar-right">
         <li><a href="protectorLogout">로그아웃</a></li>
         <li><a href="#"><span class="glyphicon glyphicon-user"></span>${id.name}님 보호자님 환영</a></li>
@@ -132,8 +131,8 @@ setInterval(function() {
     
  <c:choose>
  
- <c:when test="${nurse.name!=null}">
-     <div>담당요양사는  ${nurse.name}입니다</div>
+ <c:when test="${sessionScope.nurse_name!=null}">
+     <div>담당요양사는  ${sessionScope.nurse_name}입니다</div>
  </c:when>
  
  <c:otherwise>
@@ -166,9 +165,10 @@ setInterval(function() {
    
     
     <div id = "wrapper" class="col-md-4" style='height:300px;'>
-    	<div id = "web-camera">
-    		Web-Camera
-    		<img alt="" src="./resources/image/icons/play.png">
+    	<div id = "web-camera"> 
+    	<!-- 	<img alt="image" src="./resources/image/icons/play.png">   -->  
+    	<img alt="image" id="xxxx" src="http://10.10.5.32:8080/stream/video.mjpeg">	
+    	
    		</div>
    		
    	</div>

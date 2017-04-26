@@ -54,13 +54,16 @@
 
     <div class="panel-body">
     <c:choose>
-    	<c:when test="${mealList != null }">    	
+    	<c:when test="${mealList != null }">    
+    	
     		<table class="table table-hover">
     			<thead>
        				<tr>
             			<th>식사</th>
             			<th>시간</th>
             			<th>식단</th>
+            			<th>입력날짜</th>
+            			<th>수정날짜</th>
         			</tr>
     			</thead>
     			<c:forEach var = "items" items="${mealList}">
@@ -69,6 +72,16 @@
             					<td>${items.typeEat}</td>
             					<td>${items.mealTime}</td>
             					<td>${items.whatEat}</td>
+            					<td>${items.inputdate}</td>
+            					<c:choose>
+            					<c:when test="${items.updatedate!=null}">
+            					<td>${items.updatedate}</td>
+            					</c:when>
+            					<c:otherwise>
+            					<td>-</td>
+            					</c:otherwise>
+            					</c:choose>
+        					
         					</tr>
     					</tbody>
     				</c:forEach>
@@ -94,6 +107,9 @@
        				<tr>
             			<th>운동</th>
             			<th>시간</th>
+            			<th>입력날짜</th>
+            			<th>수정날짜</th>
+            			
         			</tr>
     			</thead>
     				<c:forEach var = "items" items="${exerciseList}">
@@ -101,6 +117,15 @@
        						<tr>
             					<td>${items.exerciseText}</td>
             					<td>${items.exerciseTime}</td>
+            					<td>${items.inputdate}</td>
+            					<c:choose>
+            					<c:when test="${items.updatedate!=null}">
+            					<td>${items.updatedate}</td>
+            					</c:when>
+            					<c:otherwise>
+            					<td>-</td>
+            					</c:otherwise>
+            					</c:choose>
         					</tr>
     					</tbody>
     				</c:forEach>	
@@ -120,14 +145,25 @@
     <div class="panel-body">
     	<div class="move-left">
         	<div class="[ form-group ]">
-        		<c:if test="${cleaning.cleaningReport != null }">
-            		<input type="checkbox" name="fancy-checkbox-success" id="fancy-checkbox-success" autocomplete="off" checked = "checked" disabled="disabled"/>
-            	</c:if>
+        	
             	<div class="[ btn-group ]">
-                	<label for="fancy-checkbox-success" class="[ btn btn-success ]">
+            	
+            	<c:choose>
+            	<c:when test="${cleaning.cleaningReport != null }">
+            	<label for="fancy-checkbox-success" class="[ btn btn-success ]">
                     	<span class="[ glyphicon glyphicon-ok ]"></span>
                     	<span> </span>
                 	</label>
+            	</c:when>
+            	<c:otherwise>
+            	<label for="fancy-checkbox-success" class="[ btn btn-success ]">
+                    	<span class="[ glyphicon glyphicons-minus ]"></span>
+                    	<span> </span>
+                	</label>
+            	</c:otherwise>
+            	
+            	</c:choose>
+            	
                 	<label for="fancy-checkbox-success" class="[ btn btn-default active ]">
                     	청소여부
                 	</label>
@@ -152,14 +188,25 @@
     
      <div class="move-left">
         	<div class="[ form-group ]">
-        		<c:if test="${wash.washReport != null }">
-            		<input type="checkbox" name="fancy-checkbox-success" id="fancy-checkbox-success" autocomplete="off" checked = "checked" disabled="disabled"/>
-            	</c:if>
-            	<div class="[ btn-group ]">
-                	<label for="fancy-checkbox-success" class="[ btn btn-success ]">
+        	
+            	<div class="[ btn-group ]">               
+               
+               <c:choose>
+            	<c:when test="${wash.washReport != null }">
+            	<label for="fancy-checkbox-success" class="[ btn btn-success ]">
                     	<span class="[ glyphicon glyphicon-ok ]"></span>
                     	<span> </span>
                 	</label>
+            	</c:when>
+            	<c:otherwise>
+            	<label for="fancy-checkbox-success" class="[ btn btn-success ]">
+                    	<span class="[ glyphicon glyphicons-minus ]"></span>
+                    	<span> </span>
+                	</label>
+            	</c:otherwise>
+            	
+            	</c:choose>
+
                 	<label for="fancy-checkbox-success" class="[ btn btn-default active ]">
                     	세탁여부
                 	</label>
@@ -186,14 +233,26 @@
     <div class="panel-body">
     	<div class="move-left">
         	<div class="[ form-group ]">
-        		<c:if test="${shower.showerReport != null }">
-            		<input type="checkbox" name="fancy-checkbox-success" id="fancy-checkbox-success" autocomplete="off" checked = "checked" disabled="disabled"/>
-            	</c:if>
+        	
             	<div class="[ btn-group ]">
-                	<label for="fancy-checkbox-success" class="[ btn btn-success ]">
+            	
+            	
+            	  <c:choose>
+            	<c:when test="${shower.showerReport != null }">
+            	<label for="fancy-checkbox-success" class="[ btn btn-success ]">
                     	<span class="[ glyphicon glyphicon-ok ]"></span>
                     	<span> </span>
                 	</label>
+            	</c:when>
+            	<c:otherwise>
+            	<label for="fancy-checkbox-success" class="[ btn btn-success ]">
+                    	<span class="[ glyphicon glyphicons-minus ]"></span>
+                    	<span> </span>
+                	</label>
+            	</c:otherwise>
+            	
+            	</c:choose>
+            	
                 	<label for="fancy-checkbox-success" class="[ btn btn-default active ]">
                     	샤워여부
                 	</label>
@@ -226,6 +285,9 @@
             			<th>수면시간</th>
             			<th>기상시간</th>
             			<th>내용</th>
+            			<th>입력날짜</th>
+            			<th>수정날짜</th>
+            			
         			</tr>
     			</thead>
     			<c:forEach var = "items" items="${bedList}">
@@ -234,6 +296,16 @@
             					<td>${items.timeToSleep}</td>
             					<td>${items.timeToGetup}</td>
             					<td>${items.report}</td>
+            					<td>${items.inputdate}</td>
+            					<c:choose>
+            					<c:when test="${items.updatedate!=null}">
+            					<td>${items.updatedate}</td>
+            					</c:when>
+            					<c:otherwise>
+            					<td>-</td>
+            					</c:otherwise>
+            					</c:choose>
+            					
         					</tr>
     					</tbody>
     				</c:forEach>
@@ -258,6 +330,8 @@
        				<tr>
             			<th>시간</th>
             			<th>내용</th>
+            			<th>입력날짜</th>
+            			<th>수정날짜</th>
         			</tr>
     			</thead>
     			<c:forEach var = "items" items="${dr_opList}">
@@ -265,6 +339,15 @@
        						<tr>
             					<td>${items.reportTime}</td>
             					<td>${items.report}</td>
+            					<td>${items.inputdate}</td>
+            					<c:choose>
+            					<c:when test="${items.updatedate!=null}">
+            					<td>${items.updatedate}</td>
+            					</c:when>
+            					<c:otherwise>
+            					<td>-</td>
+            					</c:otherwise>
+            					</c:choose>
         					</tr>
     					</tbody>
     				</c:forEach>
@@ -289,13 +372,24 @@
        				<tr>
             			<th>시간</th>
             			<th>내용</th>
+            			<th>입력날짜</th>
+            			<th>수정날짜</th>
         			</tr>
     			</thead>
     			<c:forEach var = "items" items="${specialList}">
     					<tbody>
        						<tr>
-            					<td>${items.reportTime}</td>
-            					<td>${items.report}</td>
+            					<td>${items.sreportTime}</td>
+            					<td>${items.sreport}</td>
+            					<td>${items.inputdate}</td>
+            					<c:choose>
+            					<c:when test="${items.updatedate!=null}">
+            					<td>${items.updatedate}</td>
+            					</c:when>
+            					<c:otherwise>
+            					<td>-</td>
+            					</c:otherwise>
+            					</c:choose>
         					</tr>
     					</tbody>
     				</c:forEach>

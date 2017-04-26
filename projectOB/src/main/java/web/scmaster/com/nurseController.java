@@ -90,6 +90,7 @@ public class nurseController {
 			
 			if(n.getPassword().equals(password)){
 				String nurseId = n.getId();
+				session.setAttribute("id", nurseId);
 				session.setAttribute("nurseId", nurseId);
 				session.setAttribute("nurse_name", n.getName());
 				model.addAttribute("nurse_no", n.getNurse_no());

@@ -78,6 +78,11 @@
 	<beans:ref bean="loginIntercepter"/>
 	</mvc:interceptor>
 	
+	<mvc:interceptor>
+	<mvc:mapping path="/dailyschedule"/>
+	<beans:ref bean="loginIntercepter"/>
+	</mvc:interceptor>
+	
 	
 	</mvc:interceptors>
 	

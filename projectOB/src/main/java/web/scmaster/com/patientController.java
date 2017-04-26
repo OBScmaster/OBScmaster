@@ -63,7 +63,9 @@ public class patientController {
             session.setAttribute("id", p);
             
             Nurse n = admindao.selectNurseByNurseno(p.getNurse_no());
-            model.addAttribute("nurse", n);
+           
+            session.setAttribute("nurse_name", n.getName());
+            session.setAttribute("myip", p.getIpaddress());
             
             return "/protector/protectorPage";
          
@@ -91,10 +93,6 @@ public class patientController {
       List<HashMap<String, Object>> mealList = new ArrayList<>();
       mealList =  dailydao.mealList(pt_no, today);
       model.addAttribute("mealList", mealList);
- 
-      System.out.println("asdfasdfasdf");
-      System.out.println(mealList);
-      System.out.println("asdfasdfasdf");
       
       List<HashMap<String, Object>> exerciseList = new ArrayList<>();
       exerciseList = dailydao.exerciseList(pt_no, today);

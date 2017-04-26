@@ -255,7 +255,7 @@ update NURSE set DELETEFLAG='N' where NURSE_NO=#{nurse_no}
 		meal
 	set
 		deleteflag = 'N'
-		,deletedate=sysdate
+		, deletedate = to_date(sysdate, 'yy/mm/dd')
 	where
 		pt_no = #{pt_no}
 		and today = #{today}
@@ -267,7 +267,7 @@ update NURSE set DELETEFLAG='N' where NURSE_NO=#{nurse_no}
 		exercise
 	set
 		deleteflag = 'N'
-		,deletedate=sysdate
+	    , deletedate = to_date(sysdate, 'yy/mm/dd')
 	where
 		pt_no = #{pt_no}
 		and today = #{today}
@@ -279,7 +279,7 @@ update NURSE set DELETEFLAG='N' where NURSE_NO=#{nurse_no}
 		dailycleaning
 	set
 		deleteflag = 'N'
-		,deletedate=sysdate
+		, deletedate = to_date(sysdate, 'yy/mm/dd')
 	where
 		pt_no = #{pt_no}
 		and today = #{today}
@@ -291,7 +291,7 @@ update NURSE set DELETEFLAG='N' where NURSE_NO=#{nurse_no}
 		dailywash
 	set
 		deleteflag = 'N'
-		,deletedate=sysdate
+		, deletedate = to_date(sysdate, 'yy/mm/dd')
 	where
 		pt_no = #{pt_no}
 		and today = #{today}
@@ -303,7 +303,7 @@ update NURSE set DELETEFLAG='N' where NURSE_NO=#{nurse_no}
 		dailyshower
 	set
 		deleteflag = 'N'
-		,deletedate=sysdate
+		, deletedate = to_date(sysdate, 'yy/mm/dd')
 	where
 		pt_no = #{pt_no}
 		and today = #{today}
@@ -315,7 +315,7 @@ update NURSE set DELETEFLAG='N' where NURSE_NO=#{nurse_no}
 		bedtime
 	set
 		deleteflag = 'N'
-		,deletedate=sysdate
+		, deletedate = to_date(sysdate, 'yy/mm/dd')
 	where
 		pt_no = #{pt_no}
 		and today = #{today}
@@ -327,7 +327,7 @@ update NURSE set DELETEFLAG='N' where NURSE_NO=#{nurse_no}
 		dr_op
 	set
 		deleteflag = 'N'
-		,deletedate=sysdate
+		, deletedate = to_date(sysdate, 'yy/mm/dd')
 	where
 		pt_no = #{pt_no}
 		and today = #{today}
@@ -339,7 +339,7 @@ update NURSE set DELETEFLAG='N' where NURSE_NO=#{nurse_no}
 		special
 	set
 		deleteflag = 'N'
-		,deletedate=sysdate
+		, deletedate = to_date(sysdate, 'yy/mm/dd')
 	where
 		pt_no = #{pt_no}
 		and today = #{today}
@@ -348,7 +348,7 @@ update NURSE set DELETEFLAG='N' where NURSE_NO=#{nurse_no}
 
 <select id="showUpdateMeal" parameterType="Meal" resultType="HashMap">
 	select
-		meal_no
+		meal_No
 		, pt_no
 		, today
 		, typeeat
@@ -493,7 +493,7 @@ update NURSE set DELETEFLAG='N' where NURSE_NO=#{nurse_no}
 		typeEat = #{typeEat}
 		, mealTime = #{mealTime}
 		, whatEat = #{whatEat}
-		, updatedate = #{today}
+		, updatedate = to_date(sysdate, 'yy/mm/dd')
 	where
 		pt_no = #{pt_no}
 		and today = #{today}
@@ -506,7 +506,7 @@ update NURSE set DELETEFLAG='N' where NURSE_NO=#{nurse_no}
 	set
 		exerciseText = #{exerciseText}
 		, exerciseTime = #{exerciseTime}
-		,updatedate=sysdate
+	    , updatedate = to_date(sysdate, 'yy/mm/dd')
 	where
 		pt_no = #{pt_no}
 		and today = #{today}
@@ -519,7 +519,7 @@ update NURSE set DELETEFLAG='N' where NURSE_NO=#{nurse_no}
 	set
 		cleaning = #{cleaning}
 		, cleaningReport = #{cleaningReport}
-		,updatedate=sysdate
+		, updatedate = to_date(sysdate, 'yy/mm/dd')
 	where
 		pt_no = #{pt_no}
 		and today = #{today}
@@ -532,7 +532,7 @@ update NURSE set DELETEFLAG='N' where NURSE_NO=#{nurse_no}
 	set
 		wash = #{wash}
 		, washReport = #{washReport}
-		,updatedate=sysdate
+		, updatedate = to_date(sysdate, 'yy/mm/dd')
 	where
 		pt_no = #{pt_no}
 		and today = #{today}
@@ -545,7 +545,7 @@ update NURSE set DELETEFLAG='N' where NURSE_NO=#{nurse_no}
 	set
 		shower = #{shower}
 		, showerReport = #{showerReport}
-		,updatedate=sysdate
+		, updatedate = to_date(sysdate, 'yy/mm/dd')
 	where
 		pt_no = #{pt_no}
 		and today = #{today}
@@ -559,7 +559,7 @@ update NURSE set DELETEFLAG='N' where NURSE_NO=#{nurse_no}
 		timeToSleep = #{timeToSleep}
 		, timeToGetup = #{timeToGetup}
 		, report = #{report}
-		,updatedate=sysdate
+		, updatedate = to_date(sysdate, 'yy/mm/dd')
 	where
 		pt_no = #{pt_no}
 		and today = #{today}
@@ -572,7 +572,7 @@ update NURSE set DELETEFLAG='N' where NURSE_NO=#{nurse_no}
 	set
 		reportTime = #{reportTime}
 		, report = #{report}
-		,updatedate=sysdate
+		, updatedate = to_date(sysdate, 'yy/mm/dd')
 	where
 		pt_no = #{pt_no}
 		and today = #{today}
@@ -585,7 +585,7 @@ update NURSE set DELETEFLAG='N' where NURSE_NO=#{nurse_no}
 	set
 		sreportTime = #{sreportTime}
 		, sreport = #{sreport}
-		,updatedate=sysdate
+		, updatedate = to_date(sysdate, 'yy/mm/dd')
 	where
 		pt_no = #{pt_no}
 		and today = #{today}
