@@ -18,7 +18,7 @@
   });
   
   function main(){
-	  
+
 	  $.ajax({  		 
   		type:"post",
   		 url:"nurselist",  
@@ -59,8 +59,9 @@
    			    		$("#patientgroup").css("overflow","scroll");
    			    	};
    			    	
-   			        listClick(); 		
-   			        listClick();
+   			     listClick();
+   			    
+   			      
   		},
   		 error:function(error){console.log(error);}
   		});
@@ -98,7 +99,7 @@
   
   function listClick(){
 	  
-	  $(".list-group-item").unbind().bind('click',function(){
+	  $(".list-group-item").bind('click',function(){
 	        	
 	    		var nurse_no=$(this).attr("nurse_no");
 	    		var nurse_name=$(this).attr("name");
@@ -125,7 +126,7 @@
     		
     		$("#buttt").prepend("<button type='button' class='btn btn-primary' id='nurseUpdate'>수정</button>");
     		 
-    		$("#nurseDelete").click(function(){
+    		$("#nurseDelete").unbind().bind("click",function(){
     			
     			if(confirm(nurse_name+"을 삭제하시겠습니까?")){
   					location.href="deleteNurse?nurse_no="+nurse_no;
@@ -186,6 +187,12 @@
 			myPatientList(nurse_no);
 			     			    	
 		});
+	  
+  }
+  
+  function listClickUnbind(){
+	  
+	  $(".list-group-item").unbind();
 	  
   }
   

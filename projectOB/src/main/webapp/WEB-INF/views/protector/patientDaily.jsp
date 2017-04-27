@@ -10,8 +10,25 @@
 <title>Example of Bootstrap 3 Table with Emphasis Classes</title>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+ <script src= "./resources/js/jquery-3.1.1.js"></script>    
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+<script type="text/javascript">
+
+function onWebcam(pt_no){
+	
+	window.open("showVideo?pt_no="+pt_no,"webcam","width=300,height=200");
+	
+}
+
+
+
+function clickLog(ipaddress,today){
+	
+	window.open("showlog?ipaddress="+ipaddress+"&today="+today,"Log","width=350,height=500");
+	
+}
+
+</script>
 <style type="text/css">
     .bs-example{
     	margin: 20px;
@@ -32,11 +49,12 @@
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav">
         <li class="active"><a href="patientHome">Home</a></li>
-        <li><a href="showVideo?pt_no=${id.pt_no}">웹캠</a></li>
-        <li><a href="#">로그</a></li>
+        <li><a href="#" onclick='onWebcam(${id.pt_no})'>웹캠</a></li>
+        <li><a href="#" onclick='clickLog("${id.ipaddress}","${today}")'>로그</a></li>
+      
       </ul>
       
-       
+     
      
       <ul class="nav navbar-nav navbar-right">
            <li><a href="#">${today}의 일정</a></li>

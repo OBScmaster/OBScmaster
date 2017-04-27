@@ -1,4 +1,4 @@
-/* 트리거 */
+
 
 /*개인 정보 삭제 트리거 */
 drop trigger TRG_PATIENT_DATADEL;
@@ -19,6 +19,16 @@ BEGIN
      end if;
  END;
  
+ /* 방 변경 트리거 */
+create or replace TRIGGER TRG_PATIENT_RCHASDEL
+after INSERT OR UPDATE OR DELETE of DELETEFLAG ON PATIENT
+for each row
+BEGIN   
+   if inserting or updating or deleting THEN
+    UPDATE ROOM set PRESENT=(select present from room where room_no=:new.ROOM_NO)+1 where ROOM_NO = :new.ROOM_NO;
+    UPDATE ROOM set PRESENT=(select present from room where room_no=:old.ROOM_NO)-1 where ROOM_NO = :old.ROOM_NO;
+     end if;
+ END;
  
  /*방정보변경 트리거 */
 drop trigger TRG_PATIENT_RCH;

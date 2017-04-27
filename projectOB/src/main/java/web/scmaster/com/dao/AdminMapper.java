@@ -7,9 +7,11 @@ import java.util.List;
 import org.apache.ibatis.annotations.Param;
 
 import web.scmaster.com.vo.Admin;
+import web.scmaster.com.vo.AisleSensorLog;
 import web.scmaster.com.vo.Nurse;
 import web.scmaster.com.vo.Patient;
 import web.scmaster.com.vo.Room;
+import web.scmaster.com.vo.SensorLog;
 
 public interface AdminMapper {
 	
@@ -27,6 +29,8 @@ public interface AdminMapper {
 	public int updateNurse(Nurse nurse);
 	public int deleteNurse(int nurse_no);
 	public List<Patient> patientlist();
+	public List<SensorLog> showSensorLog(String ipaddress);
+	public List<AisleSensorLog> showAisleSensorLog(String ipaddress);
 	
 	public Nurse selectNurseByNurseno(int nurse_no);
 	

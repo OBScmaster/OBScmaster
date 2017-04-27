@@ -78,6 +78,14 @@ update patient
 update PATIENT set DELETEFLAG='N' where PT_NO=#{pt_no}
 </update>
 
+<!-- 담당간호사정보 -->
+<select id="showNurse" resultType="Nurse" parameterType="int">
+
+select name,phone,savedphoto
+from Nurse where nurse_no=#{nurse_no}
+
+</select>
+
 
 <!-- 요양사 변경 -->
 <update id="changeNurse" parameterType="int">
@@ -88,19 +96,12 @@ update PATIENT set NURSE_NO=#{nurse_no} where PT_NO=#{pt_no}
 
 <select id="showSensorLog" resultType="SensorLog" parameterType="String">
 
-select TIMEONLOG,TEXT,SENSORTYPE 
+select to_char(TIMEONLOG,'HH24:MI:ss') as TIMEONLOG,TEXT,SENSORTYPE 
 from SENSORLOG where IPADDRESS=#{ipaddress}
+and to_char(TIMEONLOG,'yyyy/mm/dd') between #{today} AND #{today}
 
 </select>
 
-<!-- 복도센서로그 -->
-
-<select id="showAisleSensorLog" resultType="AisleSensorLog" parameterType="String">
-
-select TIMEONLOG,TIMEONLOG,TEXT 
-from AISLESENSORLOG where IPADDRESS=#{ipaddress}
-
-</select>
 
 <!-- 요양사 담당 환자 -->
 <select id="patientList" resultType="Patient" parameterType="int">

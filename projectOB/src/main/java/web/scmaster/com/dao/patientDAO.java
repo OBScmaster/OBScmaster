@@ -6,6 +6,8 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import web.scmaster.com.vo.AisleSensorLog;
+import web.scmaster.com.vo.Nurse;
 import web.scmaster.com.vo.Patient;
 import web.scmaster.com.vo.Room;
 import web.scmaster.com.vo.SensorLog;
@@ -65,21 +67,21 @@ public class patientDAO {
 		
 	}
 	
-	public List<SensorLog> showLogList(String ipaddress){
+	public Nurse showNurse(int nurse_no){
+	
+	patientMapper mapper = sqlsession.getMapper(patientMapper.class);
 		
-		patientMapper mapper = sqlsession.getMapper(patientMapper.class);
-		
-		return mapper.showSensorLog(ipaddress);
-		
+	return mapper.showNurse(nurse_no);	
 	}
 	
-    public List<SensorLog> showAisleSensorLog(String ipaddress){
+	public List<SensorLog> showLogList(String ipaddress,String today){
 		
 		patientMapper mapper = sqlsession.getMapper(patientMapper.class);
-		
-		return mapper.showAisleSensorLog(ipaddress);
-		
-	}
+			
+			return mapper.showSensorLog(ipaddress,today);
+			
+		}
+	
 	
 	public List<Patient> patientlist(int nurse_no){
 		

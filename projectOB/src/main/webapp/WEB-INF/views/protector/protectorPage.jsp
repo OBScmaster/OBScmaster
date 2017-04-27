@@ -17,8 +17,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href='http://fonts.googleapis.com/css?family=Economica' rel='stylesheet' type='text/css'>
     <!-- Bootstrap -->
-     <link rel="stylesheet" 
-     href="./resources/css/bootstrap.min.css">
+     <link rel="stylesheet" href="./resources/css/bootstrap.min.css">
  
     <!-- Respomsive slider -->
     <link href="./resources/css/responsive-calendar.css" rel="stylesheet">
@@ -30,7 +29,10 @@
  $( document ).ready( function() {  
 	 
     	var pt_no = $("#pt_no").val();
+    	var nurse_no = $("#nurse_no").val();
     	var ipaddress = $("#ipaddress").val();
+    	
+    	nurseInfo(nurse_no);
         	
     	$("#web-camera").click(function(){
     		window.open("showVideo?pt_no="+pt_no,"","width=500,height=300");
@@ -67,7 +69,8 @@ setInterval(function() {
     			 },
     		 
     			 success:function(data){
-    	    		
+    				 
+    			 if(data.length>1){
         			 var logdata="<table class='table text-center'>"
         			 
         			 $.each(data,function(index,item){        			
@@ -84,6 +87,10 @@ setInterval(function() {
         				$(".table tr:last").css("color","red");
         			 }
         			 
+    			 }else{
+					 $("#log").html("없음");
+				 }
+        			 
         		 },
     		
     		 error:function(e){
@@ -97,7 +104,52 @@ setInterval(function() {
 }, 1000);
 
 
-    	});
+});
+ 
+ function nurseInfo(nurse_no){
+	 
+	 if(nurse_no==0){
+		 var nurseInfo="<div style='height:30px; font-weight:bold'>담당 요양사가 없습니다</div>"
+		$("#nurseInformation").html(nurseInfo);
+	 }else{
+	 
+	 $.ajax({
+ 		
+		 type:"get",
+		 url:"nurseInfo",
+		 data:{
+			 nurse_no:nurse_no
+			 },
+		 
+			 success:function(data){
+				 
+				 var nurseInfo="<div class=col-sm-12 well' style='height:30px; font-weight:bold'>담당요양사</div>";
+			
+			nurseInfo+="<table><tr><td><div class=col-sm-2><img src=./resources/image/nursefile/"+data.savedphoto+" class='img-circle' id='previewImg' name='previewImg' height='100' width='100'></div></td>"
+			 
+			 nurseInfo+="<td width='300px'><div class=col-sm-10><table class=text-center>"
+				 
+			nurseInfo+="<tr><th class=col-sm-6 height='50px'>이름</th><td>"+data.name+"</td></tr>";
+			 nurseInfo+="<tr></div>"
+			 
+			 if(data.phone!=null){
+				 nurseInfo+="<th class=col-sm-6 height='50px'>전화</th><td>"+data.phone+"</td></tr></table>" 
+			 }else{
+				 nurseInfo+="<td>없습니다</td></tr></table></td></tr></table>"  
+			 }
+			
+    		$("#nurseInformation").html(nurseInfo);
+			 },
+		
+		 error:function(e){
+			 
+			console.log(e);
+		 }
+		
+		
+	})
+	 } 
+ }
     </script>
     
       <style>    
@@ -112,6 +164,7 @@ setInterval(function() {
   </head>
   <body>
   
+  <input type="hidden" id="nurse_no" name="nurse_no" value="${id.nurse_no}">
    <input type="hidden" id="pt_no" name="pt_no" value="${id.pt_no}">
    <input type="hidden" id="ipaddress" name="ipaddress" value="${id.ipaddress}">
    
@@ -127,8 +180,7 @@ setInterval(function() {
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav">
         <li class="active"><a href="patientHome">Home</a></li>
-        <li><a href="showVideo?pt_no=${id.pt_no}">웹캠</a></li>
-        <li><a href="#">로그</a></li>
+        
       </ul>     
       <ul class="nav navbar-nav navbar-right">
         <li><a href="protectorLogout">로그아웃</a></li>
@@ -140,20 +192,30 @@ setInterval(function() {
   
     <div class="container">
     
- <c:choose>
- 
- <c:when test="${sessionScope.nurse_name!=null}">
-     <div>담당요양사는  ${sessionScope.nurse_name}입니다</div>
- </c:when>
- 
- <c:otherwise>
- <div>담당요양사가 없습니다</div>
- </c:otherwise>
- 
- </c:choose>
-
     
-      <!-- Responsive calendar - START -->
+    
+<div class="col-md-8"> 
+
+
+ 
+ <div class="well" id="nurseInformation" style="height:200px">
+         
+
+   
+</div>
+
+</div>
+    
+    <div id = "wrapper" class="col-md-4 well" style='height:250px;'>
+    	<div id = "web-camera"> 
+    	<!-- 	<img alt="image" src="./resources/image/icons/play.png">   -->  
+    	<img alt="image" id="xxxx" src="http://10.10.5.32:8080/stream/video.mjpeg">	
+    	
+   		</div>
+   		
+   	</div>
+   	
+   	<!-- Responsive calendar - START -->
     	<div class="responsive-calendar col-md-8">
         	<div class="controls">
            	 <a class="pull-left" data-go="prev"><div class="btn btn-primary">Prev</div></a>
@@ -173,24 +235,13 @@ setInterval(function() {
         </div>
      	</div>
       <!-- Responsive calendar - END -->
-   
-    
-    <div id = "wrapper" class="col-md-4" style='height:300px;'>
-    	<div id = "web-camera"> 
-    	<!-- 	<img alt="image" src="./resources/image/icons/play.png">   -->  
-    	<img alt="image" id="xxxx" src="http://10.10.5.32:8080/stream/video.mjpeg">	
-    	
-   		</div>
-   		
-   	</div>
    	
-   <div id = "logDiv" class="col-md-4">
+   <div id = "logDiv" class="col-md-4 well" >
    	<table class='table text-center'><tr><td>시간</td><td>사건</td><td>종류</td></tr></table>
    	<div id = "log" class="col-md-12" style='height:300px;'>   		
    	</div>
    </div>
-   	
-   	 </div>
+</div>
    	 
 
     

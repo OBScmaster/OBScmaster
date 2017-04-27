@@ -2,8 +2,10 @@ package web.scmaster.com.dao;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Param;
 
 
+import web.scmaster.com.vo.Nurse;
 import web.scmaster.com.vo.Patient;
 
 import web.scmaster.com.vo.SensorLog;
@@ -16,8 +18,8 @@ public interface patientMapper {
 	public int updatePatient(Patient patient);
 	public int deletePatient(int pt_no);
 	public int changeNurse(int nurse_no);
-	public List<SensorLog> showSensorLog(String ipaddress);
-	public List<SensorLog> showAisleSensorLog(String ipaddress);
+	public Nurse showNurse(int nurse_no);
+	public List<SensorLog> showSensorLog(@Param("ipaddress")String ipaddress,@Param("today")String today);
 	public List<Patient> patientList(int nurse_no);
 	
 }

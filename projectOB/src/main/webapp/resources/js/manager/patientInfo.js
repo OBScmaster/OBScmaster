@@ -11,6 +11,7 @@
           readURL(this);
       });
 	  var nurse_no = $("#nurse_no").val();     
+	  
       $.ajax({
  		 
   		type:"get",
@@ -91,7 +92,10 @@
 						
    			    	
    			    	$(".list-group-item").click(function(){
-  			    		
+   			    		
+   			    		var name = $(this).attr("name");
+   			    		var pt_no = $(this).attr("pt_no");
+   			    		
   			    		$(".list-group-item").css("color","black");
   			    		$(this).css("color","red");
   			    		
@@ -103,7 +107,7 @@
   			    	   $("#ppt_add").attr("readonly","readonly");
   			    	
   			    		
-  			    		$("#name").val($(this).attr("name"));
+  			    		$("#name").val(name);
   			    		$("#phone").val($(this).attr("phone"));
   			    		$("#ins_no").val($(this).attr("ins_no"));
   			    		
@@ -121,7 +125,7 @@
   			    		$("#nurse_no").val($(this).attr("nurse_no"));
   			    		
   			    		
-			    		$("#pt_no").val($(this).attr("pt_no"));
+			    		$("#pt_no").val(pt_no);
 			    		$("#ppt_phone").val($(this).attr("ppt_phone"));
 			    		
 			    		var pptadd=$(this).attr("ppt_add");
@@ -137,7 +141,19 @@
 			    		$("#room_noSelect").remove();
 			    		$("#buttt").prepend("<button type='button' class='btn btn-primary' id='patientUpdate'>수정</button>");
 			    		 
+			    		
+			    		
+			    		$("#patientDelete").unbind().bind("click",function(){
+			    			
+			    			if(confirm(name+"을 삭제하시겠습니까?")){
+			  					location.href="deletePatient?pt_no="+pt_no+"&check=1";
+			  				 } 
+			    			
+			    		});
+			    			
 			    		$("#patientUpdate").click(function(){
+			    			
+			    			$("#patientDelete").hide();
 			    			
 			    			$("#patientUpdateCancel").click(function(){
 			    	  			if(confirm("수정을 취소하시겠습니까")){
@@ -271,6 +287,13 @@
  			 }
  			 
  		 })
+ 		 
+ 		   $("#patientDelete").click(function(){
+			if(document.getElementById("name").value.length<1){
+				alert("삭제할 환자를 선택해 주세요"); 
+			 }
+			 
+		 })
       
   		$("#patientUpdateCancel").click(function(){
   			if(confirm("메인메뉴로 돌아가시겠습니까?")){

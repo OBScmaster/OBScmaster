@@ -1,14 +1,23 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<title>WEBCAM</title>
+<script type="text/javascript">
+function anotherImg(){
+	
+	
+	
+	$("img").attr("src", "./resources/image/ajax-loader.gif");
+
+}
+</script>
 </head>
 <body>
 
-<h1><a href="patientLogin">gkasdjlgkjas</a></h1>
+<img alt="image" src="http://${ipaddress}:8080/stream/video.mjpeg" onloadeddata="anotherImg()">
 
 </body>
 </html>

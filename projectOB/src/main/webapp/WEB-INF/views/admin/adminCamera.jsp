@@ -65,20 +65,21 @@
 </nav>
 
  <div class="container" >
-
- <div class="col-md-12" id="kk">
  
-<div class="btn-group btn-group-justified">
+   <div class="col-sm-12">   
+   	 <div class="panel text-center">
 
-  <a href="#" id="1" class="btn btn-info">1층</a>
-  <a href="#" id="2" class="btn btn-info">2층</a>
-  <a href="#" id="3" class="btn btn-info">3층</a>
-  <a href="#" id="4" class="btn btn-info">4층</a>
-  <a href="#" id="5" class="btn btn-info">5층</a>
-  <a href="#" id="6" class="btn btn-info">6층</a>
-</div>
+     <input type="button" class="btn btn-primary" readonly="readonly" id="1" value="1층">
+  	 <input type="button" class="btn btn-primary" readonly="readonly" id="2" value="2층">
+     <input type="button" class="btn btn-primary" readonly="readonly" id="3" value="3층">
+  	 <input type="button" class="btn btn-primary" readonly="readonly" id="4" value="4층">
+  	 <input type="button" class="btn btn-primary" readonly="readonly" id="5" value="5층">
+  	 <input type="button" class="btn btn-primary" readonly="readonly" id="6" value="6층">
+     
+     
+     </div>
+     </div>
  
-</div>   
  
  
  

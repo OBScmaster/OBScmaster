@@ -230,6 +230,7 @@
 
 <div class="container-fluid text-center" id="buttt">
 <button type="button" class="btn btn-primary" id='patientUpdate'>수정</button>
+<button type="button" class="btn btn-primary" id='patientDelete'>삭제</button>
 <button type="button" class="btn btn-primary" id='patientUpdateCancel'>취소</button>
 </div>
 <br>

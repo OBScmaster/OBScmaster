@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import web.scmaster.com.dao.AdminDAO;
 import web.scmaster.com.dao.dailyDAO;
 import web.scmaster.com.dao.patientDAO;
+import web.scmaster.com.vo.AisleSensorLog;
 import web.scmaster.com.vo.DailyCleaning;
 import web.scmaster.com.vo.DailyShower;
 import web.scmaster.com.vo.DailyWash;
@@ -32,8 +33,7 @@ public class patientController {
    private patientDAO patientdao;
    @Autowired
    private dailyDAO dailydao;
-   @Autowired
-   private AdminDAO admindao;
+ 
    
    @RequestMapping(value="patientLogin", method=RequestMethod.GET)
    public String login(){
@@ -62,9 +62,6 @@ public class patientController {
             
             session.setAttribute("id", p);
             
-            Nurse n = admindao.selectNurseByNurseno(p.getNurse_no());
-           
-            session.setAttribute("nurse_name", n.getName());
             session.setAttribute("myip", p.getIpaddress());
             
             return "/protector/protectorPage";
@@ -122,33 +119,35 @@ public class patientController {
       model.addAttribute("specialList", specialList);
             
       model.addAttribute("today", today);
+      
+     
 
       return "/protector/patientDaily";
    }
    
    @RequestMapping(value="showVideo", method=RequestMethod.GET)
-   public String showVideo(int pt_no, Model model){
+   public String showVideo(int pt_no, Model model, HttpSession session){
+	   
+	   Patient p = (Patient) session.getAttribute("id");
+	   String ipaddress = p.getIpaddress();
+	   model.addAttribute("ipaddress",ipaddress);
 	   
       return "/protector/showVideo";
    }
    
-   
-   @ResponseBody
-   @RequestMapping(value="showLog", method=RequestMethod.GET)
-   public List<SensorLog> showLog(String ipaddress, Model model){
+   @RequestMapping(value="showlog", method=RequestMethod.GET)
+   public String showlog(String ipaddress,String today, Model model){
+	 	   
+	   List<SensorLog> showLogList = patientdao.showLogList(ipaddress,today);
 	   
-	   List<SensorLog> loglist = patientdao.showLogList(ipaddress);
-		   
-      return loglist;
-   }
-   
-   @ResponseBody
-   @RequestMapping(value="showAisleLog", method=RequestMethod.GET)
-   public List<SensorLog> showAisleLog(String ipaddress, Model model){
+	   if(showLogList.size()==0){
+		   showLogList=null;
+	   }
 	   
-	   List<SensorLog> loglist = patientdao.showAisleSensorLog(ipaddress);
-		   
-      return loglist;
+	   model.addAttribute("myLoglist", showLogList);
+	   model.addAttribute("today", today);
+	   
+      return "/protector/showlog";
    }
    
    
@@ -160,5 +159,16 @@ public class patientController {
 		   
       return patientList;
    }
+   
+   @ResponseBody
+   @RequestMapping(value="nurseInfo", method=RequestMethod.GET)
+   public Nurse nurseInfo(int nurse_no, Model model){
+	   
+	  Nurse nurse = patientdao.showNurse(nurse_no);
+		   
+      return nurse;
+   }
+   
+   
    
 }

@@ -20,9 +20,11 @@ import org.springframework.web.multipart.MultipartFile;
 import web.scmaster.com.dao.AdminDAO;
 import web.scmaster.com.util.FileService;
 import web.scmaster.com.vo.Admin;
+import web.scmaster.com.vo.AisleSensorLog;
 import web.scmaster.com.vo.Nurse;
 import web.scmaster.com.vo.Patient;
 import web.scmaster.com.vo.Room;
+import web.scmaster.com.vo.SensorLog;
 
 @Controller
 public class adminController {
@@ -246,11 +248,18 @@ public class adminController {
 	}
 	
 	@RequestMapping(value="deletePatient", method=RequestMethod.GET)
-	public String deletePatient(int pt_no){	
+	public String deletePatient(int pt_no,int check){	
 		
 		admindao.deletePatient(pt_no);
 		
-	 return "/admin/adminPatientInfo";
+		if(check==1){
+			return "/manager/managerPatientInfo";
+			
+		}else{
+			 return "/admin/adminPatientInfo"; 
+		}
+		
+	
 	}
 	
 	@RequestMapping(value="updateNurse", method=RequestMethod.POST)
@@ -367,6 +376,26 @@ public class adminController {
 				
 	
 		
+	   }
+	
+	 @ResponseBody
+	   @RequestMapping(value="showLog", method=RequestMethod.GET)
+	   public List<SensorLog> showLog(String ipaddress, Model model){
+		   
+		   List<SensorLog> loglist = admindao.showLogList(ipaddress);
+			   
+	      return loglist;
+	   }
+	   
+	   @ResponseBody
+	   @RequestMapping(value="showAisleLog", method=RequestMethod.GET)
+	   public List<AisleSensorLog> showAisleLog(String ipaddress, Model model){
+		    
+		   
+		   List<AisleSensorLog> aisleloglist = admindao.showAisleSensorLog(ipaddress);
+
+		   
+	      return aisleloglist;
 	   }
 	
 	

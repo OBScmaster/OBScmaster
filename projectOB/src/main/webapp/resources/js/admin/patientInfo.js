@@ -150,7 +150,7 @@
 			    		$("#room_noSelect").remove();
 			    		$("#buttt").prepend("<button type='button' class='btn btn-primary' id='patientUpdate'>수정</button>");
 			    		 
-			    		$("#patientDelete").click(function(){
+			    		$("#patientDelete").unbind().bind("click",function(){
 			    			
 			    			if(confirm(name+"을 삭제하시겠습니까?")){
 			  					location.href="deletePatient?pt_no="+pt_no;
@@ -245,6 +245,13 @@
  	 $("#patientUpdate").click(function(){
 			if(document.getElementById("name").value.length<1){
 				alert("수정할 환자를 선택해 주세요"); 
+			 }
+			 
+		 })
+		 
+		  $("#patientDelete").click(function(){
+			if(document.getElementById("name").value.length<1){
+				alert("삭제할 환자를 선택해 주세요"); 
 			 }
 			 
 		 })

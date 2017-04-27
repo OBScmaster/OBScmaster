@@ -9,9 +9,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import web.scmaster.com.vo.Admin;
+import web.scmaster.com.vo.AisleSensorLog;
 import web.scmaster.com.vo.Nurse;
 import web.scmaster.com.vo.Patient;
 import web.scmaster.com.vo.Room;
+import web.scmaster.com.vo.SensorLog;
 
 
 @Repository
@@ -154,6 +156,22 @@ public class AdminDAO {
 			   
 	      return mapper.selectNurseByNurseno(nurse_no);
 	   }
+	 
+	 public List<SensorLog> showLogList(String ipaddress){
+			
+		 AdminMapper mapper = sqlsession.getMapper(AdminMapper.class);
+			
+			return mapper.showSensorLog(ipaddress);
+			
+		}
+		
+	    public List<AisleSensorLog> showAisleSensorLog(String ipaddress){
+			
+	    	AdminMapper mapper = sqlsession.getMapper(AdminMapper.class);
+			
+			return mapper.showAisleSensorLog(ipaddress);
+			
+		}
 	 
 
 

@@ -63,18 +63,22 @@
 </nav>
 
  <div class="container" >
-
- <div class="col-md-12" id="kk">
  
-<div class="btn-group btn-group-justified">
-
-  <a href="#" id="1" class="btn btn-info">2, 3층</a>
-  <a href="#" id="2" class="btn btn-info">4, 5층</a>
-  <a href="#" id="3" class="btn btn-info">6층, 그외</a>
+   <div class="col-sm-4">   
+   	 <div class="panel text-left">
+   	 <input type="button" class="btn btn-primary" readonly="readonly" id="red" value="적외선">
+  	 <input type="button" class="btn btn-primary" readonly="readonly" id="press1" value="방">
+     </div>
+ </div>
+     
+   <div class="col-sm-8">   
+   	 <div class="panel text-left" id="buttons">
+     <input type="button" class="btn btn-primary" readonly="readonly" id="1" value="2, 3층">
+  	 <input type="button" class="btn btn-primary" readonly="readonly" id="2" value="4, 5층">
+     <input type="button" class="btn btn-primary" readonly="readonly" id="3" value="6층, 그외">
+     </div>
+     </div>
   
-</div>
- 
-</div>   
  
  
  

@@ -83,6 +83,16 @@
 	<beans:ref bean="loginIntercepter"/>
 	</mvc:interceptor>
 	
+	<mvc:interceptor>
+	<mvc:mapping path="/showVideo"/>
+	<beans:ref bean="loginIntercepter"/>
+	</mvc:interceptor>
+	
+	<mvc:interceptor>
+	<mvc:mapping path="/showlog"/>
+	<beans:ref bean="loginIntercepter"/>
+	</mvc:interceptor>
+	
 	
 	</mvc:interceptors>
 	

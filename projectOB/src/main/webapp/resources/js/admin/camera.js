@@ -1,49 +1,54 @@
 /**
  * 
  */
-$(function() {
 
-	showDivs(100);
+$(function() {
+	
+	
+
+	showCameraDivs(100);
+	
 	
 	$("#1").click(function(){
 		
-		showDivs(100);
+		showCameraDivs(100);
 		
 	})
 	
 	$("#2").click(function(){
 		
-		showDivs(200);
+		showCameraDivs(200);
 		
 	})
 	
 	$("#3").click(function(){
 		
-		showDivs(300);
+		showCameraDivs(300);
 		
 	})
 	
 	$("#4").click(function(){
 		
-		showDivs(400);
+		showCameraDivs(400);
 		
 	})
 	
 	$("#5").click(function(){
 		
-		showDivs(500);
+		showCameraDivs(500);
 		
 	})
 	
 	$("#6").click(function(){
 		
-		showDivs(600);
+		showCameraDivs(600);
 		
 	})
 	
 })
 
 function showLog(divArea,part){
+
 	
 	var ipaddress;
 
@@ -94,6 +99,22 @@ function showLog(divArea,part){
 		}else if(divArea==350){
 			ipaddress="10.10.5.42";
 		}else if(divArea==360){
+			ipaddress="10.10.5.43";
+		}
+		
+	}else if(part==400){
+		
+		if(divArea==410){			
+			ipaddress="10.10.5.38";
+		}else if(divArea==420){
+			ipaddress="10.10.5.39";
+		}else if(divArea==430){
+			ipaddress="10.10.5.40";
+		}else if(divArea==440){
+			ipaddress="10.10.5.41";
+		}else if(divArea==450){
+			ipaddress="10.10.5.42";
+		}else if(divArea==460){
 			ipaddress="10.10.5.43";
 		}
 		
@@ -150,7 +171,7 @@ function showLog(divArea,part){
 		 success:function(data){
 				 
 				var camera = ipaddress
-					camera+="<img alt='image' src='http://"+ipaddress+":8080/stream/video.mjpeg'>"
+					camera+="<img alt='image' src='http://"+ipaddress+":8080/stream/video.mjpeg' onloadeddata="+anotherImg()+">"
 					
 	         $("#"+divArea+"").html(camera);
 	        	
@@ -171,7 +192,13 @@ function showLog(divArea,part){
 	}
 
 
-  function showDivs(part){
+function anotherImg(){
+	
+	$("img").attr("src", "./resources/image/ajax-loader.gif");
+
+}
+
+  function showCameraDivs(part){
 	  
 	  $('#LogDiv').html("");
 	  
