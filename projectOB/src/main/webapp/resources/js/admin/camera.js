@@ -171,11 +171,9 @@ function showLog(divArea,part){
 		 success:function(data){
 				 
 				var camera = ipaddress
-					camera+="<img alt='image' src='http://"+ipaddress+":8080/stream/video.mjpeg' onloadeddata="+anotherImg()+">"
+					camera+="<br><img alt='image' src='http://"+ipaddress+":8080/stream/video.mjpeg' onerror=errorImg() onloadeddata="+anotherImg()+">"
 					
-	         $("#"+divArea+"").html(camera);
-	        	
-				 
+	         $("#"+divArea+"").html(camera);			 
    			 
    		 },
 		
@@ -191,8 +189,17 @@ function showLog(divArea,part){
 	 
 	}
 
+function errorImg(){
+	
+	
+	$("img").attr("src", "./resources/image/noimage.JPG");
+
+}
+
+
 
 function anotherImg(){
+	
 	
 	$("img").attr("src", "./resources/image/ajax-loader.gif");
 

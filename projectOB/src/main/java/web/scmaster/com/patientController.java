@@ -138,16 +138,19 @@ public class patientController {
    @RequestMapping(value="showlog", method=RequestMethod.GET)
    public String showlog(String ipaddress,String today, Model model){
 	 	   
-	   List<SensorLog> showLogList = patientdao.showLogList(ipaddress,today);
-	   
-	   if(showLogList.size()==0){
-		   showLogList=null;
-	   }
-	   
-	   model.addAttribute("myLoglist", showLogList);
+	   model.addAttribute("ipaddress", ipaddress);
 	   model.addAttribute("today", today);
 	   
       return "/protector/showlog";
+   }
+   
+   @ResponseBody
+   @RequestMapping(value="showMyLog", method=RequestMethod.GET)
+   public List<SensorLog> showmylog(String ipaddress,String today){
+	 	   
+	   List<SensorLog> showLogList = patientdao.showLogList(ipaddress,today);
+
+	   return showLogList;
    }
    
    

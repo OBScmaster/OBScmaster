@@ -16,7 +16,7 @@
 
 function onWebcam(pt_no){
 	
-	window.open("showVideo?pt_no="+pt_no,"webcam","width=300,height=200");
+	window.open("showVideo?pt_no="+pt_no,"webcam","width=300,height=225,top=100, left=300");
 	
 }
 
@@ -24,7 +24,7 @@ function onWebcam(pt_no){
 
 function clickLog(ipaddress,today){
 	
-	window.open("showlog?ipaddress="+ipaddress+"&today="+today,"Log","width=350,height=500");
+	window.open("showlog?ipaddress="+ipaddress+"&today="+today,"Log","width=350,height=500,top=100, left=700");
 	
 }
 
